@@ -2,6 +2,7 @@ package com.example.controller;
 
 import java.io.File;
 import java.net.URLEncoder;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -13,8 +14,12 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Repository;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -34,13 +39,148 @@ import com.example.service.UserMailSendService;
 public class UserController {
 	@Resource(name="userUploadPath")
 	private String path;
-	
+	@Resource(name="companyUploadPath")
+	private String companypath;
 	@Autowired
 	UserMapper mapper;
 
 	@Autowired
 	private UserMailSendService mailSender;
+	
+	//업체 정보 수정
+	@RequestMapping(value="/user/mypage/updateUserCompany",method=RequestMethod.POST)
+	public String updateCompany(CompanyVO vo,MultipartHttpServletRequest multi)throws Exception {
+		
+		
+		return "redirect:/";
+	}
+	//업체 정보 불러오기
+	@RequestMapping("/user/mypage/readCompany")
+	@ResponseBody
+	public HashMap<String, Object> readCompany(String c_id) {
+		HashMap<String, Object> map=new HashMap<String, Object>();
+		CompanyVO vo=mapper.readCompany(c_id);
+		map.put("read", vo);
+		return map;
+	}
+	
+	
+	//유저 정보 수정
+	@RequestMapping(value="/user/mypage/updateUser",method=RequestMethod.POST)
+	public String update(UserVO vo,MultipartHttpServletRequest multi)throws Exception {
 
+		System.out.println(vo.toString());
+		MultipartFile file=multi.getFile("file");
+		if(!file.isEmpty()) {
+			UserVO vo1=mapper.read(vo.getU_id());
+			//옛날 대표이미지 삭제
+			if(!vo1.getU_image().equals("")) {
+				new File(path+File.separator+vo1.getU_image()).delete();
+			}
+			String image=System.currentTimeMillis()+file.getOriginalFilename();
+			file.transferTo(new File(path + File.separator + image));
+			vo.setU_image(image);
+			mapper.updateUser(vo);
+		}else {
+			mapper.updateUser2(vo);
+		}
+		
+		
+		return "redirect:/";
+	}
+	
+	
+	@RequestMapping("/user/mypage/read")
+	@ResponseBody
+	public HashMap<String, Object> read(String u_id) {
+		HashMap<String, Object> map=new HashMap<String, Object>();
+		UserVO vo=mapper.read(u_id);
+		map.put("read", vo);
+		return map;
+	}
+	
+	
+	@RequestMapping("/user/mypage/infomation")
+	public void information() {
+		
+	}
+	
+	@RequestMapping("/user/findCompany(id)")
+	public void findidC() {
+		
+	}
+	
+	@RequestMapping("/user/findCompany(pass)")
+	public void findpassC() {
+		
+	}
+	//실명인증
+		@RequestMapping("/user/checkNameCompany")
+		@ResponseBody
+		public int nameCheckC(String name, String number) {
+			int i=mapper.checkNameCompany(number, name);
+			System.out.println(i);
+			int result=0;
+			if(i==1) {
+				result=1;
+			}
+			return result;
+		}
+	//ID찾기 이메일 인증
+	@RequestMapping(value="/user/emailCheckCompany",method=RequestMethod.POST)
+	@ResponseBody
+	public HashMap<String, Object> emailCheckCompany(String email, String name, String number, HttpServletRequest request) {
+		HashMap<String, Object> map= new HashMap<String, Object>();
+		String key=mailSender.mailSendFindIdCompanyKey(email, name, number, request);
+		map.put("idCompany",mapper.checkIDCompany(number, name));
+		map.put("email",key);
+		return map;
+	}
+	//업체PASS 재설정
+		@RequestMapping(value="/user/resetPassCompany",method=RequestMethod.POST)
+		public String updatePassCompany(String id, String pass) {
+			mapper.updatePassCompany(id, pass);
+			return "redirect:/user/login";
+		}
+	//업체PASS찾기 이메일 인증
+		@RequestMapping("/user/emailCheckPassCompany")
+		@ResponseBody
+		public String emailCheckPassCompany(String email, String name,String number, HttpServletRequest request) {
+			String key=mailSender.mailSendFindIdCompanyKey(email, name, number, request);
+			return key;
+		}
+	//업체 PASS찾기 아이디/이름/성명,이메일 체크
+		@RequestMapping("/user/nameCheckPassCompany")
+		@ResponseBody
+		public int nameCheckPassCompany(String id,String name,String number,String email) {
+			CompanyVO vo=mapper.readCompany(id);
+			int chkNum=0;
+			if(vo.getC_name().equals(name)) {
+				if(vo.getC_number().equals(number)) {
+					if(vo.getC_email().equals(email)) {
+						chkNum=1;
+					}else {
+						chkNum=0;
+					}
+				}else {
+					chkNum=0;
+				}
+			}else {
+				chkNum=0;
+			}
+			return chkNum;
+		}
+	//업체 PASS찾기 업체 아이디 인증
+	@RequestMapping("/user/idCheckPassCompany")
+	@ResponseBody
+	public String idCheckPassC(String c_id) {
+		String i=mapper.readcompanyid(c_id);
+		return i;
+	}
+	
+	
+	
+	
 	@RequestMapping("/user/find(id)")
 	public void findid() {
 		
@@ -78,7 +218,6 @@ public class UserController {
 		
 		return "redirect:/user/login";
 	}
-	
 	//PASS찾기 이메일 인증
 	@RequestMapping("/user/emailCheckPass")
 	@ResponseBody
@@ -93,11 +232,10 @@ public class UserController {
 		String i=mapper.readid(u_id);
 		return i;
 	}
-	
 	//PASS찾기 아이디/이름/성명,이메일 체크
 	@RequestMapping("/user/nameCheckPass")
 	@ResponseBody
-	public int idCheckPass(String id,String name,String birthday,String email) {
+	public int nameCheckPass(String id,String name,String birthday,String email) {
 		UserVO vo=mapper.read(id);
 		int chkNum=0;
 		if(vo.getU_name().equals(name)) {
@@ -115,6 +253,10 @@ public class UserController {
 		}
 		return chkNum;
 	}
+
+	
+	
+	
 	
 	//일반,업체 회원가입 선택 페이지
 	@RequestMapping("/user/signupselect")
@@ -134,8 +276,10 @@ public class UserController {
 	
 	//로그아웃 페이지
 	@RequestMapping("/user/logout")
-	public void logout() {
-		
+	public String logout(HttpSession session, HttpServletRequest request) {
+		session.invalidate();
+		session=request.getSession(true);
+		return "redirect:/user/login";
 	}
 	
 	//유저 아이디 중복 체크
@@ -301,7 +445,7 @@ public class UserController {
 	public String insertComapny(CompanyVO vo,MultipartHttpServletRequest multi,HttpServletRequest request) throws Exception {
 		String id=mapper.readcompanyid(vo.getC_id());
 		CompanyVO read=mapper.readCompany(vo.getC_id());
-		System.out.println(id+";;");
+		System.out.println(vo.getC_address());
 		
 		if(id.equals("1")) {//아이디 존재여부 확인
 			if(read.getC_key().equals("Y")) {//아이디존재하면 키값을 비교 key값이 Y가 아니면 실행
@@ -312,7 +456,7 @@ public class UserController {
 						MultipartFile file=multi.getFile("file1");
 						if(!file.isEmpty()) {
 							String image=System.currentTimeMillis()+file.getOriginalFilename();
-							file.transferTo(new File(path+File.separator+image));
+							file.transferTo(new File(companypath+File.separator+image));
 							vo.setC_image(image);
 						}
 				vo.setC_key("N");
@@ -324,7 +468,7 @@ public class UserController {
 				MultipartFile file=multi.getFile("file1");
 				if(!file.isEmpty()) {
 					String image=System.currentTimeMillis()+file.getOriginalFilename();
-					file.transferTo(new File(path+File.separator+image));
+					file.transferTo(new File(companypath+File.separator+image));
 					vo.setC_image(image);
 				}
 				vo.setC_key("N");
@@ -350,5 +494,20 @@ public class UserController {
 
 		return "/user/success(id)";
 	}
+	
+	// 이미지파일 브라우저에 출력
+		@RequestMapping("/display")
+		@ResponseBody
+		public ResponseEntity<byte[]> display(String fileName) throws Exception {
+			ResponseEntity<byte[]> result = null;
+			// display fileName이 있는 경우
+			if (!fileName.equals("")) {
+				File file = new File(path + File.separator + fileName);
+				HttpHeaders header = new HttpHeaders();
+				header.add("Content-Type", Files.probeContentType(file.toPath()));
+				result = new ResponseEntity<>(FileCopyUtils.copyToByteArray(file), header, HttpStatus.OK);
+			}
+			return result;
+		}
 
 }
