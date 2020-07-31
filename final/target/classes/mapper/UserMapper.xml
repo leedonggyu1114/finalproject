@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.UserMapper">
+    <insert id="insert">
+    	insert into tbl_user(u_id,u_pass,u_name,u_tel,u_address,u_email,u_image,u_birthday,u_status,u_key,u_gender)
+		values(#{u_id},#{u_pass},#{u_name},#{u_tel},#{u_address},#{u_email},#{u_image},#{u_birthday},#{u_status},#{u_key},#{u_gender})
+    </insert>
+    <insert id="insertCompany">
+    	insert into tbl_company (c_id,c_pass, c_name, c_tel, c_email, c_address, c_image, c_number, c_ceo, c_ceo_tel, c_x, c_y, c_detail, c_area, c_key) 
+    	values(#{c_id},#{c_pass},#{c_name},#{c_tel},#{c_email},#{c_address},#{c_image},#{c_number},#{c_ceo},#{c_ceotel},#{c_x},#{c_y},#{c_detail},#{c_area},#{c_key});                     
+    </insert>
+    <select id="read" resultType="com.example.domain.UserVO">
+    	select * from tbl_user where u_id=#{u_id}
+    </select>
+    <select id="readCompany" resultType="com.example.domain.CompanyVO">
+    	select * from tbl_company where c_id=#{c_id}
+    </select>
+    <select id="readid" resultType="string">
+    	select count(*) from tbl_user where u_id=#{u_id}
+    </select>
+    <select id="readcompanyid" resultType="string">
+    	select count(*) from tbl_company where c_id=#{c_id}
+    </select>
+    <select id="readcompanyNumber" resultType="string">
+    	select c_number from tbl_company where c_number=#{c_number}
+    </select>
+    <insert id="GetKey" parameterType="Map">
+    	update tbl_user set u_key=#{param2} where u_id=#{param1}
+    </insert>
+    <update id="alter_userKey" parameterType="Map">
+    	update tbl_user set u_key='Y' where u_id=#{param1} and u_key=#{param2}
+    </update>
+    <insert id="GetKeyCompany" parameterType="Map">
+    	update tbl_company set c_key=#{param2} where c_id=#{param1}
+    </insert>
+    <update id="alter_KeyCompany" parameterType="Map">
+    	update tbl_company set c_key='Y' where c_id=#{param1} and c_key=#{param2}
+    </update>
+    <delete id="delete">
+    	delete from tbl_user where u_id=#{u_id}
+    </delete>
+    <delete id="deleteCompany">
+    	delete from tbl_company where c_id=#{c_id}
+    </delete>
+    <select id="checkName" resultType="int">
+   		 select count(*) from tbl_user where u_name=#{param2} and u_birthday=#{param1} and u_key="Y"
+    </select>
+    <select id="checkID" resultType="com.example.domain.UserVO">
+    	select u_id from tbl_user where u_name=#{param2} and u_birthday=#{param1} and u_key="Y"
+    </select>
+    <update id="updatePass">
+    	update tbl_user set u_pass=#{param2} where u_id=#{param1} 
+    </update>
+</mapper>
