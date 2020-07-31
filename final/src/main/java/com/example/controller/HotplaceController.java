@@ -54,7 +54,7 @@ public class HotplaceController {
 	@RequestMapping("likelist")
 	public void likelist(Model model,HttpSession session) {
 		//session.invalidate();
-		session.setAttribute("u_id", "u04");
+		//session.setAttribute("u_id", "u04");
 		String u_id=(String) session.getAttribute("u_id");
 		ArrayList<HotplaceVO> likelist = new ArrayList<HotplaceVO>();
 		for(HotplaceVO vo:mapper.likelist(u_id)) {
