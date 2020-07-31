@@ -14,6 +14,7 @@ public class HotplaceVO {
 	private String h_tag1;
 	private String h_tag2;
 	private List<String> h_i_images;
+	private String u_id;
 	public String getH_x() {
 		return h_x;
 	}
@@ -74,13 +75,19 @@ public class HotplaceVO {
 	public void setH_i_images(List<String> h_i_images) {
 		this.h_i_images = h_i_images;
 	}
+	public String getU_id() {
+		return u_id;
+	}
+	public void setU_id(String u_id) {
+		this.u_id = u_id;
+	}
 	@Override
 	public String toString() {
 		return "HotplaceVO [h_x=" + h_x + ", h_y=" + h_y + ", h_title=" + h_title + ", h_address=" + h_address
 				+ ", h_detail=" + h_detail + ", h_area=" + h_area + ", h_image=" + h_image + ", h_tag1=" + h_tag1
-				+ ", h_tag2=" + h_tag2 + ", h_i_images=" + h_i_images + "]";
+				+ ", h_tag2=" + h_tag2 + ", h_i_images=" + h_i_images + ", u_id=" + u_id + "]";
 	}
-
+	
 	
 	
 	
