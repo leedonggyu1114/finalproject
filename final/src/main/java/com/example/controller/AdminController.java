@@ -27,7 +27,7 @@ import com.example.service.AdminServiceInterface;
 @Controller
 @RequestMapping("/admin/")
 public class AdminController {
-	@Resource(name="uploadPath") //servlet-context.xml에서 지정한 아이디
+	@Resource(name="hotplaceUploadPath") //servlet-context.xml에서 지정한 아이디
 	private String path;
 
 

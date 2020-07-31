@@ -7,4 +7,52 @@
     <select id="imagelist" resultType="string">
     	select h_i_images from tbl_hotplace_images where h_x=#{h_x} and h_y=#{h_y} order by h_i_images
     </select>
+
+  <!-- 	<select id="agefell" parameterType="hashmap" statementType="CALLABLE">
+    	{call agefell(
+    		#{h_x,mode=IN,jdbcType=VARCHAR},
+    		#{h_y,mode=IN,jdbcType=VARCHAR},
+    		#{@age10,mode=OUT, jdbcType=Integer},
+    		#{@age20,mode=OUT, jdbcType=Integer},
+    		#{@age30,mode=OUT, jdbcType=Integer},
+    		#{@age40,mode=OUT, jdbcType=Integer},
+    		#{@age50,mode=OUT, jdbcType=Integer}
+    	)}
+    </select>/*
+     -->
+   	<select id="age10" resultType="int">
+    	select count(l.u_id) from tbl_like l, tbl_user u where l.u_id=u.u_id and u_birthday between date_add(now(), interval -9 year) and now() and h_x=#{h_x} and h_y=#{h_y}
+    </select>
+     <select id="age20" resultType="int">
+    	select count(l.u_id) from tbl_like l, tbl_user u where l.u_id=u.u_id and u_birthday between date_add(now(), interval -19 year) and date_add(now(), interval -9 year) and h_x=#{h_x} and h_y=#{h_y}
+    </select>
+    <select id="age30" resultType="int">
+    	select count(l.u_id) from tbl_like l, tbl_user u where l.u_id=u.u_id and u_birthday between date_add(now(), interval -29 year) and date_add(now(), interval -19 year) and h_x=#{h_x} and h_y=#{h_y}
+    </select>
+    <select id="age40" resultType="int">
+    	select count(l.u_id) from tbl_like l, tbl_user u where l.u_id=u.u_id and u_birthday between date_add(now(), interval -39 year) and date_add(now(), interval -29 year) and h_x=#{h_x} and h_y=#{h_y}
+    </select>
+    <select id="age50" resultType="int">
+    	select count(l.u_id) from tbl_like l, tbl_user u where l.u_id=u.u_id and u_birthday between date_add(now(), interval -100 year) and date_add(now(), interval -39 year) and h_x=#{h_x} and h_y=#{h_y}
+    </select>
+    
+    <select id="sexM" resultType="int">
+    	select count(l.u_id) from tbl_like l,tbl_user u where l.u_id=u.u_id and l.h_x=#{h_x} and l.h_y=#{h_y} and u.u_gender='male'
+    </select>
+    <select id="sexF" resultType="int">
+    	select count(l.u_id) from tbl_like l,tbl_user u where l.u_id=u.u_id and l.h_x=#{h_x} and l.h_y=#{h_y} and u.u_gender='female'
+    </select>
+    
+    <insert id="likeinsert">
+    	insert into tbl_like values(#{h_x},#{h_y},#{u_id})
+    </insert>
+    <delete id="likedelete">
+    	delete from tbl_like where h_x=#{h_x} and h_y=#{h_y} and u_id=#{u_id}
+    </delete>
+    <select id="likelist" resultType="com.example.domain.HotplaceVO">
+    	select l.u_id,h.* from tbl_like l,tbl_hotplace h where l.h_x=h.h_x and l.h_y=h.h_y and u_id=#{u_id}
+    </select>
+    <select id="likeuserlist" resultType="hashmap">
+    	select l.*, u.u_image from tbl_like l,tbl_user u where u.u_id=l.u_id and h_x=#{h_x} and h_y=#{h_y}
+    </select>
 </mapper>
