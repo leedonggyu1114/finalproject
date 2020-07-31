@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.AdminMapper">
+    <insert id="insert">
+    	insert into tbl_hotplace values(#{h_x},#{h_y},#{h_title},#{h_address},#{h_detail},#{h_area},#{h_image},#{h_tag1},#{h_tag2})
+    </insert>
+    <insert id="insertimages">
+    	insert into tbl_hotplace_images values(#{h_x},#{h_y},#{images})
+    </insert>
+    <select id="list" resultType="com.example.domain.HotplaceVO">
+    	select * from tbl_hotplace
+    </select>
+    <select id="imagelist" resultType="string">
+    	select h_i_images from tbl_hotplace_images where h_x=#{h_x} and h_y=#{h_y} order by h_i_images
+    </select>
+    <select id="read" resultType="com.example.domain.HotplaceVO">
+    	select * from tbl_hotplace where h_x=#{h_x} and h_y=#{h_y}
+    </select>
+    <delete id="delete">
+    	delete from tbl_hotplace where h_x=#{h_x} and h_y=#{h_y}
+    </delete>
+    <delete id="deleteimages">
+    	delete from tbl_hotplace_images where h_x=#{h_x} and h_y=#{h_y}
+    </delete>
+    <update id="update">
+    	update tbl_hotplace set h_x=#{h_x}, h_y=#{h_y}, h_title=#{h_title}, h_address=#{h_address}, 
+    	h_detail=#{h_detail}, h_area=#{h_area}, h_image=#{h_image}, h_tag1=#{h_tag1}, h_tag2=#{h_tag2} 
+    	where h_x=#{h_x} and h_y=#{h_y}
+    </update>
+    <update id="updateimages">
+    	update tbl_hotplace_images set h_i_images=#{h_i_images} where h_x=#{h_x} and h_y=#{h_y}
+    </update>
+</mapper>
