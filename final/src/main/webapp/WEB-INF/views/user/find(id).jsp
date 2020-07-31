@@ -14,7 +14,7 @@
 </style>
 </head>
 <body>
-	<h1>아이디 찾기</h1>
+	<h1>아이디 찾기rlrlr</h1>
 	<div id="page">
 		<table id="idfind">
 			<tr>
