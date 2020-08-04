@@ -67,6 +67,7 @@
 		<div id="menu"><jsp:include page="../menu.jsp"/></div>
 		<div id="container">
 			<div id="findid_area">
+				<div>아이디찾기</div>
 				<table id="idfind" border=1>
 					<tr class="line-findid a">
 						<td width=170><span>이름</span> </td>
