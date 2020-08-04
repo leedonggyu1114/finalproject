@@ -170,6 +170,9 @@
 	cursor:pointer;
 	padding-left:10px;
 }
+input[id="t_tag1"] {
+	display: none;
+}
 </style>
 </head>
 <body>
@@ -292,58 +295,41 @@
 		<!-- 선호 태그 선택 -->
 		<div> 2가지 선택</div>
 		<div id="tag">
-			<div>
-			<input type="checkbox" id="t_tag1" name="t_tag" value="01" >
-				<label for="t_tag1"><img src="/resources/img/usertag/가족과함께.png" id="tag1"></label>
-				<label for="t_tag1"><img src="/resources/img/usertag/가족과함께1.png" id="tag1-1"></label>
-				</div>
+			<input type="checkbox" id="t_tag1" name="t_tag" value="01">
+				<label for="t_tag1"><img src="/resources/img/container/container_icon.png"></label>
 			<input type="checkbox" id="t_tag2" name="t_tag" value="02">
-				<label for="t_tag2"><img src="/resources/img/usertag/교육.png" id="tag2"><img src="/resources/img/usertag/교육1.png" id="tag2-1"></label>
+				<label for="t_tag2"><img src="/resources/img/container/container_icon.png"></label>
 			<input type="checkbox" id="t_tag3" name="t_tag" value="03">
-				<label for="t_tag3"><img src="/resources/img/usertag/나만아는.png"></label>
+				<label for="t_tag3"><img src="/resources/img/container/container_icon.png"></label>
 			<input type="checkbox" id="t_tag4" name="t_tag" value="04">
-				<label for="t_tag4"><img src="/resources/img/usertag/나혼자여행.png"></label>
+				<label for="t_tag4"><img src="/resources/img/container/container_icon.png"></label>
 			<input type="checkbox" id="t_tag5" name="t_tag" value="05">
-				<label for="t_tag5"><img src="/resources/img/usertag/도심속여행.png"></label>
+				<label for="t_tag5"><img src="/resources/img/container/container_icon.png"></label>
 			<input type="checkbox" id="t_tag6" name="t_tag" value="06">
-				<label for="t_tag6"><img src="/resources/img/usertag/먹방.png"></label>
+				<label for="t_tag6"><img src="/resources/img/container/container_icon.png"></label>
 			<input type="checkbox" id="t_tag7" name="t_tag" value="07">
-				<label for="t_tag7"><img src="/resources/img/usertag/야경.png"></label>
+				<label for="t_tag7"><img src="/resources/img/container/container_icon.png"></label>
 			<input type="checkbox" id="t_tag8" name="t_tag" value="08">
-				<label for="t_tag8"><img src="/resources/img/usertag/연인과함께.png"></label>
+				<label for="t_tag8"><img src="/resources/img/container/container_icon.png"></label>
 			<input type="checkbox" id="t_tag9" name="t_tag" value="09">
-				<label for="t_tag9"><img src="/resources/img/usertag/익사이팅.png"></label>
+				<label for="t_tag9"><img src="/resources/img/container/container_icon.png"></label>
 			<input type="checkbox" id="t_tag10" name="t_tag" value="10">
-				<label for="t_tag10"><img src="/resources/img/usertag/친구와함께.png"></label>
+				<label for="t_tag10"><img src="/resources/img/container/container_icon.png"></label>
 			<input type="checkbox" id="t_tag11" name="t_tag" value="11">
-				<label for="t_tag11"><img src="/resources/img/usertag/헬스케어.png"></label>
+				<label for="t_tag11"><img src="/resources/img/container/container_icon.png"></label>
 			<input type="checkbox" id="t_tag12" name="t_tag" value="12">
-				<label for="t_tag12"><img src="/resources/img/usertag/힐링.png"></label>
+				<label for="t_tag12"><img src="/resources/img/container/container_icon.png"></label>
 		</div>
 		 <br>
 		<input type="submit" value="회원 가입" id="btn_user_insert">
 	</form>
 </body>
 <script>
-
-</script>
-<script>
-$(":checkbox").css("display","none");	
-$("#tag1-1").css("display","none");
-$("#tag2-1").css("display","none");
+	$(":checkbox").css("display","none");	
 	
-	$("input[name=t_tag]").on("click",function(){
-		
-		if($(this).is(":checked")==true){
-			$("#tag1").css("display","none");
-			$("#tag1-1").css("display","block");
-		}else{
-			$("#tag1").css("display","block");
-			$("#tag1-1").css("display","none");
-		}
-		
-		
-		var count=$("input:checked[type='checkbox']").length;	
+	
+	$("input[name=t_tag]").on("change",function(){
+		var count=$("input:checked[type='checkbox']").length;
 		
 		if(count>2){
 			$(this).prop("checked",false);

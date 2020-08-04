@@ -47,7 +47,7 @@
 					onmouseout="this.src='${pageContext.request.contextPath}/resources/img/header/booking_icon.png'" 
 					width=50>
 				</a>
-				<a href="">
+				<a href="/hotplace/likelist">
 					<img src="${pageContext.request.contextPath}/resources/img/header/like_icon.png" 
 					onmouseover="this.src='${pageContext.request.contextPath}/resources/img/header/like_icon_hover.png'" 
 					onmouseout="this.src='${pageContext.request.contextPath}/resources/img/header/like_icon.png'" 

@@ -43,4 +43,12 @@
 	<beans:bean class="java.lang.String" id="companyUploadPath">
 		<beans:constructor-arg value="c:/FinalProjectImage/companyupload"/>
 	</beans:bean>
+	
+	<interceptors>
+      <interceptor>
+         <mapping path="/user/mypage/infomation"/>
+         <mapping path="/hotplace/likelist"/>
+         <beans:bean id="AuthInterceptor" class="com.example.Interceptor.AuthInterceptor"/>
+      </interceptor>
+   </interceptors>
 </beans:beans>

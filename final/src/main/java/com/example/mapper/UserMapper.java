@@ -4,10 +4,12 @@ import java.util.List;
 
 import com.example.domain.CompanyVO;
 import com.example.domain.UserVO;
+import com.example.domain.UsertagVO;
 
 public interface UserMapper {
 	//회원가입
 	public void insert(UserVO vo);
+	public void insertUsertag(String t_id, String t_tag);
 	public void insertCompany(CompanyVO vo);
 	public void delete(String u_id);
 	public void deleteCompany(String c_id);
@@ -20,13 +22,14 @@ public interface UserMapper {
 	//회원가입 이메일 인증
 	public int GetKey(String u_id, String u_key);
 	public int alter_userKey(String u_id,String key);
+	//업체 회원가입 이메일 인증
 	public int GetKeyCompany(String c_id, String c_key);
 	public int alter_KeyCompany(String c_id,String key);
 	//ID/PW 찾기
 	public int checkName(String u_birthday, String u_name);
 	public List<UserVO> checkID(String u_birthday, String u_name);
 	public void updatePass(String u_id,String u_pass);
-	
+	//업체 ID/PW 찾기
 	public int checkNameCompany(String number, String name);
 	public String checkIDCompany(String number, String u_name);
 	public void updatePassCompany(String c_id,String c_pass);
@@ -34,4 +37,7 @@ public interface UserMapper {
 	//회원 수정
 	public void updateUser(UserVO vo);
 	public void updateUser2(UserVO vo);
+	//업체 회원 수정
+	public void updateCompany(CompanyVO vo);
+	public void updateCompany2(CompanyVO vo);
 }

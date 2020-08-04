@@ -5,10 +5,15 @@
     	insert into tbl_user(u_id,u_pass,u_name,u_tel,u_address,u_email,u_image,u_birthday,u_status,u_key)
 		values(#{u_id},#{u_pass},#{u_name},#{u_tel},#{u_address},#{u_email},#{u_image},#{u_birthday},#{u_status},#{u_key})
     </insert>
+    <insert id="insertUsertag">
+    	insert into tbl_tag(t_id,t_tag)
+    	values(#{param1},#{param2})
+    </insert>
     <insert id="insertCompany">
     	insert into tbl_company (c_id,c_pass, c_name, c_tel, c_email, c_address, c_image, c_number, c_ceo, c_ceo_tel, c_x, c_y, c_detail, c_area, c_key) 
     	values(#{c_id},#{c_pass},#{c_name},#{c_tel},#{c_email},#{c_address},#{c_image},#{c_number},#{c_ceo},#{c_ceotel},#{c_x},#{c_y},#{c_detail},#{c_area},#{c_key});                     
     </insert>
+    
     
     <select id="read" resultType="com.example.domain.UserVO">
     	select * from tbl_user where u_id=#{u_id}
@@ -77,5 +82,15 @@
         <update id="updateUser2">
     	update tbl_user set u_address=#{u_address}, u_email=#{u_email}, u_pass=#{u_pass}
     	where u_id=#{u_id}
+    </update>
+    
+    <!-- 업체회원수정  -->
+    <update id="updateCompany">
+    	update tbl_company set c_tel=#{c_tel}, c_pass=#{c_pass}, c_email=#{c_email}, c_image=#{c_image}
+    	where c_id=#{c_id}
+    </update>
+     <update id="updateCompany2">
+    	update tbl_company set c_tel=#{c_tel}, c_pass=#{c_pass}, c_email=#{c_email}
+    	where c_id=#{c_id}
     </update>
 </mapper>

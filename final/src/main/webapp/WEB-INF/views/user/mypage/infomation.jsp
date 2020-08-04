@@ -22,7 +22,7 @@ img {
 	border-radius: 50px;
 }
 
-#image {
+#image ,#image1{
 	width: 250px;
 	height: 250px;
 	background-image: url("배경이미지경로");
@@ -133,7 +133,7 @@ img {
 							<td>프로필 사진</td>
 							<td>
 								<img src="http://placehold.it/250x250" id="image1" width=200>
-								<input type="file" name="file1">
+								<input type="file" name="file1" style="visibility:hidden;">
 							</td>
 						</tr>
 						<tr>
@@ -180,7 +180,7 @@ img {
 						</tr>
 						<tr>
 							<td>변경 비밀번호 확인</td>
-							<td><input type="text" size=30 id="newpassCheck"></td>
+							<td><input type="text" size=30 id="newpassCheck" name="c_pass"></td>
 						</tr>
 						<tr>
 							<td>이메일</td>
@@ -230,31 +230,34 @@ img {
 		var new_pass=$("#newpass").val();
 		var new_passCheck=$("#newpassCheck").val();
 		
-		 $.ajx({
+		 $.ajax({
 			type:"get",
 			url:"/user/mypage/readCompany",
 			data:{"c_id":c_id},
 			success:function(data){
-				if(data.read.c_pass!=now_pass){
-					alert("현재비밀번호를 확인하세요.");
-				}else{
-					var new_pass=$("#newpass").val();
-					var new_passCheck=$("#newpassCheck").val();
-					if(new_pass!=new_passCheck){
-						alert("비밀번호와 비밀번호 확인 값이 다릅니다.")
+					if($("#telFirst").val()=="" || $("#telSecond").val()==""){
+						alert("대표 전화번호를 입력하세요");
 					}else{
-						if(!confirm("수정하시겠습니까?")) return;
-						//이메일 합치기
-						var txtEmail=$("#email1").val();
-						var txtEmailType=$("#txtEmailType").val();
-						var emailAll=txtEmail+"@"+txtEmailType;
-						$("#emailAll").val(emailAll);
-						frm.submit();
+					if(data.read.c_pass!=now_pass){
+						alert("현재비밀번호를 확인하세요.");
+					}else{
+						var new_pass=$("#newpass").val();
+						var new_passCheck=$("#newpassCheck").val();
+						if(new_pass!=new_passCheck){
+							alert("비밀번호와 비밀번호 확인 값이 다릅니다.")
+						}else{
+							if(!confirm("수정하시겠습니까?")) return;
+							//이메일 합치기
+							var txtEmail=$("#email1").val();
+							var txtEmailType=$("#txtEmailType").val();
+							var emailAll=txtEmail+"@"+txtEmailType;
+							$("#emailAll").val(emailAll);
+							frm.submit();
+						}
 					}
 				}
 			}
 		 });
-		
 	});
 	
 	//업체 정보 읽어오기
@@ -263,6 +266,7 @@ img {
 		url:"/user/mypage/readCompany",
 		data:{"c_id":c_id},
 		success:function(data){
+			$("#c_name").html(data.read.c_name);
 			//주소 split
 			var beforeAdd=data.read.c_address;
 			var afterAdd=beforeAdd.split(',');
@@ -275,8 +279,7 @@ img {
 			$("#txtEmailType").val(afterEmail[1]);
 			//이미지 read
 			if(data.read.c_image!=""){
-				$("#image1").attr("src","/display?fileName="+data.read.c_image);
-				$("#imagename").val(data.read.c_image);
+				$("#image1").attr("src","/displayCompany?fileName="+data.read.c_image);
 			}else{
 				$("#image1").attr("src","http://placehold.it/250x250");
 			}

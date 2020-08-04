@@ -48,9 +48,22 @@ public class UserController {
 	private UserMailSendService mailSender;
 	
 	//업체 정보 수정
-	@RequestMapping(value="/user/mypage/updateUserCompany",method=RequestMethod.POST)
+	@RequestMapping(value="/user/mypage/updateCompany",method=RequestMethod.POST)
 	public String updateCompany(CompanyVO vo,MultipartHttpServletRequest multi)throws Exception {
-		
+		MultipartFile file=multi.getFile("file1");
+		if(!file.isEmpty()) {
+			CompanyVO vo1=mapper.readCompany(vo.getC_id());
+			//옛날 대표이미지 삭제
+			if(!vo1.getC_image().equals("")) {
+				new File(companypath+File.separator+vo1.getC_image()).delete();
+			}
+			String image=System.currentTimeMillis()+file.getOriginalFilename();
+			file.transferTo(new File(companypath + File.separator + image));
+			vo.setC_image(image);
+			mapper.updateCompany(vo);
+		}else {
+			mapper.updateCompany2(vo);
+		}
 		
 		return "redirect:/";
 	}
@@ -268,6 +281,11 @@ public class UserController {
 	public void signUp() {
 		
 	}
+	//일반 회원 가입 페이지
+		@RequestMapping("/user/signup2")
+		public void signUp2() {
+			
+		}
 	//업체 회원 가입 페이지
 	@RequestMapping("/user/signupcompany")
 	public void signUpCompany() {
@@ -402,6 +420,9 @@ public class UserController {
 	//일반 회원 가입 + 이메일 인증번호 Send + 파일 업로드
 	@RequestMapping(value="/user/insert",method=RequestMethod.POST)
 	public String insert(UserVO vo,MultipartHttpServletRequest multi,HttpServletRequest request) throws Exception {
+		
+		String[] arrayParam = request.getParameterValues("t_tag");
+		
 		String id=mapper.readid(vo.getU_id());
 		UserVO read=mapper.read(vo.getU_id());
 		
@@ -420,6 +441,10 @@ public class UserController {
 				
 				vo.setU_key("N");
 				mapper.insert(vo);
+				for (int i = 0; i < arrayParam.length; i++) { 
+					System.out.println(arrayParam[i]); 
+					mapper.insertUsertag(vo.getU_id(),arrayParam[i]);
+					}
 				mailSender.mailSendWithUserKey(vo.getU_email(), vo.getU_id(), request);
 			}
 		}else {
@@ -435,6 +460,10 @@ public class UserController {
 			System.out.println("프로필 사진 : "+vo.toString());
 			vo.setU_key("N");
 			mapper.insert(vo);
+			for (int i = 0; i < arrayParam.length; i++) { 
+				System.out.println(arrayParam[i]); 
+				mapper.insertUsertag(vo.getU_id(),arrayParam[i]);
+				}
 			mailSender.mailSendWithUserKey(vo.getU_email(), vo.getU_id(), request);
 		}
 		return "redirect:/";
@@ -496,13 +525,27 @@ public class UserController {
 	}
 	
 	// 이미지파일 브라우저에 출력
-		@RequestMapping("/display")
+	@RequestMapping("/display")
+	@ResponseBody
+	public ResponseEntity<byte[]> display(String fileName) throws Exception {
+		ResponseEntity<byte[]> result = null;
+		// display fileName이 있는 경우
+		if (!fileName.equals("")) {
+			File file = new File(path + File.separator + fileName);
+			HttpHeaders header = new HttpHeaders();
+			header.add("Content-Type", Files.probeContentType(file.toPath()));
+			result = new ResponseEntity<>(FileCopyUtils.copyToByteArray(file), header, HttpStatus.OK);
+		}
+		return result;
+	}
+	// 이미지파일 브라우저에 출력
+		@RequestMapping("/displayCompany")
 		@ResponseBody
-		public ResponseEntity<byte[]> display(String fileName) throws Exception {
+		public ResponseEntity<byte[]> displayCompany(String fileName) throws Exception {
 			ResponseEntity<byte[]> result = null;
 			// display fileName이 있는 경우
 			if (!fileName.equals("")) {
-				File file = new File(path + File.separator + fileName);
+				File file = new File(companypath + File.separator + fileName);
 				HttpHeaders header = new HttpHeaders();
 				header.add("Content-Type", Files.probeContentType(file.toPath()));
 				result = new ResponseEntity<>(FileCopyUtils.copyToByteArray(file), header, HttpStatus.OK);
