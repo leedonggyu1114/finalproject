@@ -162,14 +162,12 @@
 .userimages {
    width: 80px;
    height: 80px;
-   background-image: url("배경이미지경로");
-   border-radius: 150px; /* 레이어 반크기만큼 반경을 잡기*/
+   border-radius: 50%;
    display: table-cell;
    vertical-align: middle;
-   color: #ffffff;
-   font-weight: bold;
    text-align: center;
    float:left;
+   margin-left:5px;
 }
 </style>
 </head>

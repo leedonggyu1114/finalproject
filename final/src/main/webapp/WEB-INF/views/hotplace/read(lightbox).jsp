@@ -109,7 +109,17 @@
          success:function(data){
             var html="";
             for(var i=0; i<data.length;i++){
-               html += "<span><img class='userimages' src='/hotplace/userdisplay?fileName="+data[i].u_image+"'/></span>";
+            	if(data[i].u_image==null || data[i].u_image==""){
+            		if(data[i].u_gender=='male'){
+            			html += "<span><img class='userimages' src='/resources/img/user/profileM.png'/></span>";
+            		}else{
+            			html += "<span><img class='userimages' src='/resources/img/user/profileF.png'/></span>";
+            		}
+            		
+            	}else{
+            		html += "<span><img class='userimages' src='/hotplace/userdisplay?fileName="+data[i].u_image+"'/></span>";	
+            	}
+                
             }
             $("#likeuserlist").html(html);
          }
