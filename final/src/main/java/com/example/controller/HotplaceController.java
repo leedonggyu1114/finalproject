@@ -36,8 +36,6 @@ public class HotplaceController {
 	@Autowired
 	HotplaceMapper mapper;
 	
-	
-	
 	@RequestMapping("list")
 	public void list(Model model,HttpSession session) {
 		//HashMap<String, Object> imagelist=new HashMap<String, Object>();

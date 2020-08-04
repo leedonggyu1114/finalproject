@@ -6,7 +6,7 @@
 <html>
 <head>
    <meta charset="UTF-8">
-   <title>여행의 설렘 TOURSUM !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</title>
+   <title>여행의 설렘 TOURSUM !</title>
    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/style.css"/>
    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
@@ -29,7 +29,7 @@
 
 #lightbox {
    width: 1250px;
-   height: 1500px;
+   height: 1300px;
    margin: auto;
    margin-top: 25px;
    margin-bottom: 25px;
@@ -45,7 +45,7 @@
    position: absolute;
    color: white;
    font-size: 30px;
-   top: 55%;
+   top: 48%;
    left: 3%;
 }
 
@@ -201,6 +201,7 @@
       <div id="footer"><jsp:include page="../footer.jsp"/></div>
    </div>
    <jsp:include page="read(lightbox).jsp"></jsp:include>
+
 </body>
 <script>
  
@@ -307,7 +308,6 @@
 							url:"likeinsert",
 							data:{"h_x":x,"h_y":y,"u_id":u_id},
 							success:function(){
-								alert("insert");
 								$(like).attr('src', '/resources/img/hotplace/like_hover.png');
 							}
 						});
@@ -317,7 +317,6 @@
 							url:"likedelete",
 							data:{"h_x":x,"h_y":y,"u_id":u_id},
 							success:function(){
-								alert("delete");
 								$(like).attr('src', '/resources/img/hotplace/like.png');
 							}
 						});

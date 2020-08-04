@@ -2,8 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.mapper.UserMapper">
     <insert id="insert">
-    	insert into tbl_user(u_id,u_pass,u_name,u_tel,u_address,u_email,u_image,u_birthday,u_status,u_key)
-		values(#{u_id},#{u_pass},#{u_name},#{u_tel},#{u_address},#{u_email},#{u_image},#{u_birthday},#{u_status},#{u_key})
+    	insert into tbl_user(u_id,u_pass,u_name,u_tel,u_address,u_email,u_image,u_birthday,u_status,u_key,u_gender)
+		values(#{u_id},#{u_pass},#{u_name},#{u_tel},#{u_address},#{u_email},#{u_image},#{u_birthday},#{u_status},#{u_key},#{u_gender})
     </insert>
     <insert id="insertCompany">
     	insert into tbl_company (c_id,c_pass, c_name, c_tel, c_email, c_address, c_image, c_number, c_ceo, c_ceo_tel, c_x, c_y, c_detail, c_area, c_key) 

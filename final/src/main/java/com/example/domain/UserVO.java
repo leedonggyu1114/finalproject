@@ -1,7 +1,5 @@
 package com.example.domain;
 
-import java.util.Date;
-
 public class UserVO {
 	private String u_id;
 	private String u_pass;
