@@ -20,7 +20,7 @@
 		</c:if>
 		<a href="/user/signupselect">회원가입</a>
 	</div>
-	<img src="${pageContext.request.contextPath}/resources/img/logo.png" width=200 id="header_logo">
+	<a href="/"><img src="${pageContext.request.contextPath}/resources/img/logo.png" width=200 id="header_logo"></a>
 	<div id="div_header_search">
 		<input type="text" placeholder=search..>
 		<img src="${pageContext.request.contextPath}/resources/img/header/search_icon.png" width=30>
@@ -63,5 +63,8 @@
 		$(this).toggleClass("on");
 		$("#div_header_bubble").toggleClass("visible");
 	});
+	/*$(document).click(function(){
+		$(".menu").toggleClass("off");
+	});*/
 </script>
 </html>

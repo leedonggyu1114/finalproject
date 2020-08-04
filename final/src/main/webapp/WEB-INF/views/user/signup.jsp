@@ -264,8 +264,8 @@
 						<option>018</option>
 						<option>019</option>
 					</select> -
-					<input type="text" size="15" id="telFirst"> -
-					<input type="text" size="25" id="telSecond">
+					<input type="text" size="15" id="telFirst" maxlength=4> -
+					<input type="text" size="25" id="telSecond" maxlength=4>
 				</td>
 				<td></td>
 			</tr>
