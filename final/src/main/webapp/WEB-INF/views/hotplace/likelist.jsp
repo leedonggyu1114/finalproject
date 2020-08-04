@@ -109,7 +109,6 @@
 	right: 5px;
 	top: 22%;
 }
-
 .userimages {
 	width: 80px;
 	height: 80px;

@@ -53,6 +53,6 @@
     	select l.u_id,h.* from tbl_like l,tbl_hotplace h where l.h_x=h.h_x and l.h_y=h.h_y and u_id=#{u_id}
     </select>
     <select id="likeuserlist" resultType="hashmap">
-    	select l.*, u.u_image from tbl_like l,tbl_user u where u.u_id=l.u_id and h_x=#{h_x} and h_y=#{h_y}
+    	select l.*, u.u_image, u.u_gender from tbl_like l,tbl_user u where u.u_id=l.u_id and h_x=#{h_x} and h_y=#{h_y}
     </select>
 </mapper>
