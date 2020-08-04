@@ -9,8 +9,6 @@
 	<link rel="icon" type="image/png" href="http://example.com/myicon.png"> 
 </head>
 <body>
-<div>${u_id}</div>
-<div>${c_id}</div>
 	<div id="div_header_signup">
 		<c:if test="${u_id==null && c_id==null}">
 			<a href="/user/login">로그인</a>
