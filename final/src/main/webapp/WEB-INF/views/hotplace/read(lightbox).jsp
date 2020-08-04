@@ -5,6 +5,9 @@
 <head>
 <meta charset="UTF-8">
 <title>여행의 설렘 TOURSUM !</title>
+<style>
+
+</style>
 </head>
 <body>
 	<div id="darken-background">

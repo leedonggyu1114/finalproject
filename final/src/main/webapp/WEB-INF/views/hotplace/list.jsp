@@ -162,14 +162,12 @@
 .userimages {
    width: 80px;
    height: 80px;
-   background-image: url("배경이미지경로");
-   border-radius: 150px; /* 레이어 반크기만큼 반경을 잡기*/
+   border-radius: 50%;
    display: table-cell;
    vertical-align: middle;
-   color: #ffffff;
-   font-weight: bold;
    text-align: center;
    float:left;
+   margin-left:5px;
 }
 </style>
 </head>
@@ -181,21 +179,21 @@
       <div id="container">
          <div style="height:100px"></div>
          <!-- 여행추천list시작 -->
-			<div>
-				<c:forEach items="${list }" var="vo">
-					<figure style="float: left" class="div_hotplace_list">
-						<img class="mainimage"
-							src="/hotplace/display?fileName=${vo.h_i_images[0]}" width=300
-							height=300 x="${vo.h_x }" y="${vo.h_y }" title="${vo.h_title }"
-							address="${vo.h_address }" detail="${vo.h_detail }" />
-						<figcaption class="div_hotplace_maintitle">
-							<h3>${vo.h_title }</h3>
-							<img src="/resources/img/hotplace/like.png" class="hotplace_like" />
-						</figcaption>
-					</figure>
-				</c:forEach>
-			</div>
-			<!-- 여행추천list끝 -->
+         <div>
+            <c:forEach items="${list }" var="vo">
+               <figure style="float: left" class="div_hotplace_list">
+                  <img class="mainimage"
+                     src="/hotplace/display?fileName=${vo.h_i_images[0]}" width=300
+                     height=300 x="${vo.h_x }" y="${vo.h_y }" title="${vo.h_title }"
+                     address="${vo.h_address }" detail="${vo.h_detail }" />
+                  <figcaption class="div_hotplace_maintitle">
+                     <h3>${vo.h_title }</h3>
+                     <img src="/resources/img/hotplace/like.png" class="hotplace_like" />
+                  </figcaption>
+               </figure>
+            </c:forEach>
+         </div>
+         <!-- 여행추천list끝 -->
       </div>
       <div id="footer"><jsp:include page="../footer.jsp"/></div>
    </div>
@@ -203,123 +201,123 @@
    <jsp:include page="read(lightbox).jsp"/>
 </body>
 <script>
-	var x;
-	var y;
-	var u_id="${u_id}";
-	var address;
-	var detail;
-	var imagepage=0;
-	var images=[];
+   var x;
+   var y;
+   var u_id="${u_id}";
+   var address;
+   var detail;
+   var imagepage=0;
+   var images=[];
 
-	//read사진넘기기
-	$("#btnnext").on("click",function(){
-		var imagelength=images.length;
-		imagepage++;
-		if(imagepage>=imagelength){
-			imagepage=0;
-			$("#readimage").attr("src", "/hotplace/display?fileName="+images[imagepage]);
-		}else{
-			$("#readimage").attr("src", "/hotplace/display?fileName="+images[imagepage]);
-		}
-	});
-	$("#btnprev").on("click",function(){
-		var imagelength=images.length;
-		imagepage = imagepage - 1;
-		if(imagepage<0){
-			imagepage=imagelength-1;
-			$("#readimage").attr("src", "/hotplace/display?fileName="+images[imagepage]);
-		}else{
-			$("#readimage").attr("src", "/hotplace/display?fileName="+images[imagepage]);
-		}
-	});
-	
-	//좋아요 출력하기
-	setlikelist();
-	function setlikelist(){
-		
-		$.ajax({
-			type:"get",
-			url:"likeset",
-			dataType:"json",
-			data:{"u_id":u_id},
-			success:function(data){
-				var likeset=[];
-				for(var i=0; i<data.length; i++){
-					likeset.push(data[i]);
-				}
-				
-				$(".mainimage").each(function(){
-					var like=$(this);
-					var check=true;
-					var c_x=$(this).attr("x");
-					var c_y=$(this).attr("y");
-					for(var i=0; i<likeset.length; i++){
-						if(likeset[i].h_x==c_x && likeset[i].h_y==c_y){
-							check=false;
-						}
-					}
-					if(check==false){
-						$(like).parent().find(".div_hotplace_maintitle .hotplace_like").attr("src", "/resources/img/hotplace/like_hover.png");
-					}
-				});
-				
-			}
-		});
-	}
+   //read사진넘기기
+   $("#btnnext").on("click",function(){
+      var imagelength=images.length;
+      imagepage++;
+      if(imagepage>=imagelength){
+         imagepage=0;
+         $("#readimage").attr("src", "/hotplace/display?fileName="+images[imagepage]);
+      }else{
+         $("#readimage").attr("src", "/hotplace/display?fileName="+images[imagepage]);
+      }
+   });
+   $("#btnprev").on("click",function(){
+      var imagelength=images.length;
+      imagepage = imagepage - 1;
+      if(imagepage<0){
+         imagepage=imagelength-1;
+         $("#readimage").attr("src", "/hotplace/display?fileName="+images[imagepage]);
+      }else{
+         $("#readimage").attr("src", "/hotplace/display?fileName="+images[imagepage]);
+      }
+   });
+   
+   //좋아요 출력하기
+   setlikelist();
+   function setlikelist(){
+      
+      $.ajax({
+         type:"get",
+         url:"likeset",
+         dataType:"json",
+         data:{"u_id":u_id},
+         success:function(data){
+            var likeset=[];
+            for(var i=0; i<data.length; i++){
+               likeset.push(data[i]);
+            }
+            
+            $(".mainimage").each(function(){
+               var like=$(this);
+               var check=true;
+               var c_x=$(this).attr("x");
+               var c_y=$(this).attr("y");
+               for(var i=0; i<likeset.length; i++){
+                  if(likeset[i].h_x==c_x && likeset[i].h_y==c_y){
+                     check=false;
+                  }
+               }
+               if(check==false){
+                  $(like).parent().find(".div_hotplace_maintitle .hotplace_like").attr("src", "/resources/img/hotplace/like_hover.png");
+               }
+            });
+            
+         }
+      });
+   }
 
-	//좋아요누르기
-	$(".hotplace_like").on("click", function(e) {
-		e.stopPropagation();
-		var like=$(this);
-		
-		if(u_id==""){
-			alert("로그인이 필요한 서비스 입니다");
-		}else{
-			
-			x=$(this).parent().parent().find(".mainimage").attr("x");
-			y=$(this).parent().parent().find(".mainimage").attr("y");
-			
-			$.ajax({
-				type:"get",
-				url:"likeset",
-				dataType:"json",
-				data:{"u_id":u_id},
-				success:function(data){
-					var check=true;
-					if(check){
-						for(var i=0; i<data.length; i++){
-							if(data[i].h_x==x && data[i].h_y==y){
-								check=false;
-							}
-						}
-					}
-					
-					if(check==true){
-						$.ajax({
-							type:"post",
-							url:"likeinsert",
-							data:{"h_x":x,"h_y":y,"u_id":u_id},
-							success:function(){
-								$(like).attr('src', '/resources/img/hotplace/like_hover.png');
-							}
-						});
-					}else{
-						$.ajax({
-							type:"post",
-							url:"likedelete",
-							data:{"h_x":x,"h_y":y,"u_id":u_id},
-							success:function(){
-								$(like).attr('src', '/resources/img/hotplace/like.png');
-							}
-						});
-					}
-						
-				}
-				
-			});
-	
-		}
-		
-	});
+   //좋아요누르기
+   $(".hotplace_like").on("click", function(e) {
+      e.stopPropagation();
+      var like=$(this);
+      
+      if(u_id==""){
+         alert("로그인이 필요한 서비스 입니다");
+      }else{
+         
+         x=$(this).parent().parent().find(".mainimage").attr("x");
+         y=$(this).parent().parent().find(".mainimage").attr("y");
+         
+         $.ajax({
+            type:"get",
+            url:"likeset",
+            dataType:"json",
+            data:{"u_id":u_id},
+            success:function(data){
+               var check=true;
+               if(check){
+                  for(var i=0; i<data.length; i++){
+                     if(data[i].h_x==x && data[i].h_y==y){
+                        check=false;
+                     }
+                  }
+               }
+               
+               if(check==true){
+                  $.ajax({
+                     type:"post",
+                     url:"likeinsert",
+                     data:{"h_x":x,"h_y":y,"u_id":u_id},
+                     success:function(){
+                        $(like).attr('src', '/resources/img/hotplace/like_hover.png');
+                     }
+                  });
+               }else{
+                  $.ajax({
+                     type:"post",
+                     url:"likedelete",
+                     data:{"h_x":x,"h_y":y,"u_id":u_id},
+                     success:function(){
+                        $(like).attr('src', '/resources/img/hotplace/like.png');
+                     }
+                  });
+               }
+                  
+            }
+            
+         });
+   
+      }
+      
+   });
 </script>
 </html>

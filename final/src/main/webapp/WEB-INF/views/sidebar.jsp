@@ -4,9 +4,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
 <style>
 .sidebar button {
 	outline: none;
+	cursor:pointer;
 }
 
 .sidebar button .sidebar-btn {
