@@ -6,7 +6,7 @@
 <html>
 <head>
    <meta charset="UTF-8">
-   <title>여행의 설렘 TOURSUM !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</title>
+   <title>여행의 설렘 TOURSUM !</title>
    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/style.css"/>
    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
@@ -29,7 +29,7 @@
 
 #lightbox {
    width: 1250px;
-   height: 1500px;
+   height: 1300px;
    margin: auto;
    margin-top: 25px;
    margin-bottom: 25px;
@@ -45,7 +45,7 @@
    position: absolute;
    color: white;
    font-size: 30px;
-   top: 55%;
+   top: 48%;
    left: 3%;
 }
 
@@ -205,14 +205,20 @@
          <img id="readimage" src="http://placehold.it/150x150"> <br>
          <button id="btnClose"><img src="/resources/img/hotplace/close_icon.png" width=45></button>
          <div id="readtitle"></div>
+         <div id="readdetail" style="display:inline-block; text-align:left; position:absolute; left:3%; top:51%; color:white;"></div>
          <button id="btnprev"><img src="/resources/img/hotplace/prev_icon.png" width=65/></button>
          <button id="btnnext"><img src="/resources/img/hotplace/next_icon.png" width=65/></button>
-         <div id="readcontent">
-          	<div id="readdetail" style="float:left;margin-left:30px"></div>
-            <div id="map" style="width:400px;height:400px;float:right;margin:10px"></div>
-            <div id="likeuserlist"></div>
-            <span id="top_x_div" style="width:400px; height:400px;"></span>
-            <span id="donutchart" style="width: 400px; height: 400px;"></span>
+         <div id="readcontent" style="width:100%; height:590px; position:relative;">
+         	<div style="display:inline-block; position:absolute; left:5px; top:5px; width:66.5%; height:400px;
+         				border-radius:5px 5px 5px 5px;">
+				<span id="top_x_div" style="width:50%; height:300px; float:left;"></span>
+				<span id="donutchart" style="width: 50%; height: 300px; float:left;"></span>
+         	</div>
+            <div id="map" style="width:400px;height:400px; position:absolute; right:5px; top:5px; border-radius:5px 5px 5px 5px;"></div>
+            <div style="font-family:''; display:inline-block; position:absolute; left:180px; bottom:110px; font-size:15px; color:gray;">함께 좋아하는 사람</div>
+            <button style="background:none; outline:none; border:none; position:absolute; left:100px; bottom:34px; cursor:pointer;"><img src="/resources/img/hotplace/prev_icon2.png" width=30 /></button>
+            <div id="likeuserlist" style="position:absolute; bottom:15px; left:170px; width:500px;"></div>
+            <button style="background:none; outline:none; border:none; position:absolute; right:100px; bottom:34px; cursor:pointer;"><img src="/resources/img/hotplace/next_icon2.png" width=30 /></button>
          </div>
       </div>
    </div>
@@ -322,7 +328,6 @@
 							url:"likeinsert",
 							data:{"h_x":x,"h_y":y,"u_id":u_id},
 							success:function(){
-								alert("insert");
 								$(like).attr('src', '/resources/img/hotplace/like_hover.png');
 							}
 						});
@@ -332,7 +337,6 @@
 							url:"likedelete",
 							data:{"h_x":x,"h_y":y,"u_id":u_id},
 							success:function(){
-								alert("delete");
 								$(like).attr('src', '/resources/img/hotplace/like.png');
 							}
 						});
@@ -423,7 +427,7 @@
 			success:function(data){
 				var html="";
 				for(var i=0; i<data.length;i++){
-					html += "<span><img class='userimages' src='/hotplace/userdisplay?fileName="+data[i].u_image+"'/></span>";
+					html += "<span><img style='padding-left:5px' class='userimages' src='/hotplace/userdisplay?fileName="+data[i].u_image+"'/></span>";
 				}
 				$("#likeuserlist").html(html);
 			}
@@ -520,21 +524,16 @@
 				success:function(result){
 					var data = new google.visualization.arrayToDataTable(result);
 					var options = {
-						width : 400,
-						title : '연령별',
-						pieHole : 0.4,
 						legend : {
 							position : 'none'
 						},
 						chart : {
-							title : '선호도 조사',
 							subtitle : ''
 						},
 						bar : {
-							groupWidth : "90%"
-						}
+							groupWidth : "80%"
+						},
 					};
-		
 					var chart = new google.charts.Bar(document.getElementById('top_x_div'));
 					// Convert the Classic options to Material options.
 					chart.draw(data, google.charts.Bar.convertOptions(options));
@@ -562,7 +561,6 @@
 					var data = google.visualization.arrayToDataTable(result);
 					
 					var options = {
-						title : '성별',
 						pieHole : 0.4,
 					};
 		
