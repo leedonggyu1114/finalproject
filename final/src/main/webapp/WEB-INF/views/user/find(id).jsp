@@ -89,7 +89,7 @@
 					</tr>
 					<tr class="line-findid a">
 						<td><span>인증번호</span></td>
-						<td><input type="text" id="txtNumber"readonly placeholder=Authentication ></td>
+						<td><input type="text" id="txtNumber"readonly placeholder=인증번호입력 ></td>
 						<td style="padding-left:7px;"><input type="button" value="인증하기" id="btnCheck" style="width:155.78px; height:40px; border:none; cursor:pointer; outline:none; border-radius:3px 3px 3px 3px;"></td>
 					</tr>
 				</table>

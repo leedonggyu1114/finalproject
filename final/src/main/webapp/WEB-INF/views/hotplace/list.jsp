@@ -197,14 +197,12 @@
 			</div>
 			<!-- 여행추천list끝 -->
       </div>
-
       <div id="footer"><jsp:include page="../footer.jsp"/></div>
    </div>
-   <jsp:include page="read(lightbox).jsp"></jsp:include>
 
+   <jsp:include page="read(lightbox).jsp"/>
 </body>
 <script>
- 
 	var x;
 	var y;
 	var u_id="${u_id}";
@@ -212,9 +210,7 @@
 	var detail;
 	var imagepage=0;
 	var images=[];
-	
-	
-		
+
 	//read사진넘기기
 	$("#btnnext").on("click",function(){
 		var imagelength=images.length;
@@ -270,11 +266,7 @@
 			}
 		});
 	}
-	
-		
 
-	
-	
 	//좋아요누르기
 	$(".hotplace_like").on("click", function(e) {
 		e.stopPropagation();
@@ -329,6 +321,5 @@
 		}
 		
 	});
-	
 </script>
 </html>

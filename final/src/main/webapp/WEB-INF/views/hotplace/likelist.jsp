@@ -194,10 +194,9 @@
 		</div>
 		<div id="footer"><jsp:include page="../footer.jsp" /></div>
 	</div>
-	<jsp:include page="read(lightbox).jsp"></jsp:include>
+	<jsp:include page="read(lightbox).jsp" />
 </body>
 <script>
-
 	var x;
 	var y;
 	var u_id="${u_id}";
@@ -223,7 +222,6 @@
 		});
 	});
 	
-	
 	//read사진넘기기
 	$("#btnnext").on("click",function(){
 		var imagelength=images.length;
@@ -245,7 +243,5 @@
 			$("#readimage").attr("src", "/hotplace/display?fileName="+images[imagepage]);
 		}
 	});
-	
-
 </script>
 </html>
