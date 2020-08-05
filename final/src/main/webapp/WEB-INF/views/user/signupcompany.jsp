@@ -121,7 +121,7 @@
 				<tr class="line-img">
 					<td colspan=4>
 						<input type="file" name="file1" style="visibility: hidden;"><br>
-						<img src="http://placehold.it/150x150" id="image1" width=200> <br>
+						<img src="http://placehold.it/150x150" id="image1" width=200 height=200> <br>
 						프로필사진
 					</td>
 				</tr>
@@ -131,8 +131,11 @@
 				<tr class="line-bno">
 					<td width=170><span>사업자등록번호</span></td>
 					<td width=500>
-						<input type="text" id="businessNumber" name="c_number" placeholder="BUSSINESS LICENSE NUMBER">
+						<input type="hidden" id="businessNumber" name="c_number">
 						<input type="hidden" id="numberread" value="0">
+						<input type="text" id="number1" maxlength=3 style="width:30.8%; text-align:center;"> - 
+						<input type="text" id="number2" maxlength=2 style="width:30.8%; text-align:center;"> - 
+						<input type="text" id="number3" maxlength=5 style="width:30.8%; text-align:center;">
 					</td>
 					<td width=170 style="text-align:center;">
 						<input type="button" id="btncheckNumber" value="중복확인" style="width:155.78px; height:40px; border:none; cursor:pointer; outline:none; border-radius:3px 3px 3px 3px;"> 
@@ -184,7 +187,7 @@
 						<input type="text" id="sample6_address1" placeholder="ADDRESS" size=50><br>
 						<input type="text" id="sample6_detailAddress1" placeholder="DETAILED ADDRESS">
 						<input type="hidden" id="sample6_extraAddress1" placeholder="참고항목">
-						<input type="text" id="allAddress1" name="c_address">
+						<input type="hidden" id="allAddress1" name="c_address">
 					</td>
 					<td><input type="hidden" id="c_x" name="c_x"></td>
 					<td><input type="hidden" id="c_y" name="c_y"></td>
@@ -192,7 +195,7 @@
 				<tr class="line-tel">
 					<td><span>휴대폰번호</span></td>
 					<td>
-						<input type="hidden" id="txtTel" size=50 name="c_tel" placeholder="TEL">
+						<input type="hidden" id="txtTel1" size=50 name="c_tel" placeholder="TEL">
 						<select id="selectTel" style="height:40px; width:30.8%;">
 							<option>010</option>
 							<option>011</option>
@@ -201,8 +204,8 @@
 							<option>018</option>
 							<option>019</option>
 						</select> -
-						<input type="text" size="15" id="telFirst"> -
-						<input type="text" size="25" id="telSecond">
+						<input type="text" size="15" id="telFirst1"> -
+						<input type="text" size="25" id="telSecond1">
 					</td>
 					<td></td>
 				</tr>
@@ -265,6 +268,7 @@
 	<div id="map" style="width: 100%; height:0px; visibility: hidden;"></div>
 </body>
 <script>
+
 $("#email1").change(function(){
 	var email=$("#email1 option:selected").val();
 	if(email!="direct1"){
@@ -294,6 +298,11 @@ $("#sample6_address1").focusout(function(){
 });
 //사업자번호 중복체크
 $("#btncheckNumber").on("click",function(){
+	var num1=$("#number1").val();
+	var num2=$("#number2").val();
+	var num3=$("#number3").val();
+	var number=num1+num2+num3;
+	$("#businessNumber").val(number);
 	if($("#businessNumber").val()!=""){
 		var c_number=$("#businessNumber").val();
 		$.ajax({
@@ -484,11 +493,19 @@ var txtEmailType=$("#txtEmailType").val();
 		alert(allAddress);
 		if(!confirm("회원 가입 하시겠습니까?")) return;
 		
+		//사업자등록번호
+		var num1=$("#number1").val();
+		var num2=$("#number2").val();
+		var num3=$("#number3").val();
+		var number=num1+num2+num3;
+		$("#businessNumber").val(number);
+		alert(number);
 		//전화번호 합치기
 		var tel1=$("#selectTel option:selected").val();
-		var tel2=$("#telFirst").val();
-		var tel3=$("#telSecond").val();
-		$("#txtTel").val(tel1+tel2+tel3);
+		var tel2=$("#telFirst1").val();
+		var tel3=$("#telSecond1").val();
+		alert(tel1+tel2+tel3);
+		$("#txtTel1").val(tel1+tel2+tel3);
 		
 		var passread=$("#passread1").val();
 		var idread=$("#idread1").val();

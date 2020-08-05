@@ -12,11 +12,11 @@
 	<div id="div_header_signup">
 		<c:if test="${u_id==null && c_id==null}">
 			<a href="/user/login">로그인</a>
+			<a href="/user/signupselect">회원가입</a>
 		</c:if>
 		<c:if test="${u_id!=null || c_id!=null}">
 			<a href="/user/logout">로그아웃</a>
 		</c:if>
-		<a href="/user/signupselect">회원가입</a>
 	</div>
 	<a href="/"><img src="${pageContext.request.contextPath}/resources/img/logo.png" width=200 id="header_logo"></a>
 	<div id="div_header_search">

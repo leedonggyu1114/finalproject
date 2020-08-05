@@ -5,9 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>여행의 설렘 TOURSUM !</title>
-<style>
-
-</style>
+<script src="http://code.jquery.com/jquery-1.10.2.js"></script> 
 </head>
 <body>
 	<div id="darken-background">
@@ -15,7 +13,6 @@
          <img id="readimage" src="http://placehold.it/150x150"> <br>
          <button id="btnClose"><img src="/resources/img/hotplace/close_icon.png" width=45></button>
          <div id="readtitle"></div>
-
          <div id="readdetail" style="display:inline-block; text-align:left; position:absolute; left:3%; top:51%; color:white;"></div>
          <button id="btnprev"><img src="/resources/img/hotplace/prev_icon.png" width=65/></button>
          <button id="btnnext"><img src="/resources/img/hotplace/next_icon.png" width=65/></button>
