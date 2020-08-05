@@ -178,7 +178,6 @@
       <div id="header"><jsp:include page="../header.jsp"/></div>
       <div id="menu"><jsp:include page="../menu.jsp"/></div>
       <div id="container">
-         <div style="height:100px"></div>
          <!-- 여행추천list시작 -->
          <div>
             <c:forEach items="${list }" var="vo">

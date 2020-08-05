@@ -321,10 +321,10 @@
 			$("#email1").val(afterEmail[0]);
 			$("#txtEmailType").val(afterEmail[1]);
 			//이미지 read
-			if(data.read.c_image!=""){
+			if(data.read.c_image!=null){
 				$("#image1").attr("src","/displayCompany?fileName="+data.read.c_image);
 			}else{
-				$("#image1").attr("src","http://placehold.it/250x250");
+				$("#image1").attr("src","/resources/img/user/profileC.png");
 			}
 
 		}
@@ -396,6 +396,14 @@
 				$("#image").attr("src",
 						"/display?fileName=" + data.read.u_image);
 				$("#imagename").val(data.read.u_image);
+			}else{
+				if(data.read.u_gender=='male'){
+					$("#image").attr("src","/resources/img/user/profileM.png");
+					$("#imagename").val(data.read.u_image);
+				}else{
+					$("#image").attr("src","/resources/img/user/profileF.png");
+					$("#imagename").val(data.read.u_image);
+				}
 			}
 		}
 	});
