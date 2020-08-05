@@ -22,7 +22,7 @@
 				<span id="top_x_div" style="float:left;"></span>
 				<span id="donutchart" style="float:left;"></span>
          	</div>
-            <div id="map"></div>
+            <div id="map" style="width:400px;height:400px; position:absolute; right:5px; top:5px; border-radius:5px 5px 5px 5px;"></div>
             <div style="font-family:''; display:inline-block; position:absolute; left:180px; bottom:110px; font-size:15px; color:gray;">함께 좋아하는 사람</div>
             <button style="background:none; outline:none; border:none; position:absolute; left:100px; bottom:34px; cursor:pointer;"><img src="/resources/img/hotplace/prev_icon2.png" width=30 /></button>
             <div id="likeuserlist" style="position:absolute; bottom:15px; left:170px; width:500px;"></div>
