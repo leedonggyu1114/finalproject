@@ -15,56 +15,6 @@
    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
    <!-- <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=593e08eb668b13510d3ab2e0c94c93a7&libraries=services"></script> -->
    <style>
-#darken-background {
-   position: absolute;
-   top: 0px;
-   left: 0px;
-   right: 0px;
-   height: 100%;
-   display: none;
-   background: rgba(0, 0, 0, 0.5);
-   z-index: 10000;
-   overflow-y: scroll;
-}
-
-#lightbox {
-   width: 1250px;
-   height: 1300px;
-   margin: auto;
-   margin-top: 25px;
-   margin-bottom: 25px;
-   border: 1px solid #333333;
-   border-radius: 5px;
-   background: white;
-   box-shadow: 0px 5px 5px rgba(34, 25, 25, 0.4);
-   text-align: center;
-   position: relative;
-}
-
-#readtitle {
-   position: absolute;
-   color: white;
-   font-size: 30px;
-   top: 48%;
-   left: 3%;
-}
-
-#readimage {
-   border-radius: 5px 5px 0px 0px;
-   width: 100%;
-   height: 700px;
-}
-
-#btnClose {
-   background: none;
-   outline: none;
-   cursor: pointer;
-   border: none;
-   position: absolute;
-   top: 10px;
-   right: 10px;
-}
-
 @import url(https://fonts.googleapis.com/css?family=Oswald);
 @import url(https://fonts.googleapis.com/css?family=Quattrocento);
 .div_hotplace_list {
@@ -138,36 +88,6 @@
    transform: translate(-50%,0);
    bottom:50%;
    cursor:pointer;
-}
-
-#btnprev,
-#btnnext {
-   border:none;
-   outline:none;
-   background:none;
-   cursor:pointer;
-}
-
-#btnprev {
-   position:absolute;
-   left:5px;
-   top:22%;
-}
-
-#btnnext {
-   position:absolute;
-   right:5px;
-   top:22%;
-}
-.userimages {
-   width: 80px;
-   height: 80px;
-   border-radius: 50%;
-   display: table-cell;
-   vertical-align: middle;
-   text-align: center;
-   float:left;
-   margin-left:5px;
 }
 </style>
 </head>

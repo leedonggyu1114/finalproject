@@ -6,27 +6,111 @@
 <meta charset="UTF-8">
 <title>여행의 설렘 TOURSUM !</title>
 <script src="http://code.jquery.com/jquery-1.10.2.js"></script> 
+<style>
+#darken-background {
+   position: absolute;
+   top: 0px;
+   left: 0px;
+   right: 0px;
+   height: 100%;
+   display: none;
+   background: rgba(0, 0, 0, 0.5);
+   z-index: 10000;
+   overflow-y: scroll;
+}
+
+#lightbox {
+   width: 1250px;
+   height: 1500px;
+   margin: auto;
+   margin-top: 25px;
+   margin-bottom: 25px;
+   border: 1px solid #333333;
+   border-radius: 5px;
+   background: white;
+   box-shadow: 0px 5px 5px rgba(34, 25, 25, 0.4);
+   text-align: center;
+   position: relative;
+}
+
+#readtitle {
+   position: absolute;
+   color: white;
+   font-size: 30px;
+   top: 39%;
+   left: 3%;
+}
+
+#readimage {
+   border-radius: 5px 5px 0px 0px;
+   width: 100%;
+   height: 700px;
+}
+
+#btnClose {
+   background: none;
+   outline: none;
+   cursor: pointer;
+   border: none;
+   position: absolute;
+   top: 10px;
+   right: 10px;
+}
+#btnprev,
+#btnnext {
+   border:none;
+   outline:none;
+   background:none;
+   cursor:pointer;
+}
+
+#btnprev {
+   position:absolute;
+   left:5px;
+   top:22%;
+}
+
+#btnnext {
+   position:absolute;
+   right:5px;
+   top:22%;
+}
+.userimages {
+   width: 70px;
+   height: 70px;
+   border-radius: 50%;
+   text-align: center;
+}
+#likeuserlist span {
+	padding:10px;
+	float:left;
+	margin-top:5px;
+}
+</style>
 </head>
 <body>
 	<div id="darken-background">
       <div id="lightbox">
-         <img id="readimage" src="http://placehold.it/150x150"> <br>
+         <img id="readimage" src="http://placehold.it/150x150">
          <button id="btnClose"><img src="/resources/img/hotplace/close_icon.png" width=45></button>
          <div id="readtitle"></div>
-         <div id="readdetail" style="display:inline-block; text-align:left; position:absolute; left:3%; top:51%; color:white;"></div>
+         <div id="readdetail" style="display:inline-block; text-align:left; position:absolute; left:3%; top:42%; color:white;"></div>
          <button id="btnprev"><img src="/resources/img/hotplace/prev_icon.png" width=65/></button>
          <button id="btnnext"><img src="/resources/img/hotplace/next_icon.png" width=65/></button>
-         <div id="readcontent" style="width:100%; height:590px; position:relative;">
-         	<div style="display:inline-block; position:absolute; left:5px; top:5px;
-         				border-radius:5px 5px 5px 5px;">
-				<span id="top_x_div" style="float:left;background:red"></span>
-				<span id="donutchart" style="float:left;background:red"></span>
+         <div id="readcontent" style="display:inline-block; position:relative; width:100%; height:790px;">
+         	<div style="display:inline-block; position:absolute; left:70px; bottom:5px; border-radius:5px 5px 5px 5px;">
+				<span id="top_x_div" style="float:left;"></span>
+				<span id="donutchart" style="float:left;"></span>
          	</div>
-            <div id="map" style="width:400px;height:400px; position:absolute; right:5px; top:5px; border-radius:5px 5px 5px 5px;"></div>
-            <div style="font-family:''; display:inline-block; position:absolute; left:180px; bottom:110px; font-size:15px; color:gray;">함께 좋아하는 사람</div>
-            <button style="background:none; outline:none; border:none; position:absolute; left:100px; bottom:34px; cursor:pointer;"><img src="/resources/img/hotplace/prev_icon2.png" width=30 /></button>
-            <div id="likeuserlist" style="position:absolute; bottom:15px; left:170px; width:500px;"></div>
-            <button style="background:none; outline:none; border:none; position:absolute; right:100px; bottom:34px; cursor:pointer;"><img src="/resources/img/hotplace/next_icon2.png" width=30 /></button>
+            <div id="map" style="width:800px; height:320px; position:absolute; top:55px; left:10px; border-radius:5px 5px 5px 5px;"></div>
+            <div>
+	            <button style="background:none; outline:none; z-index:10002; border:none; position:absolute; right:395px; top:195px; cursor:pointer;"><img src="/resources/img/hotplace/prev_icon2.png" width=30 /></button>
+	            <div id="likeuserlist" style="position:absolute; top:55px; right:27px; height:320px; width:380px; padding-left:10px; padding-top:54px; border-radius:5px 5px 5px 5px; border:0.5px solid #e9e9e9;"></div>
+	            <button style="background:none; outline:none; border:none; position:absolute; right:8px; top:195px; cursor:pointer;"><img src="/resources/img/hotplace/next_icon2.png" width=30 /></button>
+            </div>
+            <img src="/resources/img/hotplace/1.png" width=220 style="position:absolute; left:10px; top:8px;"/>
+            <img src="/resources/img/hotplace/2.png" width=222 style="position:absolute; right:188px; top:8px;"/>
+            <img src="/resources/img/hotplace/3.png" width=220 style="position:absolute; left:10px; top:51%;"/>
          </div>
       </div>
    </div>
@@ -258,9 +342,9 @@
                var data = google.visualization.arrayToDataTable(result);
                
                var options = {
-                  width : 370,
+                  width : 600,
                   height : 300,
-                  pieHole : 0.2
+                  pieHole : 0.4
                };
       
                var chart = new google.visualization.PieChart(document
