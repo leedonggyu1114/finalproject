@@ -16,7 +16,7 @@
 	transform:translate(-50%,0);
 	width:840px;
 	border-radius:5px 5px 5px 5px;
-	background:yellow;
+	margin-bottom:60px;
 }
 #findid_area #idfind {
 	border-collapse:collapse;
@@ -67,7 +67,8 @@
 		<div id="menu"><jsp:include page="../menu.jsp"/></div>
 		<div id="container">
 			<div id="findid_area">
-				<table id="idfind" border=1>
+				<div style="margin-top:40px; margin-bottom:18px;"><img src="/resources/img/user/findid_title.png" width=250 style="position:relative; left:50%; transform:translate(-50%,0);"/></div>
+				<table id="idfind">
 					<tr class="line-findid a">
 						<td width=170><span>이름</span> </td>
 						<td width=500><input type="text" id="txtName" placeholder=NAME></td>

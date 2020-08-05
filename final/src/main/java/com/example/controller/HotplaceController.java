@@ -85,7 +85,6 @@ public class HotplaceController {
 	@ResponseBody
 	public ArrayList<HashMap<String, Object>> likeuserlist(String h_x, String h_y){
 		ArrayList<HashMap<String, Object>> hashmap = mapper.likeuserlist(h_x, h_y);
-		System.out.println(hashmap);
 		return hashmap;
 	}
 	

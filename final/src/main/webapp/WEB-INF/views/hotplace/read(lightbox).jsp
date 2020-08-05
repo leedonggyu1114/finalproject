@@ -5,6 +5,9 @@
 <head>
 <meta charset="UTF-8">
 <title>여행의 설렘 TOURSUM !</title>
+<style>
+
+</style>
 </head>
 <body>
 	<div id="darken-background">
@@ -12,6 +15,7 @@
          <img id="readimage" src="http://placehold.it/150x150"> <br>
          <button id="btnClose"><img src="/resources/img/hotplace/close_icon.png" width=45></button>
          <div id="readtitle"></div>
+
          <div id="readdetail" style="display:inline-block; text-align:left; position:absolute; left:3%; top:51%; color:white;"></div>
          <button id="btnprev"><img src="/resources/img/hotplace/prev_icon.png" width=65/></button>
          <button id="btnnext"><img src="/resources/img/hotplace/next_icon.png" width=65/></button>
@@ -31,6 +35,7 @@
    </div>
 </body>
 <script>
+
    //////read(라이트박스)//////
    $(".div_hotplace_list")
          .on(
@@ -107,7 +112,17 @@
          success:function(data){
             var html="";
             for(var i=0; i<data.length;i++){
-               html += "<span><img class='userimages' src='/hotplace/userdisplay?fileName="+data[i].u_image+"'/></span>";
+            	if(data[i].u_image==null || data[i].u_image==""){
+            		if(data[i].u_gender=='male'){
+            			html += "<span><img class='userimages' src='/resources/img/user/profileM.png'/></span>";
+            		}else{
+            			html += "<span><img class='userimages' src='/resources/img/user/profileF.png'/></span>";
+            		}
+            		
+            	}else{
+            		html += "<span><img class='userimages' src='/hotplace/userdisplay?fileName="+data[i].u_image+"'/></span>";	
+            	}
+                
             }
             $("#likeuserlist").html(html);
          }

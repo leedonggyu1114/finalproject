@@ -56,6 +56,10 @@
 		z-index:9;
 		margin-bottom:-2px;
 	}
+	
+	#div_header_burgermenu{
+		display:none;
+	}
 </style>
 </head>
 <body>

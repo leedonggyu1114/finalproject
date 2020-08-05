@@ -188,6 +188,10 @@ input[id="login-chk2"]:checked + label em {
 	margin-bottom:30px;
 	color:black;
 }
+
+#div_header_burgermenu{
+	display:none;
+}
 </style>
 </head>
 <body>

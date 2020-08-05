@@ -15,17 +15,57 @@
 	transform:translate(-50%,0);
 	width:840px;
 	border-radius:5px 5px 5px 5px;
-	background:yellow;
+	overflow:hidden;
+	margin-bottom:60px;
 }
-#findpass_area #idfind {
+#findpass_area #idfind,
+#findpass_area #passfind,
+#findpass_area #passreset {
 	border-collapse:collapse;
 }
-#findpass_area .line-findpass {
+#findpass_area .line-findpass,
+#findpass_area .line-findpass-birthday {
 	height:60px;
 }
-#findpass_area .line-findpass td:nth-child(1) {
+#findpass_area .line-findpass td:nth-child(1),
+#findpass_area .line-findpass-birthday td:nth-child(1) {
 	text-align:left;
 	padding-left:7px;
+}
+#findpass_area .line-findpass td:nth-child(2),
+#findpass_area .line-findpass-birthday td:nth-child(2) {
+	padding-left:10px;
+	padding-right:10px;
+}
+#findpass_area .line-findpass input[type="text"],
+#findpass_area .line-findpass input[type="password"] {
+	width:100%;
+	height:40px;
+	padding-left:10px;
+	border-radius:3px 3px 3px 3px;
+	border:0.5px solid #e9e9e9;
+	cursor:pointer;
+}
+#findpass_area .line-findpass-birthday input[type="text"] {
+	width:32.5%;
+	text-align:center;
+	height:40px;
+	border-radius:3px 3px 3px 3px;
+	border:0.5px solid #e9e9e9;
+	cursor:pointer;
+}
+#findpass_area #idfind span,
+#findpass_area .line-findpass td:nth-child(1) span,
+#findpass_area .line-findpass-birthday td:nth-child(1) span {
+	background: #0f4c81;
+	height:40px;
+	width:155.78px;
+	display:inline-block;
+	padding-top:11px;
+	padding-left:10px;
+	color:white;
+	border-radius:3px 3px 3px 3px;
+	font-size:13px;
 }
 </style>
 </head>
@@ -35,60 +75,71 @@
 		<div id="menu"><jsp:include page="../menu.jsp" /></div>
 		<div id="container">
 			<div id="findpass_area">
-				<table id="idfind" border=1>
+				<div style="margin-top:40px; margin-bottom:20px;"><img src="/resources/img/user/findpass_title.png" width=275 style="position:relative; left:50%; transform:translate(-50%,0);"/></div>
+				<table id="idfind">
 					<tr>
-						<td colspan=3>아이디 확인 후 비밀번호를 재설정할 수 있습니다.</td>
+						<td colspan=3 style="padding-left:10px; color:gray;">아이디 확인 후 비밀번호를 재설정할 수 있습니다.</td>
 					</tr>
 					<tr class="line-findpass">
-						<td width=170>아이디 </td>
+						<td width=170><span>아이디</span></td>
 						<td width=500><input type="text" id="txtId"></td>
-						<td colspan="2" width=170><input type="button" value="확인" id="btnidCheck"></td>
+						<td colspan="2" width=170 style="padding-left:7px;"><input type="button" value="확인" id="btnidCheck" style="width:155.78px; height:40px; border:none; cursor:pointer; outline:none; border-radius:3px 3px 3px 3px;"></td>
 					</tr>
 				</table>
 				<table id="passfind">
 					<tr>
-						<td colspan=2><span id="id1"></span>님의 비밀번호를 재설정합니다.</td>
+						<td colspan=3 style="padding-left:10px; color:gray;"><span id="id1"></span>님의 비밀번호를 재설정합니다.</td>
 					</tr>
-					<tr>
-						<td>이름 :</td>
-						<td><input type="text" id="txtName"></td>
+					<tr class="line-findpass">
+						<td width=170><span>이름</span></td>
+						<td width=500><input type="text" id="txtName"></td>
+						<td width=170></td>
 					</tr>
-					<tr>
-						<td>생년월일 :</td>
+					<tr class="line-findpass-birthday">
+						<td><span>생년월일</span></td>
 						<td>
 							<input type="text" id="txtYear"> 
 							<input type="text" id="txtMM"> 
 							<input type="text" id="txtdd">
 						</td>
+						<td></td>
 					</tr>
-					<tr>
-						<td>이메일 :</td>
+					<tr class="line-findpass">
+						<td><span>이메일</span></td>
 						<td><input type="text" id="txtEmail"></td>
-						<td><input type="button" value="인증 번호 요청" id="btnEmail"></td>
+						<td style="padding-left:7px;"><input type="button" value="인증 번호 요청" id="btnEmail" style="width:155.78px; height:40px; border:none; cursor:pointer; outline:none; border-radius:3px 3px 3px 3px;"></td>
 					</tr>
-					<tr>
-						<td>인증번호 :</td>
+					<tr class="line-findpass">
+						<td><span>인증번호</span></td>
 						<td><input type="text" id="txtNumber"></td>
-						<td><input type="button" value="인증하기" id="btnCheck"></td>
+						<td style="padding-left:7px;"><input type="button" value="인증하기" id="btnCheck" style="width:155.78px; height:40px; border:none; cursor:pointer; outline:none; border-radius:3px 3px 3px 3px;"></td>
 					</tr>
 				</table>
-				<div id="passreset">
-					<span id="loadid"></span>님 새 비밀번호를 입력해주세요. <br> 
-					<span><input type="password" id="pass"></span><br>
-					<br> 
-					<span><input type="password" id="passCheck"></span><br> 
-					<br> 
-					<span><input type="button" id="btnReset" value="확인"></span>
-				</div>
+				<table id="passreset">
+					<tr>
+						<td colspan=2 style="padding-left:10px; color:gray;"><span id="loadid"></span>님 새 비밀번호를 입력해주세요.</td>
+					</tr>
+					<tr class="line-findpass">
+						<td width=170><span>새 비밀번호</span></td>
+						<td width=670><input type="password" id="pass"></td>
+					</tr>
+					<tr class="line-findpass">
+						<td><span>새 비밀번호 확인</span></td>
+						<td><input type="password" id="passCheck"></td>
+					</tr>
+					<tr style="height:90px;">
+						<td colspan=3 style="text-align:center;"><input type="button" id="btnReset" value="변경하기" style="width:200px; height:40px; border:none; cursor:pointer; outline:none; border-radius:3px 3px 3px 3px;"></td>
+					</tr>
+				</table>
 			</div>
 		</div>
 		<div id="footer"><jsp:include page="../footer.jsp"/></div>
 	</div>
 </body>
 <script>
-	$("#passfind").hide();
-	$("#idshow").hide();
-	$("#passreset").hide();
+$("#passfind").hide();
+$("#idshow").hide();
+$("#passreset").hide();
 	//아이디 확인
 	$("#btnidCheck").on("click",function(){
 		var id=$("#txtId").val();
