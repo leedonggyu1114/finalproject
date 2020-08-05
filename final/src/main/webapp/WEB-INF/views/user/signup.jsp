@@ -183,7 +183,7 @@ label{padding:20px;}
 			<tr class="line-img">
 				<td colspan=4>
 					<input type="file" name="file" style="visibility: hidden;"><br>
-					<img src="http://placehold.it/150x150" id="image" width=150 height=150><br>
+					<img src="http://placehold.it/150x150" id="image" width=200 height=200><br>
 					프로필사진<br>
 				</td>
 			</tr>

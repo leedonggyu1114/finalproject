@@ -249,9 +249,9 @@ input[id="login-chk2"]:checked + label em {
 							</tr>
 							<tr class="login-company">
 								<td>
-									<span><input type="text" id="number1" size=8></span> - 
-									<span><input type="text" id="number2" size=5></span> - 
-									<span><input type="text" id="number3" size=8></span>
+									<span><input type="text" id="number1" size=8 maxlength=3></span> - 
+									<span><input type="text" id="number2" size=5 maxlength=2></span> - 
+									<span><input type="text" id="number3" size=8 maxlength=5></span>
 								</td>
 							</tr>
 							<tr class="login-line">

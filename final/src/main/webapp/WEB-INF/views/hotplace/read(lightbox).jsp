@@ -5,9 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>여행의 설렘 TOURSUM !</title>
-<style>
-
-</style>
+<script src="http://code.jquery.com/jquery-1.10.2.js"></script> 
 </head>
 <body>
 	<div id="darken-background">
@@ -15,15 +13,14 @@
          <img id="readimage" src="http://placehold.it/150x150"> <br>
          <button id="btnClose"><img src="/resources/img/hotplace/close_icon.png" width=45></button>
          <div id="readtitle"></div>
-
          <div id="readdetail" style="display:inline-block; text-align:left; position:absolute; left:3%; top:51%; color:white;"></div>
          <button id="btnprev"><img src="/resources/img/hotplace/prev_icon.png" width=65/></button>
          <button id="btnnext"><img src="/resources/img/hotplace/next_icon.png" width=65/></button>
          <div id="readcontent" style="width:100%; height:590px; position:relative;">
-         	<div style="display:inline-block; position:absolute; left:5px; top:5px; width:66.5%; height:400px;
+         	<div style="display:inline-block; position:absolute; left:5px; top:5px;
          				border-radius:5px 5px 5px 5px;">
-				<span id="top_x_div" style="width:50%; height:300px; float:left;"></span>
-				<span id="donutchart" style="width: 50%; height: 300px; float:left;"></span>
+				<span id="top_x_div" style="float:left;background:red"></span>
+				<span id="donutchart" style="float:left;background:red"></span>
          	</div>
             <div id="map" style="width:400px;height:400px; position:absolute; right:5px; top:5px; border-radius:5px 5px 5px 5px;"></div>
             <div style="font-family:''; display:inline-block; position:absolute; left:180px; bottom:110px; font-size:15px; color:gray;">함께 좋아하는 사람</div>
@@ -219,18 +216,18 @@
             success:function(result){
                var data = new google.visualization.arrayToDataTable(result);
                var options = {
-                  width : 400,
-                  title : '연령별',
+                  width : 270,
+                  height : 270,
                   pieHole : 0.4,
                   legend : {
                      position : 'none'
                   },
                   chart : {
-                     title : '선호도 조사',
+                     title : '',
                      subtitle : ''
                   },
                   bar : {
-                     groupWidth : "90%"
+                     groupWidth : "80%"
                   }
                };
       
@@ -261,8 +258,9 @@
                var data = google.visualization.arrayToDataTable(result);
                
                var options = {
-                  title : '성별',
-                  pieHole : 0.4,
+                  width : 370,
+                  height : 300,
+                  pieHole : 0.2
                };
       
                var chart = new google.visualization.PieChart(document

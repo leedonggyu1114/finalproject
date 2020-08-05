@@ -9,6 +9,62 @@
 <title>여행의 설렘 TOURSUM !</title>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/style.css" />
+<style>
+#user-information-area {
+	padding:40px;
+	position:relative;
+	margin-bottom:30px;
+}
+#user-information-area #info,
+#user-information-area #companyInfo {
+	position:relative;
+	left:50%;
+	transform:translate(-50%,0);
+	margin-top:20px;
+}
+#user-information-area .line-info {
+	height:60px;
+}
+#user-information-area .line-info td:nth-child(1),
+#user-information-area .line-address td:nth-child(1) {
+	text-align:left;
+	padding-left:7px;
+}
+#user-information-area .line-info td:nth-child(2),
+#user-information-area .line-address td:nth-child(2) {
+	padding-left:10px;
+	padding-right:10px;
+}
+#user-information-area span {
+	background: #0f4c81;
+	color:white;
+	height:40px;
+	width:155.78px;
+	display:inline-block;
+	padding-top:11px;
+	padding-left:10px;
+	border-radius:3px 3px 3px 3px;
+	font-size:13px;
+}
+#user-information-area [type="text"],
+#user-information-area [type="password"],
+#user-information-area [type="submit"] {
+	height:40px;
+	padding-left:10px;
+	border-radius:3px 3px 3px 3px;
+	border:0.5px solid #e9e9e9;
+	cursor:pointer;
+}
+#user-information-area .line-info.a input {
+	width:100%;
+}
+#user-information-area select {
+	border-radius:3px 3px 3px 3px;
+	border:0.5px solid #e9e9e9;
+	cursor:pointer;
+	padding-left:10px;
+}
+</style>
 <script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
 </head>
 <body>
@@ -17,160 +73,175 @@
 		<div id="menu"><jsp:include page="../../menu.jsp" /></div>
 		<div id="container">
 			<div id="user-information-area">
+				<div style="text-align:center;"><img src="/resources/img/user/user_information_title.png" width=400/></div>
 				<c:if test="${u_id!=null}">
 					<form action="updateUser" name="frm" method="post" enctype="multipart/form-data">
-				<table id="info">
-					<tr>
-						<td>프로필 사진</td>
-						<td>
-							<img src="http://placehold.it/250x250" id="image" width=200>
-							<input type="file" name="file">
-						</td>
-					</tr>
-					<tr>
-						<td>이름</td>
-						<td colspan="2" id="u_name"></td>	
-					</tr>
-					<tr>
-						<td>사용자ID</td>
-						<td colspan="2" id="u_id">${u_id}</td>
-					</tr>
-				 	<tr>
-				 		<td>생년월일</td>
-				 		<td colspan="2" id="u_birthday"></td>
-				 	</tr>
-				 	<tr>
-				 		<td>
-				 			<input type="hidden" name="u_id" value="${u_id}">
-				 		</td>
-				 	</tr>
-					<tr>
-						<td width=150>주소</td>
-						<td colspan="2">
-							<input type="text" id="sample6_postcode" placeholder="우편번호">
-							<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
-						</td>
-					</tr>
-					<tr>
-						<td></td>
-						<td colspan="2">
-							<input type="text" id="sample6_address" placeholder="주소" size=50><br>
-							<input type="text" id="sample6_detailAddress" placeholder="상세주소" size=50>
-							<input type="hidden" id="sample6_extraAddress" placeholder="참고항목">
-							<input type="hidden" id=allAddress name="u_address">
-						</td>
-					</tr>
-					<tr>
-						<td>이메일</td>
-						<td><input type="text" size="15" id="email1"> @ 
-						<input type="text" id="txtEmailType" size="20">
-							<select style="height:22px; width:120px;" id="email">
-								<option id="direct" value="direct">직접입력</option>
-								<option id="gmail" value="gmail.com">@gmail.com</option>
-								<option id="naver" value="naver.com">@naver.com</option>
-								<option id="daum" value="daum.net">@daum.net</option>
-								<option id="nate" value="nate.com">@nate.com</option>
-							</select>
-							<input type="hidden" id="emailAll" name="u_email">
-						</td>
-					</tr>
-					
-					<tr>
-						<td rowspan="3">비밀번호 설정</td>
-						<td>현재 비밀번호 : <input type="text" size="30" id="nowPass"></td>
-					</tr>
-					<tr>
-						<td>새 비밀번호   : <input type="text" size="30" id="newPass"></td>
-					</tr>
-					<tr>
-						<td>새 비밀번호 확인   : <input type="text" size="30" id="newPassCheck" name="u_pass"></td>
-					</tr>
-				</table>
-					<br><br>
-					<input type="submit" value="수정" style="width:200px;">
-					<br><br>
-			</form>
+						<table id="info" style="border-collapse:collapse;">
+							<tr>
+								<td colspan=3 style="text-align:center;">
+									<input type="file" name="file" style="visibility: hidden;"><br>
+									<img src="http://placehold.it/250x250" id="image" width=200 height=200 style="cursor:pointer; border-radius:50%; margin-bottom:40px;"> 
+								</td>
+							</tr>
+							<tr class="line-info a">
+								<td width=170><span>이름</span></td>
+								<td width=500><input type="text" id="u_name" value=""></td>
+								<td width=170><input type="hidden" id=allAddress name="u_address"></td>
+							</tr>
+							<tr class="line-info a">
+								<td><span>ID</span></td>
+								<td><input type="text" id="u_id" value="${u_id}" readonly></td>
+								<td><input type="hidden" name="u_id" value="${u_id}"></td>
+							</tr>
+							<tr class="line-info">
+								<td><span>생년월일</span></td>
+								<td id="u_birthday"></td>
+								<td><input type="hidden" id="emailAll" name="u_email"></td>
+							</tr>
+							<tr class="line-address">
+								<td width=150><span style="height:130px; padding-top:56px;">주소</span></td>
+								<td style="height:150px;">
+									<input type="text" id="sample6_postcode" placeholder="우편번호" style="width:32.5%">
+									<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기" style="width:32.5%; height:40px; border:none; outline:none; border-radius:3px 3px 3px 3px; cursor:pointer"><br>
+									<input type="text" id="sample6_address" placeholder="주소" style="margin-top:5px; width:100%;"><br> 
+									<input type="text" id="sample6_detailAddress" style="margin-top:5px; width:100%;"><br>
+									<input type="hidden" id="sample6_extraAddress">
+								</td>
+								<td></td>
+							</tr>
+							<tr class="line-info">
+								<td width=150><span>TEL</span></td>
+								<td>
+									<select id="selectTel" style="height:40px; width:30.8%;">
+										<option>010</option>
+										<option>011</option>
+										<option>016</option>
+										<option>017</option>
+										<option>018</option>
+										<option>019</option>
+									</select> -
+									<input type="text" style="height:40px; width:30.8%;"> -
+									<input type="text" style="height:40px; width:30.8%;">
+								</td>
+								<td></td>
+							</tr>
+							<tr class="line-info">
+								<td><span>이메일</span></td>
+								<td>
+									<input type="text" id="email1" style="width:47%;"> @ 
+									<input type="text" id="txtEmailType" style="width:47%;">
+								</td>
+								<td style="text-align:center;">
+									<select id="email" style="width:155.78px; height:40px;">
+										<option id="direct" value="direct">직접입력</option>
+										<option id="gmail" value="gmail.com">@gmail.com</option>
+										<option id="naver" value="naver.com">@naver.com</option>
+										<option id="daum" value="daum.net">@daum.net</option>
+										<option id="nate" value="nate.com">@nate.com</option>
+									</select> 
+								</td>
+							</tr>
+							<tr class="line-info a">
+								<td><span>현재 비밀번호</span></td>
+								<td><input type="text" id="nowPass"></td>
+								<td></td>
+							</tr>
+							<tr class="line-info a">
+								<td><span>새 비밀번호</span></td>
+								<td><input type="text" id="newPass"></td>
+								<td></td>
+							</tr>
+							<tr class="line-info a">
+								<td><span>새 비밀번호 확인</span></td>
+								<td><input type="text" id="newPassCheck" name="u_pass"></td>
+								<td></td>
+							</tr>
+						</table>
+						<input type="submit" value="수정하기" style="width:200px; height:40px; margin-top:30px; position:relative; left:50%; transform:translate(-50%,0); background:#0f4c81; color:white;">
+					</form>
 				</c:if>
-					<c:if test="${c_id!=null}">
-			<span>${c_id}</span> 님의 정보
-			<hr>
-			<form action="updateCompany" name="frm" method="post" enctype="multipart/form-data">
-				<table id="companyInfo">
-						<tr>
-							<td>프로필 사진</td>
-							<td>
-								<img src="http://placehold.it/250x250" id="image1" width=200>
-								<input type="file" name="file1" style="visibility:hidden;">
-							</td>
-						</tr>
-						<tr>
-							<td>이름</td>
-							<td colspan="2" id="c_name"></td>	
-						</tr>
-						<tr>
-							<td>업체ID</td>
-							<td colspan="2" id="c_id">${c_id}</td>
-						</tr>
-						<tr>
-							<td>
-				 				<input type="hidden" name="c_id" value="${c_id}">
-				 			</td>	
-				 		</tr>
-						<tr>
-							<td width=150 rowspan="2">주소</td>
-						</tr>
-						<tr>
-							<td><span id="address">일반 주소</span><br><span id="addressDetail">상세 주소</span></td>
-						</tr>
-						<tr>
-							<td width=150>대표 번호</td>
-							<td><input type="hidden" id="txtTel" size=50 name="c_tel" placeholder="telephone">
-								<select id="selectTel">
-									<option>010</option>
-									<option>011</option>
-									<option>016</option>
-									<option>017</option>
-									<option>018</option>
-									<option>019</option>
-								</select>
-								<input type="text" size="15" id="telFirst">
-								<input type="text" size="25" id="telSecond">
-							</td>
-						</tr>
-						<tr>
-							<td>현재 비밀번호</td>
-							<td><input type="text" size=30 id="nowpass"></td>
-						</tr>
-						<tr>
-							<td>변경 비밀번호</td>
-							<td><input type="text" size=30 id="newpass"></td>
-						</tr>
-						<tr>
-							<td>변경 비밀번호 확인</td>
-							<td><input type="text" size=30 id="newpassCheck" name="c_pass"></td>
-						</tr>
-						<tr>
-							<td>이메일</td>
-							<td><input type="text" size="10" id="email1"> @ 
-							<input type="text" id="txtEmailType" size="15">
-								<select style="height:22px; width:120px;" id="email">
-									<option id="direct" value="direct">직접입력</option>
-									<option id="gmail" value="gmail.com">@gmail.com</option>
-									<option id="naver" value="naver.com">@naver.com</option>
-									<option id="daum" value="daum.net">@daum.net</option>
-									<option id="nate" value="nate.com">@nate.com</option>
-								</select>
-								<input type="hidden" id="emailAll" name="c_email">
-							</td>
-						</tr>	
-					</table>
-					<br><br>
-					<input type="submit" value="수정" style="width:200px;">
-					<br><br>
-			</form>
-			
-		</c:if>
-		<a href="/user/mypage/usercancel?">회원 탈퇴</a>
+				<c:if test="${c_id!=null}">
+					<form action="updateCompany" name="frm" method="post"
+						enctype="multipart/form-data">
+						<table id="companyInfo" style="border-collapse:collapse;">
+							<tr>
+								<td colspan=3 style="text-align:center;">
+									<input type="file" name="file1" style="visibility: hidden;"><br>
+									<img src="http://placehold.it/250x250" id="image1" width=200 height=200 style="cursor:pointer; border-radius:50%; margin-bottom:40px;">
+								</td>
+							</tr>
+							<tr class="line-info a">
+								<td width=170><span>이름</span></td>
+								<td width=500><input type="text" id="c_name"></td>
+								<td width=170></td>
+							</tr>
+							<tr class="line-info a">
+								<td><span>ID</span></td>
+								<td><input type="text" id="c_id" value="${c_id}"></td>
+								<td><input type="hidden" name="c_id" value="${c_id}"></td>
+							</tr>
+							<tr class="line-address">
+								<td width=150><span style="height:130px; padding-top:56px;">주소</span></td>
+								<td style="height:150px;">
+									<input type="text" id="sample6_postcode" placeholder="우편번호" style="width:32.5%">
+									<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기" style="width:32.5%; height:40px; border:none; outline:none; border-radius:3px 3px 3px 3px; cursor:pointer"><br>
+									<span id="address" style="width:100%; background:none; color:black; border:0.5px solid #e9e9e9; margin-top:5px;"></span><br> 
+									<span id="addressDetail" style="width:100%; background:none; color:black; border:0.5px solid #e9e9e9; margin-top:5px;">상세 주소</span>
+								</td>
+								<td><input type="hidden" id="txtTel" size=50 name="c_tel" placeholder="telephone"> </td>
+							</tr>
+							<tr class="line-info">
+								<td width=150><span>TEL</span></td>
+								<td>
+									<select id="selectTel" style="height:40px; width:30.8%;">
+										<option>010</option>
+										<option>011</option>
+										<option>016</option>
+										<option>017</option>
+										<option>018</option>
+										<option>019</option>
+									</select> -
+									<input type="text" id="telFirst" style="height:40px; width:30.8%;"> -
+									<input type="text" id="telSecond" style="height:40px; width:30.8%;">
+								</td>
+								<td></td>
+							</tr>
+							<tr class="line-info">
+								<td><span>이메일</span></td>
+								<td>
+									<input type="text" id="email1" style="width:47%;"> @ 
+									<input type="text" id="txtEmailType" style="width:47%;"> 
+								</td>
+								<td style="text-align:center;">
+									<select id="email" style="width:155.78px; height:40px;">
+										<option id="direct" value="direct">직접입력</option>
+										<option id="gmail" value="gmail.com">@gmail.com</option>
+										<option id="naver" value="naver.com">@naver.com</option>
+										<option id="daum" value="daum.net">@daum.net</option>
+										<option id="nate" value="nate.com">@nate.com</option>
+									</select> 
+								</td>
+							</tr>
+							<tr class="line-info a">
+								<td><span>현재 비밀번호</span></td>
+								<td><input type="text" size=30 id="nowpass"></td>
+								<td></td>
+							</tr>
+							<tr class="line-info a">
+								<td><span>새 비밀번호</span></td>
+								<td><input type="text" id="newpass"></td>
+								<td></td>
+							</tr>
+							<tr class="line-info a">
+								<td><span>새 비밀번호 확인</span></td>
+								<td><input type="text" id="newpassCheck"></td>
+								<td><input type="hidden" id="emailAll" name="c_email"></td>
+							</tr>
+						</table>
+						<input type="submit" value="수정" style="width:200px; height:40px; margin-top:30px; position:relative; left:50%; transform:translate(-50%,0); background:#0f4c81; color:white;">
+					</form>
+				</c:if>
+				<a href="/user/mypage/usercancel?">회원 탈퇴</a>
 			</div>
 		</div>
 		<div id="footer"><jsp:include page="../../footer.jsp" /></div>
@@ -179,6 +250,7 @@
 <script>
 	var u_id = "${u_id}";
 	var c_id = "${c_id}";
+	var u_name = "${u_name}";
 
 	$("#email").change(function() {
 		var email = $("#email option:selected").val();
@@ -320,12 +392,10 @@
 			$("#txtEmailType").val(afterEmail[1]);
 
 			//이미지 read
-			if (data.read.u_image != "") {
+			if (data.read.u_image != null) {
 				$("#image").attr("src",
 						"/display?fileName=" + data.read.u_image);
 				$("#imagename").val(data.read.u_image);
-			} else {
-				$("#image").attr("src", "http://placehold.it/250x250");
 			}
 		}
 	});
