@@ -315,12 +315,10 @@
 			$("#txtEmailType").val(afterEmail[1]);
 
 			//이미지 read
-			if (data.read.u_image != "") {
+			if (data.read.u_image != null) {
 				$("#image").attr("src",
 						"/display?fileName=" + data.read.u_image);
 				$("#imagename").val(data.read.u_image);
-			} else {
-				$("#image").attr("src", "http://placehold.it/250x250");
 			}
 		}
 	});

@@ -106,7 +106,7 @@ public class HotplaceController {
 	public List<HotplaceVO> areachart(String h_x, String h_y){
 		ArrayList areachart = new ArrayList();
 		ArrayList array = new ArrayList();
-		array.add("연령별");
+		array.add("");
 		array.add("인기핫플레이스");
 		areachart.add(array);
 		array=new ArrayList();
@@ -139,8 +139,8 @@ public class HotplaceController {
 	public List<HotplaceVO> sexchart(String h_x, String h_y){
 		ArrayList sexchart = new ArrayList();
 		ArrayList array = new ArrayList();
-		array.add("성별");
-		array.add("선호도");
+		array.add("");
+		array.add("");
 		sexchart.add(array);
 		array=new ArrayList();
 		array.add("남");

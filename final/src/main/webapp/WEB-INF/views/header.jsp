@@ -16,7 +16,9 @@
 		<c:if test="${u_id!=null || c_id!=null}">
 			<a href="/user/logout">로그아웃</a>
 		</c:if>
-		<a href="/user/signupselect">회원가입</a>
+		<c:if test="${u_id==null && c_id==null}">
+			<a href="/user/signupselect">회원가입</a>
+		</c:if>
 	</div>
 	<a href="/"><img src="${pageContext.request.contextPath}/resources/img/logo.png" width=200 id="header_logo"></a>
 	<div id="div_header_search">
