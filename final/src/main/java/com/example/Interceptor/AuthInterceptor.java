@@ -1,4 +1,4 @@
-package com.example.interceptor;
+package com.example.Interceptor;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -10,7 +10,7 @@ public class AuthInterceptor extends HandlerInterceptorAdapter{
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
-		if(request.getSession().getAttribute("id")==null) {
+		if(request.getSession().getAttribute("u_id")==null && request.getSession().getAttribute("c_id")==null) {
 			String path=request.getServletPath(); //원래 가고자했던 url주소
 			String query=request.getQueryString();//?뒤로 가지고 오는 값들
 			if(query!=null) {

@@ -48,20 +48,19 @@
 	</beans:bean>
 	
 	
-	
 	<interceptors>
-		<interceptor>
-			<mapping path="/board/insert" /> <!-- 인서트로 가기전에는 아래 인터셉트를 실행 -->
-			<mapping path="/board/read" />
-			<beans:bean id="AuthInterceptor"
-				class="com.example.interceptor.AuthInterceptor" />
-		</interceptor>
-	</interceptors>
+      <interceptor>
+         <mapping path="/user/mypage/infomation"/>
+         <mapping path="/hotplace/likelist"/>
+         <beans:bean id="AuthInterceptor" class="com.example.Interceptor.AuthInterceptor"/>
+      </interceptor>
+   </interceptors>
+
 	
 		
 	<websocket:handlers>
 		<websocket:mapping handler="websocketHandler" path="/websocket"/>
 	</websocket:handlers>
 	<beans:bean id="websocketHandler" class="com.example.domain.RefreshSocket"/>
-	
+
 </beans:beans>

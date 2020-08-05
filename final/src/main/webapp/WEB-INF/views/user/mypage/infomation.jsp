@@ -9,13 +9,6 @@
 <title>여행의 설렘 TOURSUM !</title>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/style.css" />
-<style>
-#user-information-area {
-	padding:40px;
-	position:relative;
-	background:yellow;
-}
-</style>
 <script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
 </head>
 <body>
@@ -25,147 +18,159 @@
 		<div id="container">
 			<div id="user-information-area">
 				<c:if test="${u_id!=null}">
-					<form action="updateUser" name="frm" method="post"
-						enctype="multipart/form-data">
-						<table id="info" border=1>
-							<tr>
-								<td>프로필 사진</td>
-								<td><img src="http://placehold.it/250x250" id="image"
-									width=200> <input type="file" name="file"></td>
-							</tr>
-							<tr>
-								<td>이름</td>
-								<td colspan="2" id="u_name"></td>
-							</tr>
-							<tr>
-								<td>사용자ID</td>
-								<td colspan="2" id="u_id">${u_id}</td>
-							</tr>
-							<tr>
-								<td>생년월일</td>
-								<td colspan="2" id="u_birthday"></td>
-							</tr>
-							<tr>
-								<td><input type="hidden" name="u_id" value="${u_id}">
-								</td>
-							</tr>
-							<tr>
-								<td width=150>주소</td>
-								<td colspan="2"><input type="text" id="sample6_postcode"
-									placeholder="우편번호"> <input type="button"
-									onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
-								</td>
-							</tr>
-							<tr>
-								<td></td>
-								<td colspan="2"><input type="text" id="sample6_address"
-									placeholder="주소" size=50><br> <input type="text"
-									id="sample6_detailAddress" placeholder="상세주소" size=50>
-									<input type="hidden" id="sample6_extraAddress"
-									placeholder="참고항목"> <input type="hidden" id=allAddress
-									name="u_address"></td>
-							</tr>
-							<tr>
-								<td>이메일</td>
-								<td><input type="text" size="15" id="email1"> @ <input
-									type="text" id="txtEmailType" size="20"> <select
-									style="height: 22px; width: 120px;" id="email">
-										<option id="direct" value="direct">직접입력</option>
-										<option id="gmail" value="gmail.com">@gmail.com</option>
-										<option id="naver" value="naver.com">@naver.com</option>
-										<option id="daum" value="daum.net">@daum.net</option>
-										<option id="nate" value="nate.com">@nate.com</option>
-								</select> <input type="hidden" id="emailAll" name="u_email"></td>
-							</tr>
-
-							<tr>
-								<td rowspan="3">비밀번호 설정</td>
-								<td>현재 비밀번호 : <input type="text" size="30" id="nowPass"></td>
-							</tr>
-							<tr>
-								<td>새 비밀번호 : <input type="text" size="30" id="newPass"></td>
-							</tr>
-							<tr>
-								<td>새 비밀번호 확인 : <input type="text" size="30"
-									id="newPassCheck" name="u_pass"></td>
-							</tr>
-						</table>
-						<br> <br> <input type="submit" value="수정"
-							style="width: 200px;"> <br> <br>
-					</form>
+					<form action="updateUser" name="frm" method="post" enctype="multipart/form-data">
+				<table id="info">
+					<tr>
+						<td>프로필 사진</td>
+						<td>
+							<img src="http://placehold.it/250x250" id="image" width=200>
+							<input type="file" name="file">
+						</td>
+					</tr>
+					<tr>
+						<td>이름</td>
+						<td colspan="2" id="u_name"></td>	
+					</tr>
+					<tr>
+						<td>사용자ID</td>
+						<td colspan="2" id="u_id">${u_id}</td>
+					</tr>
+				 	<tr>
+				 		<td>생년월일</td>
+				 		<td colspan="2" id="u_birthday"></td>
+				 	</tr>
+				 	<tr>
+				 		<td>
+				 			<input type="hidden" name="u_id" value="${u_id}">
+				 		</td>
+				 	</tr>
+					<tr>
+						<td width=150>주소</td>
+						<td colspan="2">
+							<input type="text" id="sample6_postcode" placeholder="우편번호">
+							<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
+						</td>
+					</tr>
+					<tr>
+						<td></td>
+						<td colspan="2">
+							<input type="text" id="sample6_address" placeholder="주소" size=50><br>
+							<input type="text" id="sample6_detailAddress" placeholder="상세주소" size=50>
+							<input type="hidden" id="sample6_extraAddress" placeholder="참고항목">
+							<input type="hidden" id=allAddress name="u_address">
+						</td>
+					</tr>
+					<tr>
+						<td>이메일</td>
+						<td><input type="text" size="15" id="email1"> @ 
+						<input type="text" id="txtEmailType" size="20">
+							<select style="height:22px; width:120px;" id="email">
+								<option id="direct" value="direct">직접입력</option>
+								<option id="gmail" value="gmail.com">@gmail.com</option>
+								<option id="naver" value="naver.com">@naver.com</option>
+								<option id="daum" value="daum.net">@daum.net</option>
+								<option id="nate" value="nate.com">@nate.com</option>
+							</select>
+							<input type="hidden" id="emailAll" name="u_email">
+						</td>
+					</tr>
+					
+					<tr>
+						<td rowspan="3">비밀번호 설정</td>
+						<td>현재 비밀번호 : <input type="text" size="30" id="nowPass"></td>
+					</tr>
+					<tr>
+						<td>새 비밀번호   : <input type="text" size="30" id="newPass"></td>
+					</tr>
+					<tr>
+						<td>새 비밀번호 확인   : <input type="text" size="30" id="newPassCheck" name="u_pass"></td>
+					</tr>
+				</table>
+					<br><br>
+					<input type="submit" value="수정" style="width:200px;">
+					<br><br>
+			</form>
 				</c:if>
-				<c:if test="${c_id!=null}">
-					<span>${c_id}</span> 님의 정보
+					<c:if test="${c_id!=null}">
+			<span>${c_id}</span> 님의 정보
 			<hr>
-					<form action="updateCompany" name="frm" method="post"
-						enctype="multipart/form-data">
-						<table id="companyInfo">
-							<tr>
-								<td>프로필 사진</td>
-								<td><img src="http://placehold.it/250x250" id="image1"
-									width=200> <input type="file" name="file1"></td>
-							</tr>
-							<tr>
-								<td>이름</td>
-								<td colspan="2" id="c_name"></td>
-							</tr>
-							<tr>
-								<td>업체ID</td>
-								<td colspan="2" id="c_id">${c_id}</td>
-							</tr>
-							<tr>
-								<td><input type="hidden" name="c_id" value="${c_id}">
-								</td>
-							</tr>
-							<tr>
-								<td width=150 rowspan="2">주소</td>
-							</tr>
-							<tr>
-								<td><span id="address">일반 주소</span><br> <span
-									id="addressDetail">상세 주소</span></td>
-							</tr>
-							<tr>
-								<td width=150>대표 번호</td>
-								<td><input type="hidden" id="txtTel" size=50 name="c_tel"
-									placeholder="telephone"> <select id="selectTel">
-										<option>010</option>
-										<option>011</option>
-										<option>016</option>
-										<option>017</option>
-										<option>018</option>
-										<option>019</option>
-								</select> <input type="text" size="15" id="telFirst"> <input
-									type="text" size="25" id="telSecond"></td>
-							</tr>
-							<tr>
-								<td>현재 비밀번호</td>
-								<td><input type="text" size=30 id="nowpass"></td>
-							</tr>
-							<tr>
-								<td>변경 비밀번호</td>
-								<td><input type="text" size=30 id="newpass"></td>
-							</tr>
-							<tr>
-								<td>변경 비밀번호 확인</td>
-								<td><input type="text" size=30 id="newpassCheck"></td>
-							</tr>
-							<tr>
-								<td>이메일</td>
-								<td><input type="text" size="10" id="email1"> @ <input
-									type="text" id="txtEmailType" size="15"> <select
-									style="height: 22px; width: 120px;" id="email">
-										<option id="direct" value="direct">직접입력</option>
-										<option id="gmail" value="gmail.com">@gmail.com</option>
-										<option id="naver" value="naver.com">@naver.com</option>
-										<option id="daum" value="daum.net">@daum.net</option>
-										<option id="nate" value="nate.com">@nate.com</option>
-								</select> <input type="hidden" id="emailAll" name="c_email"></td>
-							</tr>
-						</table>
-						<br> <br> <input type="submit" value="수정"
-							style="width: 200px;"> <br> <br>
-					</form>
-				</c:if>
+			<form action="updateCompany" name="frm" method="post" enctype="multipart/form-data">
+				<table id="companyInfo">
+						<tr>
+							<td>프로필 사진</td>
+							<td>
+								<img src="http://placehold.it/250x250" id="image1" width=200>
+								<input type="file" name="file1" style="visibility:hidden;">
+							</td>
+						</tr>
+						<tr>
+							<td>이름</td>
+							<td colspan="2" id="c_name"></td>	
+						</tr>
+						<tr>
+							<td>업체ID</td>
+							<td colspan="2" id="c_id">${c_id}</td>
+						</tr>
+						<tr>
+							<td>
+				 				<input type="hidden" name="c_id" value="${c_id}">
+				 			</td>	
+				 		</tr>
+						<tr>
+							<td width=150 rowspan="2">주소</td>
+						</tr>
+						<tr>
+							<td><span id="address">일반 주소</span><br><span id="addressDetail">상세 주소</span></td>
+						</tr>
+						<tr>
+							<td width=150>대표 번호</td>
+							<td><input type="hidden" id="txtTel" size=50 name="c_tel" placeholder="telephone">
+								<select id="selectTel">
+									<option>010</option>
+									<option>011</option>
+									<option>016</option>
+									<option>017</option>
+									<option>018</option>
+									<option>019</option>
+								</select>
+								<input type="text" size="15" id="telFirst">
+								<input type="text" size="25" id="telSecond">
+							</td>
+						</tr>
+						<tr>
+							<td>현재 비밀번호</td>
+							<td><input type="text" size=30 id="nowpass"></td>
+						</tr>
+						<tr>
+							<td>변경 비밀번호</td>
+							<td><input type="text" size=30 id="newpass"></td>
+						</tr>
+						<tr>
+							<td>변경 비밀번호 확인</td>
+							<td><input type="text" size=30 id="newpassCheck" name="c_pass"></td>
+						</tr>
+						<tr>
+							<td>이메일</td>
+							<td><input type="text" size="10" id="email1"> @ 
+							<input type="text" id="txtEmailType" size="15">
+								<select style="height:22px; width:120px;" id="email">
+									<option id="direct" value="direct">직접입력</option>
+									<option id="gmail" value="gmail.com">@gmail.com</option>
+									<option id="naver" value="naver.com">@naver.com</option>
+									<option id="daum" value="daum.net">@daum.net</option>
+									<option id="nate" value="nate.com">@nate.com</option>
+								</select>
+								<input type="hidden" id="emailAll" name="c_email">
+							</td>
+						</tr>	
+					</table>
+					<br><br>
+					<input type="submit" value="수정" style="width:200px;">
+					<br><br>
+			</form>
+			
+		</c:if>
+		<a href="/user/mypage/usercancel?">회원 탈퇴</a>
 			</div>
 		</div>
 		<div id="footer"><jsp:include page="../../footer.jsp" /></div>
@@ -186,53 +191,53 @@
 	$(frm).submit(function(e) {
 		e.preventDefault();
 		//전화번호 합치기
-		var tel1 = $("#selectTel option:selected").val();
-		var tel2 = $("#telFirst").val();
-		var tel3 = $("#telSecond").val();
-		$("#txtTel").val(tel1 + tel2 + tel3);
-
-		var now_pass = $("#nowpass").val();
-		var new_pass = $("#newpass").val();
-		var new_passCheck = $("#newpassCheck").val();
-
-		$.ajx({
-			type : "get",
-			url : "/user/mypage/readCompany",
-			data : {
-				"c_id" : c_id
-			},
-			success : function(data) {
-				if (data.read.c_pass != now_pass) {
-					alert("현재비밀번호를 확인하세요.");
-				} else {
-					var new_pass = $("#newpass").val();
-					var new_passCheck = $("#newpassCheck").val();
-					if (new_pass != new_passCheck) {
-						alert("비밀번호와 비밀번호 확인 값이 다릅니다.")
-					} else {
-						if (!confirm("수정하시겠습니까?"))
-							return;
-						//이메일 합치기
-						var txtEmail = $("#email1").val();
-						var txtEmailType = $("#txtEmailType").val();
-						var emailAll = txtEmail + "@" + txtEmailType;
-						$("#emailAll").val(emailAll);
-						frm.submit();
+		var tel1=$("#selectTel option:selected").val();
+		var tel2=$("#telFirst").val();
+		var tel3=$("#telSecond").val();
+		$("#txtTel").val(tel1+tel2+tel3);
+		
+		var now_pass=$("#nowpass").val();
+		var new_pass=$("#newpass").val();
+		var new_passCheck=$("#newpassCheck").val();
+		
+		 $.ajax({
+			type:"get",
+			url:"/user/mypage/readCompany",
+			data:{"c_id":c_id},
+			success:function(data){
+					if($("#telFirst").val()=="" || $("#telSecond").val()==""){
+						alert("대표 전화번호를 입력하세요");
+					}else{
+					if(data.read.c_pass!=now_pass){
+						alert("현재비밀번호를 확인하세요.");
+					}else{
+						var new_pass=$("#newpass").val();
+						var new_passCheck=$("#newpassCheck").val();
+						if(new_pass!=new_passCheck){
+							alert("비밀번호와 비밀번호 확인 값이 다릅니다.")
+						}else{
+							if(!confirm("수정하시겠습니까?")) return;
+							//이메일 합치기
+							var txtEmail=$("#email1").val();
+							var txtEmailType=$("#txtEmailType").val();
+							var emailAll=txtEmail+"@"+txtEmailType;
+							$("#emailAll").val(emailAll);
+							frm.submit();
+						}
 					}
 				}
 			}
-		});
 
+		});
 	});
 
 	//업체 정보 읽어오기
 	$.ajax({
-		type : "get",
-		url : "/user/mypage/readCompany",
-		data : {
-			"c_id" : c_id
-		},
-		success : function(data) {
+		type:"get",
+		url:"/user/mypage/readCompany",
+		data:{"c_id":c_id},
+		success:function(data){
+			$("#c_name").html(data.read.c_name);
 			//주소 split
 			var beforeAdd = data.read.c_address;
 			var afterAdd = beforeAdd.split(',');
@@ -244,12 +249,10 @@
 			$("#email1").val(afterEmail[0]);
 			$("#txtEmailType").val(afterEmail[1]);
 			//이미지 read
-			if (data.read.c_image != "") {
-				$("#image1").attr("src",
-						"/display?fileName=" + data.read.c_image);
-				$("#imagename").val(data.read.c_image);
-			} else {
-				$("#image1").attr("src", "http://placehold.it/250x250");
+			if(data.read.c_image!=""){
+				$("#image1").attr("src","/displayCompany?fileName="+data.read.c_image);
+			}else{
+				$("#image1").attr("src","http://placehold.it/250x250");
 			}
 
 		}
@@ -303,6 +306,8 @@
 			"u_id" : u_id
 		},
 		success : function(data) {
+			$("#u_name").html(data.read.u_name);
+			$("#u_birthday").html(data.read.u_birthday);
 			//주소 split
 			var beforeAdd = data.read.u_address;
 			var afterAdd = beforeAdd.split(',');
@@ -321,46 +326,6 @@
 				$("#imagename").val(data.read.u_image);
 			}
 		}
-	});
-
-	//회원 정보 수정
-	$(frm).submit(function(e) {
-		e.preventDefault();
-		var now_pass = $("#nowPass").val();
-
-		//현재 비밀번호 확인
-		$.ajax({
-			type : "get",
-			url : "/user/mypage/read",
-			data : {
-				"u_id" : u_id
-			},
-			success : function(data) {
-				if (data.read.u_pass != now_pass) {
-					alert("현재비밀번호를 확인하세요.");
-				} else {
-					var new_pass = $("#newPass").val();
-					var new_passCheck = $("#newPassCheck").val();
-					if (new_pass != new_passCheck) {
-						alert("비밀번호와 비밀번호 확인 값이 다릅니다.")
-					} else {
-						if (!confirm("수정하시겠습니까?"))
-							return;
-						//주소 합치기
-						var address = $("#sample6_address").val();
-						var addressDetail = $("#sample6_detailAddress").val();
-						var allAddress = address + "," + addressDetail;
-						//이메일 합치기
-						var txtEmail = $("#txtEmail").val();
-						var txtEmailType = $("#txtEmailType").val();
-						var emailAll = txtEmail + "@" + txtEmailType;
-						$("#emailAll").val(emailAll);
-						$("#allAddress").val(allAddress);
-						frm.submit();
-					}
-				}
-			}
-		});
 	});
 
 	//email 타입
