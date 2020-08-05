@@ -472,9 +472,11 @@ public class UserController {
 	//업체 회원 가입
 	@RequestMapping(value="/user/insertCompany",method=RequestMethod.POST)
 	public String insertComapny(CompanyVO vo,MultipartHttpServletRequest multi,HttpServletRequest request) throws Exception {
+		
+		String[] arrayParam = request.getParameterValues("hoption");
+		
 		String id=mapper.readcompanyid(vo.getC_id());
 		CompanyVO read=mapper.readCompany(vo.getC_id());
-		System.out.println(vo.getC_address());
 		
 		if(id.equals("1")) {//아이디 존재여부 확인
 			if(read.getC_key().equals("Y")) {//아이디존재하면 키값을 비교 key값이 Y가 아니면 실행
@@ -490,6 +492,10 @@ public class UserController {
 						}
 				vo.setC_key("N");
 				mapper.insertCompany(vo);
+				for (int i = 0; i < arrayParam.length; i++) { 
+					System.out.println(arrayParam[i]); 
+					mapper.insertCompanyoption(vo.getC_id(), arrayParam[i]);
+					}
 				mailSender.mailSendWithCompanyKey(vo.getC_email(), vo.getC_id(), request);
 				}	
 			}else {
@@ -502,6 +508,10 @@ public class UserController {
 				}
 				vo.setC_key("N");
 				mapper.insertCompany(vo);
+				for (int i = 0; i < arrayParam.length; i++) { 
+					System.out.println(arrayParam[i]); 
+					mapper.insertCompanyoption(vo.getC_id(), arrayParam[i]);
+					}
 				mailSender.mailSendWithCompanyKey(vo.getC_email(), vo.getC_id(), request);
 			}
 		return "redirect:/user/login";

@@ -8,55 +8,108 @@
 <title>여행의 설렘 TOURSUM !</title>
 <script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/style.css"/>
 <style>
-	#page{text-align:center;margin:auto;border:1px solid gray; hegiht:1000px;}
-	#idfind{margin:auto;}
+#findid_area {
+	position:relative;
+	left:50%;
+	transform:translate(-50%,0);
+	width:840px;
+	border-radius:5px 5px 5px 5px;
+	background:yellow;
+}
+#findid_area #idfind {
+	border-collapse:collapse;
+}
+#findid_area .line-findid {
+	height:60px;
+}
+#findid_area .line-findid td:nth-child(1) {
+	text-align:left;
+	padding-left:7px;
+}
+#findid_area .line-findid td:nth-child(2) {
+	padding-left:10px;
+	padding-right:10px;
+}
+#findid_area .line-findid.a input[type="text"] {
+	width:100%;
+	height:40px;
+	padding-left:10px;
+	border-radius:3px 3px 3px 3px;
+	border:0.5px solid #e9e9e9;
+	cursor:pointer;
+}
+#findid_area .line-findid.b input[type="text"] {
+	width:32.5%;
+	text-align:center;
+	height:40px;
+	border-radius:3px 3px 3px 3px;
+	border:0.5px solid #e9e9e9;
+	cursor:pointer;
+}
+#findid_area span {
+	background: #0f4c81;
+	height:40px;
+	width:155.78px;
+	display:inline-block;
+	padding-top:11px;
+	padding-left:10px;
+	color:white;
+	border-radius:3px 3px 3px 3px;
+	font-size:13px;
+}
 </style>
 </head>
 <body>
-	<h1>아이디 찾기</h1>
 	<div id="page">
-		<table id="idfind">
-			<tr>
-				<td>이름 :</td>
-					<td><input type="text" id="txtName" size=50 style="height:25px;"></td>
-				<td>
-			</tr>
-			<tr>
-				<td>생년월일 :</td>
-				<td>
-					<input type="text" id="txtYear" size=15 style="height:25px;">
-					<input type="text" id="txtMM" size=11 style="height:25px;">
-					<input type="text" id="txtdd" size=11 style="height:25px;">
-				</td>
-				<td><input type="button" value="실명확인" id="btnName" style="height:25px; width:150px;"></td>
-			</tr>
-			<tr>
-				<td>이메일 :</td>
-				<td><input type="text" id="txtEmail" size=50 style="height:25px;" readonly></td>
-				<td><input type="button" value="인증 번호 요청" id="btnEmail" style="height:25px; width:150px;"></td>
-			</tr>
-			<tr>
-				<td>인증번호 :</td>
-				<td><input type="text" id="txtNumber" size=50 style="height:25px;" readonly></td>
-				<td><input type="button" value="인증하기" id="btnCheck" style="height:25px; width:150px;"></td>
-			</tr>
-		</table>
-		
-		<div id="idshow">
-			<div>
-				<span id="loadname"></span> 님의 정보와 일치하는 아이디 목록입니다. 
-			</div>
-			<table id="tbl"></table>
-			<script id="temp" type="text/x-handlebars-template">
-				{{#each list}}
-					<tr>
-						<td>{{u_id}}</td>
+		<div id="header"><jsp:include page="../header.jsp"/></div>
+		<div id="menu"><jsp:include page="../menu.jsp"/></div>
+		<div id="container">
+			<div id="findid_area">
+				<table id="idfind" border=1>
+					<tr class="line-findid a">
+						<td width=170><span>이름</span> </td>
+						<td width=500><input type="text" id="txtName" placeholder=NAME></td>
+						<td width=170>
 					</tr>
-				{{/each}}
-			</script>
+					<tr class="line-findid b">
+						<td><span>생년월일</span></td>
+						<td>
+							<input type="text" id="txtYear" placeholder=YYYY>
+							<input type="text" id="txtMM" placeholder=MM>
+							<input type="text" id="txtdd" placeholder=DD>
+						</td>
+						<td style="padding-left:7px;"><input type="button" value="실명확인" id="btnName" style="width:155.78px; height:40px; border:none; cursor:pointer; outline:none; border-radius:3px 3px 3px 3px;"></td>
+					</tr>
+					<tr class="line-findid a">
+						<td><span>이메일</span></td>
+						<td><input type="text" id="txtEmail" placeholder=E-MAIL></td>
+						<td style="padding-left:7px;"><input type="button" value="인증 번호 요청" id="btnEmail" style="width:155.78px; height:40px; border:none; cursor:pointer; outline:none; border-radius:3px 3px 3px 3px;"></td>
+					</tr>
+					<tr class="line-findid a">
+						<td><span>인증번호</span></td>
+						<td><input type="text" id="txtNumber"readonly placeholder=인증번호입력 ></td>
+						<td style="padding-left:7px;"><input type="button" value="인증하기" id="btnCheck" style="width:155.78px; height:40px; border:none; cursor:pointer; outline:none; border-radius:3px 3px 3px 3px;"></td>
+					</tr>
+				</table>
+				
+				<div id="idshow">
+					<div>
+						<span id="loadname"></span> 님의 정보와 일치하는 아이디 목록입니다. 
+					</div>
+					<table id="tbl"></table>
+					<script id="temp" type="text/x-handlebars-template">
+					{{#each list}}
+						<tr>
+							<td>{{u_id}}</td>
+						</tr>
+					{{/each}}
+					</script>
+				</div>
+			</div>	
 		</div>
-		
+		<div id="footer"><jsp:include page="../footer.jsp"/></div>
 	</div>
 </body>
 <script>

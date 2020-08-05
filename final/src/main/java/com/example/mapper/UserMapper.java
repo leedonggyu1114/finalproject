@@ -4,13 +4,16 @@ import java.util.List;
 
 import com.example.domain.CompanyVO;
 import com.example.domain.UserVO;
-import com.example.domain.UsertagVO;
 
 public interface UserMapper {
 	//회원가입
 	public void insert(UserVO vo);
 	public void insertUsertag(String t_id, String t_tag);
+	//업체 회원가입
 	public void insertCompany(CompanyVO vo);
+	public void insertCompanyoption(String c_o_id,String c_o_option);
+	
+	
 	public void delete(String u_id);
 	public void deleteCompany(String c_id);
 	
