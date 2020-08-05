@@ -262,12 +262,91 @@
 				</tr>
 			</table>
 		</div>
+		<div> 호텔 옵션 선택</div>
+		<div id="hoption">
+			<span id="hoption1">
+				<input type="checkbox" id="h_option1" name="hoption" value="01">
+					<label for="h_option1" id="tag1"><img src="/resources/img/hoteloption/Hoption_parking_icon2.png"></label>
+					<label for="h_option1" id="tag1-1" style="display:none;"><img src="/resources/img/hoteloption/Hoption_parking_icon_hover.png"></label>
+			</span>
+			<span id="hoption2">
+				<input type="checkbox" id="h_option2" name="hoption" value="02">
+					<label for="h_option2" id="tag1"><img src="/resources/img/hoteloption/Hoption_food_icon2.png"></label>
+					<label for="h_option2" id="tag1-1" style="display:none;"><img src="/resources/img/hoteloption/Hoption_food_icon_hover.png"></label>
+			</span>
+			<span id="hoption3">
+				<input type="checkbox" id="h_option3" name="hoption" value="03">
+					<label for="h_option3" id="tag1"><img src="/resources/img/hoteloption/Hoption_valet_icon2.png"></label>
+					<label for="h_option3" id="tag1-1" style="display:none;"><img src="/resources/img/hoteloption/Hoption_valet_icon_hover.png"></label>
+			</span>
+			<span id="hoption4">
+				<input type="checkbox" id="h_option4" name="hoption" value="04">
+					<label for="h_option4" id="tag1"><img src="/resources/img/hoteloption/Hoption_wifi_icon2.png"></label>
+					<label for="h_option4" id="tag1-1" style="display:none;"><img src="/resources/img/hoteloption/Hoption_wifi_icon_hover.png"></label>
+			</span>
+			<span id="hoption5">
+				<input type="checkbox" id="h_option5" name="hoption" value="05">
+					<label for="h_option5" id="tag1"><img src="/resources/img/hoteloption/Hoption_luggage_icon2.png"></label>
+					<label for="h_option5" id="tag1-1" style="display:none;"><img src="/resources/img/hoteloption/Hoption_luggage_icon_hover.png"></label>
+			</span>
+			<span id="hoption6">
+				<input type="checkbox" id="h_option6" name="hoption" value="06">
+					<label for="h_option6" id="tag1"><img src="/resources/img/hoteloption/Hoption_smoking_option2.png"></label>
+					<label for="h_option6" id="tag1-1" style="display:none;"><img src="/resources/img/hoteloption/Hoption_smoking_option_hover.png"></label>
+			</span>
+			<span id="hoption7">
+				<input type="checkbox" id="h_option7" name="hoption" value="07">
+					<label for="h_option7" id="tag1"><img src="/resources/img/hoteloption/hoption_Fitness_icon3.png"></label>
+					<label for="h_option7" id="tag1-1" style="display:none;"><img src="/resources/img/hoteloption/hoption_Fitness_icon_hover.png"></label>
+			</span>
+			<span id="hoption8">
+				<input type="checkbox" id="h_option8" name="hoption" value="08">
+					<label for="h_option8" id="tag1"><img src="/resources/img/hoteloption/Hoption_front_icon2.png"></label>
+					<label for="h_option8" id="tag1-1" style="display:none;"><img src="/resources/img/hoteloption/Hoption_front_icon_hover.png"></label>
+			</span>
+			<span id="hoption9">
+				<input type="checkbox" id="h_option9" name="hoption" value="09">
+					<label for="h_option9" id="tag1"><img src="/resources/img/hoteloption/Hoption_handicapped_icon2.png"></label>
+					<label for="h_option9" id="tag1-1" style="display:none;"><img src="/resources/img/hoteloption/Hoption_handicapped_icon_hover.png"></label>
+			</span>
+			<span id="hoption10">
+				<input type="checkbox" id="h_option10" name="hoption" value="10">
+					<label for="h_option10" id="tag1"><img src="/resources/img/hoteloption/Hoption_swimming_icon.png"></label>
+					<label for="h_option10" id="tag1-1" style="display:none;"><img src="/resources/img/hoteloption/Hoption_swimming_icon_hover.png"></label>
+			</span>
+			<span id="hoption11">
+				<input type="checkbox" id="h_option11" name="hoption" value="11">
+					<label for="h_option11" id="tag1"><img src="/resources/img/hoteloption/Hoption_restaurant_icon2.png"></label>
+					<label for="h_option11" id="tag1-1" style="display:none;"><img src="/resources/img/hoteloption/Hoption_restaurant_icon_hover.png"></label>
+			</span>
+			<span id="hoption12">
+				<input type="checkbox" id="h_option12" name="hoption" value="12">
+					<label for="h_option12" id="tag1"><img src="/resources/img/hoteloption/Hoption_Washing_icon2.png"></label>
+					<label for="h_option12" id="tag1-1" style="display:none;"><img src="/resources/img/hoteloption/Hoption_Washing_icon_hover.png"></label>
+			</span>
+		</div>
+		
+		
 		<input type="submit" value="회원 가입" id="btn_company_insert" style="margin-top:20px;">
 	</form>
 	<input type="hidden" id="apiSearch">
 	<div id="map" style="width: 100%; height:0px; visibility: hidden;"></div>
 </body>
 <script>
+$(":checkbox").css("display","none");
+
+$("input[name=hoption]").on("click",function(){
+		var tag1=$(this).parent().find("#tag1");
+		var tag2=$(this).parent().find("#tag1-1");
+		
+		if($(this).is(":checked")==true){
+			tag1.css("display","none");
+			tag2.css("display","inline-block");
+		}else{
+			tag1.css("display","inline-block");
+			tag2.css("display","none");
+		}
+	});
 
 $("#email1").change(function(){
 	var email=$("#email1 option:selected").val();

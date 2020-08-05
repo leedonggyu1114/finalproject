@@ -241,6 +241,7 @@
 						<input type="submit" value="수정" style="width:200px; height:40px; margin-top:30px; position:relative; left:50%; transform:translate(-50%,0); background:#0f4c81; color:white;">
 					</form>
 				</c:if>
+				<a href="/user/mypage/usercancel?">회원 탈퇴</a>
 			</div>
 		</div>
 		<div id="footer"><jsp:include page="../../footer.jsp" /></div>
@@ -262,53 +263,53 @@
 	$(frm).submit(function(e) {
 		e.preventDefault();
 		//전화번호 합치기
-		var tel1 = $("#selectTel option:selected").val();
-		var tel2 = $("#telFirst").val();
-		var tel3 = $("#telSecond").val();
-		$("#txtTel").val(tel1 + tel2 + tel3);
-
-		var now_pass = $("#nowpass").val();
-		var new_pass = $("#newpass").val();
-		var new_passCheck = $("#newpassCheck").val();
-
-		$.ajx({
-			type : "get",
-			url : "/user/mypage/readCompany",
-			data : {
-				"c_id" : c_id
-			},
-			success : function(data) {
-				if (data.read.c_pass != now_pass) {
-					alert("현재비밀번호를 확인하세요.");
-				} else {
-					var new_pass = $("#newpass").val();
-					var new_passCheck = $("#newpassCheck").val();
-					if (new_pass != new_passCheck) {
-						alert("비밀번호와 비밀번호 확인 값이 다릅니다.")
-					} else {
-						if (!confirm("수정하시겠습니까?"))
-							return;
-						//이메일 합치기
-						var txtEmail = $("#email1").val();
-						var txtEmailType = $("#txtEmailType").val();
-						var emailAll = txtEmail + "@" + txtEmailType;
-						$("#emailAll").val(emailAll);
-						frm.submit();
+		var tel1=$("#selectTel option:selected").val();
+		var tel2=$("#telFirst").val();
+		var tel3=$("#telSecond").val();
+		$("#txtTel").val(tel1+tel2+tel3);
+		
+		var now_pass=$("#nowpass").val();
+		var new_pass=$("#newpass").val();
+		var new_passCheck=$("#newpassCheck").val();
+		
+		 $.ajax({
+			type:"get",
+			url:"/user/mypage/readCompany",
+			data:{"c_id":c_id},
+			success:function(data){
+					if($("#telFirst").val()=="" || $("#telSecond").val()==""){
+						alert("대표 전화번호를 입력하세요");
+					}else{
+					if(data.read.c_pass!=now_pass){
+						alert("현재비밀번호를 확인하세요.");
+					}else{
+						var new_pass=$("#newpass").val();
+						var new_passCheck=$("#newpassCheck").val();
+						if(new_pass!=new_passCheck){
+							alert("비밀번호와 비밀번호 확인 값이 다릅니다.")
+						}else{
+							if(!confirm("수정하시겠습니까?")) return;
+							//이메일 합치기
+							var txtEmail=$("#email1").val();
+							var txtEmailType=$("#txtEmailType").val();
+							var emailAll=txtEmail+"@"+txtEmailType;
+							$("#emailAll").val(emailAll);
+							frm.submit();
+						}
 					}
 				}
 			}
-		});
 
+		});
 	});
 
 	//업체 정보 읽어오기
 	$.ajax({
-		type : "get",
-		url : "/user/mypage/readCompany",
-		data : {
-			"c_id" : c_id
-		},
-		success : function(data) {
+		type:"get",
+		url:"/user/mypage/readCompany",
+		data:{"c_id":c_id},
+		success:function(data){
+			$("#c_name").html(data.read.c_name);
 			//주소 split
 			var beforeAdd = data.read.c_address;
 			var afterAdd = beforeAdd.split(',');
@@ -320,12 +321,10 @@
 			$("#email1").val(afterEmail[0]);
 			$("#txtEmailType").val(afterEmail[1]);
 			//이미지 read
-			if (data.read.c_image != "") {
-				$("#image1").attr("src",
-						"/display?fileName=" + data.read.c_image);
-				$("#imagename").val(data.read.c_image);
-			} else {
-				$("#image1").attr("src", "http://placehold.it/250x250");
+			if(data.read.c_image!=""){
+				$("#image1").attr("src","/displayCompany?fileName="+data.read.c_image);
+			}else{
+				$("#image1").attr("src","http://placehold.it/250x250");
 			}
 
 		}
@@ -379,6 +378,8 @@
 			"u_id" : u_id
 		},
 		success : function(data) {
+			$("#u_name").html(data.read.u_name);
+			$("#u_birthday").html(data.read.u_birthday);
 			//주소 split
 			var beforeAdd = data.read.u_address;
 			var afterAdd = beforeAdd.split(',');
@@ -399,46 +400,6 @@
 				$("#image").attr("src", "http://placehold.it/250x250");
 			}
 		}
-	});
-
-	//회원 정보 수정
-	$(frm).submit(function(e) {
-		e.preventDefault();
-		var now_pass = $("#nowPass").val();
-
-		//현재 비밀번호 확인
-		$.ajax({
-			type : "get",
-			url : "/user/mypage/read",
-			data : {
-				"u_id" : u_id
-			},
-			success : function(data) {
-				if (data.read.u_pass != now_pass) {
-					alert("현재비밀번호를 확인하세요.");
-				} else {
-					var new_pass = $("#newPass").val();
-					var new_passCheck = $("#newPassCheck").val();
-					if (new_pass != new_passCheck) {
-						alert("비밀번호와 비밀번호 확인 값이 다릅니다.")
-					} else {
-						if (!confirm("수정하시겠습니까?"))
-							return;
-						//주소 합치기
-						var address = $("#sample6_address").val();
-						var addressDetail = $("#sample6_detailAddress").val();
-						var allAddress = address + "," + addressDetail;
-						//이메일 합치기
-						var txtEmail = $("#txtEmail").val();
-						var txtEmailType = $("#txtEmailType").val();
-						var emailAll = txtEmail + "@" + txtEmailType;
-						$("#emailAll").val(emailAll);
-						$("#allAddress").val(allAddress);
-						frm.submit();
-					}
-				}
-			}
-		});
 	});
 
 	//email 타입

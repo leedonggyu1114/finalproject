@@ -73,7 +73,7 @@
 	<ul id="main_menu">
 		<li><a href="">항공예약</a></li>
 		<li><a href="">숙소예약</a></li>
-		<li><a href="/hotplace/list">여행추천</a></li>
+		<li><a href="/hotplace/list" id="hotplace">여행추천</a></li>
 		<li><a href="">땡처리</a>
 			<ul id="sub_menu">
 				<li><a href="">항공</a></li>
@@ -83,6 +83,8 @@
 </div>
 
 <script>
+	
+	
 	var bannerOffset = $('#div_menu_area').offset();
 	$(window).scroll(function() { //window에 스크롤링이 발생하면
 		if ($(document).scrollTop() > bannerOffset.top) { // 위치 및 사이즈를 파악하여 미리 정한 css class를 add 또는 remove 합니다.
