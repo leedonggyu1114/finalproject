@@ -345,17 +345,17 @@
 							</tr>
 							<tr class="line-info a">
 								<td><span>현재 비밀번호</span></td>
-								<td><input type="text" size=30 id="nowpass"></td>
+								<td><input type="password" size=30 id="nowpass"></td>
 								<td></td>
 							</tr>
 							<tr class="line-info a">
 								<td><span>새 비밀번호</span></td>
-								<td><input type="text" id="newpass"></td>
+								<td><input type="password" id="newpass"></td>
 								<td></td>
 							</tr>
 							<tr class="line-info a">
 								<td><span>새 비밀번호 확인</span></td>
-								<td><input type="text" id="newpassCheck" name="c_pass"></td>
+								<td><input type="password" id="newpassCheck" name="c_pass"></td>
 							</tr>
 						</table>
 						<div> 호텔 옵션 선택</div>

@@ -193,19 +193,30 @@
 					<td><input type="hidden" id="c_y" name="c_y"></td>
 				</tr>
 				<tr class="line-tel">
-					<td><span>휴대폰번호</span></td>
+					<td><span>사업장번호</span></td>
 					<td>
-						<input type="hidden" id="txtTel1" size=50 name="c_tel" placeholder="TEL">
-						<select id="selectTel" style="height:40px; width:30.8%;">
-							<option>010</option>
-							<option>011</option>
-							<option>016</option>
-							<option>017</option>
-							<option>018</option>
-							<option>019</option>
+					<input type="text" id="txtTel2" size=50 name="c_tel" placeholder="TEL">
+					<select id="selectTel2" style="height:40px; width:30.8%;">
+							<option>02</option>
+							<option>031</option>
+							<option>032</option>
+							<option>033</option>
+							<option>041</option>
+							<option>042</option>
+							<option>043</option>
+							<option>044</option>
+							<option>051</option>
+							<option>052</option>
+							<option>053</option>
+							<option>054</option>
+							<option>055</option>
+							<option>061</option>
+							<option>062</option>
+							<option>063</option>
+							<option>064</option>
 						</select> -
-						<input type="text" size="15" id="telFirst1"> -
-						<input type="text" size="25" id="telSecond1">
+						<input type="text" size="15" id="telFirst2"> -
+						<input type="text" size="25" id="telSecond2">
 					</td>
 					<td></td>
 				</tr>
@@ -233,10 +244,20 @@
 					</td>
 					<td></td>
 				</tr>
-				<tr class="line-ctel">
+				<tr class="line-tel">
 					<td><span>대표 전화번호</span></td>
 					<td>
-						<input type="text" id="txtTel" size=50 name="c_ceo_tel" placeholder="CEO TEL">
+						<input type="text" id="txtTel1" size=50 name="c_ceo_tel" placeholder="CEO TEL">
+						<select id="selectTel1" style="height:40px; width:30.8%;">
+							<option>010</option>
+							<option>011</option>
+							<option>016</option>
+							<option>017</option>
+							<option>018</option>
+							<option>019</option>
+						</select> -
+						<input type="text" size="15" id="telFirst1"> -
+						<input type="text" size="25" id="telSecond1">
 					</td>
 					<td><input type="hidden" name="status" value=0></td>
 				</tr>
@@ -371,8 +392,10 @@ $("#email1").change(function(){
 $("#sample6_address1").focusout(function(){
 	var address=$("#sample6_address1").val();
 	var addressDetail=$("#sample6_detailAddress1").val();
-	alert(address);
 	 $("#apiSearch").val(address);
+	 if($("#apiSearch").val()==""){
+		 alert("선택한 주소의 좌표가 존재하지 않습니다.");
+	 }
 	getMarker();
 });
 //사업자번호 중복체크
@@ -568,6 +591,17 @@ var txtEmailType=$("#txtEmailType").val();
 		
 		$("#emailAll1").val(emailAll);
 		$("#allAddress1").val(allAddress);
+		//사업장번호 합치기
+		var ctel1=$("#selectTel2 option:selected").val();
+		var ctel2=$("#telFirst2").val();
+		var ctel3=$("#telSecond2").val();
+		$("#txtTel2").val(ctel1+"-"+ctel2+"-"+ctel3);
+		
+		//대표번호 합치기
+		var tel1=$("#selectTel1 option:selected").val();
+		var tel2=$("#telFirst1").val();
+		var tel3=$("#telSecond1").val();
+		$("#txtTel1").val(tel1+"-"+tel2+"-"+tel3);
 		if(!confirm("회원 가입 하시겠습니까?")) return;
 		
 		//사업자등록번호
@@ -576,11 +610,8 @@ var txtEmailType=$("#txtEmailType").val();
 		var num3=$("#number3").val();
 		var number=num1+num2+num3;
 		$("#businessNumber").val(number);
-		//전화번호 합치기
-		var tel1=$("#selectTel option:selected").val();
-		var tel2=$("#telFirst1").val();
-		var tel3=$("#telSecond1").val();
-		$("#txtTel1").val(tel1+tel2+tel3);	
+		
+		
 		var passread=$("#passread1").val();
 		var idread=$("#idread1").val();
 		var numread=$("#numberread").val();

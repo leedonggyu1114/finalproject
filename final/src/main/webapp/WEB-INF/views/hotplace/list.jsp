@@ -107,8 +107,7 @@
       <div id="header"><jsp:include page="../header.jsp"/></div>
       <div id="menu"><jsp:include page="../menu.jsp"/></div>
       <div id="container">
-<<<<<<< HEAD
-=======
+
          <div id="hotplace_tag">
          	<button>#힐링</button>
          	<button>#헬스케어</button>
@@ -123,7 +122,6 @@
          	<button>#야경</button>
          	<button>#교육</button>
          </div>
->>>>>>> refs/remotes/origin/master
          <!-- 여행추천list시작 -->
          <div>
             <c:forEach items="${list }" var="vo">
