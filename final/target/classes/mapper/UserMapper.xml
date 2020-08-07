@@ -12,7 +12,7 @@
     
     <insert id="insertCompany">
     	insert into tbl_company (c_id,c_pass, c_name, c_tel, c_email, c_address, c_image, c_number, c_ceo, c_ceo_tel, c_x, c_y, c_detail, c_area, c_key) 
-    	values(#{c_id},#{c_pass},#{c_name},#{c_tel},#{c_email},#{c_address},#{c_image},#{c_number},#{c_ceo},#{c_ceotel},#{c_x},#{c_y},#{c_detail},#{c_area},#{c_key});                     
+    	values(#{c_id},#{c_pass},#{c_name},#{c_tel},#{c_email},#{c_address},#{c_image},#{c_number},#{c_ceo},#{c_ceo_tel},#{c_x},#{c_y},#{c_detail},#{c_area},#{c_key});                     
     </insert>
     <insert id="insertCompanyoption">
     	insert into tbl_company_option(c_o_id,c_o_option)
@@ -22,12 +22,19 @@
     <select id="read" resultType="com.example.domain.UserVO">
     	select * from tbl_user where u_id=#{u_id}
     </select>
+    <select id="readtag" resultType="com.example.domain.UserTagVO">
+    	select * from tbl_tag where t_id=#{t_id}
+    </select>
+     <select id="readid" resultType="string">
+    	select count(*) from tbl_user where u_id=#{u_id}
+    </select>
+    
     <select id="readCompany" resultType="com.example.domain.CompanyVO">
     	select * from tbl_company where c_id=#{c_id}
     </select>
-    <select id="readid" resultType="string">
-    	select count(*) from tbl_user where u_id=#{u_id}
-    </select>
+   	<select id="readOption" resultType="com.example.domain.CompanyOptionVO">
+   		select * from tbl_company_option where c_o_id=#{c_o_id}
+   	</select>
     <select id="readcompanyid" resultType="string">
     	select count(*) from tbl_company where c_id=#{c_id}
     </select>
@@ -53,10 +60,15 @@
     <delete id="delete">
     	delete from tbl_user where u_id=#{u_id}
     </delete>
+    <delete id="deleteTag">
+    	delete from tbl_tag where t_id=#{t_id}
+    </delete>
     <delete id="deleteCompany">
     	delete from tbl_company where c_id=#{c_id}
     </delete>
-    
+    <delete id="deleteOption">
+    	delete from tbl_company_option where c_o_id=#{c_o_id}
+    </delete>
     
     <select id="checkName" resultType="int">
    		 select count(*) from tbl_user where u_name=#{param2} and u_birthday=#{param1} and u_key="Y"
@@ -90,11 +102,11 @@
     
     <!-- 업체회원수정  -->
     <update id="updateCompany">
-    	update tbl_company set c_tel=#{c_tel}, c_pass=#{c_pass}, c_email=#{c_email}, c_image=#{c_image}
+    	update tbl_company set c_tel=#{c_tel}, c_pass=#{c_pass}, c_email=#{c_email}, c_image=#{c_image}, c_ceo=#{c_ceo}, c_ceo_tel=#{c_ceo_tel}, c_detail=#{c_detail}, c_area=#{c_area}
     	where c_id=#{c_id}
     </update>
      <update id="updateCompany2">
-    	update tbl_company set c_tel=#{c_tel}, c_pass=#{c_pass}, c_email=#{c_email}
+    	update tbl_company set c_tel=#{c_tel}, c_pass=#{c_pass}, c_email=#{c_email}, c_ceo=#{c_ceo}, c_ceo_tel=#{c_ceo_tel}, c_detail=#{c_detail}, c_area=#{c_area}
     	where c_id=#{c_id}
     </update>
 

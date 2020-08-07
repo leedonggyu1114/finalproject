@@ -2,7 +2,9 @@ package com.example.mapper;
 
 import java.util.List;
 
+import com.example.domain.CompanyOptionVO;
 import com.example.domain.CompanyVO;
+import com.example.domain.UserTagVO;
 import com.example.domain.UserVO;
 
 public interface UserMapper {
@@ -12,14 +14,19 @@ public interface UserMapper {
 	//업체 회원가입
 	public void insertCompany(CompanyVO vo);
 	public void insertCompanyoption(String c_o_id,String c_o_option);
-	
-	
+	//회원 삭제
 	public void delete(String u_id);
+	public void deleteTag(String u_id);
+	//업체 삭제
 	public void deleteCompany(String c_id);
-	
+	public void deleteOption(String c_id);
+	//회원 읽어오기
 	public UserVO read(String u_id);
-	public CompanyVO readCompany(String c_id);
+	public List<UserTagVO> readtag(String t_id);
 	public String readid(String u_id);
+	//업체 읽어오기
+	public CompanyVO readCompany(String c_id);
+	public List<CompanyOptionVO> readOption(String c_id);
 	public String readcompanyid(String c_id);
 	public String readcompanyNumber(String c_id);
 	//회원가입 이메일 인증

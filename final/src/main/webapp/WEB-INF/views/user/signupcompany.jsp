@@ -236,7 +236,7 @@
 				<tr class="line-ctel">
 					<td><span>대표 전화번호</span></td>
 					<td>
-						<input type="text" id="txtTel" size=50 name="c_ceotel" placeholder="CEO TEL">
+						<input type="text" id="txtTel" size=50 name="c_ceo_tel" placeholder="CEO TEL">
 					</td>
 					<td><input type="hidden" name="status" value=0></td>
 				</tr>
@@ -327,26 +327,26 @@
 		</div>
 		
 		
-		<input type="submit" value="회원 가입" id="btn_company_insert" style="margin-top:20px;">
+	<input type="submit" value="회원 가입" id="btn_company_insert" style="margin-top:20px;">
 	</form>
 	<input type="hidden" id="apiSearch">
-	<div id="map" style="width: 100%; height:0px; visibility: hidden;"></div>
+	<div id="map" style="width: 100%; height:0px; visibility:hidden;"></div>
 </body>
 <script>
-$(":checkbox").css("display","none");
-
-$("input[name=hoption]").on("click",function(){
-		var tag1=$(this).parent().find("#tag1");
-		var tag2=$(this).parent().find("#tag1-1");
-		
-		if($(this).is(":checked")==true){
-			tag1.css("display","none");
-			tag2.css("display","inline-block");
-		}else{
-			tag1.css("display","inline-block");
-			tag2.css("display","none");
-		}
-	});
+	$(":checkbox").css("display","none");
+	
+	$("input[name=hoption]").on("click",function(){
+			var tag1=$(this).parent().find("#tag1");
+			var tag2=$(this).parent().find("#tag1-1");
+			
+			if($(this).is(":checked")==true){
+				tag1.css("display","none");
+				tag2.css("display","inline-block");
+			}else{
+				tag1.css("display","inline-block");
+				tag2.css("display","none");
+			}
+		});
 
 $("#email1").change(function(){
 	var email=$("#email1 option:selected").val();
@@ -568,8 +568,6 @@ var txtEmailType=$("#txtEmailType").val();
 		
 		$("#emailAll1").val(emailAll);
 		$("#allAddress1").val(allAddress);
-		alert($(frm1.area).val());
-		alert(allAddress);
 		if(!confirm("회원 가입 하시겠습니까?")) return;
 		
 		//사업자등록번호
@@ -578,44 +576,45 @@ var txtEmailType=$("#txtEmailType").val();
 		var num3=$("#number3").val();
 		var number=num1+num2+num3;
 		$("#businessNumber").val(number);
-		alert(number);
 		//전화번호 합치기
 		var tel1=$("#selectTel option:selected").val();
 		var tel2=$("#telFirst1").val();
 		var tel3=$("#telSecond1").val();
-		alert(tel1+tel2+tel3);
-		$("#txtTel1").val(tel1+tel2+tel3);
-		
+		$("#txtTel1").val(tel1+tel2+tel3);	
 		var passread=$("#passread1").val();
 		var idread=$("#idread1").val();
 		var numread=$("#numberread").val();
-		alert(idread+"/"+passread+"/"+numread);
-		if(idread==0){
-			if(passread==0){
-				if(numread==0){
-					alert("아이디를 확인하세요");
-				}else if(numread==1){
-					alert("아이디를 확인하세요");
-					}
-				}else if(passread==1){
+
+		if($("#c_x").val()=="" || $("#c_y").val()==""){
+			alert("좌표가 존재하지 않습니다. 주소를 확인하세요");
+		}else{
+			if(idread==0){
+				if(passread==0){
 					if(numread==0){
 						alert("아이디를 확인하세요");
 					}else if(numread==1){
 						alert("아이디를 확인하세요");
+						}
+					}else if(passread==1){
+						if(numread==0){
+							alert("아이디를 확인하세요");
+						}else if(numread==1){
+							alert("아이디를 확인하세요");
+						}
 					}
-				}
-		}else if(idread==1){
-			if(passread==0){
-				if(numread==0){
-					alert("패스워드를 확인하세요");
-				}else if(numread==1){
-					alert("패스워드를 확인하세요")
-				}
-			}else if(passread==1){
-				if(numread==0){
-					alert("사업자번호를 확인하세요");
-				}else{
-					frm1.submit();
+			}else if(idread==1){
+				if(passread==0){
+					if(numread==0){
+						alert("패스워드를 확인하세요");
+					}else if(numread==1){
+						alert("패스워드를 확인하세요")
+					}
+				}else if(passread==1){
+					if(numread==0){
+						alert("사업자번호를 확인하세요");
+					}else{
+						frm1.submit();
+					}
 				}
 			}
 		}
