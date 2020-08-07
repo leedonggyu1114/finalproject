@@ -8,7 +8,6 @@
 	<link rel="shortcut icon" type="image⁄x-icon" href="/resources/img/title_logo.png">
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>  
-	<script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
 	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/style.css"/>
 	<style>
