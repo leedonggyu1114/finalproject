@@ -5,13 +5,13 @@
 <head>
 <meta charset="UTF-8">
 <title>여행의 설렘 TOURSUM !</title>
-<script src="http://code.jquery.com/jquery-1.10.2.js"></script> 
 <style>
 #darken-background {
-   position: absolute;
-   top: 0px;
-   left: 0px;
-   right: 0px;
+   position: fixed;
+   top: 50%;
+   left: 50%;
+   transform:translate(-50%,-50%);
+   width:100%;
    height: 100%;
    display: none;
    background: rgba(0, 0, 0, 0.5);
@@ -86,6 +86,15 @@
 	float:left;
 	margin-top:5px;
 }
+#hotplace_tag_lightbox button{
+	border:none;
+	outline:none;
+	cursor:pointer;
+	padding:5px;
+	border-radius:8px;
+	margin-right:5px;
+}
+
 </style>
 </head>
 <body>
@@ -93,7 +102,11 @@
       <div id="lightbox">
          <img id="readimage" src="http://placehold.it/150x150">
          <button id="btnClose"><img src="/resources/img/hotplace/close_icon.png" width=45></button>
-         <div id="readtitle"></div>
+		 <div style="position:absolute; top:37%; left:3%; display:inline-block;" id="hotplace_tag_lightbox">
+			<button id="tag1"></button>
+			<button id="tag2"></button>
+		 </div>
+			<div id="readtitle"></div>
          <div id="readdetail" style="display:inline-block; text-align:left; position:absolute; left:3%; top:42%; color:white;"></div>
          <button id="btnprev"><img src="/resources/img/hotplace/prev_icon.png" width=65/></button>
          <button id="btnnext"><img src="/resources/img/hotplace/next_icon.png" width=65/></button>
@@ -111,7 +124,7 @@
             <img src="/resources/img/hotplace/1.png" width=220 style="position:absolute; left:10px; top:8px;"/>
             <img src="/resources/img/hotplace/2.png" width=222 style="position:absolute; right:188px; top:8px;"/>
             <img src="/resources/img/hotplace/3.png" width=220 style="position:absolute; left:10px; top:51%;"/>
-         </div>
+		</div>
       </div>
    </div>
 </body>
@@ -128,9 +141,64 @@
                   y = $(this).find(".mainimage").attr("y");
                   address = $(this).find(".mainimage").attr("address");
                   detail = $(this).find(".mainimage").attr("detail");
+                  tag1 = $(this).find(".mainimage").attr("tag1");
+                  tag2 = $(this).find(".mainimage").attr("tag2");
                   $("#readimage").attr("src", src);
                   $("#readtitle").html(title);
                   $("#readdetail").html(detail);
+                  
+                  if(tag1=="01") {
+                	  $("#tag1").text("#힐링");
+                  }else if(tag1=="02") {
+                	  $("#tag1").text("#헬스케어");
+                  }else if(tag1=="03") {
+                	  $("#tag1").text("#익사이팅");
+                  }else if(tag1=="04") {
+                	  $("#tag1").text("#나홀로여행");
+                  }else if(tag1=="05") {
+                	  $("#tag1").text("#가족과함께");
+                  }else if(tag1=="06") {
+                	  $("#tag1").text("#연인과함께");
+                  }else if(tag1=="07") {
+                	  $("#tag1").text("#친구와함께");
+                  }else if(tag1=="08") {
+                	  $("#tag1").text("#먹방");
+                  }else if(tag1=="09") {
+                	  $("#tag1").text("#도심속여행");
+                  }else if(tag1=="10") {
+                	  $("#tag1").text("#나만아는");
+                  }else if(tag1=="11") {
+                	  $("#tag1").text("#야경");
+                  }else if(tag1=="12") {
+                	  $("#tag1").text("#교육");
+                  }
+                  
+                  if(tag2=="01") {
+                	  $("#tag2").text("#힐링");
+                  }else if(tag2=="02") {
+                	  $("#tag2").text("#헬스케어");
+                  }else if(tag2=="03") {
+                	  $("#tag2").text("#익사이팅");
+                  }else if(tag2=="04") {
+                	  $("#tag2").text("#나홀로여행");
+                  }else if(tag2=="05") {
+                	  $("#tag2").text("#가족과함께");
+                  }else if(tag2=="06") {
+                	  $("#tag2").text("#연인과함께");
+                  }else if(tag2=="07") {
+                	  $("#tag2").text("#친구와함께");
+                  }else if(tag2=="08") {
+                	  $("#tag2").text("#먹방");
+                  }else if(tag2=="09") {
+                	  $("#tag2").text("#도심속여행");
+                  }else if(tag2=="10") {
+                	  $("#tag2").text("#나만아는");
+                  }else if(tag2=="11") {
+                	  $("#tag2").text("#야경");
+                  }else if(tag2=="12") {
+                	  $("#tag2").text("#교육");
+                  }  
+                  
                   //getimages();
    
                   //서브사진들 가져오기
@@ -149,21 +217,7 @@
                      }
                   });
    
-                  $("#darken-background")
-                        .css(
-                              {
-                                 "top" : (($(window).height() - $(
-                                       "#darken-background")
-                                       .outerHeight()) / 2 + $(
-                                       window).scrollTop())
-                                       + "px",
-                                 "left" : (($(window).width() - $(
-                                       "#darken-background")
-                                       .outerWidth()) / 2 + $(
-                                       window).scrollLeft())
-                                       + "px"
-                              //팝업창을 가운데로 띄우기 위해 현재 화면의 가운데 값과 스크롤 값을 계산하여 팝업창 CSS 설정
-                              });
+                  
                   $("#darken-background").css("display", "block"); //팝업 뒷배경 display block
                   $("#lightbox").css("display", "block"); //팝업창 display block
    
@@ -174,6 +228,7 @@
                   getagechart();
                   getsexchart();
                });
+   
    $("#btnClose").on("click", function(event) {
       images = [];
       imagepage =0;
