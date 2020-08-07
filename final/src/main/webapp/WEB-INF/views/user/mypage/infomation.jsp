@@ -345,17 +345,17 @@
 							</tr>
 							<tr class="line-info a">
 								<td><span>현재 비밀번호</span></td>
-								<td><input type="text" size=30 id="nowpass"></td>
+								<td><input type="text" size=30 id="nowpass1"></td>
 								<td></td>
 							</tr>
 							<tr class="line-info a">
 								<td><span>새 비밀번호</span></td>
-								<td><input type="text" id="newpass"></td>
+								<td><input type="text" id="newpass1"></td>
 								<td></td>
 							</tr>
 							<tr class="line-info a">
 								<td><span>새 비밀번호 확인</span></td>
-								<td><input type="text" id="newpassCheck" name="c_pass"></td>
+								<td><input type="text" id="newpassCheck1" name="c_pass"></td>
 							</tr>
 						</table>
 						<div> 호텔 옵션 선택</div>
@@ -493,9 +493,9 @@
 		var tel3=$("#telSecond2").val();
 		$("#telAll2").val(tel1+"-"+tel2+"-"+tel3);
 		//패스워드 합치기
-		var now_pass=$("#nowpass").val();
-		var new_pass=$("#newpass").val();
-		var new_passCheck=$("#newpassCheck").val();
+		var now_pass=$("#nowpass1").val();
+		var new_pass=$("#newpass1").val();
+		var new_passCheck=$("#newpassCheck1").val();
 		//대표 번호 합치기
 		var ctel1=$("#selectTel3 option:selected").val();
 		var ctel2=$("#telFirst3").val();
@@ -518,8 +518,8 @@
 					if(data.read.c_pass!=now_pass){
 						alert("현재비밀번호를 확인하세요.");
 					}else{
-						var new_pass=$("#newpass").val();
-						var new_passCheck=$("#newpassCheck").val();
+						var new_pass=$("#newpass1").val();
+						var new_passCheck=$("#newpassCheck1").val();
 						if(new_pass!=new_passCheck){
 							alert("비밀번호와 비밀번호 확인 값이 다릅니다.")
 						}else{
@@ -533,8 +533,8 @@
 						}
 					}
 				}
+				
 			}
-
 		});
 	});
 
@@ -613,6 +613,7 @@
 				"u_id" : u_id
 			},
 			success : function(data) {
+				
 				if (data.read.u_pass != now_pass) {
 					alert("현재비밀번호를 확인하세요.");
 				} else {
@@ -634,8 +635,9 @@
 						$("#emailAll1").val(emailAll);
 						$("#allAddress").val(allAddress);
 						frm.submit();
+						}
 					}
-				}
+				
 			}
 		});
 	});
