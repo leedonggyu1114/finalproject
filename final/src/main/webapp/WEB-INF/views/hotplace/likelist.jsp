@@ -68,11 +68,7 @@
    var x;
    var y;
    var u_id="${u_id}";
-   var address;
-   var detail;
-   var imagepage=0;
-   var images=[];
-
+   
    //찜목록 삭제하기
    $(".hotplace_like").on("click",function(e){
       e.stopPropagation();
@@ -90,26 +86,5 @@
       });
    });
    
-   //read사진넘기기
-   $("#btnnext").on("click",function(){
-      var imagelength=images.length;
-      imagepage++;
-      if(imagepage>=imagelength){
-         imagepage=0;
-         $("#readimage").attr("src", "/hotplace/display?fileName="+images[imagepage]);
-      }else{
-         $("#readimage").attr("src", "/hotplace/display?fileName="+images[imagepage]);
-      }
-   });
-   $("#btnprev").on("click",function(){
-      var imagelength=images.length;
-      imagepage = imagepage - 1;
-      if(imagepage<0){
-         imagepage=imagelength-1;
-         $("#readimage").attr("src", "/hotplace/display?fileName="+images[imagepage]);
-      }else{
-         $("#readimage").attr("src", "/hotplace/display?fileName="+images[imagepage]);
-      }
-   });
 </script>
 </html>

@@ -345,17 +345,17 @@
 							</tr>
 							<tr class="line-info a">
 								<td><span>현재 비밀번호</span></td>
-								<td><input type="text" size=30 id="nowpass1"></td>
+								<td><input type="text" size=30 id="nowpass"></td>
 								<td></td>
 							</tr>
 							<tr class="line-info a">
 								<td><span>새 비밀번호</span></td>
-								<td><input type="text" id="newpass1"></td>
+								<td><input type="text" id="newpass"></td>
 								<td></td>
 							</tr>
 							<tr class="line-info a">
 								<td><span>새 비밀번호 확인</span></td>
-								<td><input type="text" id="newpassCheck1" name="c_pass"></td>
+								<td><input type="text" id="newpassCheck" name="c_pass"></td>
 							</tr>
 						</table>
 						<div> 호텔 옵션 선택</div>
@@ -493,9 +493,9 @@
 		var tel3=$("#telSecond2").val();
 		$("#telAll2").val(tel1+"-"+tel2+"-"+tel3);
 		//패스워드 합치기
-		var now_pass=$("#nowpass1").val();
-		var new_pass=$("#newpass1").val();
-		var new_passCheck=$("#newpassCheck1").val();
+		var now_pass=$("#nowpass").val();
+		var new_pass=$("#newpass").val();
+		var new_passCheck=$("#newpassCheck").val();
 		//대표 번호 합치기
 		var ctel1=$("#selectTel3 option:selected").val();
 		var ctel2=$("#telFirst3").val();
@@ -518,8 +518,8 @@
 					if(data.read.c_pass!=now_pass){
 						alert("현재비밀번호를 확인하세요.");
 					}else{
-						var new_pass=$("#newpass1").val();
-						var new_passCheck=$("#newpassCheck1").val();
+						var new_pass=$("#newpass").val();
+						var new_passCheck=$("#newpassCheck").val();
 						if(new_pass!=new_passCheck){
 							alert("비밀번호와 비밀번호 확인 값이 다릅니다.")
 						}else{
@@ -533,8 +533,8 @@
 						}
 					}
 				}
-				
 			}
+
 		});
 	});
 
@@ -571,10 +571,10 @@
 			$("#telFirst3").val(afterTel1[1]);
 			$("#telSecond3").val(afterTel1[2]);
 			//이미지 read
-			if(data.read.c_image!=""){
+			if(data.read.c_image!=null){
 				$("#image1").attr("src","/displayCompany?fileName="+data.read.c_image);
 			}else{
-				$("#image1").attr("src","http://placehold.it/250x250");
+				$("#image1").attr("src","/resources/img/user/profileC.png");
 			}
 			//호텔 태그 읽기	
 			var option=[];
@@ -613,7 +613,6 @@
 				"u_id" : u_id
 			},
 			success : function(data) {
-				
 				if (data.read.u_pass != now_pass) {
 					alert("현재비밀번호를 확인하세요.");
 				} else {
@@ -635,9 +634,8 @@
 						$("#emailAll1").val(emailAll);
 						$("#allAddress").val(allAddress);
 						frm.submit();
-						}
 					}
-				
+				}
 			}
 		});
 	});
@@ -674,6 +672,14 @@
 				$("#image").attr("src",
 						"/display?fileName=" + data.read.u_image);
 				$("#imagename").val(data.read.u_image);
+			}else{
+				if(data.read.u_gender=='male'){
+					$("#image").attr("src","/resources/img/user/profileM.png");
+					$("#imagename").val(data.read.u_image);
+				}else{
+					$("#image").attr("src","/resources/img/user/profileF.png");
+					$("#imagename").val(data.read.u_image);
+				}
 			}
 			//유저 태그 읽기	
 			var tag=[];

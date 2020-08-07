@@ -21,19 +21,19 @@
     </select>/*
      -->
    	<select id="age10" resultType="int">
-    	select count(l.u_id) from tbl_like l, tbl_user u where l.u_id=u.u_id and u_birthday between date_add(now(), interval -9 year) and now() and h_x=#{h_x} and h_y=#{h_y}
-    </select>
-     <select id="age20" resultType="int">
     	select count(l.u_id) from tbl_like l, tbl_user u where l.u_id=u.u_id and u_birthday between date_add(now(), interval -19 year) and date_add(now(), interval -9 year) and h_x=#{h_x} and h_y=#{h_y}
     </select>
-    <select id="age30" resultType="int">
+     <select id="age20" resultType="int">
     	select count(l.u_id) from tbl_like l, tbl_user u where l.u_id=u.u_id and u_birthday between date_add(now(), interval -29 year) and date_add(now(), interval -19 year) and h_x=#{h_x} and h_y=#{h_y}
     </select>
-    <select id="age40" resultType="int">
+    <select id="age30" resultType="int">
     	select count(l.u_id) from tbl_like l, tbl_user u where l.u_id=u.u_id and u_birthday between date_add(now(), interval -39 year) and date_add(now(), interval -29 year) and h_x=#{h_x} and h_y=#{h_y}
     </select>
+    <select id="age40" resultType="int">
+    	select count(l.u_id) from tbl_like l, tbl_user u where l.u_id=u.u_id and u_birthday between date_add(now(), interval -49 year) and date_add(now(), interval -39 year) and h_x=#{h_x} and h_y=#{h_y}
+    </select>
     <select id="age50" resultType="int">
-    	select count(l.u_id) from tbl_like l, tbl_user u where l.u_id=u.u_id and u_birthday between date_add(now(), interval -100 year) and date_add(now(), interval -39 year) and h_x=#{h_x} and h_y=#{h_y}
+    	select count(l.u_id) from tbl_like l, tbl_user u where l.u_id=u.u_id and u_birthday between date_add(now(), interval -100 year) and date_add(now(), interval -49 year) and h_x=#{h_x} and h_y=#{h_y}
     </select>
     
     <select id="sexM" resultType="int">

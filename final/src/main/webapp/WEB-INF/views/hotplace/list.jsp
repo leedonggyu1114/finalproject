@@ -107,6 +107,7 @@
       <div id="header"><jsp:include page="../header.jsp"/></div>
       <div id="menu"><jsp:include page="../menu.jsp"/></div>
       <div id="container">
+
          <div id="hotplace_tag">
          	<button>#힐링</button>
          	<button>#헬스케어</button>
@@ -147,10 +148,7 @@
    var x;
    var y;
    var u_id="${u_id}";
-   var address;
-   var detail;
-   var imagepage=0;
-   var images=[];
+  
    
 	// top 스크롤
 	$(window).scroll(function() {
@@ -168,27 +166,6 @@
 		}, 800);
 	});
 
-   //read사진넘기기
-   $("#btnnext").on("click",function(){
-      var imagelength=images.length;
-      imagepage++;
-      if(imagepage>=imagelength){
-         imagepage=0;
-         $("#readimage").attr("src", "/hotplace/display?fileName="+images[imagepage]);
-      }else{
-         $("#readimage").attr("src", "/hotplace/display?fileName="+images[imagepage]);
-      }
-   });
-   $("#btnprev").on("click",function(){
-      var imagelength=images.length;
-      imagepage = imagepage - 1;
-      if(imagepage<0){
-         imagepage=imagelength-1;
-         $("#readimage").attr("src", "/hotplace/display?fileName="+images[imagepage]);
-      }else{
-         $("#readimage").attr("src", "/hotplace/display?fileName="+images[imagepage]);
-      }
-   });
    
    //좋아요 출력하기
    setlikelist();
