@@ -27,7 +27,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.example.domain.CompanyOptionVO;
 import com.example.domain.CompanyVO;
+import com.example.domain.UserTagVO;
 import com.example.domain.UserVO;
 import com.example.mapper.UserMapper;
 import com.example.service.UserMailSendService;
@@ -47,9 +49,35 @@ public class UserController {
 	@Autowired
 	private UserMailSendService mailSender;
 	
+	@RequestMapping("/user/mypage/usercancel")
+	public void usercancel() {
+		
+	}
+	//유저회원 탈퇴
+	@RequestMapping(value="/user/mypage/usercancel",method=RequestMethod.POST)
+	public String usercancelPost(String u_id,HttpSession session,HttpServletRequest request) {
+		System.out.println(u_id);
+		mapper.deleteTag(u_id);
+		mapper.delete(u_id);
+		session.invalidate();
+		session=request.getSession(true);
+		return "redirect:/";
+	}
+	//업체회원 탈퇴
+		@RequestMapping(value="/user/mypage/companycancel",method=RequestMethod.POST)
+		public String companycancelPost(String c_id,HttpSession session,HttpServletRequest request) {
+			System.out.println(c_id);
+			mapper.deleteOption(c_id);
+			mapper.deleteCompany(c_id);
+			session.invalidate();
+			session=request.getSession(true);
+			return "redirect:/";
+		}
 	//업체 정보 수정
 	@RequestMapping(value="/user/mypage/updateCompany",method=RequestMethod.POST)
-	public String updateCompany(CompanyVO vo,MultipartHttpServletRequest multi)throws Exception {
+	public String updateCompany(CompanyVO vo,MultipartHttpServletRequest multi,HttpServletRequest request)throws Exception {
+		
+		String[] arrayParam = request.getParameterValues("hoption");
 		MultipartFile file=multi.getFile("file1");
 		if(!file.isEmpty()) {
 			CompanyVO vo1=mapper.readCompany(vo.getC_id());
@@ -61,8 +89,18 @@ public class UserController {
 			file.transferTo(new File(companypath + File.separator + image));
 			vo.setC_image(image);
 			mapper.updateCompany(vo);
+			mapper.deleteOption(vo.getC_id());
+			for (int i = 0; i < arrayParam.length; i++) { 
+				System.out.println(arrayParam[i]); 
+				mapper.insertCompanyoption(vo.getC_id(), arrayParam[i]);
+				}
 		}else {
 			mapper.updateCompany2(vo);
+			mapper.deleteOption(vo.getC_id());
+			for (int i = 0; i < arrayParam.length; i++) { 
+				System.out.println(arrayParam[i]); 
+				mapper.insertCompanyoption(vo.getC_id(), arrayParam[i]);
+				}
 		}
 		
 		return "redirect:/";
@@ -71,8 +109,11 @@ public class UserController {
 	@RequestMapping("/user/mypage/readCompany")
 	@ResponseBody
 	public HashMap<String, Object> readCompany(String c_id) {
+		System.out.println(c_id);
 		HashMap<String, Object> map=new HashMap<String, Object>();
 		CompanyVO vo=mapper.readCompany(c_id);
+		List<CompanyOptionVO> ovo= mapper.readOption(c_id);
+		map.put("readOption", ovo);
 		map.put("read", vo);
 		return map;
 	}
@@ -80,8 +121,9 @@ public class UserController {
 	
 	//유저 정보 수정
 	@RequestMapping(value="/user/mypage/updateUser",method=RequestMethod.POST)
-	public String update(UserVO vo,MultipartHttpServletRequest multi)throws Exception {
+	public String update(UserVO vo,MultipartHttpServletRequest multi,HttpServletRequest request)throws Exception {
 
+		String[] arrayParam = request.getParameterValues("t_tag");
 		System.out.println(vo.toString());
 		MultipartFile file=multi.getFile("file");
 		if(!file.isEmpty()) {
@@ -93,21 +135,34 @@ public class UserController {
 			String image=System.currentTimeMillis()+file.getOriginalFilename();
 			file.transferTo(new File(path + File.separator + image));
 			vo.setU_image(image);
+			
 			mapper.updateUser(vo);
+			mapper.deleteTag(vo.getU_id());
+			for (int i = 0; i < arrayParam.length; i++) { 
+				System.out.println(arrayParam[i]); 
+				mapper.insertUsertag(vo.getU_id(),arrayParam[i]);
+				}
 		}else {
 			mapper.updateUser2(vo);
+			mapper.deleteTag(vo.getU_id());
+			for (int i = 0; i < arrayParam.length; i++) { 
+				System.out.println(arrayParam[i]); 
+				mapper.insertUsertag(vo.getU_id(),arrayParam[i]);
+				}
 		}
 		
 		
 		return "redirect:/";
 	}
 	
-	
+	//유저 정보 읽어오기
 	@RequestMapping("/user/mypage/read")
 	@ResponseBody
 	public HashMap<String, Object> read(String u_id) {
 		HashMap<String, Object> map=new HashMap<String, Object>();
 		UserVO vo=mapper.read(u_id);
+		List<UserTagVO> tvo=mapper.readtag(u_id);
+		map.put("readtag", tvo);
 		map.put("read", vo);
 		return map;
 	}
@@ -128,9 +183,9 @@ public class UserController {
 		
 	}
 	//실명인증
-		@RequestMapping("/user/checkNameCompany")
-		@ResponseBody
-		public int nameCheckC(String name, String number) {
+	@RequestMapping("/user/checkNameCompany")
+	@ResponseBody
+	public int nameCheckC(String name, String number) {
 			int i=mapper.checkNameCompany(number, name);
 			System.out.println(i);
 			int result=0;
@@ -430,6 +485,7 @@ public class UserController {
 			if(read.getU_key().equals("Y")) {//아이디존재하면 키값을 비교 key값이 Y가 아니면 실행
 				System.out.println("이미 회원아이디가 존재합니다.");
 			}else {
+				mapper.deleteTag(read.getU_id());
 				mapper.delete(read.getU_id());
 				//프로필 이미지 업로드
 				MultipartFile file=multi.getFile("file");
@@ -474,7 +530,6 @@ public class UserController {
 	public String insertComapny(CompanyVO vo,MultipartHttpServletRequest multi,HttpServletRequest request) throws Exception {
 		
 		String[] arrayParam = request.getParameterValues("hoption");
-		
 		String id=mapper.readcompanyid(vo.getC_id());
 		CompanyVO read=mapper.readCompany(vo.getC_id());
 		
@@ -482,6 +537,7 @@ public class UserController {
 			if(read.getC_key().equals("Y")) {//아이디존재하면 키값을 비교 key값이 Y가 아니면 실행
 				System.out.println("이미 회원아이디가 존재합니다.");
 			}else {
+				mapper.deleteOption(read.getC_id());
 				mapper.deleteCompany(read.getC_id());
 				//프로필 이미지 업로드
 						MultipartFile file=multi.getFile("file1");

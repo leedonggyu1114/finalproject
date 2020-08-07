@@ -1,10 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
 <script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
+<meta charset="UTF-8">
 <style>
 .sidebar button {
 	outline: none;
@@ -65,8 +66,7 @@
 			<h1>CART</h1>
 		</div>
 		<button>
-			<span class="sidebar-btn"><img
-				src="/resources/img/sidebar_icon.png" width=30></span>
+			<span class="sidebar-btn"><img src="/resources/img/sidebar_icon.png" width=30></span>
 		</button>
 	</aside>
 </body>

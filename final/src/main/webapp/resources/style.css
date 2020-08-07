@@ -41,6 +41,7 @@ input:focus::-webkit-input-placeholder {color:transparent; }
 	background-size: 50%;
 	display: none;
 	transition: all 1s;
+	cursor:pointer;
 }
 
 /* header ------------------------*/

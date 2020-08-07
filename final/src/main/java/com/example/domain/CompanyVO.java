@@ -10,7 +10,7 @@ public class CompanyVO {
 	private String c_image;
 	private String c_number;
 	private String c_ceo;
-	private String c_ceotel;
+	private String c_ceo_tel;
 	private String c_x;
 	private String c_y;
 	private String c_detail;
@@ -92,12 +92,12 @@ public class CompanyVO {
 		this.c_ceo = c_ceo;
 	}
 
-	public String getC_ceotel() {
-		return c_ceotel;
+	public String getC_ceo_tel() {
+		return c_ceo_tel;
 	}
 
-	public void setC_ceotel(String c_ceotel) {
-		this.c_ceotel = c_ceotel;
+	public void setC_ceo_tel(String c_ceo_tel) {
+		this.c_ceo_tel = c_ceo_tel;
 	}
 
 	public String getC_x() {
@@ -168,9 +168,11 @@ public class CompanyVO {
 	public String toString() {
 		return "CompanyVO [c_id=" + c_id + ", c_pass=" + c_pass + ", c_name=" + c_name + ", c_tel=" + c_tel
 				+ ", c_email=" + c_email + ", c_address=" + c_address + ", c_image=" + c_image + ", c_number="
-				+ c_number + ", c_ceo=" + c_ceo + ", c_ceotel=" + c_ceotel + ", c_x=" + c_x + ", c_y=" + c_y
+				+ c_number + ", c_ceo=" + c_ceo + ", c_ceo_tel=" + c_ceo_tel + ", c_x=" + c_x + ", c_y=" + c_y
 				+ ", c_detail=" + c_detail + ", c_area=" + c_area + ", c_status=" + c_status + ", c_sale=" + c_sale
 				+ ", c_option=" + c_option + ", c_key=" + c_key + "]";
 	}
+
+	
 
 }

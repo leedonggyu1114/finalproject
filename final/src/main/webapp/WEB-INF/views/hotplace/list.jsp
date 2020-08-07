@@ -15,10 +15,7 @@
    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
    <!-- <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=593e08eb668b13510d3ab2e0c94c93a7&libraries=services"></script> -->
    <style>
-@import url(https://fonts.googleapis.com/css?family=Oswald);
-@import url(https://fonts.googleapis.com/css?family=Quattrocento);
 .div_hotplace_list {
-  font-family: 'Quattrocento', Arial, sans-serif;
   position: relative;
   overflow: hidden;
   min-width: 300px;
@@ -89,15 +86,44 @@
    bottom:50%;
    cursor:pointer;
 }
+#hotplace_tag {
+	height:49px;
+	padding:10px 0px 10px 0px;
+}
+#hotplace_tag button {
+	border:none;
+	outline:none;
+	cursor:pointer;
+	border-radius:8px 8px 8px 8px;
+	padding:5px;
+	margin-right:5px;
+}
 </style>
 </head>
 <body>
    <jsp:include page="../sidebar.jsp"/>
-   <button type="button" name="button" class="ac-sub-go-top">위로</button>
+   <button type="button" name="button" class="ac-sub-go-top" style="cursor:pointer;">위로</button>
    <div id="page">
       <div id="header"><jsp:include page="../header.jsp"/></div>
       <div id="menu"><jsp:include page="../menu.jsp"/></div>
       <div id="container">
+<<<<<<< HEAD
+=======
+         <div id="hotplace_tag">
+         	<button>#힐링</button>
+         	<button>#헬스케어</button>
+         	<button>#익사이팅</button>
+         	<button>#나홀로여행</button>
+         	<button>#가족과함께</button>
+         	<button>#연인과함께</button>
+         	<button>#친구와함께</button>
+         	<button>#먹방</button>
+         	<button>#도심속여행</button>
+         	<button>#나만아는</button>
+         	<button>#야경</button>
+         	<button>#교육</button>
+         </div>
+>>>>>>> refs/remotes/origin/master
          <!-- 여행추천list시작 -->
          <div>
             <c:forEach items="${list }" var="vo">
@@ -105,7 +131,7 @@
                   <img class="mainimage"
                      src="/hotplace/display?fileName=${vo.h_i_images[0]}" width=300
                      height=300 x="${vo.h_x }" y="${vo.h_y }" title="${vo.h_title }"
-                     address="${vo.h_address }" detail="${vo.h_detail }" />
+                     address="${vo.h_address }" detail="${vo.h_detail }" tag1="${vo.h_tag1 }" tag2="${vo.h_tag2 }"/>
                   <figcaption class="div_hotplace_maintitle">
                      <h3>${vo.h_title }</h3>
                      <img src="/resources/img/hotplace/like.png" class="hotplace_like" />
