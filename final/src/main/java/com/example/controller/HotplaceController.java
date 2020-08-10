@@ -48,6 +48,13 @@ public class HotplaceController {
 		}
 		model.addAttribute("list",list);
 	}
+	@RequestMapping("taglist")
+	@ResponseBody
+	public List<HotplaceVO> taglist(String h_tag){
+		List<HotplaceVO> taglist=mapper.taglist(h_tag);
+		return taglist;
+	}
+	
 	
 	@RequestMapping("likelist")
 	public void likelist(Model model,HttpSession session) {
@@ -101,37 +108,37 @@ public class HotplaceController {
 		mapper.likedelete(h_x, h_y, u_id);
 	}
 	
-	@RequestMapping("areachart")
+	@RequestMapping("agechart")
 	@ResponseBody
-	public List<HotplaceVO> areachart(String h_x, String h_y){
-		ArrayList areachart = new ArrayList();
+	public List<HotplaceVO> agechart(String h_x, String h_y){
+		ArrayList agechart = new ArrayList();
 		ArrayList array = new ArrayList();
 		array.add("");
 		array.add("인기핫플레이스");
-		areachart.add(array);
+		agechart.add(array);
 		array=new ArrayList();
 		array.add("10대");
 		array.add(mapper.age10(h_x, h_y));
-		areachart.add(array);
+		agechart.add(array);
 		array=new ArrayList();
 		array.add("20대");
 		array.add(mapper.age20(h_x, h_y));
-		areachart.add(array);
+		agechart.add(array);
 		array=new ArrayList();
 		array.add("30대");
 		array.add(mapper.age30(h_x, h_y));
-		areachart.add(array);
+		agechart.add(array);
 		array=new ArrayList();
 		array.add("40대");
 		array.add(mapper.age40(h_x, h_y));
-		areachart.add(array);
+		agechart.add(array);
 		array=new ArrayList();
 		array.add("50대");
 		array.add(mapper.age50(h_x, h_y));
-		areachart.add(array);
+		agechart.add(array);
 		//System.out.println(areachart);
 
-		return areachart;
+		return agechart;
 	}
 	
 	@RequestMapping("sexchart")

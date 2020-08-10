@@ -109,21 +109,21 @@
       <div id="container">
 
          <div id="hotplace_tag">
-         	<button>#힐링</button>
-         	<button>#헬스케어</button>
-         	<button>#익사이팅</button>
-         	<button>#나홀로여행</button>
-         	<button>#가족과함께</button>
-         	<button>#연인과함께</button>
-         	<button>#친구와함께</button>
-         	<button>#먹방</button>
-         	<button>#도심속여행</button>
-         	<button>#나만아는</button>
-         	<button>#야경</button>
-         	<button>#교육</button>
+         	<button tag="01">#힐링</button>
+         	<button tag="02">#헬스케어</button>
+         	<button tag="03">#익사이팅</button>
+         	<button tag="04">#나홀로여행</button>
+         	<button tag="05">#가족과함께</button>
+         	<button tag="06">#연인과함께</button>
+         	<button tag="07">#친구와함께</button>
+         	<button tag="08">#먹방</button>
+         	<button tag="10">#도심속여행</button>
+         	<button tag="11">#나만아는</button>
+         	<button tag="12">#야경</button>
+         	<button tag="13">#교육</button>
          </div>
          <!-- 여행추천list시작 -->
-         <div>
+         <div id="divlist">
             <c:forEach items="${list }" var="vo">
                <figure style="float: left" class="div_hotplace_list">
                   <img class="mainimage"
@@ -137,6 +137,21 @@
                </figure>
             </c:forEach>
          </div>
+         <script id="temp" type="text/x-handlebars-template">
+        {{#each .}}
+			<figure style="float: left" class="div_hotplace_list">
+				<img class="mainimage"
+					src="/hotplace/display?fileName={{h_image}}" width=300
+					height=300 x="{{h_x}}" y="{{h_y}}" title="{{h_title}}"
+					address="{{h_address}}" detail="{{h_detail}}"
+					tag1="{{h_tag1}}" tag2="{{h_tag2}}" />
+				<figcaption class="div_hotplace_maintitle">
+					<h3>{{h_title}}</h3>
+					<img src="/resources/img/hotplace/like.png" class="hotplace_like" />
+				</figcaption>
+			</figure>
+		{{/each}}
+		</script>
          <!-- 여행추천list끝 -->
       </div>
       <div id="footer"><jsp:include page="../footer.jsp"/></div>
@@ -149,6 +164,26 @@
    var y;
    var u_id="${u_id}";
   
+
+
+ 	//tag리스트 출력
+ 	$("#hotplace_tag").on("click", "button", function() {
+ 		var tag = $(this).attr("tag");
+ 		$.ajax({
+ 			type : "get",
+ 			url : "taglist",
+ 			dataType : "json",
+ 			data : {
+ 				"h_tag" : tag
+ 			},
+ 			success : function(data) {
+ 				var template = Handlebars.compile($("#temp").html());
+ 				$("#divlist").html(template(data));
+				setlikelist();
+ 			}
+ 		});
+ 	});
+   
    
 	// top 스크롤
 	$(window).scroll(function() {
@@ -202,7 +237,7 @@
    }
 
    //좋아요누르기
-   $(".hotplace_like").on("click", function(e) {
+	$("#divlist").on("click",".hotplace_like", function(e) {
       e.stopPropagation();
       var like=$(this);
       
