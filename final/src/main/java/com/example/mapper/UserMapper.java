@@ -15,12 +15,15 @@ public interface UserMapper {
 	public void insertCompany(CompanyVO vo);
 	public void insertCompanyoption(String c_o_id,String c_o_option);
 	//회원 삭제
+	public void usercancel(String u_id);
 	public void delete(String u_id);
 	public void deleteTag(String u_id);
+	public void deletehotplacelike(String u_id);
 	//업체 삭제
 	public void deleteCompany(String c_id);
 	public void deleteOption(String c_id);
 	//회원 읽어오기
+	public UserVO loginread(String u_id);
 	public UserVO read(String u_id);
 	public List<UserTagVO> readtag(String t_id);
 	public String readid(String u_id);

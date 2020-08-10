@@ -7,6 +7,9 @@
     <select id="imagelist" resultType="string">
     	select h_i_images from tbl_hotplace_images where h_x=#{h_x} and h_y=#{h_y} order by h_i_images
     </select>
+    <select id="taglist" resultType="com.example.domain.HotplaceVO">
+    	select * from tbl_hotplace where h_tag1 like #{tag} or h_tag2 like #{tag};
+    </select>
 
   <!-- 	<select id="agefell" parameterType="hashmap" statementType="CALLABLE">
     	{call agefell(

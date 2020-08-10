@@ -22,6 +22,9 @@
     <select id="read" resultType="com.example.domain.UserVO">
     	select * from tbl_user where u_id=#{u_id}
     </select>
+    <select id="loginread" resultType="com.example.domain.UserVO">
+    	select * from tbl_user where u_id=#{u_id} and u_status=0
+    </select>
     <select id="readtag" resultType="com.example.domain.UserTagVO">
     	select * from tbl_tag where t_id=#{t_id}
     </select>
@@ -57,11 +60,17 @@
     </update>
     
     
+    <update id="usercancel">
+    	update tbl_user set u_status=2 where u_id=#{u_id}
+    </update>
     <delete id="delete">
     	delete from tbl_user where u_id=#{u_id}
     </delete>
     <delete id="deleteTag">
     	delete from tbl_tag where t_id=#{t_id}
+    </delete>
+    <delete id="deletehotplacelike">
+    	delete from tbl_like where u_id=#{u_id}
     </delete>
     <delete id="deleteCompany">
     	delete from tbl_company where c_id=#{c_id}
@@ -69,6 +78,7 @@
     <delete id="deleteOption">
     	delete from tbl_company_option where c_o_id=#{c_o_id}
     </delete>
+    
     
     <select id="checkName" resultType="int">
    		 select count(*) from tbl_user where u_name=#{param2} and u_birthday=#{param1} and u_key="Y"

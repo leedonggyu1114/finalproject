@@ -57,8 +57,7 @@ public class UserController {
 	@RequestMapping(value="/user/mypage/usercancel",method=RequestMethod.POST)
 	public String usercancelPost(String u_id,HttpSession session,HttpServletRequest request) {
 		System.out.println(u_id);
-		mapper.deleteTag(u_id);
-		mapper.delete(u_id);
+		mapper.usercancel(u_id);
 		session.invalidate();
 		session=request.getSession(true);
 		return "redirect:/";
@@ -414,7 +413,7 @@ public class UserController {
 	@RequestMapping(value="/user/loginCheck",method=RequestMethod.POST)
 	@ResponseBody
 	public int loginCheck(String u_id, String u_pass, HttpSession session, String chkLogin, HttpServletResponse response) {
-		UserVO readVO=mapper.read(u_id);
+		UserVO readVO=mapper.loginread(u_id);
 		int chkNum=0;
 		if(readVO!=null) {
 			if(readVO.getU_pass().equals(u_pass)) {

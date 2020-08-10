@@ -286,11 +286,13 @@
 				}
 			});
 
+	
 	//////read(라이트박스)//////
-	$(".div_hotplace_list")
+	$("#divlist")
 			.on(
-					"click",
+					"click",".div_hotplace_list",
 					function(event) {
+						usermaxpage = 0;
 						var src = $(this).find(".mainimage").attr("src");
 						var title = $(this).find(".mainimage").attr("title");
 						x = $(this).find(".mainimage").attr("x");
@@ -421,7 +423,11 @@
 				"h_y" : y
 			},
 			success : function(data) {
-				usermaxpage = (parseInt(data.length/userperpage))+1;
+				if(parseInt(data.length%userperpage)==0){
+					usermaxpage = parseInt(data.length/userperpage);
+				}else{
+					usermaxpage = (parseInt(data.length/userperpage))+1;
+				}
 				var html = "";
 				for (var i = 0; i < data.length; i++) {
 					userlikelist.push(data[i]);
@@ -554,7 +560,7 @@
 			$
 					.ajax({
 						type : "get",
-						url : "areachart",
+						url : "agechart",
 						dataType : "json",
 						data : {
 							"h_x" : x,
