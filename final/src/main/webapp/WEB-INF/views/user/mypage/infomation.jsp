@@ -132,7 +132,7 @@
 								<td>
 									<input type="text" id="emailT1" style="width:47%;"> @ 
 									<input type="text" id="txtEmailType1" style="width:47%;">
-									<input type="text" id="emailAll1" name="u_email">
+									<input type="hidden" id="emailAll1" name="u_email">
 								</td>
 								<td style="text-align:center;">
 									<select id="email1" style="width:155.78px; height:40px;">

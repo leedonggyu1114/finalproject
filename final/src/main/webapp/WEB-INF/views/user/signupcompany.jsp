@@ -112,6 +112,12 @@
 	height: 80px;
 	padding-top:30px;
 }
+#hoption img {
+	width:200px;
+	margin-bottom:25px;
+	margin-left:5px;
+	cursor:pointer;
+}
 </style>
 </head>
 <body>
@@ -262,8 +268,8 @@
 				</tr>
 			</table>
 		</div>
-		<div> 호텔 옵션 선택</div>
-		<div id="hoption">
+		<div style="text-align:center; background:#efefef; padding:10px 0px 10px 0px; border-radius:3px 3px 3px 3px; margin:25px 5px 35px 5px; font-size:14.5px;">호텔 옵션 선택</div>
+		<div id="hoption" style="text-align:center;">
 			<span id="hoption1">
 				<input type="checkbox" id="h_option1" name="hoption" value="01">
 					<label for="h_option1" id="tag1"><img src="/resources/img/hoteloption/Hoption_parking_icon2.png"></label>
