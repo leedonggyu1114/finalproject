@@ -95,6 +95,14 @@
 	margin-right:5px;
 }
 
+#userpagination>div {
+	width:8px;
+	height:8px;
+	border-radius:50%;
+	border:0.5px solid gray;
+	display:inline-block;
+	margin-right:5px;
+}
 </style>
 </head>
 <body>
@@ -116,10 +124,13 @@
 				<span id="donutchart" style="float:left;"></span>
          	</div>
             <div id="map" style="width:800px; height:320px; position:absolute; top:55px; left:10px; border-radius:5px 5px 5px 5px;"></div>
-            <div>
-	            <button id="likeuserprev" style="background:none; outline:none; z-index:10002; border:none; position:absolute; right:395px; top:195px; cursor:pointer;"><img src="/resources/img/hotplace/prev_icon2.png" width=30 /></button>
-	            <div id="likeuserlist" style="position:absolute; top:55px; right:27px; height:320px; width:380px; padding-left:10px; padding-top:54px; border-radius:5px 5px 5px 5px; border:0.5px solid #e9e9e9;"></div>
-	            <button id="likeusernext" style="background:none; outline:none; border:none; position:absolute; right:8px; top:195px; cursor:pointer;"><img src="/resources/img/hotplace/next_icon2.png" width=30 /></button>
+            <div style="position:relative; width:380px; height:320px; left:67.3%; top:55px;">
+	            <button id="likeuserprev" style="background:none; outline:none; z-index:10002; border:none; position:absolute; left:-18px; top:140px; cursor:pointer;"><img src="/resources/img/hotplace/prev_icon2.png" width=30 /></button>
+	            <div id="likeuserlist" style="position:absolute; height:320px; width:380px; padding-left:10px; padding-top:54px; border-radius:5px 5px 5px 5px; border:0.5px solid #e9e9e9;">
+	            	
+	            </div>
+	            <div id="userpagination" style="position:absolute; top:280px; left:50%; transform:translate(-48%,0); "></div>
+	            <button id="likeusernext" style="background:none; outline:none; border:none; position:absolute; right:-18px; top:140px; cursor:pointer;"><img src="/resources/img/hotplace/next_icon2.png" width=30 /></button>
             </div>
             <img src="/resources/img/hotplace/1.png" width=220 style="position:absolute; left:10px; top:8px;"/>
             <img src="/resources/img/hotplace/2.png" width=222 style="position:absolute; right:188px; top:8px;"/>
@@ -131,7 +142,7 @@
 <script>
 	var userlikelist = [];
 	var userpage = 1;
-	var usermaxpage;
+	var usermaxpage = 0;
 	var userperpage = 8;
 	var userstartpage=1;
 	var userendpage = userperpage;
@@ -140,15 +151,13 @@
 	var imagepage = 0;
 	var images = [];
 	
-	//좋아요유저현제페이지출력
-	function getnowpage(){
-		
-	}
 	
 	
 	//좋아요유저 넘기기(next)
 	$("#likeusernext").on("click",function(){
 		if(userlikelist.length > userperpage){
+			userpage++;
+			getnowpage();
 			var html="";
 			userstartpage = userstartpage + userperpage;
 			userendpage = userendpage + userperpage;
@@ -170,6 +179,8 @@
 				if(userlikelist.length<userstartpage){
 					 userstartpage = 1;
 					 userendpage = userperpage;
+					 userpage = 1;
+					 getnowpage();
 					 for(var p=userstartpage-1; p<userendpage;p++){
 							if(userlikelist[p].u_image==null || userlikelist[p].u_image==""){
 								if(userlikelist[p].u_gender=='male'){
@@ -210,6 +221,8 @@
 			userstartpage = userstartpage - userperpage;
 			userendpage = userendpage - userperpage;
 			if(userstartpage <= 0){
+				userpage = usermaxpage;
+				getnowpage();
 				var userlikelistlength=userlikelist.length-1;
 				userstartpage = (parseInt(userlikelistlength/userperpage)*userperpage)+1;
 				userendpage = userstartpage+7;
@@ -226,6 +239,8 @@
 					$("#likeuserlist").html(html);
 				}
 			}else{
+				userpage--;
+				getnowpage();
 				for(var p=userstartpage-1; p<userendpage;p++){
 					if(userlikelist[p].u_image==null || userlikelist[p].u_image==""){
 						if(userlikelist[p].u_gender=='male'){
@@ -387,6 +402,8 @@
 		imagepage = 0;
 		userstartpage = 1;
 		userendpage = userperpage;
+		usermaxpage = 0;
+		userpage = 1;
 		
 		$("#darken-background").css("display", "none"); //팝업창 뒷배경 display none
 		$("#lightbox").css("display", "none"); //팝업창 display none
@@ -404,7 +421,7 @@
 				"h_y" : y
 			},
 			success : function(data) {
-				
+				usermaxpage = (parseInt(data.length/userperpage))+1;
 				var html = "";
 				for (var i = 0; i < data.length; i++) {
 					userlikelist.push(data[i]);
@@ -442,9 +459,25 @@
 					
 				}
 				$("#likeuserlist").html(html);
+				getnowpage();
 			}
 		});
 	}
+	
+	//좋아요유저현제페이지출력
+	function getnowpage(){
+		var html = "";
+		for(var i=1; i<=usermaxpage; i++){
+			if(userpage==i){
+				html += "<div style='background:red; width:13px:height:13px' page="+i+"></div>";
+			}else{
+				html += "<div page="+i+"></div>";
+			}
+			
+		}
+		$("#userpagination").html(html);
+	}
+	
 
 	//지도촐력
 	function getmap() {

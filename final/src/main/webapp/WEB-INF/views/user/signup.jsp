@@ -537,7 +537,7 @@ $(":checkbox").css("display","none");
 		var tel1 = $("#selectTel option:selected").val();
 		var tel2 = $("#telFirst").val();
 		var tel3 = $("#telSecond").val();
-		$("#txtTel").val(tel1 + tel2 + tel3);
+		$("#txtTel").val(tel1 + "-" + tel2 + "-" + tel3);
 
 		var passread = $("#passread").val();
 		var idread = $("#idread").val();
