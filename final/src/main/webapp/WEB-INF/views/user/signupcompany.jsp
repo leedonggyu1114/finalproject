@@ -112,6 +112,12 @@
 	height: 80px;
 	padding-top:30px;
 }
+#hoption img {
+	width:200px;
+	margin-bottom:25px;
+	margin-left:5px;
+	cursor:pointer;
+}
 </style>
 </head>
 <body>
@@ -195,7 +201,7 @@
 				<tr class="line-tel">
 					<td><span>사업장번호</span></td>
 					<td>
-					<input type="text" id="txtTel2" size=50 name="c_tel" placeholder="TEL">
+					<input type="hidden" id="txtTel2" name="c_tel" placeholder="TEL">
 					<select id="selectTel2" style="height:40px; width:30.8%;">
 							<option>02</option>
 							<option>031</option>
@@ -215,8 +221,8 @@
 							<option>063</option>
 							<option>064</option>
 						</select> -
-						<input type="text" size="15" id="telFirst2"> -
-						<input type="text" size="25" id="telSecond2">
+						<input type="text" id="telFirst2"> -
+						<input type="text" id="telSecond2">
 					</td>
 					<td></td>
 				</tr>
@@ -247,7 +253,7 @@
 				<tr class="line-tel">
 					<td><span>대표 전화번호</span></td>
 					<td>
-						<input type="text" id="txtTel1" size=50 name="c_ceo_tel" placeholder="CEO TEL">
+						<input type="hidden" id="txtTel1" size=50 name="c_ceo_tel" placeholder="CEO TEL">
 						<select id="selectTel1" style="height:40px; width:30.8%;">
 							<option>010</option>
 							<option>011</option>
@@ -256,8 +262,8 @@
 							<option>018</option>
 							<option>019</option>
 						</select> -
-						<input type="text" size="15" id="telFirst1"> -
-						<input type="text" size="25" id="telSecond1">
+						<input type="text" id="telFirst1"> -
+						<input type="text" id="telSecond1">
 					</td>
 					<td><input type="hidden" name="status" value=0></td>
 				</tr>
@@ -283,8 +289,8 @@
 				</tr>
 			</table>
 		</div>
-		<div> 호텔 옵션 선택</div>
-		<div id="hoption">
+		<div style="text-align:center; background:#efefef; padding:10px 0px 10px 0px; border-radius:3px 3px 3px 3px; margin:25px 5px 35px 5px; font-size:14.5px;">호텔 옵션 선택</div>
+		<div id="hoption" style="text-align:center;">
 			<span id="hoption1">
 				<input type="checkbox" id="h_option1" name="hoption" value="01">
 					<label for="h_option1" id="tag1"><img src="/resources/img/hoteloption/Hoption_parking_icon2.png"></label>
