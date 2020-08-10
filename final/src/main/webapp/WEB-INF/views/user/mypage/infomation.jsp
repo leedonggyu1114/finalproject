@@ -35,7 +35,8 @@
 	padding-left:10px;
 	padding-right:10px;
 }
-#user-information-area span {
+#info span,
+#companyInfo span {
 	background: #0f4c81;
 	color:white;
 	height:40px;
@@ -64,7 +65,29 @@
 	cursor:pointer;
 	padding-left:10px;
 }
-#tag img{width:200px;width:200px;}
+#tag img{
+	width:180px;
+	height:190px;
+	cursor:pointer;
+	margin-bottom:20px;
+	border-radius:8px 8px 8px 8px;
+	margin-left:10px;
+	margin-right:10px;
+}
+#hoption img {
+	width:198px;
+	margin-bottom:25px;
+	margin-left:5px;
+	cursor:pointer;
+}
+#companyInfo textarea {
+	width:100%;
+	height:80px;
+	padding:10px;
+	border-radius:3px 3px 3px 3px;
+	border:0.5px solid #e9e9e9;
+	cursor:pointer;
+}
 </style>
 <script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
 </head>
@@ -95,9 +118,9 @@
 								<td><input type="text" id="u_id" value="${u_id}" readonly></td>
 								<td><input type="hidden" name="u_id" value="${u_id}"></td>
 							</tr>
-							<tr class="line-info">
+							<tr class="line-info a">
 								<td><span>생년월일</span></td>
-								<td id="u_birthday"></td>
+								<td><input type="text" id="u_birthday" readonly></td>
 							</tr>
 							<tr class="line-address">
 								<td width=150><span style="height:130px; padding-top:56px;">주소</span></td>
@@ -160,68 +183,67 @@
 								<td></td>
 							</tr>
 						</table>
-						
-						<div> 2가지 선택</div>
-						<div id="tag">
+						<div style="text-align:center; background:#efefef; padding:10px 0px 10px 0px; border-radius:3px 3px 3px 3px; margin:25px 0px 30px 147px; font-size:14.5px; width:830px;">내가 선호하는 여행 스타일</div>
+						<div id="tag" style="width:830px; margin-left:147px; text-align:center;">
 							<span id="tag11">
 								<input type="checkbox" id="t_tag1" name="t_tag" value="01">
 									<label for="t_tag1" id="tag1"><img src="/resources/img/usertag/가족과함께.png"></label>
-									<label for="t_tag1" id="tag1-1" style="display:none;"><img src="/resources/img/usertag/가족과함께1.png"></label>
+									<label for="t_tag1" id="tag1-1" style="display:none;"><img src="/resources/img/usertag/가족과함께.png" style="border:0.5px solid #0f4c81;"></label>
 							</span>
 							<span id="tag1">
 								<input type="checkbox" id="t_tag2" name="t_tag" value="02">
 									<label for="t_tag2" id="tag1"><img src="/resources/img/usertag/교육.png"></label>
-									<label for="t_tag2" id="tag1-1" style="display:none;"><img src="/resources/img/usertag/교육1.png"></label>
+									<label for="t_tag2" id="tag1-1" style="display:none;"><img src="/resources/img/usertag/교육.png" style="border:0.5px solid #0f4c81;"></label>
 							</span>
 							<span id="tag1">
 								<input type="checkbox" id="t_tag3" name="t_tag" value="03">
 									<label for="t_tag3" id="tag1"><img src="/resources/img/usertag/나만아는.png"></label>
-									<label for="t_tag3" id="tag1-1" style="display:none;"><img src="/resources/img/usertag/나만아는1.png"></label>
+									<label for="t_tag3" id="tag1-1" style="display:none;"><img src="/resources/img/usertag/나만아는.png" style="border:0.5px solid #0f4c81;"></label>
 							</span>
 							<span id="tag1">
 								<input type="checkbox" id="t_tag4" name="t_tag" value="04">
 									<label for="t_tag4" id="tag1"><img src="/resources/img/usertag/나혼자여행.png"></label>
-									<label for="t_tag4" id="tag1-1" style="display:none;"><img src="/resources/img/usertag/나혼자여행1.png"></label>
+									<label for="t_tag4" id="tag1-1" style="display:none;"><img src="/resources/img/usertag/나혼자여행.png" style="border:0.5px solid #0f4c81;"></label>
 							</span>
 							<span id="tag1">
 								<input type="checkbox" id="t_tag5" name="t_tag" value="05">
 									<label for="t_tag5" id="tag1"><img src="/resources/img/usertag/도심속여행.png"></label>
-									<label for="t_tag5" id="tag1-1" style="display:none;"><img src="/resources/img/usertag/도심속여행1.png"></label>
+									<label for="t_tag5" id="tag1-1" style="display:none;"><img src="/resources/img/usertag/도심속여행.png" style="border:0.5px solid #0f4c81;"></label>
 							</span>
 							<span id="tag1">
 								<input type="checkbox" id="t_tag6" name="t_tag" value="06">
 									<label for="t_tag6" id="tag1"><img src="/resources/img/usertag/먹방.png"></label>
-									<label for="t_tag6" id="tag1-1" style="display:none;"><img src="/resources/img/usertag/먹방1.png"></label>
+									<label for="t_tag6" id="tag1-1" style="display:none;"><img src="/resources/img/usertag/먹방.png" style="border:0.5px solid #0f4c81;"></label>
 							</span>
 							<span id="tag1">
 								<input type="checkbox" id="t_tag7" name="t_tag" value="07">
 									<label for="t_tag7" id="tag1"><img src="/resources/img/usertag/야경.png"></label>
-									<label for="t_tag7" id="tag1-1" style="display:none;"><img src="/resources/img/usertag/야경1.png"></label>
+									<label for="t_tag7" id="tag1-1" style="display:none;"><img src="/resources/img/usertag/야경.png" style="border:0.5px solid #0f4c81;"></label>
 							</span>
 							<span id="tag1">
 								<input type="checkbox" id="t_tag8" name="t_tag" value="08">
 									<label for="t_tag8" id="tag1"><img src="/resources/img/usertag/연인과함께.png"></label>
-									<label for="t_tag8" id="tag1-1" style="display:none;"><img src="/resources/img/usertag/연인과함께1.png"></label>
+									<label for="t_tag8" id="tag1-1" style="display:none;"><img src="/resources/img/usertag/연인과함께.png" style="border:0.5px solid #0f4c81;"></label>
 							</span>
 							<span id="tag1">
 								<input type="checkbox" id="t_tag9" name="t_tag" value="09">
 									<label for="t_tag9" id="tag1"><img src="/resources/img/usertag/익사이팅.png"></label>
-									<label for="t_tag9" id="tag1-1" style="display:none;"><img src="/resources/img/usertag/익사이팅1.png"></label>
+									<label for="t_tag9" id="tag1-1" style="display:none;"><img src="/resources/img/usertag/익사이팅.png" style="border:0.5px solid #0f4c81;"></label>
 							</span>
 							<span id="tag1">
 								<input type="checkbox" id="t_tag10" name="t_tag" value="10">
 									<label for="t_tag10" id="tag1"><img src="/resources/img/usertag/친구와함께.png"></label>
-									<label for="t_tag10" id="tag1-1" style="display:none;"><img src="/resources/img/usertag/친구와함께1.png"></label>
+									<label for="t_tag10" id="tag1-1" style="display:none;"><img src="/resources/img/usertag/친구와함께.png" style="border:0.5px solid #0f4c81;"></label>
 							</span>
 							<span id="tag1">
 								<input type="checkbox" id="t_tag11" name="t_tag" value="11">
 									<label for="t_tag11" id="tag1"><img src="/resources/img/usertag/헬스케어.png"></label>
-									<label for="t_tag11" id="tag1-1" style="display:none;"><img src="/resources/img/usertag/헬스케어1.png"></label>
+									<label for="t_tag11" id="tag1-1" style="display:none;"><img src="/resources/img/usertag/헬스케어1.png" style="border:0.5px solid #0f4c81;"></label>
 							</span>
 							<span id="tag12">
 								<input type="checkbox" id="t_tag12" name="t_tag" value="12">
 									<label for="t_tag12" id="tag1"><img src="/resources/img/usertag/힐링.png"></label>
-									<label for="t_tag12" id="tag1-1" style="display:none;"><img src="/resources/img/usertag/힐링1.png"></label>
+									<label for="t_tag12" id="tag1-1" style="display:none;"><img src="/resources/img/usertag/힐링.png" style="border:0.5px solid #0f4c81;"></label>
 							</span>
 						</div>
 					<input type="submit" value="수정하기" style="width:200px; height:40px; margin-top:30px; position:relative; left:50%; transform:translate(-50%,0); background:#0f4c81; color:white;">
@@ -249,8 +271,8 @@
 								<td><input type="hidden" name="c_id" value="${c_id}"></td>
 							</tr>
 							<tr class="line-address">
-								<td width=150><span style="height:130px; padding-top:56px;">주소</span></td>
-								<td style="height:150px;">
+								<td width=150><span style="height:85px; padding-top:38px;">주소</span></td>
+								<td style="height:95px;">
 									<span id="address" style="width:100%; background:none; color:black; border:0.5px solid #e9e9e9; margin-top:5px;"></span><br> 
 									<span id="addressDetail" style="width:100%; background:none; color:black; border:0.5px solid #e9e9e9; margin-top:5px;">상세 주소</span>
 								</td>
@@ -324,7 +346,7 @@
 								<td></td>
 							</tr>
 							<tr class="line-info">
-								<td><span>세부정보</span></td>
+								<td style="height:100px;"><span style="height:80px; padding-top:30px;">세부정보</span></td>
 								<td><textarea id="detail" name="c_detail"></textarea></td>
 								<td><input type="hidden" name="c_status" value=0></td>
 							</tr>
@@ -358,8 +380,8 @@
 								<td><input type="password" id="newpassCheck" name="c_pass"></td>
 							</tr>
 						</table>
-						<div> 호텔 옵션 선택</div>
-							<div id="hoption">
+						<div style="text-align:center; background:#efefef; padding:10px 0px 10px 0px; border-radius:3px 3px 3px 3px; margin:25px 0px 30px 147px; font-size:14.5px; width:830px;">호텔 옵션</div>
+							<div id="hoption" style="width:830px; margin-left:147px; text-align:center;">
 								<span id="hoption1">
 									<input type="checkbox" id="h_option1" name="hoption" value="01">
 										<label for="h_option1" id="option1"><img src="/resources/img/hoteloption/Hoption_parking_icon2.png"></label>
@@ -424,7 +446,7 @@
 						<input type="submit" value="수정" style="width:200px; height:40px; margin-top:30px; position:relative; left:50%; transform:translate(-50%,0); background:#0f4c81; color:white;">
 					</form>
 				</c:if>
-				<a href="/user/mypage/usercancel">회원 탈퇴</a>
+				<a href="/user/mypage/usercancel" style="font-size:5px; text-decoration:none; color:black; position:absolute; bottom:-29px; right:0px;">회원 탈퇴</a>
 			</div>
 		</div>
 		<div id="footer"><jsp:include page="../../footer.jsp" /></div>
@@ -649,7 +671,7 @@
 		},
 		success : function(data) {
 			$("#u_name").val(data.read.u_name);
-			$("#u_birthday").html(data.read.u_birthday);
+			$("#u_birthday").val(data.read.u_birthday);
 			//주소 split
 			var beforeAdd = data.read.u_address;
 			var afterAdd = beforeAdd.split(',');
