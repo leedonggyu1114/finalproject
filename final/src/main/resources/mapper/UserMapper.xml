@@ -5,9 +5,13 @@
     	insert into tbl_user(u_id,u_pass,u_name,u_tel,u_address,u_email,u_image,u_birthday,u_status,u_key,u_gender)
 		values(#{u_id},#{u_pass},#{u_name},#{u_tel},#{u_address},#{u_email},#{u_image},#{u_birthday},#{u_status},#{u_key},#{u_gender})
     </insert>
+    <insert id="insertKakao">
+    	insert into tbl_user(u_k_id,u_pass,u_name,u_tel,u_address,u_email,u_image,u_birthday,u_status,u_key,u_gender)
+		values(#{u_k_id},#{u_pass},#{u_name},#{u_tel},#{u_address},#{u_email},#{u_image},#{u_birthday},#{u_status},#{u_key},#{u_gender})
+    </insert>
     <insert id="insertUsertag">
-    	insert into tbl_tag(t_id,t_tag)
-    	values(#{param1},#{param2})
+    	insert into tbl_tag(t_id,t_k_id,t_tag)
+    	values(#{param1},"0",#{param2})
     </insert>
     
     <insert id="insertCompany">
@@ -21,6 +25,9 @@
     
     <select id="read" resultType="com.example.domain.UserVO">
     	select * from tbl_user where u_id=#{u_id}
+    </select>
+    <select id="readkakao" resultType="string">
+    	select u_k_id from tbl_user where u_k_id=#{u_k_id}
     </select>
     <select id="readtag" resultType="com.example.domain.UserTagVO">
     	select * from tbl_tag where t_id=#{t_id}

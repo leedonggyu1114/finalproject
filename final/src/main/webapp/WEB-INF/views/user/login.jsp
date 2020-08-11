@@ -193,6 +193,7 @@ input[id="login-chk2"]:checked + label em {
 	display:none;
 }
 </style>
+
 </head>
 <body>
 	<div id="page">
@@ -296,7 +297,7 @@ input[id="login-chk2"]:checked + label em {
 	</div>
 </body>
 <script>
-
+	
 	var chkLogin = 0;
 
 	$('ul.login-tab li').click(function() {

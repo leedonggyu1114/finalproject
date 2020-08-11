@@ -7,15 +7,20 @@
 	<meta charset="UTF-8">
 	<title>여행의 설렘 TOURSUM !</title>
 	<link rel="icon" type="image/png" href="http://example.com/myicon.png"> 
+	
 </head>
 <body>
+${u_id},${u_k_id}
 	<div id="div_header_signup">
-		<c:if test="${u_id==null && c_id==null}">
+		<c:if test="${u_id==null && u_k_id==null && c_id==null}">
 			<a href="/user/login">로그인</a>
 			<a href="/user/signupselect">회원가입</a>
 		</c:if>
-		<c:if test="${u_id!=null || c_id!=null}">
-			<a href="/user/logout">로그아웃</a>
+		<c:if test="${u_id!=null && u_k_id=='0' || c_id!=null}">
+				<a href="/user/logout">로그아웃</a>
+		</c:if>
+		<c:if test="${u_k_id!=null && u_id=='0'}">
+			<a href="https://kauth.kakao.com/oauth/logout?client_id=44c4398b724d06191dbaf99c087795b1&logout_redirect_uri=http://localhost:8088/user/login">카카오로그아웃</a>
 		</c:if>
 	</div>
 	<a href="/"><img src="${pageContext.request.contextPath}/resources/img/logo.png" width=200 id="header_logo"></a>
@@ -56,6 +61,7 @@
 	</div>
 </body>
 <script>
+
 	$(".menu").click(function(e){
 		e.preventDefault();
 		$(this).toggleClass("on");

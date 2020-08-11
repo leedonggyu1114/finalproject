@@ -53,6 +53,34 @@ public class UserController {
 	public void usercancel() {
 		
 	}
+	
+	//유저 탈퇴 비밀번호 체크
+		@RequestMapping("/user/mypage/UserPass")
+		@ResponseBody
+		public int userpass(String u_id,String u_pass) {
+			UserVO vo=mapper.read(u_id);
+			int result=0;
+			if(vo.getU_pass().equals(u_pass)) {
+				result=1;
+			}else {
+				result=0;
+			}
+			return result;
+		}
+	//업체 탈퇴 비밀번호 체크
+	@RequestMapping("/user/mypage/CompanyPass")
+	@ResponseBody
+	public int companypass(String c_id,String c_pass) {
+		CompanyVO vo=mapper.readCompany(c_id);
+		int result=0;
+		if(vo.getC_pass().equals(c_pass)) {
+			result=1;
+		}else {
+			result=0;
+		}
+		return result;
+	}
+	
 	//유저회원 탈퇴
 	@RequestMapping(value="/user/mypage/usercancel",method=RequestMethod.POST)
 	public String usercancelPost(String u_id,HttpSession session,HttpServletRequest request) {
@@ -79,8 +107,8 @@ public class UserController {
 		
 		String[] arrayParam = request.getParameterValues("hoption");
 		MultipartFile file=multi.getFile("file1");
+		CompanyVO vo1=mapper.readCompany(vo.getC_id());
 		if(!file.isEmpty()) {
-			CompanyVO vo1=mapper.readCompany(vo.getC_id());
 			//옛날 대표이미지 삭제
 			if(!vo1.getC_image().equals("")) {
 				new File(companypath+File.separator+vo1.getC_image()).delete();
@@ -88,21 +116,32 @@ public class UserController {
 			String image=System.currentTimeMillis()+file.getOriginalFilename();
 			file.transferTo(new File(companypath + File.separator + image));
 			vo.setC_image(image);
-			mapper.updateCompany(vo);
+			
+			if(vo.getC_pass().equals("")) {
+				vo.setC_pass(vo1.getC_pass());
+				mapper.updateCompany(vo);
+			}else {
+				mapper.updateCompany(vo);
+			}
 			mapper.deleteOption(vo.getC_id());
 			for (int i = 0; i < arrayParam.length; i++) { 
 				System.out.println(arrayParam[i]); 
 				mapper.insertCompanyoption(vo.getC_id(), arrayParam[i]);
 				}
 		}else {
-			mapper.updateCompany2(vo);
+			if(vo.getC_pass().equals("")) {
+				vo.setC_pass(vo1.getC_pass());
+				mapper.updateCompany2(vo);
+			}else {
+				mapper.updateCompany2(vo);
+			}
+
 			mapper.deleteOption(vo.getC_id());
 			for (int i = 0; i < arrayParam.length; i++) { 
 				System.out.println(arrayParam[i]); 
 				mapper.insertCompanyoption(vo.getC_id(), arrayParam[i]);
 				}
 		}
-		
 		return "redirect:/";
 	}
 	//업체 정보 불러오기
@@ -126,8 +165,8 @@ public class UserController {
 		String[] arrayParam = request.getParameterValues("t_tag");
 		System.out.println(vo.toString());
 		MultipartFile file=multi.getFile("file");
+		UserVO vo1=mapper.read(vo.getU_id());
 		if(!file.isEmpty()) {
-			UserVO vo1=mapper.read(vo.getU_id());
 			//옛날 대표이미지 삭제
 			if(!vo1.getU_image().equals("")) {
 				new File(path+File.separator+vo1.getU_image()).delete();
@@ -135,15 +174,27 @@ public class UserController {
 			String image=System.currentTimeMillis()+file.getOriginalFilename();
 			file.transferTo(new File(path + File.separator + image));
 			vo.setU_image(image);
-			
-			mapper.updateUser(vo);
+			if(vo.getU_pass().equals("")) {
+				vo.setU_pass(vo1.getU_pass());
+				
+				System.out.println(vo.getU_pass());
+				mapper.updateUser(vo);
+			}else {
+				mapper.updateUser(vo);
+			}
 			mapper.deleteTag(vo.getU_id());
 			for (int i = 0; i < arrayParam.length; i++) { 
 				System.out.println(arrayParam[i]); 
 				mapper.insertUsertag(vo.getU_id(),arrayParam[i]);
 				}
 		}else {
-			mapper.updateUser2(vo);
+			if(vo.getU_pass().equals("")) {
+				vo.setU_pass(vo1.getU_pass());
+				System.out.println(vo.getU_pass());
+				mapper.updateUser2(vo);
+			}else {
+				mapper.updateUser2(vo);
+			}
 			mapper.deleteTag(vo.getU_id());
 			for (int i = 0; i < arrayParam.length; i++) { 
 				System.out.println(arrayParam[i]); 
@@ -421,6 +472,7 @@ public class UserController {
 				if(readVO.getU_key().equals("Y")) {
 					chkNum=2;
 					session.setAttribute("u_id", readVO.getU_id());
+					session.setAttribute("u_k_id", "0");
 					if(chkLogin.equals("1")) {
 						Cookie cookie=new Cookie("u_id",readVO.getU_id());
 						cookie.setPath("/");
@@ -468,8 +520,10 @@ public class UserController {
 	}
 	//로그인 페이지
 	@RequestMapping("/user/login")
-	public void login() {
-		
+	public void login(HttpSession session) {
+		if(session.getAttribute("u_k_id")!=null) {
+			session.invalidate();
+		}
 	}
 	
 	//일반 회원 가입 + 이메일 인증번호 Send + 파일 업로드

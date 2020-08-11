@@ -14,6 +14,7 @@
 	</style>
 </head>
 <body>
+
 	<jsp:include page="sidebar.jsp"/>
 	<button type="button" name="button" class="ac-sub-go-top" style="cursor:pointer;">위로</button>
 	<div id="page">

@@ -11,6 +11,7 @@ public interface UserMapper {
 	//회원가입
 	public void insert(UserVO vo);
 	public void insertUsertag(String t_id, String t_tag);
+	public void insertKakao(UserVO vo);
 	//업체 회원가입
 	public void insertCompany(CompanyVO vo);
 	public void insertCompanyoption(String c_o_id,String c_o_option);
@@ -24,6 +25,7 @@ public interface UserMapper {
 	public UserVO read(String u_id);
 	public List<UserTagVO> readtag(String t_id);
 	public String readid(String u_id);
+	public String readkakao(String u_k_id);
 	//업체 읽어오기
 	public CompanyVO readCompany(String c_id);
 	public List<CompanyOptionVO> readOption(String c_id);

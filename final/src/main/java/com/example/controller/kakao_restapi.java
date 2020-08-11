@@ -1,8 +1,13 @@
 package com.example.controller;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.http.HttpResponse;
@@ -18,6 +23,40 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class kakao_restapi {
+	
+	public static JsonNode getKakaoUserInfo(JsonNode accessToken) {
+		 
+        final String RequestUrl = "https://kapi.kakao.com/v2/user/me";
+        final HttpClient client = HttpClientBuilder.create().build();
+        final HttpPost post = new HttpPost(RequestUrl);
+ 
+        // add header
+        post.addHeader("Authorization", "Bearer " + accessToken);
+ 
+        JsonNode returnNode = null;
+ 
+        try {
+            final HttpResponse response = client.execute(post);
+            final int responseCode = response.getStatusLine().getStatusCode();
+ 
+            System.out.println("\nSending 'POST' request to URL : " + RequestUrl);
+            System.out.println("Response Code : " + responseCode);
+ 
+            // JSON 형태 반환값 처리
+            ObjectMapper mapper = new ObjectMapper();
+            returnNode = mapper.readTree(response.getEntity().getContent());
+ 
+        } catch (ClientProtocolException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            // clear resources
+        }
+ 
+        return returnNode;
+    }
+	
 public JsonNode getAccessToken(String autorize_code) {
         
         final String RequestUrl = "https://kauth.kakao.com/oauth/token";
@@ -108,5 +147,6 @@ public JsonNode Logout(String autorize_code) {
     return returnNode;
 
 }
+
 
 }

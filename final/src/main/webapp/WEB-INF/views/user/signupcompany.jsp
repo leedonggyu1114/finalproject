@@ -195,7 +195,7 @@
 				<tr class="line-tel">
 					<td><span>사업장번호</span></td>
 					<td>
-					<input type="text" id="txtTel2" size=50 name="c_tel" placeholder="TEL">
+					<input type="hidden" id="txtTel2" size=50 name="c_tel" placeholder="TEL">
 					<select id="selectTel2" style="height:40px; width:30.8%;">
 							<option>02</option>
 							<option>031</option>
@@ -247,7 +247,7 @@
 				<tr class="line-tel">
 					<td><span>대표 전화번호</span></td>
 					<td>
-						<input type="text" id="txtTel1" size=50 name="c_ceo_tel" placeholder="CEO TEL">
+						<input type="hidden" id="txtTel1" size=50 name="c_ceo_tel" placeholder="CEO TEL">
 						<select id="selectTel1" style="height:40px; width:30.8%;">
 							<option>010</option>
 							<option>011</option>
