@@ -133,6 +133,7 @@
 	            <button id="likeusernext" style="background:none; outline:none; border:none; position:absolute; right:-18px; top:140px; cursor:pointer;"><img src="/resources/img/hotplace/next_icon2.png" width=30 /></button>
             </div>
             <img src="/resources/img/hotplace/1.png" width=220 style="position:absolute; left:10px; top:8px;"/>
+            <img src="/resources/img/hotplace/refresh_icon.png" width=20 style="position:absolute; left:215px; top:19px; cursor:pointer;"/>
             <img src="/resources/img/hotplace/2.png" width=222 style="position:absolute; right:188px; top:8px;"/>
             <img src="/resources/img/hotplace/3.png" width=220 style="position:absolute; left:10px; top:51%;"/>
 		</div>
@@ -433,7 +434,7 @@
 					userlikelist.push(data[i]);
 				}
 				if(userlikelist.length==0){
-					html = "<div style='margin-top:120px'><h3>좋아요 누른 유저가 한명도 없습니다...</h3></div>";
+					html = "<div style='margin-top:80px; font-size:14.5px;'>좋아요 누른 유저가 한명도 없습니다.<br>처음으로 좋아요를 눌러보세요!</div>";
 				}else{
 					if(userlikelist.length<8){
 						for(var n = 0; n < userlikelist.length; n++){

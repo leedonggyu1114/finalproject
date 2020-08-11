@@ -7,6 +7,7 @@
 <head>
    <meta charset="UTF-8">
    <title>여행의 설렘 TOURSUM !</title>
+   <link rel="shortcut icon" type="image⁄x-icon" href="/resources/img/title_logo.png">
    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/style.css"/>
    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
@@ -109,6 +110,7 @@
       <div id="container">
 
          <div id="hotplace_tag">
+         	<button>#ALL</button>
          	<button tag="01">#힐링</button>
          	<button tag="02">#헬스케어</button>
          	<button tag="03">#익사이팅</button>

@@ -4,9 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>여행의 설렘 TOURSUM !</title>
+<title>Insert title here</title>
 </head>
 <body>
-
+<h1>결제완료</h1>
 </body>
 </html>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.AirMapper">
+	<insert id="insert">
+		insert into tbl_air values(#{a_number},#{a_company},#{a_startplace},#{a_endplace},#{a_starttime},#{a_endtime},#{a_runtime},#{a_price},#{a_startdate},#{a_emptyseat})
+	</insert>
+	<select id="read" resultType="String">
+		select max(a_number) from tbl_air
+	</select>
+	<select id="airList" resultType="com.example.domain.AirVO">
+		select * from tbl_air where a_startplace=#{a_startplace} and a_endplace=#{a_endplace} and a_startdate=#{a_startdate} and a_emptyseat>#{a_emptyseat} order by a_price;
+	</select>
+	<select id="listRead" resultType="com.example.domain.AirVO">
+		select * from tbl_air where a_number=#{a_number}
+	</select>
+	<select id="bookingPeople" resultType="com.example.domain.AirVO">
+		select * from tbl_air where a_number=#{a_number}
+	</select>
+	<insert id="passengersInsert">
+		insert into tbl_passengers(u_id,a_number,a_b_paydate,a_p_residentRegistration,a_p_name,a_p_gender,a_p_seat)
+		values(#{u_id},#{a_number},now(),#{a_p_residentRegistration},#{a_p_name},#{a_p_gender},#{a_p_seat});
+	</insert>
+	<update id="setCount">
+		update tbl_air set a_emptyseat=a_emptyseat-#{sum} where a_number=#{a_number}
+	</update>
+	<select id="seatlist" resultType="string">
+		select a_p_seat from tbl_passengers where a_number=#{a_number};
+	</select>
+</mapper>
