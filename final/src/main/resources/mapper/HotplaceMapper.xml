@@ -47,13 +47,13 @@
     </select>
     
     <insert id="likeinsert">
-    	insert into tbl_like values(#{h_x},#{h_y},#{u_id})
+    	insert into tbl_like values(#{h_x},#{h_y},#{u_id},#{u_k_id})
     </insert>
     <delete id="likedelete">
-    	delete from tbl_like where h_x=#{h_x} and h_y=#{h_y} and u_id=#{u_id}
+    	delete from tbl_like where h_x=#{h_x} and h_y=#{h_y} and u_id=#{u_id} and u_k_id=#{u_k_id}
     </delete>
     <select id="likelist" resultType="com.example.domain.HotplaceVO">
-    	select l.u_id,h.* from tbl_like l,tbl_hotplace h where l.h_x=h.h_x and l.h_y=h.h_y and u_id=#{u_id}
+    	select l.u_id,h.* from tbl_like l,tbl_hotplace h where l.h_x=h.h_x and l.h_y=h.h_y and u_id=#{param1} and u_k_id=#{param2}
     </select>
     <select id="likeuserlist" resultType="hashmap">
     	select l.*, u.u_image, u.u_gender from tbl_like l,tbl_user u where u.u_id=l.u_id and h_x=#{h_x} and h_y=#{h_y}

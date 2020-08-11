@@ -289,7 +289,7 @@
 
 	
 	//////read(라이트박스)//////
-	$("#divlist")
+	$("#divlist, #likelist-area")
 			.on(
 					"click",".div_hotplace_list",
 					function(event) {

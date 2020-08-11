@@ -2,6 +2,7 @@ package com.example.domain;
 
 public class UserVO {
 	private String u_id;
+	private String u_k_id;
 	private String u_pass;
 	private String u_name;
 	private String u_tel;
@@ -13,6 +14,13 @@ public class UserVO {
 	private String u_key;
 	private String u_gender;
 	
+	
+	public String getU_k_id() {
+		return u_k_id;
+	}
+	public void setU_k_id(String u_k_id) {
+		this.u_k_id = u_k_id;
+	}
 	public String getU_gender() {
 		return u_gender;
 	}

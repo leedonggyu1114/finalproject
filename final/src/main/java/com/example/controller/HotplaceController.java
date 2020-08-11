@@ -48,6 +48,7 @@ public class HotplaceController {
 		}
 		model.addAttribute("list",list);
 	}
+	
 	@RequestMapping("taglist")
 	@ResponseBody
 	public List<HotplaceVO> taglist(String h_tag){
@@ -61,8 +62,9 @@ public class HotplaceController {
 		//session.invalidate();
 		//session.setAttribute("u_id", "u04");
 		String u_id=(String) session.getAttribute("u_id");
+		String u_k_id=(String) session.getAttribute("u_k_id");
 		ArrayList<HotplaceVO> likelist = new ArrayList<HotplaceVO>();
-		for(HotplaceVO vo:mapper.likelist(u_id)) {
+		for(HotplaceVO vo:mapper.likelist(u_id,u_k_id)) {
 			ArrayList<String> images = mapper.imagelist(vo.getH_x(), vo.getH_y());
 			vo.setH_i_images(images);
 			likelist.add(vo);
@@ -73,9 +75,9 @@ public class HotplaceController {
 	
 	@RequestMapping("likeset")
 	@ResponseBody
-	public ArrayList<HotplaceVO> likeset(String u_id){
+	public ArrayList<HotplaceVO> likeset(String u_id,String u_k_id){
 		System.out.println("likeset");
-		ArrayList<HotplaceVO> likeset = mapper.likelist(u_id);
+		ArrayList<HotplaceVO> likeset = mapper.likelist(u_id, u_k_id);
 		return likeset;
 	}
 	
@@ -97,15 +99,15 @@ public class HotplaceController {
 	
 	@RequestMapping(value="likeinsert", method=RequestMethod.POST)
 	@ResponseBody
-	public void likeinsert(String h_x, String h_y, String u_id) {
+	public void likeinsert(String h_x, String h_y, String u_id, String u_k_id) {
 		System.out.println("insert");
-		mapper.likeinsert(h_x, h_y, u_id);
+		mapper.likeinsert(h_x, h_y, u_id, u_k_id);
 	}
 	@RequestMapping(value="likedelete", method=RequestMethod.POST)
 	@ResponseBody
-	public void likedelete(String h_x, String h_y, String u_id) {
+	public void likedelete(String h_x, String h_y, String u_id, String u_k_id) {
 		System.out.println("delete");
-		mapper.likedelete(h_x, h_y, u_id);
+		mapper.likedelete(h_x, h_y, u_id, u_k_id);
 	}
 	
 	@RequestMapping("agechart")
