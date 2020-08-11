@@ -163,6 +163,8 @@
    var x;
    var y;
    var u_id="${u_id}";
+   var u_k_id="${u_k_id}";
+   
   
 
 
@@ -210,7 +212,7 @@
          type:"get",
          url:"likeset",
          dataType:"json",
-         data:{"u_id":u_id},
+         data:{"u_id":u_id,"u_k_id":u_k_id},
          success:function(data){
             var likeset=[];
             for(var i=0; i<data.length; i++){
@@ -252,7 +254,7 @@
             type:"get",
             url:"likeset",
             dataType:"json",
-            data:{"u_id":u_id},
+            data:{"u_id":u_id,"u_k_id":u_k_id},
             success:function(data){
                var check=true;
                if(check){
@@ -267,7 +269,7 @@
                   $.ajax({
                      type:"post",
                      url:"likeinsert",
-                     data:{"h_x":x,"h_y":y,"u_id":u_id},
+                     data:{"h_x":x,"h_y":y,"u_id":u_id,"u_k_id":u_k_id},
                      success:function(){
                         $(like).attr('src', '/resources/img/hotplace/like_hover.png');
                      }
@@ -276,7 +278,7 @@
                   $.ajax({
                      type:"post",
                      url:"likedelete",
-                     data:{"h_x":x,"h_y":y,"u_id":u_id},
+                     data:{"h_x":x,"h_y":y,"u_id":u_id,"u_k_id":u_k_id},
                      success:function(){
                         $(like).attr('src', '/resources/img/hotplace/like.png');
                      }

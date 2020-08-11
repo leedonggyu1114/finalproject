@@ -92,8 +92,22 @@
 							</tr>
 							<tr class="line-info a">
 								<td><span>ID</span></td>
-								<td><input type="text" id="u_id" value="${u_id}" readonly></td>
-								<td><input type="hidden" name="u_id" value="${u_id}"></td>
+								<c:if test="${u_id=='0' }">
+									<td>
+										<input type="text" id="u_id"  value="${u_k_id}" readonly>
+									</td>
+									<td>
+										<input type="hidden" name="u_id" value="${u_k_id}">
+									</td>
+								</c:if>
+								<c:if test="${u_k_id=='0' }">
+									<td>
+										<input type="text" id="u_id"  value="${u_id}" readonly>
+									</td>
+									<td>
+										<input type="hidden" name="u_id" value="${u_id}">
+									</td>
+								</c:if>
 							</tr>
 							<tr class="line-info">
 								<td><span>생년월일</span></td>
@@ -433,6 +447,7 @@
 <script>
 	$(":checkbox").css("display","none");
 	var u_id = "${u_id}";
+	var u_k_id = "${u_k_id}";
 	var c_id = "${c_id}";
 	var u_name = "${u_name}";
 	//유저태그
@@ -645,7 +660,8 @@
 		type : "get",
 		url : "/user/mypage/read",
 		data : {
-			"u_id" : u_id
+			"u_id" : u_id,
+			"u_k_id" : u_k_id
 		},
 		success : function(data) {
 			$("#u_name").val(data.read.u_name);

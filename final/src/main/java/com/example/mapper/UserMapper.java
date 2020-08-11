@@ -2,6 +2,8 @@ package com.example.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.example.domain.CompanyOptionVO;
 import com.example.domain.CompanyVO;
 import com.example.domain.UserTagVO;
@@ -25,6 +27,7 @@ public interface UserMapper {
 	//회원 읽어오기
 	public UserVO loginread(String u_id);
 	public UserVO read(String u_id);
+	public UserVO kakaoread(String u_id, String u_k_id);
 	public List<UserTagVO> readtag(String t_id);
 	public String readid(String u_id);
 	//업체 읽어오기

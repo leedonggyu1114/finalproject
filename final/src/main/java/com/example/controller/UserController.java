@@ -126,7 +126,7 @@ public class UserController {
 		System.out.println(vo.toString());
 		MultipartFile file=multi.getFile("file");
 		if(!file.isEmpty()) {
-			UserVO vo1=mapper.read(vo.getU_id());
+			UserVO vo1=mapper.kakaoread(vo.getU_id(),vo.getU_k_id());
 			//옛날 대표이미지 삭제
 			if(!vo1.getU_image().equals("")) {
 				new File(path+File.separator+vo1.getU_image()).delete();
@@ -157,9 +157,9 @@ public class UserController {
 	//유저 정보 읽어오기
 	@RequestMapping("/user/mypage/read")
 	@ResponseBody
-	public HashMap<String, Object> read(String u_id) {
+	public HashMap<String, Object> read(String u_id, String u_k_id) {
 		HashMap<String, Object> map=new HashMap<String, Object>();
-		UserVO vo=mapper.read(u_id);
+		UserVO vo=mapper.kakaoread(u_id, u_k_id);
 		List<UserTagVO> tvo=mapper.readtag(u_id);
 		map.put("readtag", tvo);
 		map.put("read", vo);
@@ -302,8 +302,8 @@ public class UserController {
 	//PASS찾기 아이디/이름/성명,이메일 체크
 	@RequestMapping("/user/nameCheckPass")
 	@ResponseBody
-	public int nameCheckPass(String id,String name,String birthday,String email) {
-		UserVO vo=mapper.read(id);
+	public int nameCheckPass(String u_id, String name,String birthday,String email) {
+		UserVO vo=mapper.read(u_id);
 		int chkNum=0;
 		if(vo.getU_name().equals(name)) {
 			if(vo.getU_birthday().equals(birthday)) {
@@ -420,6 +420,7 @@ public class UserController {
 				if(readVO.getU_key().equals("Y")) {
 					chkNum=2;
 					session.setAttribute("u_id", readVO.getU_id());
+					session.setAttribute("u_k_id", readVO.getU_k_id());
 					if(chkLogin.equals("1")) {
 						Cookie cookie=new Cookie("u_id",readVO.getU_id());
 						cookie.setPath("/");

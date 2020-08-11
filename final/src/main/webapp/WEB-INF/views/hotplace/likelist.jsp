@@ -26,6 +26,17 @@
 	line-height: 1.4em;
 	font-size: 16px;
 }
+.div_hotplace_plus {
+	position: relative;
+	overflow: hidden;
+	min-width: 300px;
+	max-width: 300px;
+	width: 100%;
+	color: #141414;
+	text-align: left;
+	line-height: 1.4em;
+	font-size: 16px;
+}
 
 .hotplace_like {
 	position: absolute;
@@ -33,6 +44,13 @@
 	top: 40px;
 	bottom: 50%;
 	cursor: pointer;
+}
+.hotplace_plus {
+	position: absolute;
+	right: 80px;
+	top: 130px;
+	cursor: pointer;
+	width:130px;
 }
 </style>
 </head>
@@ -44,7 +62,7 @@
       <div id="container">
          <!-- 여행추천list시작 -->
          <div id="likelist-area">
-           	<div style="margin-top:38px; margin-bottom:18px;"><img src="/resources/img/hotplace/likelist_title.png" width=320 style="position:relative; left:50%; transform:translate(-50%,0);"/></div>
+         	<div style="margin-top:38px; margin-bottom:18px;"><img src="/resources/img/hotplace/likelist_title.png" width=320 style="position:relative; left:50%; transform:translate(-50%,0);"/></div>
             <c:forEach items="${likelist }" var="vo">
                <figure style="float: left" class="div_hotplace_list">
                   <div style="width:250px;height:330px; border:0.5px solid gray; float:left; margin:25px; border-radius:0px 8px 8px 8px; cursor:pointer;">
@@ -57,6 +75,11 @@
                   </div>
                </figure>
             </c:forEach>
+           	<figure style="float: left" class="div_hotplace_plus">
+	            <div style="width:250px;height:330px; border:0.5px solid gray; float:left; margin:25px; border-radius:0px 8px 8px 8px; cursor:pointer;background:#f5f5f5">                
+	               <img src="/resources/img/hotplace/plus.jpg" class="hotplace_plus" />
+	            </div>
+	        </figure>
          </div>
          <!-- 여행추천list끝 -->
       </div>
@@ -68,6 +91,12 @@
    var x;
    var y;
    var u_id="${u_id}";
+   var u_k_id="${u_k_id}";
+   
+   //찜모록 추가하기
+   $(".div_hotplace_plus").on("click",function(){
+	  location.href="list"; 
+   });
    
    //찜목록 삭제하기
    $(".hotplace_like").on("click",function(e){
@@ -79,7 +108,7 @@
       $.ajax({
          type:"post",
          url:"likedelete",
-         data:{"h_x":x,"h_y":y,"u_id":u_id},
+         data:{"h_x":x,"h_y":y,"u_id":u_id,"u_k_id":u_k_id},
          success:function(){
             $(div).hide();
          }

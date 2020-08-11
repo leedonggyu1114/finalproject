@@ -19,6 +19,9 @@
     	 values(#{param1},${param2})
     </insert>
     
+    <select id="kakaoread" resultType="com.example.domain.UserVO">
+    	select * from tbl_user where u_id=#{param1} and u_k_id=#{param2}
+    </select>
     <select id="read" resultType="com.example.domain.UserVO">
     	select * from tbl_user where u_id=#{u_id}
     </select>
