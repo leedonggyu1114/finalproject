@@ -31,8 +31,8 @@ public class AirController {
 	AirPassengersService service;
 	
 		@RequestMapping(value="/transaction",method=RequestMethod.POST)
-		public void transaction(String a_p_residentRegistration,HttpSession session,Model model) {
-			System.out.println(a_p_residentRegistration);
+		public void transaction(PassengersVO vo,HttpSession session,Model model) {
+			System.out.println(vo);
 			session.setAttribute("id", "user1");
 			String u_id=(String)session.getAttribute("id");
 			//System.out.println(u_id);
@@ -47,7 +47,7 @@ public class AirController {
 		@RequestMapping("/kakaoPay")
 		public void kakaoPay(PassengersVO vo,Model model){
 			model.addAttribute("vo",vo);
-			//System.out.println(vo.toString());
+			System.out.println(vo.toString());
 		}
 		
 		@RequestMapping("/seatlist")

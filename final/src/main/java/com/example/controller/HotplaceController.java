@@ -52,7 +52,13 @@ public class HotplaceController {
 	@RequestMapping("taglist")
 	@ResponseBody
 	public List<HotplaceVO> taglist(String h_tag){
-		List<HotplaceVO> taglist=mapper.taglist(h_tag);
+		List<HotplaceVO> taglist=null;
+		if(h_tag=="") {
+			taglist=mapper.list();
+		}else {
+			taglist=mapper.taglist(h_tag);
+		}
+		
 		return taglist;
 	}
 	

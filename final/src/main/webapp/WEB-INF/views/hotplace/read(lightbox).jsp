@@ -133,7 +133,7 @@
 	            <button id="likeusernext" style="background:none; outline:none; border:none; position:absolute; right:-18px; top:140px; cursor:pointer;"><img src="/resources/img/hotplace/next_icon2.png" width=30 /></button>
             </div>
             <img src="/resources/img/hotplace/1.png" width=220 style="position:absolute; left:10px; top:8px;"/>
-            <img src="/resources/img/hotplace/refresh_icon.png" width=20 style="position:absolute; left:215px; top:19px; cursor:pointer;"/>
+            <img src="/resources/img/hotplace/refresh_icon.png" class="maprefresh" width=20 style="position:absolute; left:215px; top:19px; cursor:pointer;"/>
             <img src="/resources/img/hotplace/2.png" width=222 style="position:absolute; right:188px; top:8px;"/>
             <img src="/resources/img/hotplace/3.png" width=220 style="position:absolute; left:10px; top:51%;"/>
 		</div>
@@ -152,7 +152,10 @@
 	var imagepage = 0;
 	var images = [];
 	
-	
+	//맵새로고침
+	$(".maprefresh").on("click",function(){
+		getmap();
+	});
 	
 	//좋아요유저 넘기기(next)
 	$("#likeusernext").on("click",function(){

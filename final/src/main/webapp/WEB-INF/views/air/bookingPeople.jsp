@@ -54,7 +54,7 @@
 		<br>
 		<br>
 		<h1>예약자</h1>
-			<form  name="frm" action="kakaoPay">
+		<form name="frm" action="kakaoPay">
 			<input type="hidden" name="a_number" value="${go.a_number }">
 			<input type="hidden" name="a_number1" value="${back.a_number }">
 			<input type="hidden" name="sum" value="${sum}"> 
@@ -98,19 +98,19 @@
 			<table id="passengers">
 				<c:forEach var="i" begin="1" end="${sum }">
 					<tr>
-						<td>이름:<input type=text name='a_p_name'></td>
-						<td>성별:<select name='a_p_gender'>
+						<td>이름:<input type=text name='a_p_name[i].name'></td>
+						<td>성별:<select name='a_p_gender[i].name'>
 							<option value='male'>남</option>
 							<option value='female'>여</option>
 						</select>
 					</tr>
 					<tr class=row>
-						<td>주민번호:<input type=text name='a_p_residentRegistration' id="a_p_residentRegistration" maxlength="6" size="5">-<input type=text name='a_p_residentRegistration1' id="a_p_residentRegistration1" maxlength="7" size="5"></td>
-						<td>가는편 좌석:<input type=text seat="${go.a_number }" class=seatSelection name='a_p_seat' size=1></td>
+						<td>주민번호:<input type=text name='a_p_residentRegistration[i].name' id="a_p_residentRegistration" maxlength="6" size="5">-<input type=text name='a_p_residentRegistration1' id="a_p_residentRegistration1" maxlength="7" size="5"></td>
+						<td>가는편 좌석:<input type=text seat="${go.a_number }" class=seatSelection name='a_p_seat[i].name' size=1></td>
 						<c:if test="${a_startdate1 == null }">
 						</c:if>
 						<c:if test="${a_startdate1 != '' }">
-							<td>오는편 좌석:<input type=text seat="${back.a_number }" class=seatSelection name='a_p_backseat' size=1></td>
+							<td>오는편 좌석:<input type=text seat="${back.a_number }" class=seatSelection name='a_p_backseat[i].name' size=1></td>
 						</c:if>
 					</tr>
 				</c:forEach>

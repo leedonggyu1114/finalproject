@@ -110,7 +110,7 @@
       <div id="container">
 
          <div id="hotplace_tag">
-         	<button>#ALL</button>
+         	<button tag="">#ALL</button>
          	<button tag="01">#힐링</button>
          	<button tag="02">#헬스케어</button>
          	<button tag="03">#익사이팅</button>
