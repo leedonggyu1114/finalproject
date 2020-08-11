@@ -171,9 +171,15 @@
 	padding-left:10px;
 }
 
-#tag img{width:200px;width:200px;}
-
-label{padding:20px;}
+#tag img{
+	width:180px;
+	height:190px;
+	cursor:pointer;
+	margin-bottom:20px;
+	border-radius:8px 8px 8px 8px;
+	margin-left:10px;
+	margin-right:10px;
+}
 </style>
 </head>
 <body>
@@ -292,69 +298,68 @@ label{padding:20px;}
 			</tr>
 		</table>
 		</div>
-		<br>
 		<!-- 선호 태그 선택 -->
-		<div> 2가지 선택</div>
-		<div id="tag">
+		<div style="text-align:center; background:#efefef; padding:10px 0px 10px 0px; border-radius:3px 3px 3px 3px; margin:25px 5px 30px 5px; font-size:14.5px;">선호하는 여행 스타일을 선택해주세요. (2개)</div>
+		<div id="tag" style="text-align:center;">
 			<span id="tag1">
 				<input type="checkbox" id="t_tag1" name="t_tag" value="01">
 					<label for="t_tag1" id="tag1"><img src="/resources/img/usertag/가족과함께.png"></label>
-					<label for="t_tag1" id="tag1-1" style="display:none;"><img src="/resources/img/usertag/가족과함께1.png"></label>
+					<label for="t_tag1" id="tag1-1" style="display:none;"><img src="/resources/img/usertag/가족과함께.png" style="border:0.5px solid #0f4c81;"></label>
 			</span>
 			<span id="tag2">
 				<input type="checkbox" id="t_tag2" name="t_tag" value="02">
 					<label for="t_tag2" id="tag1"><img src="/resources/img/usertag/교육.png"></label>
-					<label for="t_tag2" id="tag1-1" style="display:none;"><img src="/resources/img/usertag/교육1.png"></label>
+					<label for="t_tag2" id="tag1-1" style="display:none;"><img src="/resources/img/usertag/교육.png" style="border:0.5px solid #0f4c81;"></label>
 			</span>
 			<span id="tag3">
 				<input type="checkbox" id="t_tag3" name="t_tag" value="03">
 					<label for="t_tag3" id="tag1"><img src="/resources/img/usertag/나만아는.png"></label>
-					<label for="t_tag3" id="tag1-1" style="display:none;"><img src="/resources/img/usertag/나만아는1.png"></label>
+					<label for="t_tag3" id="tag1-1" style="display:none;"><img src="/resources/img/usertag/나만아는.png" style="border:0.5px solid #0f4c81;"></label>
 			</span>
 			<span id="tag4">
 				<input type="checkbox" id="t_tag4" name="t_tag" value="04">
 					<label for="t_tag4" id="tag1"><img src="/resources/img/usertag/나혼자여행.png"></label>
-					<label for="t_tag4" id="tag1-1" style="display:none;"><img src="/resources/img/usertag/나혼자여행1.png"></label>
+					<label for="t_tag4" id="tag1-1" style="display:none;"><img src="/resources/img/usertag/나혼자여행.png" style="border:0.5px solid #0f4c81;"></label>
 			</span>
 			<span id="tag5">
 				<input type="checkbox" id="t_tag5" name="t_tag" value="05">
 					<label for="t_tag5" id="tag1"><img src="/resources/img/usertag/도심속여행.png"></label>
-					<label for="t_tag5" id="tag1-1" style="display:none;"><img src="/resources/img/usertag/도심속여행1.png"></label>
+					<label for="t_tag5" id="tag1-1" style="display:none;"><img src="/resources/img/usertag/도심속여행.png" style="border:0.5px solid #0f4c81;"></label>
 			</span>
 			<span id="tag6">
 				<input type="checkbox" id="t_tag6" name="t_tag" value="06">
 					<label for="t_tag6" id="tag1"><img src="/resources/img/usertag/먹방.png"></label>
-					<label for="t_tag6" id="tag1-1" style="display:none;"><img src="/resources/img/usertag/먹방1.png"></label>
+					<label for="t_tag6" id="tag1-1" style="display:none;"><img src="/resources/img/usertag/먹방.png" style="border:0.5px solid #0f4c81;"></label>
 			</span>
 			<span id="tag7">
 				<input type="checkbox" id="t_tag7" name="t_tag" value="07">
 					<label for="t_tag7" id="tag1"><img src="/resources/img/usertag/야경.png"></label>
-					<label for="t_tag7" id="tag1-1" style="display:none;"><img src="/resources/img/usertag/야경1.png"></label>
+					<label for="t_tag7" id="tag1-1" style="display:none;"><img src="/resources/img/usertag/야경.png" style="border:0.5px solid #0f4c81;"></label>
 			</span>
 			<span id="tag8">
 				<input type="checkbox" id="t_tag8" name="t_tag" value="08">
 					<label for="t_tag8" id="tag1"><img src="/resources/img/usertag/연인과함께.png"></label>
-					<label for="t_tag8" id="tag1-1" style="display:none;"><img src="/resources/img/usertag/연인과함께1.png"></label>
+					<label for="t_tag8" id="tag1-1" style="display:none;"><img src="/resources/img/usertag/연인과함께.png" style="border:0.5px solid #0f4c81;"></label>
 			</span>
 			<span id="tag9">
 				<input type="checkbox" id="t_tag9" name="t_tag" value="09">
 					<label for="t_tag9" id="tag1"><img src="/resources/img/usertag/익사이팅.png"></label>
-					<label for="t_tag9" id="tag1-1" style="display:none;"><img src="/resources/img/usertag/익사이팅1.png"></label>
+					<label for="t_tag9" id="tag1-1" style="display:none;"><img src="/resources/img/usertag/익사이팅.png" style="border:0.5px solid #0f4c81;"></label>
 			</span>
 			<span id="tag10">
 				<input type="checkbox" id="t_tag10" name="t_tag" value="10">
 					<label for="t_tag10" id="tag1"><img src="/resources/img/usertag/친구와함께.png"></label>
-					<label for="t_tag10" id="tag1-1" style="display:none;"><img src="/resources/img/usertag/친구와함께1.png"></label>
+					<label for="t_tag10" id="tag1-1" style="display:none;"><img src="/resources/img/usertag/친구와함께.png" style="border:0.5px solid #0f4c81;"></label>
 			</span>
 			<span id="tag11">
 				<input type="checkbox" id="t_tag11" name="t_tag" value="11">
 					<label for="t_tag11" id="tag1"><img src="/resources/img/usertag/헬스케어.png"></label>
-					<label for="t_tag11" id="tag1-1" style="display:none;"><img src="/resources/img/usertag/헬스케어1.png"></label>
+					<label for="t_tag11" id="tag1-1" style="display:none;"><img src="/resources/img/usertag/헬스케어.png" style="border:0.5px solid #0f4c81;"></label>
 			</span>
 			<span id="tag12">
 				<input type="checkbox" id="t_tag12" name="t_tag" value="12">
 					<label for="t_tag12" id="tag1"><img src="/resources/img/usertag/힐링.png"></label>
-					<label for="t_tag12" id="tag1-1" style="display:none;"><img src="/resources/img/usertag/힐링1.png"></label>
+					<label for="t_tag12" id="tag1-1" style="display:none;"><img src="/resources/img/usertag/힐링.png" style="border:0.5px solid #0f4c81;"></label>
 			</span>
 		</div>
 		 <br>

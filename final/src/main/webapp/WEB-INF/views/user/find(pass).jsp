@@ -171,7 +171,7 @@ $("#passreset").hide();
 		$.ajax({
 			type:"post",
 			url:"/user/nameCheckPass",
-			data:{"id":id,"name":name,"birthday":birthday,"email":email},
+			data:{"u_id":id,"name":name,"birthday":birthday,"email":email},
 			success:function(data){
 				if(data==0){
 					alert("입력한 정보와 일치하는 회원정보가 존재하지 않습니다. 이름,생년월일,이메일 주소를 확인해 주세요.");

@@ -4,7 +4,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>회원 가입</title>
+<title>여행의 설렘 TOURSUM !</title>
+<link rel="shortcut icon" type="image⁄x-icon" href="/resources/img/title_logo.png">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/style.css" />
 <style>
 	#signup-area {

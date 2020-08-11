@@ -12,6 +12,7 @@ public interface HotplaceMapper {
 	
 	public List<HotplaceVO> list();
 	public ArrayList<String> imagelist(@Param("h_x") String h_x, @Param("h_y") String h_y);
+	public List<HotplaceVO> taglist(String tag);
 	//public HashMap<String, Object> agefell(HashMap<String, Object> map);
 	public int age10(@Param("h_x") String h_x, @Param("h_y") String h_y);
 	public int age20(@Param("h_x") String h_x, @Param("h_y") String h_y);
@@ -20,8 +21,8 @@ public interface HotplaceMapper {
 	public int age50(@Param("h_x") String h_x, @Param("h_y") String h_y);
 	public int sexM(@Param("h_x") String h_x, @Param("h_y") String h_y);
 	public int sexF(@Param("h_x") String h_x, @Param("h_y") String h_y);
-	public void likeinsert(@Param("h_x") String h_x, @Param("h_y") String h_y, @Param("u_id") String u_id);
-	public void likedelete(@Param("h_x") String h_x, @Param("h_y") String h_y, @Param("u_id") String u_id);
-	public ArrayList<HotplaceVO> likelist(String u_id);
+	public void likeinsert(@Param("h_x") String h_x, @Param("h_y") String h_y, @Param("u_id") String u_id, @Param("u_k_id") String u_k_id);
+	public void likedelete(@Param("h_x") String h_x, @Param("h_y") String h_y, @Param("u_id") String u_id, @Param("u_k_id") String u_k_id);
+	public ArrayList<HotplaceVO> likelist(String u_id,String u_k_id);
 	public ArrayList<HashMap<String, Object>> likeuserlist(@Param("h_x") String h_x, @Param("h_y") String h_y);
 }

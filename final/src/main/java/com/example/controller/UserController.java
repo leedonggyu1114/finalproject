@@ -85,8 +85,7 @@ public class UserController {
 	@RequestMapping(value="/user/mypage/usercancel",method=RequestMethod.POST)
 	public String usercancelPost(String u_id,HttpSession session,HttpServletRequest request) {
 		System.out.println(u_id);
-		mapper.deleteTag(u_id);
-		mapper.delete(u_id);
+		mapper.usercancel(u_id);
 		session.invalidate();
 		session=request.getSession(true);
 		return "redirect:/";
@@ -167,9 +166,10 @@ public class UserController {
 		MultipartFile file=multi.getFile("file");
 		UserVO vo1=mapper.read(vo.getU_id());
 		if(!file.isEmpty()) {
+			UserVO vo2=mapper.kakaoread(vo.getU_id(),vo.getU_k_id());
 			//옛날 대표이미지 삭제
-			if(!vo1.getU_image().equals("")) {
-				new File(path+File.separator+vo1.getU_image()).delete();
+			if(!vo2.getU_image().equals("")) {
+				new File(path+File.separator+vo2.getU_image()).delete();
 			}
 			String image=System.currentTimeMillis()+file.getOriginalFilename();
 			file.transferTo(new File(path + File.separator + image));
@@ -209,9 +209,9 @@ public class UserController {
 	//유저 정보 읽어오기
 	@RequestMapping("/user/mypage/read")
 	@ResponseBody
-	public HashMap<String, Object> read(String u_id) {
+	public HashMap<String, Object> read(String u_id, String u_k_id) {
 		HashMap<String, Object> map=new HashMap<String, Object>();
-		UserVO vo=mapper.read(u_id);
+		UserVO vo=mapper.kakaoread(u_id, u_k_id);
 		List<UserTagVO> tvo=mapper.readtag(u_id);
 		map.put("readtag", tvo);
 		map.put("read", vo);
@@ -354,8 +354,8 @@ public class UserController {
 	//PASS찾기 아이디/이름/성명,이메일 체크
 	@RequestMapping("/user/nameCheckPass")
 	@ResponseBody
-	public int nameCheckPass(String id,String name,String birthday,String email) {
-		UserVO vo=mapper.read(id);
+	public int nameCheckPass(String u_id, String name,String birthday,String email) {
+		UserVO vo=mapper.read(u_id);
 		int chkNum=0;
 		if(vo.getU_name().equals(name)) {
 			if(vo.getU_birthday().equals(birthday)) {
@@ -465,14 +465,14 @@ public class UserController {
 	@RequestMapping(value="/user/loginCheck",method=RequestMethod.POST)
 	@ResponseBody
 	public int loginCheck(String u_id, String u_pass, HttpSession session, String chkLogin, HttpServletResponse response) {
-		UserVO readVO=mapper.read(u_id);
+		UserVO readVO=mapper.loginread(u_id);
 		int chkNum=0;
 		if(readVO!=null) {
 			if(readVO.getU_pass().equals(u_pass)) {
 				if(readVO.getU_key().equals("Y")) {
 					chkNum=2;
 					session.setAttribute("u_id", readVO.getU_id());
-					session.setAttribute("u_k_id", "0");
+					session.setAttribute("u_k_id", readVO.getU_k_id());
 					if(chkLogin.equals("1")) {
 						Cookie cookie=new Cookie("u_id",readVO.getU_id());
 						cookie.setPath("/");

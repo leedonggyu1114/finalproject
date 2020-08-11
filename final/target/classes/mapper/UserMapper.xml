@@ -22,12 +22,18 @@
     	insert into tbl_company_option(c_o_id,c_o_option)
     	 values(#{param1},${param2})
     </insert>
-    
+   
+    <select id="kakaoread" resultType="com.example.domain.UserVO">
+    	select * from tbl_user where u_id=#{param1} and u_k_id=#{param2}
+    </select>
     <select id="read" resultType="com.example.domain.UserVO">
     	select * from tbl_user where u_id=#{u_id}
     </select>
     <select id="readkakao" resultType="string">
     	select u_k_id from tbl_user where u_k_id=#{u_k_id}
+    </select>
+    <select id="loginread" resultType="com.example.domain.UserVO">
+    	select * from tbl_user where u_id=#{u_id} and u_status=0
     </select>
     <select id="readtag" resultType="com.example.domain.UserTagVO">
     	select * from tbl_tag where t_id=#{t_id}
@@ -64,11 +70,17 @@
     </update>
     
     
+    <update id="usercancel">
+    	update tbl_user set u_status=2 where u_id=#{u_id}
+    </update>
     <delete id="delete">
     	delete from tbl_user where u_id=#{u_id}
     </delete>
     <delete id="deleteTag">
     	delete from tbl_tag where t_id=#{t_id}
+    </delete>
+    <delete id="deletehotplacelike">
+    	delete from tbl_like where u_id=#{u_id}
     </delete>
     <delete id="deleteCompany">
     	delete from tbl_company where c_id=#{c_id}
@@ -76,6 +88,7 @@
     <delete id="deleteOption">
     	delete from tbl_company_option where c_o_id=#{c_o_id}
     </delete>
+    
     
     <select id="checkName" resultType="int">
    		 select count(*) from tbl_user where u_name=#{param2} and u_birthday=#{param1} and u_key="Y"
@@ -116,5 +129,4 @@
     	update tbl_company set c_tel=#{c_tel}, c_pass=#{c_pass}, c_email=#{c_email}, c_ceo=#{c_ceo}, c_ceo_tel=#{c_ceo_tel}, c_detail=#{c_detail}, c_area=#{c_area}
     	where c_id=#{c_id}
     </update>
-
 </mapper>
