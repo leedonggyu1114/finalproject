@@ -1,5 +1,6 @@
 package com.example.controller;
 
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.domain.UserVO;
 import com.example.mapper.UserMapper;
+
 import com.fasterxml.jackson.databind.JsonNode;
 
 
@@ -38,15 +40,27 @@ public class KakaoLoginController {
 	        //세션에 담아준다.
 	        session.setAttribute("token", token);
 	        
+	        
 	        // access_token을 통해 사용자 정보 요청
 	        JsonNode userInfo = kakao_restapi.getKakaoUserInfo(token);
+	        /*
+			@SuppressWarnings("deprecation")
+			JsonParser parser=new JsonParser();
+	        JsonElement element= parser.parse(userInfo);
+	        
+	        JsonObject properties1 = element.getAsJsonObject().get("properties").getAsJsonObject();
+	        JsonObject kakao_account1 = element.getAsJsonObject().get("kakao_account").getAsJsonObject();
+	        String nickname1 = properties1.getAsJsonObject().get("nickname").getAsString();
+	        String email1 = kakao_account1.getAsJsonObject().get("email").getAsString();
+	        System.out.println(nickname1+"//"+email1);
+	        */
 
 	        // Get id
 	        String id = userInfo.path("id").asText();
+	        
 	        // 유저정보 카카오에서 가져오기 Get properties
 	        JsonNode properties = userInfo.path("properties");
 	        JsonNode kakao_account = userInfo.path("kakao_account");
-	        System.out.println(userInfo.path("properties").asText());
 	        
 	       String name = properties.path("nickname").asText();
 	       String email = kakao_account.path("email").asText();
@@ -58,6 +72,7 @@ public class KakaoLoginController {
 	        System.out.println("email : " + email);
 	        System.out.println("thumbnail_image : "+thumbnailImage);
 	        System.out.println("profileimage : "+profileImage);
+
 	        UserVO vo= new UserVO();
 	        vo.setU_k_id(id);
 	        vo.setU_pass("");
@@ -67,16 +82,21 @@ public class KakaoLoginController {
 	        vo.setU_address("");
 	        vo.setU_key("Y");
 	        String vo1=mapper.readkakao(id);
-	        System.out.println(vo1+"..");
 	        if(vo1==null) {
 	        	mapper.insertKakao(vo);
+	        	session.setAttribute("kakaoinfo", "0");
 	        }
 	        session.setAttribute("u_id", "0");
 	        session.setAttribute("u_k_id", id);
 	        return "/index";
 	    }
 
-	 @RequestMapping(value = "/user/logout", produces = "application/json")
+	 private String userInfo() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@RequestMapping(value = "/user/logout", produces = "application/json")
 	    public String Logout(HttpSession session) {
 	        //kakao restapi 객체 선언
 	        kakao_restapi kr = new kakao_restapi();

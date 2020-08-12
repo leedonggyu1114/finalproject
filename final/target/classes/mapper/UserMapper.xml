@@ -11,7 +11,7 @@
     </insert>
     <insert id="insertUsertag">
     	insert into tbl_tag(t_id,t_k_id,t_tag)
-    	values(#{param1},"0",#{param2})
+    	values(#{param1},#{param2},#{param3})
     </insert>
     
     <insert id="insertCompany">
@@ -118,6 +118,10 @@
         <update id="updateUser2">
     	update tbl_user set u_address=#{u_address}, u_email=#{u_email}, u_pass=#{u_pass}
     	where u_id=#{u_id}
+    </update>
+    <update id="updateKakao">
+    	update tbl_user set u_name=#{u_name}, u_gender=#{u_gender}, u_tel=#{u_tel}, u_address=#{u_address}, u_email=#{u_email}
+    	where u_k_id=#{u_k_id}
     </update>
     
     <!-- 업체회원수정  -->

@@ -650,7 +650,7 @@
 				"u_id" : u_id
 			},
 			success : function(data) {
-				if (data.read.u_pass != now_pass) {
+				if (data.readuser.u_pass != now_pass) {
 					alert("현재비밀번호를 확인하세요.");
 				} else {
 					var new_pass = $("#newPass").val();

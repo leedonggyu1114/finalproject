@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -71,7 +72,9 @@
 	</style>
 </head>
 <body>
-
+	<c:if test="${kakaoinfo==0}">
+		<jsp:include page="user/mypage/kakaolightbox.jsp"/>
+	</c:if>
 	<jsp:include page="sidebar.jsp"/>
 	<button type="button" name="button" class="ac-sub-go-top" style="cursor:pointer;">위로</button>
 	<div id="page">
@@ -314,7 +317,7 @@
 										+ data[i].h_x
 										+ "' y='" + data[i].h_y + "'/>";
 								html += "<div style='text-align:center;'>"+data[i].h_title+"</div>";
-								html += "<div style='text-align:center;width:100px'>"+data[i].h_detail+"</div>";
+// 								html += "<div style='text-align:center;width:100px'>"+data[i].h_detail+"</div>";
 								html += "</div>";
 							}else{
 								html += "<div class='latelyhotplace"+i+"'>";
@@ -324,7 +327,7 @@
 										+ data[i].h_x
 										+ "' y='" + data[i].h_y + "'/>";
 								html += "<div style='text-align:center'>"+data[i].h_title+"</div>";	
-								html += "<div style='text-align:center;width:100px'>"+data[i].h_detail+"</div>";
+// 								html += "<div style='text-align:center;width:100px'>"+data[i].h_detail+"</div>";
 								html += "</div>";
 							}
 							
