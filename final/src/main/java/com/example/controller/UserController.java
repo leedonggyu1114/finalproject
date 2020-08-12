@@ -48,6 +48,11 @@ public class UserController {
 
 	@Autowired
 	private UserMailSendService mailSender;
+	@RequestMapping("/user/mypage/kakaolightbox")
+	public void lightbox() {
+		
+	}
+	
 	
 	@RequestMapping("/user/mypage/usercancel")
 	public void usercancel() {
@@ -185,7 +190,7 @@ public class UserController {
 			mapper.deleteTag(vo.getU_id());
 			for (int i = 0; i < arrayParam.length; i++) { 
 				System.out.println(arrayParam[i]); 
-				mapper.insertUsertag(vo.getU_id(),arrayParam[i]);
+				mapper.insertUsertag(vo.getU_id(),"0",arrayParam[i]);
 				}
 		}else {
 			if(vo.getU_pass().equals("")) {
@@ -198,7 +203,7 @@ public class UserController {
 			mapper.deleteTag(vo.getU_id());
 			for (int i = 0; i < arrayParam.length; i++) { 
 				System.out.println(arrayParam[i]); 
-				mapper.insertUsertag(vo.getU_id(),arrayParam[i]);
+				mapper.insertUsertag(vo.getU_id(),"0",arrayParam[i]);
 				}
 		}
 		
@@ -212,13 +217,27 @@ public class UserController {
 	public HashMap<String, Object> read(String u_id, String u_k_id) {
 		HashMap<String, Object> map=new HashMap<String, Object>();
 		UserVO vo=mapper.kakaoread(u_id, u_k_id);
+//		UserVO uvo=mapper.read(u_id);
 		List<UserTagVO> tvo=mapper.readtag(u_id);
 		map.put("readtag", tvo);
 		map.put("read", vo);
+//		map.put("readuser", uvo);
 		return map;
 	}
 	
-	
+	//카카오 업데이트 
+	@RequestMapping("/updateKakao")
+	public String updateKakao(UserVO vo, HttpServletRequest request) throws Exception {
+			
+			String[] arrayParam = request.getParameterValues("t_tag");
+			mapper.updateKakao(vo);
+			for (int i = 0; i < arrayParam.length; i++) { 
+				System.out.println(arrayParam[i]); 
+				mapper.insertUsertag("0",vo.getU_k_id(),arrayParam[i]);
+				}
+			
+		return "redirect:/";
+	}
 	@RequestMapping("/user/mypage/infomation")
 	public void information() {
 		
@@ -400,9 +419,18 @@ public class UserController {
 	
 	//로그아웃 페이지
 	@RequestMapping("/user/logout")
-	public String logout(HttpSession session, HttpServletRequest request) {
+	public String logout(HttpSession session, HttpServletRequest request,HttpServletResponse response) {
 		session.invalidate();
 		session=request.getSession(true);
+		if(request.getCookies()!=null) {
+			Cookie cookie=new Cookie("u_id",null);
+			Cookie cookiec=new Cookie("c_id",null);
+			cookie.setPath("/");
+			cookie.setMaxAge(0);
+			cookiec.setPath("/");
+			cookiec.setMaxAge(0);
+			response.addCookie(cookie);
+		}
 		return "redirect:/user/login";
 	}
 	
@@ -466,6 +494,7 @@ public class UserController {
 	@ResponseBody
 	public int loginCheck(String u_id, String u_pass, HttpSession session, String chkLogin, HttpServletResponse response) {
 		UserVO readVO=mapper.loginread(u_id);
+		System.out.println(chkLogin);
 		int chkNum=0;
 		if(readVO!=null) {
 			if(readVO.getU_pass().equals(u_pass)) {
@@ -492,8 +521,9 @@ public class UserController {
 	//업체로그인
 	@RequestMapping(value="/user/loginCheckCompany",method=RequestMethod.POST)
 	@ResponseBody
-	public int loginCheckCompany(String c_id,String c_pass,String c_number,HttpSession session) {
+	public int loginCheckCompany(String c_id,String c_pass,String c_number, String chkLogin,HttpSession session,HttpServletResponse response) {
 		CompanyVO readVO=mapper.readCompany(c_id);
+		System.out.println(chkLogin);
 		int chkNum=0;
 		
 		if(readVO!=null) {
@@ -503,6 +533,12 @@ public class UserController {
 						//성공
 						chkNum=2;
 						session.setAttribute("c_id", readVO.getC_id());
+						if(chkLogin.equals("1")) {
+							Cookie cookie=new Cookie("c_id",readVO.getC_id());
+							cookie.setPath("/");
+							cookie.setMaxAge(60*60);
+							response.addCookie(cookie);
+						}
 					}else {
 						//이메일 인증이 완료되지 않은 상태;
 						chkNum=3;
@@ -553,7 +589,7 @@ public class UserController {
 				mapper.insert(vo);
 				for (int i = 0; i < arrayParam.length; i++) { 
 					System.out.println(arrayParam[i]); 
-					mapper.insertUsertag(vo.getU_id(),arrayParam[i]);
+					mapper.insertUsertag(vo.getU_id(),"0",arrayParam[i]);
 					}
 				mailSender.mailSendWithUserKey(vo.getU_email(), vo.getU_id(), request);
 			}
@@ -572,7 +608,7 @@ public class UserController {
 			mapper.insert(vo);
 			for (int i = 0; i < arrayParam.length; i++) { 
 				System.out.println(arrayParam[i]); 
-				mapper.insertUsertag(vo.getU_id(),arrayParam[i]);
+				mapper.insertUsertag(vo.getU_id(),"0",arrayParam[i]);
 				}
 			mailSender.mailSendWithUserKey(vo.getU_email(), vo.getU_id(), request);
 		}

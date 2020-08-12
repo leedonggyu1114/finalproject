@@ -12,7 +12,7 @@ import com.example.domain.UserVO;
 public interface UserMapper {
 	//회원가입
 	public void insert(UserVO vo);
-	public void insertUsertag(String t_id, String t_tag);
+	public void insertUsertag(String t_id, String t_k_id,String t_tag);
 	public void insertKakao(UserVO vo);
 	//업체 회원가입
 	public void insertCompany(CompanyVO vo);
@@ -55,6 +55,7 @@ public interface UserMapper {
 	//회원 수정
 	public void updateUser(UserVO vo);
 	public void updateUser2(UserVO vo);
+	public void updateKakao(UserVO vo);
 	//업체 회원 수정
 	public void updateCompany(CompanyVO vo);
 	public void updateCompany2(CompanyVO vo);
