@@ -62,6 +62,21 @@ public class HotplaceController {
 		return taglist;
 	}
 	
+	@RequestMapping("usertaglist")
+	@ResponseBody
+	public List<HotplaceVO> usertaglist(String u_id,String u_k_id){
+		List<HotplaceVO> usertaglist=mapper.usertaglist(u_id, u_k_id);
+		return usertaglist;
+	}
+	
+	@RequestMapping("latelyhotplace")
+	@ResponseBody
+	public List<HashMap<String, Object>> latelyhotplace(){
+		List<HashMap<String, Object>> latelyhotplace=mapper.latelyhotplace();
+		System.out.println(latelyhotplace);
+		return latelyhotplace;
+	}
+	
 	
 	@RequestMapping("likelist")
 	public void likelist(Model model,HttpSession session) {

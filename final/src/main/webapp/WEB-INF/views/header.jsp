@@ -10,7 +10,7 @@
 	
 </head>
 <body>
-${u_id},${u_k_id}
+<%-- ${u_id},${u_k_id} --%>
 	<div id="div_header_signup">
 		<c:if test="${u_id==null && u_k_id==null && c_id==null}">
 			<a href="/user/login">로그인</a>
