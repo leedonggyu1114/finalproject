@@ -657,6 +657,8 @@ ul,li{list-style:none;}
 				$("#booking .a_price").html(a_price * (people + child) + " 원");
 				//location.href="bookingPeople?a_number"+a_number;
 				$("#air_check_none2").show();
+				sumprice1=a_price*(people+child);
+	            $("#priceSum").html(parseInt(sumprice1)+parseInt(sumprice2));
 			}
 			
 		});
@@ -682,6 +684,8 @@ ul,li{list-style:none;}
 				$("#booking1 .bookPoeple").html("성인 " + people + "  청소년 " + child);
 				//$("#booking1 .bookChild").append(child); 
 				$("#booking1 .a_price1").html(a_price * (people + child) + " 원");
+				sumprice2=a_price*(people+child);
+	            $("#priceSum").html(parseInt(sumprice1)+parseInt(sumprice2));
 			}
 		});
 
