@@ -4,277 +4,506 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="UTF-8">
-	<title>Insert title here</title>
-	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-	<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
-	<style>
-		#darken-background {position:absolute;top:0px;left:0px;
-         	right:0px; height:100%;   display:none;background:rgba(0, 0, 0, 0.5);
-         	z-index:10000;overflow-y:scroll;}
-		#lightbox {width:700px;margin:20px auto;padding:15px;
-       		border: 1px solid #333333;border-radius:5px;background:white;
-       		box-shadow:0px 5px 5px rgba(34, 25, 25, 0.4);text-align:center;}
-       	.seat{float:left;}
-	</style>
+   <meta charset="UTF-8">
+   <title>여행의 설렘 TOURSUM !</title>
+   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+   <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+   <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/style.css"/>
+   <link rel="shortcut icon" type="image⁄x-icon" href="/resources/img/title_logo.png">
+<style>
+#darken-background {
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	right: 0px;
+	height: 100%;
+	display: none;
+	background: rgba(0, 0, 0, 0.5);
+	z-index: 10000;
+	overflow-y: scroll;
+}
+
+#lightbox {
+	width: 800px;
+	height:800px;
+	border: 1px solid #333333;
+	border-radius: 5px;
+	background: white;
+	box-shadow: 0px 5px 5px rgba(34, 25, 25, 0.4);
+	text-align: center;
+	position:absolute; top:50%; left:50%;
+	transform:translate(-50%,-50%);
+	position:relative;
+	padding:70px 10px 10px 10px;
+}
+
+#lightbox #btnClose {
+	position:absolute;
+	top:5px;
+	right:-50px;
+	background:none;
+	border:none;
+	outline:none;
+	cursor:pointer;
+}
+
+.seat {
+	float: left;
+}
+
+.seat .seat1 {
+	width:70px;
+	height:40px;
+	margin:5px;
+	cursor:pointer;
+}
+
+.div_seat1 {
+	margin-right:30px;
+	margin-left:35px;
+}
+
+.div_seat2 {
+	margin-right:30px;
+}
+
+.div_seat3 {
+}
+
+
+
+#air_booking_area {
+	position:relative;
+	left:50%;
+	transform:translate(-50%,0);
+	width:1000px;
+	padding-top:40px;
+	padding-bottom:60px;
+}
+#booking_user_info,
+#passengers {
+	border-collapse:collapse;
+	margin-top:10px;
+	margin-bottom:60px;
+}
+#booking_user_info th,
+#passengers th {
+	width:130px;
+}
+#booking_user_info input,
+#booking_user_info select,
+#passengers input[type="text"] {
+	border:0.5px solid #e9e9e9;
+	outline:none;
+	cursor:pointer;
+	border-radius:5px;
+	height:40px;
+	padding:0px 10px 0px 10px;
+}
+#passengers input[type="text"] {
+	width:250px;
+}
+#booking_info {
+	border-collapse:collapse;
+	text-align:center;
+	margin-top:10px;
+	margin-bottom:60px;
+}
+
+#booking_info tr, #passengers tr, #booking_user_info tr {
+	height:90px;
+}
+
+#passengers input[type="radio"] {
+	display:none;
+}
+#passengers label {
+	display:inline-block;
+	width:60px;
+	height:40px;
+	border:0.5px solid #e9e9e9;
+	margin-left:-6.5px;
+	padding-top:8px;
+	cursor:pointer;
+	text-align:center;
+}
+#passengers input[type="radio"]:checked + label {
+	background:#e9e9e9;
+	width:60px;
+	border:0.5px solid #e9e9e9;
+	height:40px;
+	cursor:pointer;
+}
+</style>
 </head>
 <body>
-	<h1>예약info</h1>
-	<div>
-		<table>
-			<tr>
-				<td>구분</td>
-				<td>항공사</td>
-				<td>편명</td>
-				<td>출발시간</td>
-				<td>도착시간</td>
-			</tr>	
-			<tr>
-				<td>${startplace } > ${endplace }</td>
-				<td>${go.a_company }</td>
-				<td>${go.a_number }</td>
-				<td>${go.a_starttime }</td>
-				<td>${go.a_endtime }</td>
-			</tr>
-			<tr>
-				<c:if test="${a_startdate1 == null }">
-					<td>${endplace } > ${startplace }</td>
-				</c:if>
-				<c:if test="${a_startdate1 != '' }">
-					<td>${endplace } > ${startplace }</td>
-					<td>${back.a_company }</td>
-					<td>${back.a_number }</td>
-					<td>${back.a_starttime }</td>
-					<td>${back.a_endtime }</td>
-				</c:if>
-			</tr>
-		</table>
-		<br>
-		<br>
-		<h1>예약자</h1>
-			<form  name="frm" action="kakaoPay">
-			<input type="hidden" name="a_number" value="${go.a_number }">
-			<input type="hidden" name="a_number1" value="${back.a_number }">
-			<input type="hidden" name="sum" value="${sum}"> 
-			<table>
-				<tr>
-					<td>이름:<input type="text" name="payName"></td>
-					
-					<td>
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					 	이메일 : <input type="text" name="str_email01" id="str_email01" size="10"> @ <input type="text" name="str_email02" id="str_email02" size="10"> 
-					 	<select name="selectEmail" id="selectEmail"> 
-						 	<option value="1">직접입력</option> 
-						 	<option value="naver.com">naver.com</option> 
-						 	<option value="hanmail.net">hanmail.net</option> 
-						 	<option value="hotmail.com">hotmail.com</option> 
-						 	<option value="nate.com">nate.com</option> 
-						 	<option value="yahoo.co.kr">yahoo.co.kr</option> 
-						 	<option value="empas.com">empas.com</option> 
-						 	<option value="dreamwiz.com">dreamwiz.com</option> 
-						 	<option value="freechal.com">freechal.com</option> 
-						 	<option value="lycos.co.kr">lycos.co.kr</option> 
-						 	<option value="korea.com">korea.com</option> 
-						 	<option value="gmail.com">gmail.com</option> 
-						 	<option value="hanmir.com">hanmir.com</option> 
-						 	<option value="paran.com">paran.com</option> 
-					 	</select>
-					</td> 
-				</tr>
-				<tr>
-					<td>핸드폰번호:<input type="text" name=tel id="tel" onkeyup="keyevent(this);" placeholder="-빼고 입력해주세요 " maxlength="13"></td>
-					<td>
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						생년월일:<input type="text" name="u_birthday" id="birthday" size=15>
-					</td>
-				</tr>
-			</table>
-		<br>
-		<br>	
-	
-			<h1>탑승자</h1>		
-			<table id="passengers">
-				<c:forEach var="i" begin="1" end="${sum }">
-					<tr>
-						<td>이름:<input type=text name='a_p_name'></td>
-						<td>성별:<select name='a_p_gender'>
-							<option value='male'>남</option>
-							<option value='female'>여</option>
-						</select>
+	<div id="page">
+		<div id="header"><jsp:include page="../header.jsp" /></div>
+		<div id="menu"><jsp:include page="../menu.jsp" /></div>
+		<div id="container">
+			<div id="air_booking_area">
+				<img src="/resources/img/air/air_booking.png" width=450>
+				<table id="booking_info">
+					<tr style="border-top:2px solid #0f4c81; border-bottom:2px solid #0f4c81;">
+						<th width=200>구분</th>
+						<th width=200>항공사</th>
+						<th width=200>편명</th>
+						<th width=200>출발시간</th>
+						<th width=200>도착시간</th>
 					</tr>
-					<tr class=row>
-						<td>주민번호:<input type=text name='a_p_residentRegistration' id="a_p_residentRegistration" maxlength="6" size="5">-<input type=text name='a_p_residentRegistration1' id="a_p_residentRegistration1" maxlength="7" size="5"></td>
-						<td>가는편 좌석:<input type=text seat="${go.a_number }" class=seatSelection name='a_p_seat' size=1></td>
+					<tr style="border-bottom:0.5px solid gray;">
+						<td>${startplace } > ${endplace }</td>
+						<td>${go.a_company }</td>
+						<td>${go.a_number }</td>
+						<td>${go.a_starttime }</td>
+						<td>${go.a_endtime }</td>
+					</tr>
+					<tr style="border-bottom:2px solid #0f4c81;">
 						<c:if test="${a_startdate1 == null }">
+							<td>${endplace } > ${startplace }</td>
 						</c:if>
 						<c:if test="${a_startdate1 != '' }">
-							<td>오는편 좌석:<input type=text seat="${back.a_number }" class=seatSelection name='a_p_backseat' size=1></td>
+							<td>${endplace } > ${startplace }</td>
+							<td>${back.a_company }</td>
+							<td>${back.a_number }</td>
+							<td>${back.a_starttime }</td>
+							<td >${back.a_endtime }</td>
 						</c:if>
 					</tr>
-				</c:forEach>
-			</table>
-			 총 운임비:<input type="hidden" name="airsum"><span id="airsum"></span>
-		<input type="submit" value="카카오 결제하기">	
-	</form>
-	</div>
-	<div id="darken-background">
-		<div id="lightbox">
-			<div id="selectseat"></div>
-			<br>
-			<button id="btnClose">닫기</button>
+				</table>
+				
+				<img src="/resources/img/air/air_booking1.png" width=450>
+				<form name="frm" action="kakaoPay">
+					<input type="hidden" name="a_number" value="${go.a_number }">
+					<input type="hidden" name="a_number1" value="${back.a_number }">
+					<input type="hidden" name="sum" value="${sum}">
+					<table id="booking_user_info">
+						<tr style="border-top:2px solid #0f4c81;">
+							<th style="padding-top:20px;">예약자명</th>
+							<td width=250 style="padding-top:20px;"><input type="text" name="payName" style="width:100%;"></td>
+							<th style="padding-top:20px;">E-mail</th>
+							<td width=300 style="padding-top:20px;">
+								<input type="text" name="str_email" id="str_email" style="width:45.5%;"> @
+								<input type="text" name="str_email1" id="str_email1" style="width:45.5%;">
+							</td>
+							<td width=190 style="padding-top:20px;">	
+								<select name="selectEmail" id="selectEmail" style="margin-left:10px; width:136.19px;">
+									<option value="1">직접입력</option>
+									<option value="naver.com">naver.com</option>
+									<option value="hanmail.net">hanmail.net</option>
+									<option value="hotmail.com">hotmail.com</option>
+									<option value="nate.com">nate.com</option>
+									<option value="yahoo.co.kr">yahoo.co.kr</option>
+									<option value="empas.com">empas.com</option>
+									<option value="dreamwiz.com">dreamwiz.com</option>
+									<option value="freechal.com">freechal.com</option>
+									<option value="lycos.co.kr">lycos.co.kr</option>
+									<option value="korea.com">korea.com</option>
+									<option value="gmail.com">gmail.com</option>
+									<option value="hanmir.com">hanmir.com</option>
+									<option value="paran.com">paran.com</option>
+								</select>
+							</td>
+						</tr>
+						<tr style="border-bottom:2px solid #0f4c81;">
+							<th style="padding-bottom:20px;">휴대전화</th>
+							<td style="padding-bottom:20px;"><input type="text" name=tel id="tel" onkeyup="keyevent(this);" placeholder="-을 빼고 입력해주세요!" maxlength="13" style="width:100%;"></td>
+							<th style="padding-bottom:20px;">생년월일</th>
+							<td colspan=2 style="padding-bottom:20px;"><input type="text" name="u_birthday" id="birthday" style="width:300px;"></td>
+						</tr>
+					</table>
+
+					<img src="/resources/img/air/air_booking2.png" width=450>
+					<table id="passengers" style="border-top:2px solid #0f4c81;">
+						<c:forEach var="i" begin="1" end="${sum }">
+							<tr >
+								<th style="padding-top:20px;">이름</th>
+								<td width=250 style="padding-top:20px;"><input type=text name='a_p_name'></td>
+								<th style="padding-top:20px;">성별</th>
+								<td colspan=2 width=300 style="padding-left:10px;padding-top:20px;">
+									<input type="radio" name="a_p_gender" value="male" id="a_p_gender">
+									<label for="a_p_gender">남</label>
+									<input type="radio" name="a_p_gender" value="female" id="a_p_gender2">
+									<label for="a_p_gender2">여</label>
+								</td>
+								<td width=190></td>
+							</tr>
+							<tr class=row style="border-bottom:0.5px solid gray;">
+								<th style="padding-bottom:20px;">주민번호</th> <!-- <input type=text name='a_p_residentRegistration1'maxlength="6" size="5">-<input type=text name='a_p_residentRegistration2'maxlength="7" size="5"> -->
+								<td width=250 colspan=4 style="padding-bottom:20px;">
+									<input type=text name='a_p_residentregistration' 
+									id="a_p_residentregistration" onkeyup="keyevent(this);"
+									placeholder="- 을 빼고 입력해주세요 " maxlength="13">
+								</td>
+								<td></td>
+							</tr>
+						</c:forEach>
+						<tr class=row style="height:200px; border-bottom:2px solid #0f4c81;">
+							<th style="border-right:0.5px solid gray;">좌석선택 </th>
+							<td colspan=4 style="text-align:center;">
+								<span style="display:inline-block; text-align:center; margin-right:40px;">
+									가는항공 
+									<input type=text seat="${go.a_number }" class=seatSelection name='a_p_seat' style="width:100px; margin-left:10px;">
+								</span>
+								<c:if test="${a_startdate1 == null }">
+								</c:if>
+								<c:if test="${a_startdate1 != '' }">
+									<span style="display:inline-block; text-align:center;">
+										오는항공
+										<input type=text seat="${back.a_number }" class=seatSelection name='a_p_backseat' style="width:100px; margin-left:10px;">
+									</span>
+								</c:if>
+							</td>
+							<td></td>
+						</tr>
+					</table>
+					<div style="text-align:right;">
+						<div style="padding:0px 0px 10px 0px; font-size:18px;">총 운임비</div>
+						<input type="hidden" name="airsum">
+						<div style="font-size:30px; margin-bottom:20px;"><span id="airsum" style="color:red;margin-right:10px;"></span> 원</div>
+						<input type="submit" value="카카오페이 결제하기" 
+						style="padding:10px; width:200px; cursor:pointer; outline:none; 
+						border:none; border-radius:5px; background:#fddc3f;">
+					</div>
+				</form>
+			</div>
+			<div id="darken-background">
+				<div id="lightbox">
+					<div style="padding:30px;">좌석을 선택해주세요.</div>
+					<div id="selectseat"></div>
+					<button id="btnClose"><img src="/resources/img/air/close.png" width=30 height=30/></button>
+				</div>
+			</div>
 		</div>
+		<div id="footer"><jsp:include page="../footer.jsp" /></div>
 	</div>
-	
 </body>
 <script>
-	var sum="${sum}";
+	var sum = "${sum}";
 	var present;
-	var email="";
-	var a_startdate1="${a_startdate1}";	
-	var goPrice="${go.a_price}";
-	var backPrice="${back.a_price}";
+	var email = "";
+	var a_startdate1 = "${a_startdate1}";
+	var goPrice = "${go.a_price}";
+	var backPrice = "${back.a_price}";
 	var thisseat;
 	var seatSelection;
-	var a_p_residentRegistration="";
-	
+
 	//이메일 입력방식 선택 
-	$('#selectEmail').change(function(){ 
-		$("#selectEmail option:selected").each(function () { 
-			if($(this).val()== '1'){ //직접입력일 경우 
-				$("#str_email02").val(''); //값 초기화 
-				$("#str_email02").attr("disabled",false); //활성화 
-				}else{ //직접입력이 아닐경우 
-					$("#str_email02").val($(this).text()); //선택값 입력 
-					$("#str_email02").attr("disabled",true); //비활성화 
-					} 
-			}); 
+	$('#selectEmail').change(function() {
+		$("#selectEmail option:selected").each(function() {
+			if ($(this).val() == '1') { //직접입력일 경우 
+				$("#str_email").val(''); //값 초기화 
+				$("#str_email1").attr("disabled", false); //활성화 
+			} else { //직접입력이 아닐경우 
+				$("#str_email1").val($(this).text()); //선택값 입력 
+				$("#str_email1").attr("disabled", true); //비활성화 
+			}
 		});
-	
-	//핸드폰 하이픈 생성	
-	$(document).on("keyup", "#tel", function() { 
-		$(this).val( 
-				$(this).val().replace(/[^0-9]/g, "").replace(
-						/(^02|^0505|^1[0-9]{3}|^0[0-9]{2})([0-9]+)?([0-9]{4})$/,"$1-$2-$3").replace("--", "-") ); 
 	});
-	
+
+	//핸드폰 하이픈 생성   
+	$(document)
+			.on(
+					"keyup",
+					"#tel",
+					function() {
+						$(this)
+								.val(
+										$(this)
+												.val()
+												.replace(/[^0-9]/g, "")
+												.replace(
+														/(^02|^0505|^1[0-9]{3}|^0[0-9]{2})([0-9]+)?([0-9]{4})$/,
+														"$1-$2-$3").replace(
+														"--", "-"));
+					});
+	//주민번호 하이픈 생성   
+	$(document)
+			.on(
+					"keyup",
+					"#a_p_residentRegistration",
+					function() {
+						$(this)
+								.val(
+										$(this)
+												.val()
+												.replace(/[^0-9]/g, "")
+												.replace(
+														/^(?:[0-9]{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[1,2][0-9]|3[0,1]))-[1-4][0-9]{6}$/g)/*.replace("--","-") */);
+					});
 	//총 운임비 계산하기 
-	if(a_startdate1==""){
-		$(frm.airsum).val(goPrice*sum);
-		$("#airsum").html(goPrice*sum);
-	}else{
-		$(frm.airsum).val((parseInt(goPrice)+parseInt(backPrice))*parseInt(sum));
-		$("#airsum").html((parseInt(goPrice)+parseInt(backPrice))*parseInt(sum));
+	if (a_startdate1 == "") {
+		$(frm.airsum).val(goPrice * sum);
+		$("#airsum").html(goPrice * sum);
+	} else {
+		$(frm.airsum).val(
+				(parseInt(goPrice) + parseInt(backPrice)) * parseInt(sum));
+		$("#airsum").html(
+				(parseInt(goPrice) + parseInt(backPrice)) * parseInt(sum));
 	};
 
 	//결제하기 
-	$(frm).submit(function(e){
+	$(frm).submit(function(e) {
 		e.preventDefault();
+		/*
 		var payName=$(frm.payName).val();
-		email += $(frm.str_email01).val();
-		email += "@";
-		email += $(frm.str_email02).val();
 		var tel=$(frm.tel).val();
 		var birthday=$(frm.birthday).val();
 		var a_p_name=$(frm.a_p_name).val();
 		var a_p_gender=$(frm.a_p_gender).val();
-		a_p_residentRegistration += $(frm.a_p_residentRegistration).val();
-		a_p_residentRegistration += "-";
-		a_p_residentRegistration += $(frm.a_p_residentRegistration1).val();
-		$(frm.a_p_residentRegistration).val(a_p_residentRegistration);
 		var a_p_seat=$(frm.a_p_seat).val();
-		//alert(payName+email+tel+birthday+a_p_name+a_p_gender+a_p_residentRegistration+a_p_seat);
-		if(!confirm("여행을 떠날 준비가 되셨나요?"))return;
+		
+		//a_p_residentRegistration += $(frm.a_p_residentRegistration).val();
+		//a_p_residentRegistration += "-";
+		//a_p_residentRegistration += $(frm.a_p_residentRegistration1).val();
+		
+		var a_p_residentRegistration1=$(frm.a_p_residentRegistration1).val();;
+		var a_p_residentRegistration2=$(frm.a_p_residentRegistration2).val();;
+		var a_p_residentRegistration=a_p_residentRegistration1.concat("-",a_p_residentRegistration2);
+		$(frm.a_p_residentRegistration).val(a_p_residentRegistration);
+		 */
+		//alert(a_p_residentRegistration);
+		if (!confirm("여행을 떠날 준비가 되셨나요?"))
+			return;
 		//alert(email+"/"+a_p_residentRegistration);
 		//if(payName!="" || email!="" || tel!="" || birthday!="" || a_p_name!="" || a_p_gender!="" || a_p_residentRegistration!="" || a_p_seat!="" ){
-			frm.submit();
+		frm.submit();
 		//}else{
-			//alert("모든 text 창을 입력해주세요 ");
+		//alert("모든 text 창을 입력해주세요 ");
 		//}
 	});
 
-	
 	//좌석선택(라이트박스)
-	$("#passengers").on("click",".row .seatSelection",function(){
-		var a_number=$(this).attr("seat");
-		seatSelection=$(this);
-		$.ajax({
-			type:"get",
-			url:"/air/seatlist",
-			dataType:"json",
-			data:{"a_number":a_number},
-			success:function(data){
-				var html="";
-				var datalength=data.length;
-				var dataseat;
-				present = $(this);
-				for(var i=1; i<=12; i++){
-					html +="<div class='seat'><button class='seat1'>A"+i+"</button><button class='seat1'>B"+i+"</button></div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
-					html +="<div class='seat'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button class='seat1'>C"+i+"</button><button class='seat1'>D"+i+"</button><button class='seat1'>E"+i+"</button><button class='seat1'>F"+i+"</button></div>";
-					html +="<div class='seat'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button class='seat1'>G"+i+"</button><button class='seat1'>H"+i+"</button></div><br><br>";
-				}
-				$("#selectseat").html(html);
-				$("#darken-background").show();
-				
-				$(".seat1").each(function(){
-					thisseat=$(this);
-					for(var n=0; n<datalength; n++){
-						dataseat=data[n];
-						if(dataseat==thisseat.html()){
-							thisseat.attr('disabled',true);
-						}
-					}
-				});
-				
-			}
-		});
-		
-	});
+	$("#passengers")
+			.on(
+					"click",
+					".row .seatSelection",
+					function() {
+						var a_number = $(this).attr("seat");
+						seatSelection = $(this);
+						$
+								.ajax({
+									type : "get",
+									url : "/air/seatlist",
+									dataType : "json",
+									data : {
+										"a_number" : a_number
+									},
+									success : function(data) {
+										var html = "";
+										var datalength = data.length;
+										var dataseat;
+										present = $(this);
+										for (var i = 1; i <= 12; i++) {
+											html += "<div class='seat div_seat1'><button class='seat1 btn_seat1'>A"
+													+ i
+													+ "</button><button class='seat1 btn_seat1'>B"
+													+ i
+													+ "</button></div>";
+											html += "<div class='seat div_seat2'><button class='seat1 btn_seat2'>C"
+													+ i
+													+ "</button><button class='seat1 btn_seat2'>D"
+													+ i
+													+ "</button><button class='seat1 btn_seat2'>E"
+													+ i
+													+ "</button><button class='seat1 btn_seat2'>F"
+													+ i + "</button></div>";
+											html += "<div class='seat div_seat3'><button class='seat1 btn_seat3'>G"
+													+ i
+													+ "</button><button class='seat1 btn_seat3'>H"
+													+ i
+													+ "</button></div><br><br>";
+										}
+										$("#selectseat").html(html);
+										$("#darken-background").show();
+
+										$(".seat1")
+												.each(
+														function() {
+															thisseat = $(this);
+															for (var n = 0; n < datalength; n++) {
+																dataseat = data[n];
+																if (dataseat == thisseat
+																		.html()) {
+																	thisseat
+																			.attr(
+																					'disabled',
+																					true);
+																}
+															}
+														});
+
+										//디세이벌드
+										//             if("${a_startdate1 != null }"){
+										//                var seat=$(frm.a_p_backseat).val();
+										//                var thisseat=$(this).html();
+										//                alert(seat+thisseat);
+										//                if(seat == thisseat){
+										//                   thisseat.attr('disabled',true);
+										//                }
+										//             }
+									}
+								});
+
+					});
 	//라이트박스 닫기
-	$("#btnClose").on("click",function(){
+	$("#btnClose").on("click", function() {
 		$("#darken-background").hide();
 	});
 
-	//라이트박스안에 버튼선택시 인풋안으로 이동 
+    //라이트박스안에 버튼선택시 인풋안으로 이동 
 	$("#selectseat").on("click",".seat button",function(){
-		var seat1=$(this).html();
-		//$("#passengers .row .seatSelection").val(seat1);
-		seatSelection.val(seat1);
-		//$(this).parent().val(seat1);
-		$("#darken-background").hide();
-	});
+	   var seat1=$(this).html();
+	   seatSelection.val(seat1);
+	   $("#darken-background").hide();
+	}); 
+
+
 
 	//생일 받기
-	$(document).ready(function(){       
-	    $( "#birthday" ).datepicker({
-	    	  changeMonth: true, //년을 바꿀수 있는 셀렉박스 
-	          changeYear: true, //년을 바꿀수 있는 셀렉박스 
-	          showMonthAfterYear: true,
-	          nextText: '다음 달', 
-	          //dayNames: ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'],
-	          dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'], 
-	          monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
-	          monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
-	          dateFormat: "yy년mm월dd일",
-	          yearRange: 'c-100:c+0',
-	          maxDate:0
-	     });
-	    
-	    $('#sdate').datepicker("option", "maxDate", $("#edate").val());
-	    $('#sdate').datepicker("option", "onClose", function (selectedDate){
-	        $("#edate").datepicker( "option", "minDate", selectedDate );
-	        });
-	    
-	    $('#edate').datepicker();
-	    $('#edate').datepicker("option", "minDate", $("#sdate").val());
-	    $('#edate').datepicker("option", "onClose", function (selectedDate){
-	        $("#sdate").datepicker( "option", "maxDate", selectedDate );
-	       });   
-	});
+	$(document).ready(
+			function() {
+				$("#birthday")
+						.datepicker(
+								{
+									changeMonth : true, //년을 바꿀수 있는 셀렉박스 
+									changeYear : true, //년을 바꿀수 있는 셀렉박스 
+									showMonthAfterYear : true,
+									nextText : '다음 달',
+									//dayNames: ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'],
+									dayNamesMin : [ '일', '월', '화', '수', '목',
+											'금', '토' ],
+									monthNamesShort : [ '1월', '2월', '3월', '4월',
+											'5월', '6월', '7월', '8월', '9월',
+											'10월', '11월', '12월' ],
+									monthNames : [ '1월', '2월', '3월', '4월',
+											'5월', '6월', '7월', '8월', '9월',
+											'10월', '11월', '12월' ],
+									dateFormat : "yy년mm월dd일",
+									yearRange : 'c-100:c+0',
+									maxDate : 0
+								});
 
-	
-	
-	
+				$('#sdate').datepicker("option", "maxDate", $("#edate").val());
+				$('#sdate').datepicker(
+						"option",
+						"onClose",
+						function(selectedDate) {
+							$("#edate").datepicker("option", "minDate",
+									selectedDate);
+						});
+
+				$('#edate').datepicker();
+				$('#edate').datepicker("option", "minDate", $("#sdate").val());
+				$('#edate').datepicker(
+						"option",
+						"onClose",
+						function(selectedDate) {
+							$("#sdate").datepicker("option", "maxDate",
+									selectedDate);
+						});
+			});
 </script>
 </html>

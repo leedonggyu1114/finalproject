@@ -304,14 +304,14 @@ input:focus::-webkit-input-placeholder {color:transparent; }
 #div_container_quick p {
 	font-size: 30px;
 	position:absolute;
-	top:5%;
+	top:3%;
 	left:2%;
 }
 
 #div_container_quick .tapmenu {
 	display: inline-block;
 	position: absolute;
-	top:10%;
+	top:7%;
 	left: 2%;
 	width: 31%;
 	margin: 0 auto;
@@ -739,25 +739,6 @@ input:focus::-webkit-input-placeholder {color:transparent; }
 	box-shadow: rgba(0, 0, 0, 0.1) 1px 1px 0px;
 }
 
-/*Header*/
-h1, h2 {
-	text-shadow: none;
-	text-align: center;
-}
-
-h1 {
-	color: #666;
-	text-transform: uppercase;
-	font-size: 36px;
-}
-
-h2 {
-	color: #7f8c8d;
-	font-family: Neucha, Arial, sans serif;
-	font-size: 18px;
-	margin-bottom: 30px;
-}
-
 /* 슬라이드 배너 ANIMATION*/
 #slider-wrap ul, #pagination-wrap ul li {
 	-webkit-transition: all 0.3s cubic-bezier(1, .01, .32, 1);
@@ -768,24 +749,76 @@ h2 {
 }
 
 #div_container_area2 {
-	width: 100%;
-	height: 400px;
-	background: #F1EEEB;
-	z-index: -2;
+   width: 100%;
+   height: 500px;
+   background: #F1EEEB;
+   z-index: -2;
+   padding-top:80px;
+   padding-bottom:60px;
 }
 
 #div_container_area3 {
-	width: 100%;
-	height: 600px;
-	background: #EDF2F3;
-	z-index: -2;
+   width: 100%;
+   height: 800px;
+   background: #C1CECE;
+   z-index: -2;
+   padding-top:80px;
+   padding-bottom:80px;
 }
 
 #div_container_area4 {
-	width: 100%;
-	height: 450px;
-	background: #E8D8D0;
-	z-index: -2;
+   width: 100%;
+   height: 600px;
+   background: #EDF2F3;
+   z-index: -2;
+   padding-top:80px;
+   padding-bottom:60px;
+}
+
+#div_container_area5 {
+   width: 100%;
+   height: 600px;
+   background: #E8D8D0;
+   z-index: -2;
+   padding-top:80px;
+   padding-bottom:80px;
+}
+
+/* air search --------------------------- */
+#div_air_check {
+	text-align:center;
+	position:relative;
+	height:1070px;
+	z-index:-1;
+}
+#div_air_check #air_check_none1,
+#div_air_check #booking {
+	border:2px solid black;
+	border-collapse:collapse;
+	text-align:center;
+	font-size:13px;
+	position:absolute;
+	top:830px;
+	left:30px;
+}
+
+#div_air_check #air_check_none2,
+#div_air_check #booking1 {
+	border:2px solid black;
+	border-collapse:collapse;
+	text-align:center;
+	font-size:13px;
+	position:absolute;
+	top:830px;
+	right:30px;
+}
+
+#div_air_check .none_title {
+	height:70px;
+}
+
+#div_air_check .none_title2 {
+	height:35px;
 }
 
 /* footer ------------------------*/

@@ -48,10 +48,15 @@
 }
 .hotplace_plus {
 	position: absolute;
-	right: 80px;
-	top: 130px;
+	left: 41%;
+	top: 41%;
 	cursor: pointer;
-	width:130px;
+	width:50px;
+	height:50px;
+	transition: all ease 1s;
+}
+#div_hotplace_plus:hover .hotplace_plus {
+	transform: rotate( 720deg );
 }
 </style>
 </head>
@@ -77,8 +82,8 @@
                </figure>
             </c:forEach>
            	<figure style="float: left" class="div_hotplace_plus">
-	            <div style="width:250px;height:330px; border:0.5px solid gray; float:left; margin:25px; border-radius:0px 8px 8px 8px; cursor:pointer;background:#f5f5f5">                
-	               <img src="/resources/img/hotplace/plus.jpg" class="hotplace_plus" />
+	            <div id="div_hotplace_plus" style="width:250px;height:330px; border:0.5px solid gray; float:left; margin:25px; border-radius:0px 8px 8px 8px; cursor:pointer;background:#f5f5f5; position:relative;">                
+	               <div class="hotplace_plus"><img src="/resources/img/hotplace/plus.png" width=50 height=50 /></div>
 	            </div>
 	        </figure>
          </div>

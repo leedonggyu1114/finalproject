@@ -108,7 +108,7 @@
       <div id="header"><jsp:include page="../header.jsp"/></div>
       <div id="menu"><jsp:include page="../menu.jsp"/></div>
       <div id="container">
-
+		<div style="height:150px;"></div>
          <div id="hotplace_tag">
          	<button>#ALL</button>
          	<button tag="01">#힐링</button>
