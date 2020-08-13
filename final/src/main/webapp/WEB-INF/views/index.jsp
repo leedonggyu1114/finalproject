@@ -279,10 +279,12 @@
                </div>
             </div>
          </div>
-         <div id="div_container_area2" style="padding-top:80px;padding-bottom:40px">
-            <div style="margin-left:20px"><h2>고객님만을 위한 추천여행</h2></div>
-            <div id="userrecommendlist" style="margin:auto;margin-top:20px;"></div>
-         </div>
+         <c:if test="${u_id!=null }">    
+	         <div id="div_container_area2" style="padding-top:80px;padding-bottom:40px">
+	            <div style="margin-left:20px"><h2>고객님만을 위한 추천여행</h2></div>
+	            <div id="userrecommendlist" style="margin:auto;margin-top:20px;"></div>
+	         </div>
+         </c:if>
          <div id="div_container_area3"> <!-- 땡처리 -->
          
          </div>
@@ -304,10 +306,15 @@
    $(".staycount").hide();
    $(".aircount1").hide();
    $(".aircount2").hide();
-   
-   
+    
    usertaglist();
    latelyhotplace();
+   
+    
+
+   
+   
+   
    //요즘핫한지역
    function latelyhotplace(){
       $.ajax({
@@ -321,20 +328,20 @@
                      if(i==0){
                         html += "<div class='latelyhotplacecenter'>";
                         html += "<img src='/resources/img/hotplace/first-class.png' style='width:100px;height:100px;position:absolute;'/>";
-                        html += "<img src='/hotplace/display?fileName="
+                        html += "<a href='/hotplace/list#"+data[i].h_x+"|"+data[i].h_y+"'><img src='/hotplace/display?fileName="
                               + data[i].h_image
                               + "'  x='"
                               + data[i].h_x
-                              + "' y='" + data[i].h_y + "'/>";
+                              + "' y='" + data[i].h_y + "'/></a>";
                         html += "<div style='text-align:center;'>"+data[i].h_title+"</div>";
                         html += "</div>";
                      }else{
                         html += "<div class='latelyhotplace"+i+"'>";
-                        html += "<img src='/hotplace/display?fileName="
+                        html += "<a href='/hotplace/list#"+data[i].h_x+"|"+data[i].h_y+"'><img src='/hotplace/display?fileName="
                               + data[i].h_image
                               + "'  x='"
                               + data[i].h_x
-                              + "' y='" + data[i].h_y + "'/>";
+                              + "' y='" + data[i].h_y + "'/></a>";
                         html += "<div style='text-align:center'>"+data[i].h_title+"</div>";   
                         html += "</div>";
                      }
@@ -368,7 +375,7 @@
                      tag1 = userrecommendlist[i].h_tag1;
                      tag2 = userrecommendlist[i].h_tag2;
                      html += "<div style='float:left; margin:20px;' class=''>";
-                     html += "<a href='/hotplace/list2?x="+userrecommendlist[i].h_x+"'><img class='usertaglistimage' src='/hotplace/display?fileName="
+                     html += "<a href='/hotplace/list#"+userrecommendlist[i].h_x+"|"+userrecommendlist[i].h_y+"'><img class='usertaglistimage' src='/hotplace/display?fileName="
                            + userrecommendlist[i].h_image
                            + "'  x='"
                            + userrecommendlist[i].h_x

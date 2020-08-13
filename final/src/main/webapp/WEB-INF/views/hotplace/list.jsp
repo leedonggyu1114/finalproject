@@ -171,26 +171,54 @@
    var u_id="${u_id}";
    var u_k_id="${u_k_id}";
    
+   //새로고침시 url파라미터 제거
+	window.onkeydown = function() {
+		var kcode = event.keyCode;
+		if (kcode == 116) {
+			history.replaceState({}, null, location.pathname);
+		}
+	}
 
- 	//tag리스트 출력
- 	$("#hotplace_tag").on("click", "button", function() {
- 		var tag = $(this).attr("tag");
- 		$.ajax({
- 			type : "get",
- 			url : "taglist",
- 			dataType : "json",
- 			data : {
- 				"h_tag" : tag
- 			},
- 			success : function(data) {
- 				var template = Handlebars.compile($("#temp").html());
- 				$("#divlist").html(template(data));
+	//인덱스에서 넘어온 hotplace스크롤
+	$(document).ready(function() {
+		var page_url = window.location.href;
+		var page_id = page_url.substring(page_url.lastIndexOf("#") + 1);
+		var scrollx = page_id.substring(0, page_id.indexOf("|"));
+		var scrolly = page_id.substring(page_id.indexOf("|") + 1);
+		if (scrollx != "") {
+			$(".mainimage").each(function() {
+				//thiss=$(this);
+				x = $(this).attr("x");
+				y = $(this).attr("y");
+				if (x == scrollx && y == scrolly) {
+					var scroll = $(this).offset().top;
+					$("html").animate({
+						scrollTop : scroll - 200
+					}, 500);
+					$(this).click();
+				}
+			});
+		}
+	});
+
+	//tag리스트 출력
+	$("#hotplace_tag").on("click", "button", function() {
+		var tag = $(this).attr("tag");
+		$.ajax({
+			type : "get",
+			url : "taglist",
+			dataType : "json",
+			data : {
+				"h_tag" : tag
+			},
+			success : function(data) {
+				var template = Handlebars.compile($("#temp").html());
+				$("#divlist").html(template(data));
 				setlikelist();
- 			}
- 		});
- 	});
-   
-   
+			}
+		});
+	});
+
 	// top 스크롤
 	$(window).scroll(function() {
 		var quickHeight = $(document).scrollTop(); //스크롤 높이가 500 이상이면 나타나기
@@ -207,94 +235,134 @@
 		}, 800);
 	});
 
-   
-   //좋아요 출력하기
-   setlikelist();
-   function setlikelist(){
-      
-      $.ajax({
-         type:"get",
-         url:"likeset",
-         dataType:"json",
-         data:{"u_id":u_id,"u_k_id":u_k_id},
-         success:function(data){
-            var likeset=[];
-            for(var i=0; i<data.length; i++){
-               likeset.push(data[i]);
-            }
-            
-            $(".mainimage").each(function(){
-               var like=$(this);
-               var check=true;
-               var c_x=$(this).attr("x");
-               var c_y=$(this).attr("y");
-               for(var i=0; i<likeset.length; i++){
-                  if(likeset[i].h_x==c_x && likeset[i].h_y==c_y){
-                     check=false;
-                  }
-               }
-               if(check==false){
-                  $(like).parent().find(".div_hotplace_maintitle .hotplace_like").attr("src", "/resources/img/hotplace/like_hover.png");
-               }
-            });
-            
-         }
-      });
-   }
+	//좋아요 출력하기
+	setlikelist();
+	function setlikelist() {
 
-   //좋아요누르기
-	$("#divlist").on("click",".hotplace_like", function(e) {
-      e.stopPropagation();
-      var like=$(this);
-      
-      if(u_id==""){
-         alert("로그인이 필요한 서비스 입니다");
-      }else{
-         
-         x=$(this).parent().parent().find(".mainimage").attr("x");
-         y=$(this).parent().parent().find(".mainimage").attr("y");
-         
-         $.ajax({
-            type:"get",
-            url:"likeset",
-            dataType:"json",
-            data:{"u_id":u_id,"u_k_id":u_k_id},
-            success:function(data){
-               var check=true;
-               if(check){
-                  for(var i=0; i<data.length; i++){
-                     if(data[i].h_x==x && data[i].h_y==y){
-                        check=false;
-                     }
-                  }
-               }
-               
-               if(check==true){
-                  $.ajax({
-                     type:"post",
-                     url:"likeinsert",
-                     data:{"h_x":x,"h_y":y,"u_id":u_id,"u_k_id":u_k_id},
-                     success:function(){
-                        $(like).attr('src', '/resources/img/hotplace/like_hover.png');
-                     }
-                  });
-               }else{
-                  $.ajax({
-                     type:"post",
-                     url:"likedelete",
-                     data:{"h_x":x,"h_y":y,"u_id":u_id,"u_k_id":u_k_id},
-                     success:function(){
-                        $(like).attr('src', '/resources/img/hotplace/like.png');
-                     }
-                  });
-               }
-                  
-            }
-            
-         });
-   
-      }
-      
-   });
+		$
+				.ajax({
+					type : "get",
+					url : "likeset",
+					dataType : "json",
+					data : {
+						"u_id" : u_id,
+						"u_k_id" : u_k_id
+					},
+					success : function(data) {
+						var likeset = [];
+						for (var i = 0; i < data.length; i++) {
+							likeset.push(data[i]);
+						}
+
+						$(".mainimage")
+								.each(
+										function() {
+											var like = $(this);
+											var check = true;
+											var c_x = $(this).attr("x");
+											var c_y = $(this).attr("y");
+											for (var i = 0; i < likeset.length; i++) {
+												if (likeset[i].h_x == c_x
+														&& likeset[i].h_y == c_y) {
+													check = false;
+												}
+											}
+											if (check == false) {
+												$(like)
+														.parent()
+														.find(
+																".div_hotplace_maintitle .hotplace_like")
+														.attr("src",
+																"/resources/img/hotplace/like_hover.png");
+											}
+										});
+
+					}
+				});
+	}
+
+	//좋아요누르기
+	$("#divlist")
+			.on(
+					"click",
+					".hotplace_like",
+					function(e) {
+						e.stopPropagation();
+						var like = $(this);
+
+						if (u_id == "") {
+							alert("로그인이 필요한 서비스 입니다");
+						} else {
+
+							x = $(this).parent().parent().find(".mainimage")
+									.attr("x");
+							y = $(this).parent().parent().find(".mainimage")
+									.attr("y");
+
+							$
+									.ajax({
+										type : "get",
+										url : "likeset",
+										dataType : "json",
+										data : {
+											"u_id" : u_id,
+											"u_k_id" : u_k_id
+										},
+										success : function(data) {
+											var check = true;
+											if (check) {
+												for (var i = 0; i < data.length; i++) {
+													if (data[i].h_x == x
+															&& data[i].h_y == y) {
+														check = false;
+													}
+												}
+											}
+
+											if (check == true) {
+												$
+														.ajax({
+															type : "post",
+															url : "likeinsert",
+															data : {
+																"h_x" : x,
+																"h_y" : y,
+																"u_id" : u_id,
+																"u_k_id" : u_k_id
+															},
+															success : function() {
+																$(like)
+																		.attr(
+																				'src',
+																				'/resources/img/hotplace/like_hover.png');
+															}
+														});
+											} else {
+												$
+														.ajax({
+															type : "post",
+															url : "likedelete",
+															data : {
+																"h_x" : x,
+																"h_y" : y,
+																"u_id" : u_id,
+																"u_k_id" : u_k_id
+															},
+															success : function() {
+																$(like)
+																		.attr(
+																				'src',
+																				'/resources/img/hotplace/like.png');
+															}
+														});
+											}
+
+										}
+
+									});
+
+						}
+
+					});
 </script>
 </html>
