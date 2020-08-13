@@ -27,7 +27,7 @@
     	select * from tbl_user where u_id=#{param1} and u_k_id=#{param2}
     </select>
     <select id="read" resultType="com.example.domain.UserVO">
-    	select * from tbl_user where u_id=#{u_id}
+    	select * from tbl_user where u_id=#{u_id} and u_k_id=#{u_k_id}
     </select>
     <select id="readkakao" resultType="string">
     	select u_k_id from tbl_user where u_k_id=#{u_k_id}
@@ -71,13 +71,13 @@
     
     
     <update id="usercancel">
-    	update tbl_user set u_status=2 where u_id=#{u_id}
+    	update tbl_user set u_status=2 where u_id=#{u_id} and u_k_id=#{u_k_id}
     </update>
     <delete id="delete">
     	delete from tbl_user where u_id=#{u_id}
     </delete>
     <delete id="deleteTag">
-    	delete from tbl_tag where t_id=#{t_id}
+    	delete from tbl_tag where t_id=#{t_id} and t_k_id=#{t_k_id}
     </delete>
     <delete id="deletehotplacelike">
     	delete from tbl_like where u_id=#{u_id}
@@ -113,15 +113,15 @@
     <!-- 회원수정 -->
     <update id="updateUser">
     	update tbl_user set u_address=#{u_address}, u_email=#{u_email}, u_pass=#{u_pass}, u_image=#{u_image}
-    	where u_id=#{u_id}
+    	where u_id=#{u_id} and u_k_id=#{u_k_id}
     </update>
         <update id="updateUser2">
     	update tbl_user set u_address=#{u_address}, u_email=#{u_email}, u_pass=#{u_pass}
-    	where u_id=#{u_id}
+    	where u_id=#{u_id} and u_k_id=#{u_k_id}
     </update>
     <update id="updateKakao">
     	update tbl_user set u_name=#{u_name}, u_gender=#{u_gender}, u_tel=#{u_tel}, u_address=#{u_address}, u_email=#{u_email}
-    	where u_k_id=#{u_k_id}
+    	where u_id=#{u_id} and u_k_id=#{u_k_id}
     </update>
     
     <!-- 업체회원수정  -->

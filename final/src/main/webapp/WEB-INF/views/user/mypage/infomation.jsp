@@ -117,10 +117,13 @@
 								<td><span>ID</span></td>
 								<c:if test="${u_id=='0' }">
 									<td>
-										<input type="text" id="u_id"  value="${u_k_id}" readonly>
+										<input type="text" id="u_k_id"  value="${u_k_id}" readonly>
 									</td>
 									<td>
-										<input type="hidden" name="u_id" value="${u_k_id}">
+										<input type="hidden" name="u_k_id" value="${u_k_id}">
+									</td>
+									<td>
+										<input type="hidden" name="u_id" value="${u_id}">
 									</td>
 								</c:if>
 								<c:if test="${u_k_id=='0' }">
@@ -129,6 +132,9 @@
 									</td>
 									<td>
 										<input type="hidden" name="u_id" value="${u_id}">
+									</td>
+									<td>
+										<input type="hidden" name="u_k_id" value="${u_k_id}">
 									</td>
 								</c:if>
 							</tr>
@@ -240,22 +246,22 @@
 									<label for="t_tag8" id="tag1-1" style="display:none;"><img src="/resources/img/usertag/연인과함께.png" style="border:0.5px solid #0f4c81;"></label>
 							</span>
 							<span id="tag1">
-								<input type="checkbox" id="t_tag9" name="t_tag" value="09">
+								<input type="checkbox" id="t_tag9" name="t_tag" value="10">
 									<label for="t_tag9" id="tag1"><img src="/resources/img/usertag/익사이팅.png"></label>
 									<label for="t_tag9" id="tag1-1" style="display:none;"><img src="/resources/img/usertag/익사이팅.png" style="border:0.5px solid #0f4c81;"></label>
 							</span>
 							<span id="tag1">
-								<input type="checkbox" id="t_tag10" name="t_tag" value="10">
+								<input type="checkbox" id="t_tag10" name="t_tag" value="11">
 									<label for="t_tag10" id="tag1"><img src="/resources/img/usertag/친구와함께.png"></label>
 									<label for="t_tag10" id="tag1-1" style="display:none;"><img src="/resources/img/usertag/친구와함께.png" style="border:0.5px solid #0f4c81;"></label>
 							</span>
 							<span id="tag1">
-								<input type="checkbox" id="t_tag11" name="t_tag" value="11">
+								<input type="checkbox" id="t_tag11" name="t_tag" value="12">
 									<label for="t_tag11" id="tag1"><img src="/resources/img/usertag/헬스케어.png"></label>
-									<label for="t_tag11" id="tag1-1" style="display:none;"><img src="/resources/img/usertag/헬스케어1.png" style="border:0.5px solid #0f4c81;"></label>
+									<label for="t_tag11" id="tag1-1" style="display:none;"><img src="/resources/img/usertag/헬스케어.png" style="border:0.5px solid #0f4c81;"></label>
 							</span>
 							<span id="tag12">
-								<input type="checkbox" id="t_tag12" name="t_tag" value="12">
+								<input type="checkbox" id="t_tag12" name="t_tag" value="13">
 									<label for="t_tag12" id="tag1"><img src="/resources/img/usertag/힐링.png"></label>
 									<label for="t_tag12" id="tag1-1" style="display:none;"><img src="/resources/img/usertag/힐링.png" style="border:0.5px solid #0f4c81;"></label>
 							</span>
@@ -647,7 +653,8 @@
 			type : "get",
 			url : "/user/mypage/read",
 			data : {
-				"u_id" : u_id
+				"u_id" : u_id,
+				"u_k_id": u_k_id
 			},
 			success : function(data) {
 				if (data.readuser.u_pass != now_pass) {

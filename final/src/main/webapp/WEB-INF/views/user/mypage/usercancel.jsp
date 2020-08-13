@@ -123,12 +123,13 @@ $("#cancelCompany").on("click",function(){
 function getCancel(){
 		if(!confirm("È¸¿ø Å»ÅðÇÏ½Ã°Ú½À´Ï±î?")) return;
 		var u_id=$("#u_id").html();
-
+		var u_k_id="${u_k_id}";
 		$.ajax({
 			type : "post",
 			url : "/user/mypage/usercancel",
 			data : {
-				"u_id" : u_id
+				"u_id" : u_id,
+				"u_k_id": u_k_id
 			},
 			success : function() {
 				alert("È¸¿ø Å»ÅðµÇ¾ú½À´Ï´Ù.");

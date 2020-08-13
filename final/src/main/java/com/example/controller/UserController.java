@@ -62,8 +62,8 @@ public class UserController {
 	//유저 탈퇴 비밀번호 체크
 		@RequestMapping("/user/mypage/UserPass")
 		@ResponseBody
-		public int userpass(String u_id,String u_pass) {
-			UserVO vo=mapper.read(u_id);
+		public int userpass(String u_id,String u_k_id,String u_pass) {
+			UserVO vo=mapper.read(u_id,u_k_id);
 			int result=0;
 			if(vo.getU_pass().equals(u_pass)) {
 				result=1;
@@ -88,9 +88,9 @@ public class UserController {
 	
 	//유저회원 탈퇴
 	@RequestMapping(value="/user/mypage/usercancel",method=RequestMethod.POST)
-	public String usercancelPost(String u_id,HttpSession session,HttpServletRequest request) {
+	public String usercancelPost(String u_id,String u_k_id,HttpSession session,HttpServletRequest request) {
 		System.out.println(u_id);
-		mapper.usercancel(u_id);
+		mapper.usercancel(u_id,u_k_id);
 		session.invalidate();
 		session=request.getSession(true);
 		return "redirect:/";
@@ -165,11 +165,11 @@ public class UserController {
 	//유저 정보 수정
 	@RequestMapping(value="/user/mypage/updateUser",method=RequestMethod.POST)
 	public String update(UserVO vo,MultipartHttpServletRequest multi,HttpServletRequest request)throws Exception {
-
+		System.out.println("aaa");
 		String[] arrayParam = request.getParameterValues("t_tag");
 		System.out.println(vo.toString());
 		MultipartFile file=multi.getFile("file");
-		UserVO vo1=mapper.read(vo.getU_id());
+		UserVO vo1=mapper.read(vo.getU_id(),vo.getU_k_id());
 		if(!file.isEmpty()) {
 			UserVO vo2=mapper.kakaoread(vo.getU_id(),vo.getU_k_id());
 			//옛날 대표이미지 삭제
@@ -187,7 +187,7 @@ public class UserController {
 			}else {
 				mapper.updateUser(vo);
 			}
-			mapper.deleteTag(vo.getU_id());
+			mapper.deleteTag(vo.getU_id(),vo.getU_k_id());
 			for (int i = 0; i < arrayParam.length; i++) { 
 				System.out.println(arrayParam[i]); 
 				mapper.insertUsertag(vo.getU_id(),"0",arrayParam[i]);
@@ -200,7 +200,7 @@ public class UserController {
 			}else {
 				mapper.updateUser2(vo);
 			}
-			mapper.deleteTag(vo.getU_id());
+			mapper.deleteTag(vo.getU_id(),vo.getU_k_id());
 			for (int i = 0; i < arrayParam.length; i++) { 
 				System.out.println(arrayParam[i]); 
 				mapper.insertUsertag(vo.getU_id(),"0",arrayParam[i]);
@@ -217,11 +217,11 @@ public class UserController {
 	public HashMap<String, Object> read(String u_id, String u_k_id) {
 		HashMap<String, Object> map=new HashMap<String, Object>();
 		UserVO vo=mapper.kakaoread(u_id, u_k_id);
-//		UserVO uvo=mapper.read(u_id);
+		UserVO uvo=mapper.read(u_id,u_k_id);
 		List<UserTagVO> tvo=mapper.readtag(u_id);
 		map.put("readtag", tvo);
 		map.put("read", vo);
-//		map.put("readuser", uvo);
+		map.put("readuser", uvo);
 		return map;
 	}
 	
@@ -373,8 +373,8 @@ public class UserController {
 	//PASS찾기 아이디/이름/성명,이메일 체크
 	@RequestMapping("/user/nameCheckPass")
 	@ResponseBody
-	public int nameCheckPass(String u_id, String name,String birthday,String email) {
-		UserVO vo=mapper.read(u_id);
+	public int nameCheckPass(String u_id, String u_k_id, String name,String birthday,String email) {
+		UserVO vo=mapper.read(u_id,u_k_id);
 		int chkNum=0;
 		if(vo.getU_name().equals(name)) {
 			if(vo.getU_birthday().equals(birthday)) {
@@ -437,12 +437,12 @@ public class UserController {
 	//유저 아이디 중복 체크
 	@RequestMapping("/user/idCheck")
 	@ResponseBody
-	public int idCheck(String u_id) {
+	public int idCheck(String u_id,String u_k_id) {
 		int result=0;	
 		String readid=mapper.readid(u_id);
 		
 		if(readid.equals("1")) {
-			UserVO vo=mapper.read(u_id);
+			UserVO vo=mapper.read(u_id,u_k_id);
 			if(vo.getU_key().equals("Y")) {
 				result=1;
 			}else {
@@ -569,13 +569,13 @@ public class UserController {
 		String[] arrayParam = request.getParameterValues("t_tag");
 		
 		String id=mapper.readid(vo.getU_id());
-		UserVO read=mapper.read(vo.getU_id());
+		UserVO read=mapper.read(vo.getU_id(), vo.getU_k_id());
 		
 		if(id.equals("1")) {//아이디 존재여부 확인
 			if(read.getU_key().equals("Y")) {//아이디존재하면 키값을 비교 key값이 Y가 아니면 실행
 				System.out.println("이미 회원아이디가 존재합니다.");
 			}else {
-				mapper.deleteTag(read.getU_id());
+				mapper.deleteTag(read.getU_id(),read.getU_k_id());
 				mapper.delete(read.getU_id());
 				//프로필 이미지 업로드
 				MultipartFile file=multi.getFile("file");
