@@ -325,13 +325,13 @@
 		                	  $("#tag1").text("#친구와함께");
 		                  }else if(tag1=="08") {
 		                	  $("#tag1").text("#먹방");
-		                  }else if(tag1=="09") {
-		                	  $("#tag1").text("#도심속여행");
 		                  }else if(tag1=="10") {
-		                	  $("#tag1").text("#나만아는");
+		                	  $("#tag1").text("#도심속여행");
 		                  }else if(tag1=="11") {
-		                	  $("#tag1").text("#야경");
+		                	  $("#tag1").text("#나만아는");
 		                  }else if(tag1=="12") {
+		                	  $("#tag1").text("#야경");
+		                  }else if(tag1=="13") {
 		                	  $("#tag1").text("#교육");
 		                  }
 		                  
@@ -351,13 +351,13 @@
 		                	  $("#tag2").text("#친구와함께");
 		                  }else if(tag2=="08") {
 		                	  $("#tag2").text("#먹방");
-		                  }else if(tag2=="09") {
-		                	  $("#tag2").text("#도심속여행");
 		                  }else if(tag2=="10") {
-		                	  $("#tag2").text("#나만아는");
+		                	  $("#tag2").text("#도심속여행");
 		                  }else if(tag2=="11") {
-		                	  $("#tag2").text("#야경");
+		                	  $("#tag2").text("#나만아는");
 		                  }else if(tag2=="12") {
+		                	  $("#tag2").text("#야경");
+		                  }else if(tag2=="13") {
 		                	  $("#tag2").text("#교육");
 		                  }
 						//서브사진들 가져오기

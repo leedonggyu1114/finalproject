@@ -49,6 +49,7 @@ public class HotplaceController {
 		model.addAttribute("list",list);
 	}
 	
+	
 	@RequestMapping("taglist")
 	@ResponseBody
 	public List<HotplaceVO> taglist(String h_tag){

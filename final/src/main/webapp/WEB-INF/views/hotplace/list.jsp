@@ -167,8 +167,6 @@
    var u_id="${u_id}";
    var u_k_id="${u_k_id}";
    
-  
-
 
  	//tag리스트 출력
  	$("#hotplace_tag").on("click", "button", function() {
