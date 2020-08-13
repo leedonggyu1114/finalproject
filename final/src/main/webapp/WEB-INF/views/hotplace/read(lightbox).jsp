@@ -54,7 +54,7 @@
    border: none;
    position: absolute;
    top: 10px;
-   right: 10px;
+   right: -50px;
 }
 #btnprev,
 #btnnext {
@@ -66,13 +66,13 @@
 
 #btnprev {
    position:absolute;
-   left:5px;
+   left:-55px;
    top:22%;
 }
 
 #btnnext {
    position:absolute;
-   right:5px;
+   right:-55px;
    top:22%;
 }
 .userimages {
@@ -109,15 +109,15 @@
 	<div id="darken-background">
       <div id="lightbox">
          <img id="readimage" src="http://placehold.it/150x150">
-         <button id="btnClose"><img src="/resources/img/hotplace/close_icon.png" width=45></button>
+         <button id="btnClose"><img src="/resources/img/hotplace/close_icon2.png" width=30></button>
 		 <div style="position:absolute; top:37%; left:3%; display:inline-block;" id="hotplace_tag_lightbox">
 			<button id="tag1"></button>
 			<button id="tag2"></button>
 		 </div>
 			<div id="readtitle"></div>
          <div id="readdetail" style="display:inline-block; text-align:left; position:absolute; left:3%; top:42%; color:white;"></div>
-         <button id="btnprev"><img src="/resources/img/hotplace/prev_icon.png" width=65/></button>
-         <button id="btnnext"><img src="/resources/img/hotplace/next_icon.png" width=65/></button>
+         <button id="btnprev"><img src="/resources/img/hotplace/prev_icon3.png" width=40/></button>
+         <button id="btnnext"><img src="/resources/img/hotplace/next_icon3.png" width=40/></button>
          <div id="readcontent" style="display:inline-block; position:relative; width:100%; height:790px;">
          	<div style="display:inline-block; position:absolute; left:70px; bottom:5px; border-radius:5px 5px 5px 5px;">
 				<span id="top_x_div" style="float:left;"></span>
