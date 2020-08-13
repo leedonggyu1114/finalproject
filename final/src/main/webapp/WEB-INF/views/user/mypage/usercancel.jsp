@@ -17,84 +17,113 @@
 </style>
 </head>
 <body>
-	<div id="page">
-		<div id="header"><jsp:include page="../../header.jsp" /></div>
-		<div id="menu"><jsp:include page="../../menu.jsp" /></div>
-		<div id="container">
-			<div id="user-delete-area">
-				<c:if test="${u_id!=null}">
-					<table border=1 id="usertb">
-						<tr>
-							<td colspan=2>탈퇴를 원하시는 분의 아이디, 비밀번호가 일치하면 자동으로 탈퇴가 됩니다.</td>
-						</tr>
-						<tr>
-							<td colspan=2>주의 사항</td>
-						</tr>
-						<tr>
-							<td colspan=2>
-								탈퇴 시에 개인정보가 모두 삭제되어 복구 불가능하오니 신중을 가해주세요.<br>
-								아래의 정보를 정확히 입력하시면 자동탈퇴 처리됩니다.<br> 
-								탈퇴 후에는 개인정보가 모두 삭제되어 복구가 불가능합니다.
-							</td>
-						</tr>
-						<tr>
-							<td colspan=2>개인정보를 적어주세요</td>
-						</tr>
-						<tr id="user">
-							<td>아이디</td>
-							<td><span id="u_id">${u_id}</span></td>
-						</tr>
+	<h1>회원 탈퇴</h1>
+	
+	<c:if test="${u_id!=null}">
+		<table border=1 id="usertb">
+			<tr>
+				<td colspan=2>탈퇴를 원하시는 분의 아이디, 비밀번호가 일치하면 자동으로 탈퇴가 됩니다.</td>
+			</tr>
+			<tr>
+				<td colspan=2>주의 사항</td>
+			</tr>
+			<tr>
+				<td colspan=2>탈퇴 시에 개인정보가 모두 삭제되어 복구 불가능하오니 신중을 가해주세요.<br>
+					아래의 정보를 정확히 입력하시면 자동탈퇴 처리됩니다.<br>
+					탈퇴 후에는 개인정보가 모두 삭제되어 복구가 불가능합니다.
+				</td>
+			</tr>
+			<tr>
+				<td colspan=2>개인정보를 확인하세요.</td>
+			</tr>
+			<tr id="user">
+				<td>아이디</td>
+				<td><span id="u_id">${u_id}</span></td>
+			</tr>
+			
+			<tr>
+				<td colspan=2>탈퇴를 위해 고객님의 회원 정보를 입력해 주세요.</td>
+			</tr>
+			<tr id="company">
+				<td colspan=2><input type="password" id="u_pass" placeholder="비밀번호"></td>
+			</tr>
+			<tr><td colspan=2><input type="button" value="취소하기" onClick="location.href='/user/mypage/infomation'">
+			<input type="button" value="회원탈퇴" id="cancelUser"></td></tr>
+		</table>
+	</c:if>
+	
+	<c:if test="${c_id!=null}">
+		<table border=1 id="companytb">
+			<tr>
+				<td colspan=2>탈퇴를 원하시는 분의 아이디, 비밀번호가 일치하면 자동으로 탈퇴가 됩니다.</td>
+			</tr>
+			<tr>
+				<td colspan=2>주의 사항</td>
+			</tr>
+			<tr>
+				<td colspan=2>탈퇴 시에 개인정보가 모두 삭제되어 복구 불가능하오니 신중을 가해주세요.<br>
+					아래의 정보를 정확히 입력하시면 자동탈퇴 처리됩니다.<br>
+					탈퇴 후에는 개인정보가 모두 삭제되어 복구가 불가능합니다.
+				</td>
+			</tr>
+			<tr>
+				<td colspan=2>개인정보를 확인하십시오.</td>
+			</tr>
+			<tr id="company">
+				<td>아이디</td>
+				<td><span id="c_id">${c_id}</span></td>
+			</tr>
+			<tr>
+				<td colspan=2>탈퇴를 위해 고객님의 회원 정보를 입력해 주세요.</td>
+			</tr>
+			<tr id="company">
+				<td colspan=2><input type="password" id="c_pass" placeholder="비밀번호"></td>
+			</tr>
+			<tr><td colspan=2><input type="button" value="취소하기" onClick="location.href='/user/mypage/infomation'">
+			<input type="button" value="회원탈퇴" id="cancelCompany"></td></tr>
+		</table>
+	</c:if>
 
-						<tr>
-							<td colspan=2>
-								<input type="button" value="취소하기" onClick="location.href='/user/mypage/infomation'"> 
-								<input type="button" value="회원탈퇴" id="cancelUser">
-							</td>
-						</tr>
-					</table>
-				</c:if>
-
-				<c:if test="${c_id!=null}">
-					<table border=1 id="companytb">
-						<tr>
-							<td colspan=2>탈퇴를 원하시는 분의 아이디, 비밀번호가 일치하면 자동으로 탈퇴가 됩니다.</td>
-						</tr>
-						<tr>
-							<td colspan=2>주의 사항</td>
-						</tr>
-						<tr>
-							<td colspan=2>
-								탈퇴 시에 개인정보가 모두 삭제되어 복구 불가능하오니 신중을 가해주세요.<br>
-								아래의 정보를 정확히 입력하시면 자동탈퇴 처리됩니다.<br> 
-								탈퇴 후에는 개인정보가 모두 삭제되어 복구가 불가능합니다.
-							</td>
-						</tr>
-						<tr>
-							<td colspan=2>개인정보를 확인하십시오.</td>
-						</tr>
-						<tr id="company">
-							<td>아이디</td>
-							<td><span id="c_id">${c_id}</span></td>
-						</tr>
-
-						<tr>
-							<td colspan=2>
-								<input type="button" value="취소하기" onClick="location.href='/user/mypage/infomation'"> 
-								<input type="button" value="회원탈퇴" id="cancelCompany">
-							</td>
-						</tr>
-					</table>
-				</c:if>
-			</div>
-		</div>
-		<div id="footer"><jsp:include page="../../footer.jsp" /></div>
-	</div>
 </body>
 <script>
-	$("#cancelUser").on("click", function() {
-		if (!confirm("회원 탈퇴하시겠습니까?"))
-			return;
-		var u_id = $("#u_id").html();
+$("#cancelUser").on("click",function(){
+	var u_id="${u_id}";
+	var u_pass=$("#u_pass").val();
+	$.ajax({
+		type:"get",
+		url:"/user/mypage/UserPass",
+		data:{"u_id":u_id,"u_pass":u_pass},
+		success:function(data){
+			if(data==0){
+				alert("비밀번호를 다시 확인하십시오.")
+			}else{
+				getCancel();
+			}
+		}
+	});
+});
+
+$("#cancelCompany").on("click",function(){
+	var c_id="${c_id}";
+	var c_pass=$("#c_pass").val();
+	$.ajax({
+		type:"get",
+		url:"/user/mypage/CompanyPass",
+		data:{"c_id":c_id,"c_pass":c_pass},
+		success:function(data){
+			if(data==0){
+				alert("비밀번호를 다시 확인하십시오.")
+			}else{
+				getCompanyCancel();
+			}
+		}
+	});
+});
+	
+function getCancel(){
+		if(!confirm("회원 탈퇴하시겠습니까?")) return;
+		var u_id=$("#u_id").html();
+
 		$.ajax({
 			type : "post",
 			url : "/user/mypage/usercancel",
@@ -106,12 +135,11 @@
 				location.href = "/user/login";
 			}
 		});
-	});
+}
+function getCompanyCancel(){
+		if(!confirm("회원 탈퇴하시겠습니까?")) return;
+		var c_id=$("#c_id").html();
 
-	$("#cancelCompany").on("click", function() {
-		if (!confirm("회원 탈퇴하시겠습니까?"))
-			return;
-		var c_id = $("#c_id").html();
 		$.ajax({
 			type : "post",
 			url : "/user/mypage/companycancel",
@@ -123,6 +151,6 @@
 				location.href = "/user/login";
 			}
 		});
-	});
+}
 </script>
 </html>

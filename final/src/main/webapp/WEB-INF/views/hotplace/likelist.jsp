@@ -74,7 +74,7 @@
                   <div style="width:250px;height:330px; border:0.5px solid gray; float:left; margin:25px; border-radius:0px 8px 8px 8px; cursor:pointer;">
                      <img class="mainimage" src="/hotplace/display?fileName=${vo.h_i_images[0]}" 
                      width=100% height=200 x="${vo.h_x }" y="${vo.h_y }" title="${vo.h_title }"
-                     address="${vo.h_address}" detail="${vo.h_detail}" style="border-radius:0px 8px 0px 0px;"/>
+                     address="${vo.h_address}" detail="${vo.h_detail}" tag1="${vo.h_tag1 }" tag2="${vo.h_tag2 }" style="border-radius:0px 8px 0px 0px;"/>
                      <h3 style="margin:5px 0px 0px 5px; display:inline-block; font-family:'DX영화자막';">${vo.h_title }</h3>
                      <img src="/resources/img/hotplace/like_hover.png" class="hotplace_like" />
                      <div style="margin:20px 5px 0px 5px;">${vo.h_detail }</div>

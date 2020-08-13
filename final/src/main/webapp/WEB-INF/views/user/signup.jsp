@@ -522,6 +522,7 @@ $(":checkbox").css("display","none");
 		//주소 합치기
 		var address = $("#sample6_address").val();
 		var addressDetail = $("#sample6_detailAddress").val();
+		
 		var allAddress = address + "," + addressDetail;
 		//생일 합치기
 		var birthday = year + "-" + MM + "-" + dd;

@@ -152,6 +152,7 @@
 						<th width=200>편명</th>
 						<th width=200>출발시간</th>
 						<th width=200>도착시간</th>
+
 					</tr>
 					<tr style="border-bottom:0.5px solid gray;">
 						<td>${startplace } > ${endplace }</td>
@@ -161,6 +162,7 @@
 						<td>${go.a_endtime }</td>
 					</tr>
 					<tr style="border-bottom:2px solid #0f4c81;">
+
 						<c:if test="${a_startdate1 == null }">
 							<td>${endplace } > ${startplace }</td>
 						</c:if>
@@ -214,7 +216,6 @@
 							<td colspan=2 style="padding-bottom:20px;"><input type="text" name="u_birthday" id="birthday" style="width:300px;"></td>
 						</tr>
 					</table>
-
 					<img src="/resources/img/air/air_booking2.png" width=450>
 					<table id="passengers" style="border-top:2px solid #0f4c81;">
 						<c:forEach var="i" begin="1" end="${sum }">

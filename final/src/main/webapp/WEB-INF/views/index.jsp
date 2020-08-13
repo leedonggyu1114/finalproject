@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,15 +13,77 @@
    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/style.css"/>
    <style>
-   .usertaglist{
+   .usertaglistimage{
       width:260px;
       height:180px;
-      margin:20px;
+      margin-bottom:15px;
    }
+   #latelyhotplace{
+         position:relative;
+         margin-top:20px;
+         height:450px;
+   }
+   .latelyhotplace1 img, 
+   .latelyhotplace2 img,
+   .latelyhotplace3 img, 
+   .latelyhotplace4 img {
+      width:190px;
+      height:190px;
+      border-radius:50%;
+   }
+   .latelyhotplace1 {
+      position:absolute;
+      top:50%;
+      left:23%;
+      transform:translate(0,-50%);
+      z-index:2;
+   }
+   .latelyhotplace2 {
+      position:absolute;
+      top:50%;
+      right:23%;
+      transform:translate(0,-50%);
+      z-index:2;
+   }
+   .latelyhotplace3 {
+      position:absolute;
+      top:50%;
+      left:8%;
+      transform:translate(0,-50%);
+   }
+   .latelyhotplace4 {
+      position:absolute;
+      top:50%;
+      right:8%;
+      transform:translate(0,-50%);
+   }
+   .latelyhotplacecenter{
+      position:absolute;
+      left:50%;
+      top:39%;
+      transform:translate(-50%,-50%);
+      z-index:3;
+   }
+   .latelyhotplacecenter img {
+      width:290px;
+      height:290px;
+      border-radius:50%;
+   }
+   
+   .hotplace_tag_lightbox {
+      border:none;
+      outline:none;
+      cursor:pointer;
+      padding:5px;
+      border-radius:8px;
+      margin-right:5px;
+   }   
    </style>
 </head>
 <body>
-
+   <c:if test="${kakaoinfo==0}">
+      <jsp:include page="user/mypage/kakaolightbox.jsp"/>
+   </c:if>
    <jsp:include page="sidebar.jsp"/>
    <button type="button" name="button" class="ac-sub-go-top" style="cursor:pointer;">위로</button>
    <div id="page">
@@ -216,18 +279,19 @@
                </div>
             </div>
          </div>
-         <div id="div_container_area2" ><!-- style="padding-top:80px;padding-bottom:40px" -->
+         <div id="div_container_area2" style="padding-top:80px;padding-bottom:40px">
             <div style="margin-left:20px"><h2>고객님만을 위한 추천여행</h2></div>
-            <div id="usertaglist"></div><!--  style="margin:auto;margin-top:20px" -->
+            <div id="userrecommendlist" style="margin:auto;margin-top:20px;"></div>
          </div>
-         <div id="div_container_area3"> <!-- 호텔예약많은순 -->
+         <div id="div_container_area3"> <!-- 땡처리 -->
          
          </div>
-         <div id="div_container_area4"> <!-- 땡처리 -->
+         <div id="div_container_area4"> <!-- 숙소 예약,결제많은순 -->
          
          </div>
-         <div id="div_container_area5" > 요즘핫한
-            
+         <div id="div_container_area5">
+            <div style="margin-left:20px"><h2>주목! 요즘HOT한 여행지</h2></div>
+            <div id="latelyhotplace"></div> 
          </div>
       </div>
       <div id="footer"><jsp:include page="footer.jsp"/></div>
@@ -243,90 +307,145 @@
    
    
    usertaglist();
-   
+   latelyhotplace();
    //요즘핫한지역
-   
-   
-   
-   //특정유저추천 여행지
-   function usertaglist(){
+   function latelyhotplace(){
       $.ajax({
          type:"get",
-         url:"/hotplace/usertaglist",
+         url:"/hotplace/latelyhotplace",
          dataType:"json",
-         data:{"u_id":u_id,"u_k_id":u_k_id},
          success:function(data){
-            var html="";
-            var tag1=0;
-            var tag2=0;
-            for(var i=0; i<data.length; i++){
-               userrecommendlist.push(data[i]);
-            }
             
-            for(var i=0; i<4; i++){
-               tag1 = userrecommendlist[i].h_tag1;
-                   tag2 = userrecommendlist[i].h_tag2;   
-               html += "<div style='float:left'>";
-               html += "<img class='usertaglist' src='/hotplace/display?fileName="+userrecommendlist[i].h_image+"'  x='"+userrecommendlist[i].h_x+"' y='"+userrecommendlist[i].h_y+"' title='"+userrecommendlist[i].h_title+"' address='"+userrecommendlist[i].h_address+"' detail='"+userrecommendlist[i].h_detail+"' tag1='"+userrecommendlist[i].h_tag1+"' tag2='"+userrecommendlist[i].h_tag2+"'/>";
-               html += "<div style=''>"+userrecommendlist[i].h_area+"</div>";
-               html += "<div style='font-size:18px;font-weight:bold'>"+userrecommendlist[i].h_title+"</div>";
-               if(tag1=="01") {
-                  html += "<div style='float:left'>힐링</div>";
-               } else if (tag1 == "02") {
-                  html += "<div style='float:left'>힐링</div>";
-               } else if (tag1 == "03") {
-                  html += "<div style='float:left'>힐링</div>";
-               } else if (tag1 == "04") {
-                  html += "<div style='float:left'>힐링</div>";
-               } else if (tag1 == "05") {
-                  html += "<div style='float:left'>힐링</div>";
-               } else if (tag1 == "06") {
-                  html += "<div style='float:left'>힐링</div>";
-               } else if (tag1 == "07") {
-                  html += "<div style='float:left'>힐링</div>";
-               } else if (tag1 == "08") {
-                  html += "<div style='float:left'>힐링</div>";
-               } else if (tag1 == "09") {
-                  html += "<div style='float:left'>힐링</div>";
-               } else if (tag1 == "10") {
-                  html += "<div style='float:left'>힐링</div>";
-               } else if (tag1 == "11") {
-                  html += "<div style='float:left'>힐링</div>";
-               } else if (tag1 == "12") {
-                  html += "<div style='float:left'>힐링</div>";
+                  var html = "";
+                  for (var i = 0; i < data.length; i++) {
+                     if(i==0){
+                        html += "<div class='latelyhotplacecenter'>";
+                        html += "<img src='/resources/img/hotplace/first-class.png' style='width:100px;height:100px;position:absolute;'/>";
+                        html += "<img src='/hotplace/display?fileName="
+                              + data[i].h_image
+                              + "'  x='"
+                              + data[i].h_x
+                              + "' y='" + data[i].h_y + "'/>";
+                        html += "<div style='text-align:center;'>"+data[i].h_title+"</div>";
+                        html += "</div>";
+                     }else{
+                        html += "<div class='latelyhotplace"+i+"'>";
+                        html += "<img src='/hotplace/display?fileName="
+                              + data[i].h_image
+                              + "'  x='"
+                              + data[i].h_x
+                              + "' y='" + data[i].h_y + "'/>";
+                        html += "<div style='text-align:center'>"+data[i].h_title+"</div>";   
+                        html += "</div>";
+                     }
+                     
+                  }
+                  $("#latelyhotplace").html(html);
                }
+            });
+   }
 
-               if (tag2 == "01") {
-                  html += "<div style='float:left'>힐링</div>";
-               } else if (tag2 == "02") {
-                  html += "<div style='float:left'>힐링</div>";
-               } else if (tag2 == "03") {
-                  html += "<div style='float:left'>힐링</div>";
-               } else if (tag2 == "04") {
-                  html += "<div style='float:left'>힐링</div>";
-               } else if (tag2 == "05") {
-                  html += "<div style='float:left'>힐링</div>";
-               } else if (tag2 == "06") {
-                  html += "<div style='float:left'>힐링</div>";
-               } else if (tag2 == "07") {
-                  html += "<div style='float:left'>힐링</div>";
-               } else if (tag2 == "08") {
-                  html += "<div style='float:left'>힐링</div>";
-               } else if (tag2 == "09") {
-                  html += "<div style='float:left'>힐링</div>";
-               } else if (tag2 == "10") {
-                  html += "<div style='float:left'>힐링</div>";
-               } else if (tag2 == "11") {
-                  html += "<div style='float:left'>힐링</div>";
-               } else if (tag2 == "12") {
-                  html += "<div style='float:left'>힐링</div>";
+   //특정유저추천 여행지
+   function usertaglist() {
+      $
+            .ajax({
+               type : "get",
+               url : "/hotplace/usertaglist",
+               dataType : "json",
+               data : {
+                  "u_id" : u_id,
+                  "u_k_id" : u_k_id
+               },
+               success : function(data) {
+                  var html = "";
+                  var tag1 = 0;
+                  var tag2 = 0;
+                  for (var i = 0; i < data.length; i++) {
+                     userrecommendlist.push(data[i]);
+                  }
+
+                  for (var i = 0; i < 4; i++) {
+                     tag1 = userrecommendlist[i].h_tag1;
+                     tag2 = userrecommendlist[i].h_tag2;
+                     html += "<div style='float:left; margin:20px;' class=''>";
+                     html += "<a href='/hotplace/list2?x="+userrecommendlist[i].h_x+"'><img class='usertaglistimage' src='/hotplace/display?fileName="
+                           + userrecommendlist[i].h_image
+                           + "'  x='"
+                           + userrecommendlist[i].h_x
+                           + "' y='"
+                           + userrecommendlist[i].h_y
+                           + "' title='"
+                           + userrecommendlist[i].h_title
+                           + "' address='"
+                           + userrecommendlist[i].h_address
+                           + "' detail='"
+                           + userrecommendlist[i].h_detail
+                           + "' tag1='"
+                           + userrecommendlist[i].h_tag1
+                           + "' tag2='"
+                           + userrecommendlist[i].h_tag2
+                           + "'/></a>";
+                     html += "<div style='margin-bottom:3px;'>"
+                           + userrecommendlist[i].h_area + "</div>";
+                     html += "<div style='font-size:18px;font-weight:bold;margin-bottom:5px;'>"
+                           + userrecommendlist[i].h_title + "</div>";
+                     if (tag1 == "01") {
+                        html += "<button class='hotplace_tag_lightbox' style='float:left'>#힐링</button>"
+                     } else if (tag1 == "02") {
+                        html += "<button class='hotplace_tag_lightbox' style='float:left'>#헬스케어</button>"
+                     } else if (tag1 == "03") {
+                        html += "<button class='hotplace_tag_lightbox' style='float:left'>#익사이팅</button>"
+                     } else if (tag1 == "04") {
+                        html += "<button class='hotplace_tag_lightbox' style='float:left'>#나홀로여행</button>"
+                     } else if (tag1 == "05") {
+                        html += "<button class='hotplace_tag_lightbox' style='float:left'>#가족과함께</button>"
+                     } else if (tag1 == "06") {
+                        html += "<button class='hotplace_tag_lightbox' style='float:left'>#연인과함께</button>"
+                     } else if (tag1 == "07") {
+                        html += "<button class='hotplace_tag_lightbox' style='float:left'>#친구와함께</button>"
+                     } else if (tag1 == "08") {
+                        html += "<button class='hotplace_tag_lightbox' style='float:left'>#먹방</button>"
+                     } else if (tag1 == "10") {
+                        html += "<button class='hotplace_tag_lightbox' style='float:left'>#도심속여행</button>"
+                     } else if (tag1 == "11") {
+                        html += "<button class='hotplace_tag_lightbox' style='float:left'>#나만아는</button>"
+                     } else if (tag1 == "12") {
+                        html += "<button class='hotplace_tag_lightbox' style='float:left'>#야경</button>"
+                     } else if (tag1 == "13") {
+                        html += "<button class='hotplace_tag_lightbox' style='float:left'>#교육</button>"
+                     }
+
+                     if (tag2 == "01") {
+                        html += "<button class='hotplace_tag_lightbox' style='float:left'>#힐링</button>"
+                     } else if (tag2 == "02") {
+                        html += "<button class='hotplace_tag_lightbox' style='float:left'>#헬스케어</button>"
+                     } else if (tag2 == "03") {
+                        html += "<button class='hotplace_tag_lightbox' style='float:left'>#익사이팅</button>"
+                     } else if (tag2 == "04") {
+                        html += "<button class='hotplace_tag_lightbox' style='float:left'>#나홀로여행</button>"
+                     } else if (tag2 == "05") {
+                        html += "<button class='hotplace_tag_lightbox' style='float:left'>#가족과함께</button>"
+                     } else if (tag2 == "06") {
+                        html += "<button class='hotplace_tag_lightbox' style='float:left'>#연인과함께</button>"
+                     } else if (tag2 == "07") {
+                        html += "<button class='hotplace_tag_lightbox' style='float:left'>#친구와함께</button>"
+                     } else if (tag2 == "08") {
+                        html += "<button class='hotplace_tag_lightbox' style='float:left'>#먹방</button>"
+                     } else if (tag2 == "10") {
+                        html += "<button class='hotplace_tag_lightbox' style='float:left'>#도심속여행</button>"
+                     } else if (tag2 == "11") {
+                        html += "<button class='hotplace_tag_lightbox' style='float:left'>#나만아는</button>"
+                     } else if (tag2 == "12") {
+                        html += "<button class='hotplace_tag_lightbox' style='float:left'>#야경</button>"
+                     } else if (tag2 == "13") {
+                        html += "<button class='hotplace_tag_lightbox' style='float:left'>#교육</button>"
+                     }
+
+                     html += "</div>";
+                  }
+                  $("#userrecommendlist").html(html);
                }
-
-               html += "</div>";
-            }
-            $("#usertaglist").html(html);
-         }
-      });
+            });
    }
 
    // 항공, 숙소 퀵 검색

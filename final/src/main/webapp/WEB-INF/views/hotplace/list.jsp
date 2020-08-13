@@ -90,6 +90,8 @@
 #hotplace_tag {
 	height:49px;
 	padding:10px 0px 10px 0px;
+	position:absolute;
+	bottom:0px;
 }
 #hotplace_tag button {
 	border:none;
@@ -108,22 +110,24 @@
       <div id="header"><jsp:include page="../header.jsp"/></div>
       <div id="menu"><jsp:include page="../menu.jsp"/></div>
       <div id="container">
-		<div style="height:150px;"></div>
-         <div id="hotplace_tag">
-         	<button>#ALL</button>
-         	<button tag="01">#힐링</button>
-         	<button tag="02">#헬스케어</button>
-         	<button tag="03">#익사이팅</button>
-         	<button tag="04">#나홀로여행</button>
-         	<button tag="05">#가족과함께</button>
-         	<button tag="06">#연인과함께</button>
-         	<button tag="07">#친구와함께</button>
-         	<button tag="08">#먹방</button>
-         	<button tag="10">#도심속여행</button>
-         	<button tag="11">#나만아는</button>
-         	<button tag="12">#야경</button>
-         	<button tag="13">#교육</button>
-         </div>
+		<div style="position:relative;">
+			<div style="height:199px; text-align:center; padding-top:30px;"><img src="/resources/img/hotplace/hotplace_title2.png" width=800/></div>
+			<div id="hotplace_tag">
+	         	<button tag="">#ALL</button>
+	         	<button tag="01">#힐링</button>
+	         	<button tag="02">#헬스케어</button>
+	         	<button tag="03">#익사이팅</button>
+	         	<button tag="04">#나홀로여행</button>
+	         	<button tag="05">#가족과함께</button>
+	         	<button tag="06">#연인과함께</button>
+	         	<button tag="07">#친구와함께</button>
+	         	<button tag="08">#먹방</button>
+	         	<button tag="10">#도심속여행</button>
+	         	<button tag="11">#나만아는</button>
+	         	<button tag="12">#야경</button>
+	         	<button tag="13">#교육</button>
+			</div>
+      	</div>
          <!-- 여행추천list시작 -->
          <div id="divlist">
             <c:forEach items="${list }" var="vo">
@@ -167,8 +171,6 @@
    var u_id="${u_id}";
    var u_k_id="${u_k_id}";
    
-  
-
 
  	//tag리스트 출력
  	$("#hotplace_tag").on("click", "button", function() {

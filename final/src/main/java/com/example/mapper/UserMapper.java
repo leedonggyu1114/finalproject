@@ -12,7 +12,8 @@ import com.example.domain.UserVO;
 public interface UserMapper {
 	//회원가입
 	public void insert(UserVO vo);
-	public void insertUsertag(String t_id, String t_tag);
+	public void insertUsertag(String t_id, String t_k_id,String t_tag);
+	public void insertKakao(UserVO vo);
 	//업체 회원가입
 	public void insertCompany(CompanyVO vo);
 	public void insertCompanyoption(String c_o_id,String c_o_option);
@@ -30,6 +31,7 @@ public interface UserMapper {
 	public UserVO kakaoread(String u_id, String u_k_id);
 	public List<UserTagVO> readtag(String t_id);
 	public String readid(String u_id);
+	public String readkakao(String u_k_id);
 	//업체 읽어오기
 	public CompanyVO readCompany(String c_id);
 	public List<CompanyOptionVO> readOption(String c_id);
@@ -53,6 +55,7 @@ public interface UserMapper {
 	//회원 수정
 	public void updateUser(UserVO vo);
 	public void updateUser2(UserVO vo);
+	public void updateKakao(UserVO vo);
 	//업체 회원 수정
 	public void updateCompany(CompanyVO vo);
 	public void updateCompany2(CompanyVO vo);

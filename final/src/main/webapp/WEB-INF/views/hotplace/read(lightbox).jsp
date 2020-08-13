@@ -133,7 +133,7 @@
 	            <button id="likeusernext" style="background:none; outline:none; border:none; position:absolute; right:-18px; top:140px; cursor:pointer;"><img src="/resources/img/hotplace/next_icon2.png" width=30 /></button>
             </div>
             <img src="/resources/img/hotplace/1.png" width=220 style="position:absolute; left:10px; top:8px;"/>
-            <img src="/resources/img/hotplace/refresh_icon.png" width=20 style="position:absolute; left:215px; top:19px; cursor:pointer;"/>
+            <img src="/resources/img/hotplace/refresh_icon.png" class="maprefresh" width=20 style="position:absolute; left:215px; top:19px; cursor:pointer;"/>
             <img src="/resources/img/hotplace/2.png" width=222 style="position:absolute; right:188px; top:8px;"/>
             <img src="/resources/img/hotplace/3.png" width=220 style="position:absolute; left:10px; top:51%;"/>
 		</div>
@@ -152,7 +152,10 @@
 	var imagepage = 0;
 	var images = [];
 	
-	
+	//맵새로고침
+	$(".maprefresh").on("click",function(){
+		getmap();
+	});
 	
 	//좋아요유저 넘기기(next)
 	$("#likeusernext").on("click",function(){
@@ -322,13 +325,13 @@
 		                	  $("#tag1").text("#친구와함께");
 		                  }else if(tag1=="08") {
 		                	  $("#tag1").text("#먹방");
-		                  }else if(tag1=="09") {
-		                	  $("#tag1").text("#도심속여행");
 		                  }else if(tag1=="10") {
-		                	  $("#tag1").text("#나만아는");
+		                	  $("#tag1").text("#도심속여행");
 		                  }else if(tag1=="11") {
-		                	  $("#tag1").text("#야경");
+		                	  $("#tag1").text("#나만아는");
 		                  }else if(tag1=="12") {
+		                	  $("#tag1").text("#야경");
+		                  }else if(tag1=="13") {
 		                	  $("#tag1").text("#교육");
 		                  }
 		                  
@@ -348,13 +351,13 @@
 		                	  $("#tag2").text("#친구와함께");
 		                  }else if(tag2=="08") {
 		                	  $("#tag2").text("#먹방");
-		                  }else if(tag2=="09") {
-		                	  $("#tag2").text("#도심속여행");
 		                  }else if(tag2=="10") {
-		                	  $("#tag2").text("#나만아는");
+		                	  $("#tag2").text("#도심속여행");
 		                  }else if(tag2=="11") {
-		                	  $("#tag2").text("#야경");
+		                	  $("#tag2").text("#나만아는");
 		                  }else if(tag2=="12") {
+		                	  $("#tag2").text("#야경");
+		                  }else if(tag2=="13") {
 		                	  $("#tag2").text("#교육");
 		                  }
 						//서브사진들 가져오기

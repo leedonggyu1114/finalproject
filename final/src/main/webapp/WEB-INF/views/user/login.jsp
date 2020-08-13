@@ -194,6 +194,7 @@ input[id="login-chk2"]:checked + label em {
 	display:none;
 }
 </style>
+
 </head>
 <body>
 	<div id="page">
@@ -297,7 +298,7 @@ input[id="login-chk2"]:checked + label em {
 	</div>
 </body>
 <script>
-
+	
 	var chkLogin = 0;
 
 	$('ul.login-tab li').click(function() {
@@ -352,13 +353,17 @@ input[id="login-chk2"]:checked + label em {
 		var c_num3 = $("#number3").val();
 		var c_number = c_num1 + c_num2 + c_num3;
 
+		if ($(frm1.chkLogin).is(":checked"))
+			chkLogin = 1;
+		alert(chkLogin);
 		$.ajax({
 			type : "post",
 			url : "/user/loginCheckCompany",
 			data : {
 				"c_id" : c_id,
 				"c_pass" : c_pass,
-				"c_number" : c_number
+				"c_number" : c_number,
+				"chkLogin" : chkLogin
 			},
 			success : function(data) {
 				if (data == 0) {

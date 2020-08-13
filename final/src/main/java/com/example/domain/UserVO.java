@@ -13,8 +13,6 @@ public class UserVO {
 	private String u_birthday;
 	private String u_key;
 	private String u_gender;
-	
-	
 	public String getU_k_id() {
 		return u_k_id;
 	}

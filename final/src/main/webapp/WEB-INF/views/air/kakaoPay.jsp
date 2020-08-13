@@ -59,13 +59,13 @@
 					url:"/air/transaction",
 					data:{
 						"a_p_residentRegistration":a_p_residentRegistration
-						//"a_p_name":a_p_name,
-						//"a_p_gender":a_p_gender,
-						//"a_p_seat":a_p_seat,
-						//"a_p_backseat":a_p_backseat,
-						//"a_number":a_number,
-						//"a_number1":a_number1,
-						//"sum":sum,
+						"a_p_name":a_p_name,
+						"a_p_gender":a_p_gender,
+						"a_p_seat":a_p_seat,
+						"a_p_backseat":a_p_backseat,
+						"a_number":a_number,
+						"a_number1":a_number1,
+						"sum":sum,
 						},
 					success:function(){
 						location.href="end";

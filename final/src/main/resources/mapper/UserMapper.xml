@@ -5,9 +5,13 @@
     	insert into tbl_user(u_id,u_pass,u_name,u_tel,u_address,u_email,u_image,u_birthday,u_status,u_key,u_gender)
 		values(#{u_id},#{u_pass},#{u_name},#{u_tel},#{u_address},#{u_email},#{u_image},#{u_birthday},#{u_status},#{u_key},#{u_gender})
     </insert>
+    <insert id="insertKakao">
+    	insert into tbl_user(u_k_id,u_pass,u_name,u_tel,u_address,u_email,u_image,u_birthday,u_status,u_key,u_gender)
+		values(#{u_k_id},#{u_pass},#{u_name},#{u_tel},#{u_address},#{u_email},#{u_image},#{u_birthday},#{u_status},#{u_key},#{u_gender})
+    </insert>
     <insert id="insertUsertag">
-    	insert into tbl_tag(t_id,t_tag)
-    	values(#{param1},#{param2})
+    	insert into tbl_tag(t_id,t_k_id,t_tag)
+    	values(#{param1},#{param2},#{param3})
     </insert>
     
     <insert id="insertCompany">
@@ -18,12 +22,15 @@
     	insert into tbl_company_option(c_o_id,c_o_option)
     	 values(#{param1},${param2})
     </insert>
-    
+   
     <select id="kakaoread" resultType="com.example.domain.UserVO">
     	select * from tbl_user where u_id=#{param1} and u_k_id=#{param2}
     </select>
     <select id="read" resultType="com.example.domain.UserVO">
     	select * from tbl_user where u_id=#{u_id}
+    </select>
+    <select id="readkakao" resultType="string">
+    	select u_k_id from tbl_user where u_k_id=#{u_k_id}
     </select>
     <select id="loginread" resultType="com.example.domain.UserVO">
     	select * from tbl_user where u_id=#{u_id} and u_status=0
@@ -112,6 +119,10 @@
     	update tbl_user set u_address=#{u_address}, u_email=#{u_email}, u_pass=#{u_pass}
     	where u_id=#{u_id}
     </update>
+    <update id="updateKakao">
+    	update tbl_user set u_name=#{u_name}, u_gender=#{u_gender}, u_tel=#{u_tel}, u_address=#{u_address}, u_email=#{u_email}
+    	where u_k_id=#{u_k_id}
+    </update>
     
     <!-- 업체회원수정  -->
     <update id="updateCompany">
@@ -122,5 +133,4 @@
     	update tbl_company set c_tel=#{c_tel}, c_pass=#{c_pass}, c_email=#{c_email}, c_ceo=#{c_ceo}, c_ceo_tel=#{c_ceo_tel}, c_detail=#{c_detail}, c_area=#{c_area}
     	where c_id=#{c_id}
     </update>
-
 </mapper>

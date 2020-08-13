@@ -49,11 +49,33 @@ public class HotplaceController {
 		model.addAttribute("list",list);
 	}
 	
+	
 	@RequestMapping("taglist")
 	@ResponseBody
 	public List<HotplaceVO> taglist(String h_tag){
-		List<HotplaceVO> taglist=mapper.taglist(h_tag);
+		List<HotplaceVO> taglist=null;
+		if(h_tag=="") {
+			taglist=mapper.list();
+		}else {
+			taglist=mapper.taglist(h_tag);
+		}
+		
 		return taglist;
+	}
+	
+	@RequestMapping("usertaglist")
+	@ResponseBody
+	public List<HotplaceVO> usertaglist(String u_id,String u_k_id){
+		List<HotplaceVO> usertaglist=mapper.usertaglist(u_id, u_k_id);
+		return usertaglist;
+	}
+	
+	@RequestMapping("latelyhotplace")
+	@ResponseBody
+	public List<HashMap<String, Object>> latelyhotplace(){
+		List<HashMap<String, Object>> latelyhotplace=mapper.latelyhotplace();
+		System.out.println(latelyhotplace);
+		return latelyhotplace;
 	}
 	
 	

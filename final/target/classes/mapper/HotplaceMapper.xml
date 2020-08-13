@@ -8,10 +8,16 @@
     	select h_i_images from tbl_hotplace_images where h_x=#{h_x} and h_y=#{h_y} order by h_i_images
     </select>
     <select id="taglist" resultType="com.example.domain.HotplaceVO">
-    	select * from tbl_hotplace where h_tag1 like #{tag} or h_tag2 like #{tag};
+    	select * from tbl_hotplace where h_tag1 like #{tag} or h_tag2 like #{tag}
     </select>
-
-  <!-- 	<select id="agefell" parameterType="hashmap" statementType="CALLABLE">
+    <select id="usertaglist" resultType="com.example.domain.HotplaceVO">
+    	select h.* from tbl_tag t right join tbl_hotplace h on t.t_tag = h.h_tag1 or t.t_tag=h.h_tag2 where t_id=#{u_id} and t_k_id=#{u_k_id}
+    </select>
+    <select id="latelyhotplace" resultType="hashmap">
+    	select count(u_id) cnt, l.h_x, l.h_y,h_image,h_title,h_tag1,h_tag2,h_detail from tbl_like l,tbl_hotplace h where l.h_x=h.h_x and l.h_y=h.h_y group by h_x,h_y order by cnt desc limit 0,5
+    </select>
+<!--
+   	<select id="agefell" parameterType="hashmap" statementType="CALLABLE">
     	{call agefell(
     		#{h_x,mode=IN,jdbcType=VARCHAR},
     		#{h_y,mode=IN,jdbcType=VARCHAR},
