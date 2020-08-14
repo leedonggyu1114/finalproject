@@ -71,42 +71,52 @@
 				<table id="idfind">
 					<tr class="line-findid a">
 						<td width=170><span>이름</span> </td>
-						<td width=500><input type="text" id="txtName" placeholder=NAME></td>
-						<td width=170>
+						<td width=500><input type="text" id="txtName" placeholder=NAME value="김창식"></td>
+						<td width=170></td>
 					</tr>
 					<tr class="line-findid b">
 						<td><span>생년월일</span></td>
 						<td>
-							<input type="text" id="txtYear" placeholder=YYYY>
-							<input type="text" id="txtMM" placeholder=MM>
-							<input type="text" id="txtdd" placeholder=DD>
+							<input type="text" id="txtYear" placeholder=YYYY value="2016">
+							<input type="text" id="txtMM" placeholder=MM value="12">
+							<input type="text" id="txtdd" placeholder=DD value="13">
 						</td>
-						<td style="padding-left:7px;"><input type="button" value="실명확인" id="btnName" style="width:155.78px; height:40px; border:none; cursor:pointer; outline:none; border-radius:3px 3px 3px 3px;"></td>
+						<td style="padding-left:7px;">
+							<input type="button" value="실명확인" id="btnName" 
+							style="width:155.78px; height:40px; border:none; cursor:pointer; 
+							outline:none; border-radius:3px 3px 3px 3px;">
+						</td>
 					</tr>
 					<tr class="line-findid a">
 						<td><span>이메일</span></td>
-						<td><input type="text" id="txtEmail" placeholder=E-MAIL></td>
-						<td style="padding-left:7px;"><input type="button" value="인증 번호 요청" id="btnEmail" style="width:155.78px; height:40px; border:none; cursor:pointer; outline:none; border-radius:3px 3px 3px 3px;"></td>
+						<td><input type="text" id="txtEmail" placeholder=E-MAIL value="d0_heeee@naver.com"></td>
+						<td style="padding-left:7px;">
+							<input type="button" value="인증 번호 요청" id="btnEmail" 
+							style="width:155.78px; height:40px; border:none; cursor:pointer; 
+							outline:none; border-radius:3px 3px 3px 3px;">
+						</td>
 					</tr>
 					<tr class="line-findid a">
 						<td><span>인증번호</span></td>
-						<td><input type="text" id="txtNumber"readonly placeholder=인증번호입력 ></td>
+						<td><input type="text" id="txtNumber" placeholder=인증번호입력 ></td>
 						<td style="padding-left:7px;"><input type="button" value="인증하기" id="btnCheck" style="width:155.78px; height:40px; border:none; cursor:pointer; outline:none; border-radius:3px 3px 3px 3px;"></td>
 					</tr>
 				</table>
 				
-				<div id="idshow">
+				<div id="idshow" style="position:relative;">
 					<div>
-						<span id="loadname"></span> 님의 정보와 일치하는 아이디 목록입니다. 
+						<div id="loadname" style="display:inline-block; text-align:center; font-weight:bold; font-size:20px;"></div> 님의 정보와 일치하는 아이디 목록입니다. 
 					</div>
-					<table id="tbl"></table>
-					<script id="temp" type="text/x-handlebars-template">
-					{{#each list}}
-						<tr>
-							<td>{{u_id}}</td>
-						</tr>
-					{{/each}}
-					</script>
+					<div style="margin-top:10px; text-align:center; border:0.5px solid white; border-radius:15px; position:relative; padding:30px; background:#edf2f3">
+						<table id="tbl" style="position:relative; left:50%; transform:translate(-50%,0);"></table>
+						<script id="temp" type="text/x-handlebars-template">
+						{{#each list}}
+							<tr style="height:50px;">
+								<td width=300 style="background:white;">{{u_id}}</td>
+							</tr>
+						{{/each}}
+						</script>
+					</div>
 				</div>
 			</div>	
 		</div>
@@ -115,7 +125,6 @@
 </body>
 <script>
 $("#idshow").hide();
-
 //실명인증
 	$("#btnName").on("click",function(){
 		var name=$("#txtName").val();
@@ -152,7 +161,6 @@ $("#idshow").hide();
 		var dd=$("#txtdd").val();
 		var birthday=year+"-"+MM+"-"+dd;
 		var email=$("#txtEmail").val();
-		alert(email+birthday+name);
 			$.ajax({
 				type:"post",
 				url:"/user/emailCheck",
@@ -162,6 +170,7 @@ $("#idshow").hide();
 						code=data.email;
 						var temp=Handlebars.compile($("#temp").html());
 						 $("#tbl").html(temp(data));
+						 $("#loadname").html(name);
 				}
 			});
 	});
@@ -169,7 +178,6 @@ $("#idshow").hide();
 	$("#btnCheck").on("click",function(){
 		if($("#txtNumber").val()==code){
 			alert("인증되었습니다");
-			$("#loadname").val(name);
 			$("#idshow").show();
 			$("#idfind").hide();
 		}else{

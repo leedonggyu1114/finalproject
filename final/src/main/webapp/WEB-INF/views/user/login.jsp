@@ -112,14 +112,16 @@
 	color:white;
 	cursor:pointer;
 }
-#div_find_a {
+#div_find_a,
+#div_find_b {
 	width:100%;
 	text-align:center;
 	font-size:13px;
 	padding-bottom:30px;
 	border-bottom:0.5px solid gray;
 }
-#div_find_a a {
+#div_find_a a,
+#div_find_b a {
 	text-decoration:none;
 	color:black;
 }
@@ -204,10 +206,10 @@ input[id="login-chk2"]:checked + label em {
 			<div id="login-area">
 				<img src="/resources/img/user/login_title.png" width=170 style="display:inline-black; position:relative; left:50%; transform:translate(-50%,0); margin-bottom:20px;"/>
 				<ul class="login-tab">
-					<li class="tab-link current" data-tab="Regular">
+					<li class="tab-link current" data-tab="Regular" id="tab-regular">
 						<b>일반</b>
 					</li>
-					<li class="tab-link" data-tab="company">
+					<li class="tab-link" data-tab="company" id="tab-company">
 						<b>업체</b>
 					</li>
 				</ul>
@@ -286,6 +288,11 @@ input[id="login-chk2"]:checked + label em {
 					<a href="find(pass)">패스워드 찾기</a> ﻿· 
 					<a href="/user/signupselect">회원 가입</a>
 				</div>
+				<div id="div_find_b">
+					<a href="/user/findCompany(id)">아이디 찾기</a> ﻿· 
+					<a href="/user/findCompany(pass)">패스워드 찾기</a> ﻿· 
+					<a href="/user/signupselect">회원 가입</a>
+				</div>
 				<div id="div_other_login">
 					<!-- <img src="/kakao_login_large_narrow.png" width="50"> -->
 					<img src="/resources/img/user/kakao_icon.png" width=30 id="kakaoimg"/>
@@ -298,6 +305,17 @@ input[id="login-chk2"]:checked + label em {
 	</div>
 </body>
 <script>
+	$("#div_find_b").hide();
+	
+	$("#tab-company").click(function(){
+		$("#div_find_b").show();
+		$("#div_find_a").hide();
+	});
+	
+	$("#tab-regular").click(function(){
+		$("#div_find_b").hide();
+		$("#div_find_a").show();
+	})
 	
 	var chkLogin = 0;
 
@@ -334,8 +352,13 @@ input[id="login-chk2"]:checked + label em {
 				} else if (data == 1) {
 					alert("아이디와 패스워드를 확인해주세요.");
 				} else if (data == 2) {
-					
-						location.href = "/";
+						var dest="${dest}";
+						if(dest!=""){
+							location.href = dest;
+						}else{
+							location.href="/";
+						}
+						
 				} else {
 					$(".alert-danger").css("display", "block");
 				}

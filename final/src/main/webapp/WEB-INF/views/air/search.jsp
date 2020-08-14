@@ -456,6 +456,7 @@ ul,li{list-style:none;}
 		</div>
 		<div id="footer"><jsp:include page="../footer.jsp"/></div>
 	</div>
+	<jsp:include page="../chat.jsp"/>
 </body>
 <script>
 	var people = 1;

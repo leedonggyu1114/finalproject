@@ -83,7 +83,7 @@
 					<tr class="line-findpass">
 						<td width=170><span>아이디</span></td>
 						<td width=500><input type="text" id="txtId"></td>
-						<td colspan="2" width=170 style="padding-left:7px;"><input type="button" value="확인" id="btnidCheck" style="width:155.78px; height:40px; border:none; cursor:pointer; outline:none; border-radius:3px 3px 3px 3px;"></td>
+						<td width=170 style="padding-left:7px;"><input type="button" value="확인" id="btnidCheck" style="width:155.78px; height:40px; border:none; cursor:pointer; outline:none; border-radius:3px 3px 3px 3px;"></td>
 					</tr>
 				</table>
 				<table id="passfind">

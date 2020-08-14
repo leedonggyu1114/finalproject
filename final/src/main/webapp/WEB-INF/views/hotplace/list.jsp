@@ -162,7 +162,7 @@
       </div>
       <div id="footer"><jsp:include page="../footer.jsp"/></div>
    </div>
-
+	<jsp:include page="../chat.jsp"/>
    <jsp:include page="read(lightbox).jsp"/>
 </body>
 <script>

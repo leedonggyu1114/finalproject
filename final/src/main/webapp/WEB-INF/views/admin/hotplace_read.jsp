@@ -121,11 +121,41 @@ textarea {
 						</tr>
 						<tr>
 							<td>태그1</td>
-							<td><input type="text" name="h_tag1" value="${vo.h_tag1 }"></td>
+							<td>
+								<select name="h_tag1">
+									<option value="01" <c:out value="${vo.h_tag1=='01'?'selected':''}"/>>힐링</option>
+									<option value="02" <c:out value="${vo.h_tag1=='02'?'selected':''}"/>>헬스케어</option>
+									<option value="03" <c:out value="${vo.h_tag1=='03'?'selected':''}"/>>익사이팅</option>
+									<option value="04" <c:out value="${vo.h_tag1=='04'?'selected':''}"/>>나홀로여행</option>
+									<option value="05" <c:out value="${vo.h_tag1=='05'?'selected':''}"/>>가족과함께</option>
+									<option value="06" <c:out value="${vo.h_tag1=='06'?'selected':''}"/>>연인과함께</option>
+									<option value="07" <c:out value="${vo.h_tag1=='07'?'selected':''}"/>>친구와함께</option>
+									<option value="08" <c:out value="${vo.h_tag1=='08'?'selected':''}"/>>먹방</option>
+									<option value="10" <c:out value="${vo.h_tag1=='10'?'selected':''}"/>>도심속여행</option>
+									<option value="11" <c:out value="${vo.h_tag1=='11'?'selected':''}"/>>나만아는</option>
+									<option value="12" <c:out value="${vo.h_tag1=='12'?'selected':''}"/>>야경</option>
+									<option value="13" <c:out value="${vo.h_tag1=='13'?'selected':''}"/>>교육</option>
+								</select>
+							</td>
 						</tr>
 						<tr>
 							<td>태그2</td>
-							<td><input type="text" name="h_tag2" value="${vo.h_tag2 }"></td>
+							<td>
+								<select name="h_tag2">
+									<option value="01" <c:out value="${vo.h_tag2=='01'?'selected':''}"/>>힐링</option>
+									<option value="02" <c:out value="${vo.h_tag2=='02'?'selected':''}"/>>헬스케어</option>
+									<option value="03" <c:out value="${vo.h_tag2=='03'?'selected':''}"/>>익사이팅</option>
+									<option value="04" <c:out value="${vo.h_tag2=='04'?'selected':''}"/>>나홀로여행</option>
+									<option value="05" <c:out value="${vo.h_tag2=='05'?'selected':''}"/>>가족과함께</option>
+									<option value="06" <c:out value="${vo.h_tag2=='06'?'selected':''}"/>>연인과함께</option>
+									<option value="07" <c:out value="${vo.h_tag2=='07'?'selected':''}"/>>친구와함께</option>
+									<option value="08" <c:out value="${vo.h_tag2=='08'?'selected':''}"/>>먹방</option>
+									<option value="10" <c:out value="${vo.h_tag2=='10'?'selected':''}"/>>도심속여행</option>
+									<option value="11"  <c:out value="${vo.h_tag2=='11'?'selected':''}"/>>나만아는</option>
+									<option value="12" <c:out value="${vo.h_tag2=='12'?'selected':''}"/>>야경</option>
+									<option value="13" <c:out value="${vo.h_tag2=='13'?'selected':''}"/>>교육</option>
+								</select>
+							</td>
 						</tr>
 						<tr style="height:100px;">
 							<td colspan=2 class="image_choice" style="padding-top:30px;">
