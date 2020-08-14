@@ -698,7 +698,7 @@
 			$("#u_name").val(data.read.u_name);
 			$("#u_birthday").val(data.read.u_birthday);
 			//주소 split
-			var beforeAdd = data.read.u	_address;
+			var beforeAdd = data.read.u_address;
 			var afterAdd = beforeAdd.split(',');
 			$("#sample6_address").val(afterAdd[0]);
 			$("#sample6_detailAddress").val(afterAdd[1]);
