@@ -115,7 +115,6 @@
 </body>
 <script>
 $("#idshow").hide();
-
 //실명인증
 	$("#btnName").on("click",function(){
 		var name=$("#txtName").val();
@@ -162,6 +161,7 @@ $("#idshow").hide();
 						code=data.email;
 						var temp=Handlebars.compile($("#temp").html());
 						 $("#tbl").html(temp(data));
+						 $("#loadname").html(name);
 				}
 			});
 	});
@@ -169,7 +169,6 @@ $("#idshow").hide();
 	$("#btnCheck").on("click",function(){
 		if($("#txtNumber").val()==code){
 			alert("인증되었습니다");
-			$("#loadname").val(name);
 			$("#idshow").show();
 			$("#idfind").hide();
 		}else{

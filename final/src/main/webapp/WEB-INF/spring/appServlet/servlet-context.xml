@@ -52,6 +52,7 @@
       <interceptor>
          <mapping path="/user/mypage/infomation"/>
          <mapping path="/hotplace/likelist"/>
+         <mapping path="/air/bookingPeople"/>
          <beans:bean id="AuthInterceptor" class="com.example.Interceptor.AuthInterceptor"/>
       </interceptor>
    </interceptors>
