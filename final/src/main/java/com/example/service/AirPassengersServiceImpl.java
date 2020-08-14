@@ -18,7 +18,7 @@ public class AirPassengersServiceImpl implements AirPassengersService {
 	@Override
 	public void passengersInsert(PassengersVO vo,String u_id) {
 		//List<String> a_p_residentRegistration=new ArrayList<String>();
-		List<String> a_p_residentRegistration= vo.getA_p_residentRegistration();
+		List<String> a_p_residentRegistration= vo.getA_p_residentregistration();
 		System.out.println(a_p_residentRegistration);
 		List<String> a_p_name=vo.getA_p_name();
 		
