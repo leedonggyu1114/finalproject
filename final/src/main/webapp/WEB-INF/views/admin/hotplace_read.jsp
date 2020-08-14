@@ -5,65 +5,136 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="UTF-8">
-	<title>여행의 설렘 TOURSUM !</title>
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/style.css"/>
-	<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
-	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=593e08eb668b13510d3ab2e0c94c93a7"></script>
-	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=593e08eb668b13510d3ab2e0c94c93a7&libraries=services"></script>
-
+<meta charset="UTF-8">
+<title>여행의 설렘 TOURSUM !</title>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/adminstyle.css"/>
+<link rel="shortcut icon" type="image⁄x-icon" href="/resources/img/title_logo.png">
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=593e08eb668b13510d3ab2e0c94c93a7"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=593e08eb668b13510d3ab2e0c94c93a7&libraries=services"></script>
+<style>
+#apiSearch {
+	width:300px;
+	height:40px;
+	outline:none;
+	border:0.5px solid black;
+	padding-left:20px;
+	border-radius:30px;
+}
+#btnSearch {
+	background:none;
+	outline:none;
+	border:none;
+	cursor:pointer;
+	position:absolute;
+	top:50%;
+	transform:translate(0,-50%);
+}
+table input[type="text"] {
+	width:370px;
+	height:30px;
+	outline:none;
+	border:none;
+	border-bottom:0.5px solid gray;
+	padding-left:10px;
+	cursor:pointer;
+	background:none;
+}
+table select {
+	width:370px;
+	height:30px;
+	outline:none;
+	border:none;
+	border-bottom:0.5px solid gray;
+	padding-left:5px;
+	cursor:pointer;
+	background:none;
+}
+table td {
+	height:50px;
+}
+textarea {
+	width:362px; 
+	height:100%; 
+	background:none; 
+	padding:10px;
+	outline:none;
+	border:0.5px solid gray;
+}
+.hot_title {
+	text-align:center;
+}
+.image_choice {
+	text-align:center;
+}
+</style>
 </head>
 <body>
-	<div id="page">
-		<div id="header"><jsp:include page="../header.jsp"/></div>
-		<div id="menu"><jsp:include page="../menu.jsp"/></div>
-		<div id="container">
-			<div style="height:100px"></div>
-			<!-- 여행추천list시작 -->
-			<h1>관광지 읽기</h1>
+	<div id="admin_page">
+		<div id="admin_menu"><a href="/admin/index"><img src="/resources/img/admin/home.png" width=50/></a><jsp:include page="menu.jsp"/></div>
+		<div id="admin_container">
+			<div id="admin_true">
+			<img src="/resources/img/admin/read_title.png"/>
+			<div style="text-align:center; position:relative; margin-bottom:20px;">
+				<input type="text" id="apiSearch">
+				<button id="btnSearch"><img src="/resources/img/admin/search_icon.png" width=25/></button>			
+			</div>
+			<div id="map" style="width:100%;height:350px; margin-bottom:20px;"></div>
 			<div>
 				<form name="frm" action="hotplace_update" method="post" enctype="multipart/form-data">
-					<table>
+					<table style="position:relative; left:50%; transform:translate(-50%,0);">
 						<tr>
-							<td>x<input type="text" name="h_x" value="${vo.h_x }"></td>
+							<td width=65 class="hot_title">x</td>
+							<td width=300><input type="text" name="h_x" value="${vo.h_x }"></td>
 						</tr>
 						<tr>
-							<td>y<input type="text" name="h_y" value="${vo.h_y }"></td>
+							<td class="hot_title">y</td>
+							<td><input type="text" name="h_y" value="${vo.h_y }"></td>
+						</tr>
+						<tr >
+							<td class="hot_title">명소명</td>
+							<td><input type="text" name="h_title" value="${vo.h_title }"></td>
 						</tr>
 						<tr>
-							<td>명소명<input type="text" name="h_title" value="${vo.h_title }"></td>
+							<td class="hot_title">주소</td>
+							<td><input type="text" name="h_address" value="${vo.h_address }"></td>
 						</tr>
 						<tr>
-							<td>주소<input type="text" name="h_address" value="${vo.h_address }"></td>
+							<td class="hot_title">지역</td>
+							<td><input type="text" name="h_area" value="${vo.h_area }"></td>
 						</tr>
-						<tr>
-							<td>상세정보<textarea name="h_detail">${vo.h_detail }</textarea></td>
+						<tr style="height:100px;">
+							<td class="hot_title">상세정보</td>
+							<td><textarea name="h_detail">${vo.h_detail }</textarea></td>
 						</tr>
-						<tr>
-							<td>지역<input type="text" name="h_area" value="${vo.h_area }"></td>
-						</tr>
-						<tr>
-							<td>
-								메인이미지<input type="file" name="file">
+						<tr style="height:100px;">
+							<td colspan=2 class="image_choice" style="padding-top:30px;">
+								메인이미지 변경하기<br><input type="file" name="file" style="margin-left:68px;">
 							</td>
-							<td>
-								<img id="image" src="/admin/display?fileName=${vo.h_image}" style="width:500px;height:500px;">
+						</tr>
+						<tr style="height:320px;">	
+							<td colspan=2 class="image_choice">
+								<img id="image" src="/admin/display?fileName=${vo.h_image}" style="width:300px;height:300px;">
 								<input type="hidden" name="h_image" value="${vo.h_image }">
 							</td>
 						</tr>
 						<tr>
-							<td>태그1<input type="text" name="h_tag1" value="${vo.h_tag1 }"></td>
+							<td>태그1</td>
+							<td><input type="text" name="h_tag1" value="${vo.h_tag1 }"></td>
 						</tr>
 						<tr>
-							<td>태그2<input type="text" name="h_tag2" value="${vo.h_tag2 }"></td>
+							<td>태그2</td>
+							<td><input type="text" name="h_tag2" value="${vo.h_tag2 }"></td>
 						</tr>
-						<tr>
-							<td>
-								서브이미지<input type="file" accept="image/*" name="files" multiple>
+						<tr style="height:100px;">
+							<td colspan=2 class="image_choice" style="padding-top:30px;">
+								서브이미지 변경하기<br><input type="file" accept="image/*" name="files" multiple style="margin-left:68px;">
 							</td>
-							<td>
-								<div id="images">
+						</tr>
+						<tr>	
+							<td colspan=2 class="image_choice">
+								<div id="images" style="width:489.33px; padding:10px;">
 									<c:forEach items="${imagelist }" var="image">
 										<img src="/admin/display?fileName=${image }" width=150>
 									</c:forEach>
@@ -71,17 +142,15 @@
 							</td>
 						</tr>
 					</table>
-					<input type="submit" value="수정">
-					<input type="button" value="삭제" id="btndelete">
-					<input type="reset" value="reset">
+					<div style="text-align:center; padding-top:40px; padding-bottom:40px;">
+						<input type="submit" value="수정" style="width:100px; height:30px; cursor:pointer;">
+						<input type="button" value="삭제" id="btndelete" style="width:100px; height:30px; cursor:pointer;">
+						<input type="reset" value="reset" style="width:100px; height:30px; cursor:pointer;">
+					</div>
 				</form>
 			</div>
-			<div>
-				<input type="text" id="apiSearch">
-				<input type="button" value="search" id="btnSearch">		
+							
 			</div>
-			<div id="map" style="width:100%;height:350px;"></div>
-			<!-- 여행추천list끝 -->
 		</div>
 	</div>
 </body>
@@ -89,6 +158,7 @@
 	var address;
 	var x;
 	var y;
+	$("#map").hide();
 	
 	//수정
 	$(frm).submit(function(e){
@@ -116,6 +186,7 @@
 	
 	//지도카카오api
 	$("#btnSearch").on("click",function(){
+		$("#map").show();
 		var  query = $("#apiSearch").val();
 			
 		//마커를 클릭하면 장소명을 표출할 인포윈도우 입니다
@@ -182,7 +253,7 @@
 		var files=$(frm.files)[0].files;
 		var html="";
 		$.each(files, function(index, files){
-			html += "<img src='"+URL.createObjectURL(files)+"' width=150>";	
+			html += "<img src='"+URL.createObjectURL(files)+"' width=150 height=85 style='margin:5px;'>";	
 		});
 		$("#images").html(html);
 	});

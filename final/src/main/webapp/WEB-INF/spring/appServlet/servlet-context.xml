@@ -56,9 +56,11 @@
       </interceptor>
    </interceptors>
 
+	<beans:bean id="websocketHandler" class="com.example.domain.RefreshSocket"/>
 	<websocket:handlers>
 		<websocket:mapping handler="websocketHandler" path="/websocket"/>
+	 	<websocket:mapping handler="websocketHandler" path="/websocket1"/>
+		<websocket:mapping handler="websocketHandler" path="/websocket2"/>
 	</websocket:handlers>
-	<beans:bean id="websocketHandler" class="com.example.domain.RefreshSocket"/>
-
+	
 </beans:beans>
