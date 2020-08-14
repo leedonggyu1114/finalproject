@@ -151,4 +151,34 @@ public class AdminController {
 		}
 		return result;
 	}
+	
+	// 유저리스트
+	@RequestMapping("userlist")
+	public void userlist() {
+	}
+	
+	// 블랙리스트
+	@RequestMapping("blacklist")
+	public void blacklist() {
+	}
+	
+	// 신고내역
+	@RequestMapping("userreport")
+	public void userreport() {
+	}
+	
+	// 문의하기
+	@RequestMapping("chat")
+	public void chat() {
+	}	
+	
+	// 업체리스트
+	@RequestMapping("staylist")
+	public void staylist() {
+	}
+	
+	// 업체요청
+	@RequestMapping("stayrequest")
+	public void stayrequest() {
+	}
 }
