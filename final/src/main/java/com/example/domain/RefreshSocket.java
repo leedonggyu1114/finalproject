@@ -10,13 +10,12 @@ import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
 public class RefreshSocket extends TextWebSocketHandler{
-
     Set<WebSocketSession> clients=new HashSet<WebSocketSession>();
     @Override 
     public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception { 
         
         super.afterConnectionClosed(session, status); 
-       // session.close();
+       //session.close();
         System.out.println("closed" +" | "+ session +" | "+ status); 
     }
     @Override 

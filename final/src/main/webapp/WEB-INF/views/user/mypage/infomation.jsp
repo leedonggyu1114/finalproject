@@ -638,6 +638,7 @@
 		e.preventDefault();
 		var now_pass = $("#nowPass").val();
 		//전화번호 합치기
+		alert(now_pass);
 		var tel1=$("#selectTel1 option:selected").val();
 		var tel2=$("#telFirst1").val();
 		var tel3=$("#telSecond1").val();
@@ -650,6 +651,7 @@
 				"u_id" : u_id
 			},
 			success : function(data) {
+				alert(data.readuser.u_pass+"/"+now_pass);
 				if (data.readuser.u_pass != now_pass) {
 					alert("현재비밀번호를 확인하세요.");
 				} else {
@@ -689,7 +691,7 @@
 			$("#u_name").val(data.read.u_name);
 			$("#u_birthday").val(data.read.u_birthday);
 			//주소 split
-			var beforeAdd = data.read.u_address;
+			var beforeAdd = data.read.u	_address;
 			var afterAdd = beforeAdd.split(',');
 			$("#sample6_address").val(afterAdd[0]);
 			$("#sample6_detailAddress").val(afterAdd[1]);

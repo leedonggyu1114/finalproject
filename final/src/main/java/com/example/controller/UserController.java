@@ -217,11 +217,11 @@ public class UserController {
 	public HashMap<String, Object> read(String u_id, String u_k_id) {
 		HashMap<String, Object> map=new HashMap<String, Object>();
 		UserVO vo=mapper.kakaoread(u_id, u_k_id);
-//		UserVO uvo=mapper.read(u_id);
+		UserVO uvo=mapper.read(u_id);
 		List<UserTagVO> tvo=mapper.readtag(u_id);
 		map.put("readtag", tvo);
 		map.put("read", vo);
-//		map.put("readuser", uvo);
+		map.put("readuser", uvo);
 		return map;
 	}
 	
