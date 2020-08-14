@@ -13,7 +13,7 @@ public class PassengersVO extends UserVO{
 	private String u_birthday;
 	private List<String> a_p_name;
 	private List<String> a_p_gender;
-	private List<String> a_p_residentRegistration;
+	private List<String> a_p_residentregistration;
 	private int a_emptyseat;
 	private List<String> a_p_seat;
 	private List<String> a_p_backseat;
@@ -23,7 +23,6 @@ public class PassengersVO extends UserVO{
 	private Date a_b_paydate;
 	private String a_b_status;
 	private int sum;
-	
 	public String getPayName() {
 		return payName;
 	}
@@ -60,11 +59,11 @@ public class PassengersVO extends UserVO{
 	public void setA_p_gender(List<String> a_p_gender) {
 		this.a_p_gender = a_p_gender;
 	}
-	public List<String> getA_p_residentRegistration() {
-		return a_p_residentRegistration;
+	public List<String> getA_p_residentregistration() {
+		return a_p_residentregistration;
 	}
-	public void setA_p_residentRegistration(List<String> a_p_residentRegistration) {
-		this.a_p_residentRegistration = a_p_residentRegistration;
+	public void setA_p_residentregistration(List<String> a_p_residentregistration) {
+		this.a_p_residentregistration = a_p_residentregistration;
 	}
 	public int getA_emptyseat() {
 		return a_emptyseat;
@@ -123,8 +122,8 @@ public class PassengersVO extends UserVO{
 	@Override
 	public String toString() {
 		return "PassengersVO [payName=" + payName + ", email=" + email + ", tel=" + tel + ", u_birthday=" + u_birthday
-				+ ", a_p_name=" + a_p_name + ", a_p_gender=" + a_p_gender + ", a_p_residentRegistration="
-				+ a_p_residentRegistration + ", a_emptyseat=" + a_emptyseat + ", a_p_seat=" + a_p_seat
+				+ ", a_p_name=" + a_p_name + ", a_p_gender=" + a_p_gender + ", a_p_residentregistration="
+				+ a_p_residentregistration + ", a_emptyseat=" + a_emptyseat + ", a_p_seat=" + a_p_seat
 				+ ", a_p_backseat=" + a_p_backseat + ", airsum=" + airsum + ", a_number=" + a_number + ", a_number1="
 				+ a_number1 + ", a_b_paydate=" + a_b_paydate + ", a_b_status=" + a_b_status + ", sum=" + sum + "]";
 	}

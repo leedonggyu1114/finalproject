@@ -333,8 +333,9 @@ public class UserController {
 	@ResponseBody
 	public int nameCheck(String name, String birthday) {
 		int i=mapper.checkName(birthday, name);
+		System.out.println(i);
 		int result=0;
-		if(i>1) {
+		if(i==1) {
 			result=1;
 		}
 		return result;

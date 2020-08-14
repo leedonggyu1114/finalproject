@@ -125,7 +125,6 @@
 </body>
 <script>
 $("#idshow").hide();
-
 //실명인증
 	$("#btnName").on("click",function(){
 		var name=$("#txtName").val();

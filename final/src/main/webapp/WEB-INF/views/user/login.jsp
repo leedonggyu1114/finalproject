@@ -352,8 +352,13 @@ input[id="login-chk2"]:checked + label em {
 				} else if (data == 1) {
 					alert("아이디와 패스워드를 확인해주세요.");
 				} else if (data == 2) {
-					
-						location.href = "/";
+						var dest="${dest}";
+						if(dest!=""){
+							location.href = dest;
+						}else{
+							location.href="/";
+						}
+						
 				} else {
 					$(".alert-danger").css("display", "block");
 				}

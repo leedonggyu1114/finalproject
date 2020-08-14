@@ -124,25 +124,25 @@
 	height:90px;
 }
 
-#passengers input[type="radio"] {
-	display:none;
-}
-#passengers label {
-	display:inline-block;
-	width:60px;
-	height:40px;
-	border:0.5px solid #e9e9e9;
-	margin-left:-6.5px;
-	padding-top:8px;
-	cursor:pointer;
-	text-align:center;
-}
-#passengers input[type="radio"]:checked + label {
-	background:#e9e9e9;
-	width:60px;
-	border:0.5px solid #e9e9e9;
-	height:40px;
-	cursor:pointer;
+/* #passengers input[type="radio"] { 
+	display:none; 
+} */
+#passengers label { 
+	display:inline-block; 
+	width:60px; 
+	height:40px; 
+	border:0.5px solid #e9e9e9; 
+	margin-left:-6.5px; 
+	padding-top:8px; 
+	cursor:pointer; 
+	text-align:center; 
+} 
+#passengers input[type="radio"]:checked + label { 
+	background:#e9e9e9; 
+ 	width:60px; 
+	border:0.5px solid #e9e9e9; 
+ 	height:40px; 
+ 	cursor:pointer; 
 }
 </style>
 </head>
@@ -226,18 +226,22 @@
 					</table>
 					<img src="/resources/img/air/air_booking2.png" width=450>
 					<table id="passengers" style="border-top:2px solid #0f4c81;">
-						<c:forEach var="i" begin="1" end="${sum }">
+						<c:forEach var="i" begin="1" end="${sum }" step="1" varStatus="vs">
 							<tr >
 								<th style="padding-top:20px;">이름</th>
 								<td width=250 style="padding-top:20px;"><input type=text name='a_p_name'></td>
 								<th style="padding-top:20px;">성별</th>
-								<td colspan=2 width=300 style="padding-left:10px;padding-top:20px;">
-									<input type="radio" name="a_p_gender" value="male" id="a_p_gender">
-									<label for="a_p_gender">남</label>
-									<input type="radio" name="a_p_gender" value="female" id="a_p_gender2">
-									<label for="a_p_gender2">여</label>
+								<td colspan=2  width=300 style="padding-left:10px;padding-top:20px;">
+								
+									<label>남
+										<input type="radio" name="a_p_gender${vs.count }" value="male">
+									</label>
+									
+									<label>여
+										<input type="radio" name="a_p_gender${vs.count }" value="female">
+									</label>
 								</td>
-								<td width=190></td>
+								<td width=190><input type="hidden" width=100></td>
 							</tr>
 							<tr class=row style="border-bottom:0.5px solid gray;">
 								<th style="padding-bottom:20px;">주민번호</th> <!-- <input type=text name='a_p_residentRegistration1'maxlength="6" size="5">-<input type=text name='a_p_residentRegistration2'maxlength="7" size="5"> -->
@@ -261,7 +265,7 @@
 								<c:if test="${a_startdate1 != '' }">
 									<span style="display:inline-block; text-align:center;">
 										오는항공
-										<input type=text seat="${back.a_number }" class=seatSelection name='a_p_backseat' style="width:100px; margin-left:10px;">
+										<input type=text seat="${back.a_number }" class=backseatSelection name='a_p_backseat' style="width:100px; margin-left:10px;">
 									</span>
 								</c:if>
 							</td>
@@ -335,7 +339,7 @@
 	$(document)
 			.on(
 					"keyup",
-					"#a_p_residentRegistration",
+					"#a_p_residentregistration",
 					function() {
 						$(this)
 								.val(
@@ -343,7 +347,8 @@
 												.val()
 												.replace(/[^0-9]/g, "")
 												.replace(
-														/^(?:[0-9]{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[1,2][0-9]|3[0,1]))-[1-4][0-9]{6}$/g)/*.replace("--","-") */);
+														).replace(
+														"--", "-"));
 					});
 	//총 운임비 계산하기 
 	if (a_startdate1 == "") {
@@ -359,39 +364,27 @@
 	//결제하기 
 	$(frm).submit(function(e) {
 		e.preventDefault();
-		/*
-		var payName=$(frm.payName).val();
-		var tel=$(frm.tel).val();
-		var birthday=$(frm.birthday).val();
-		var a_p_name=$(frm.a_p_name).val();
-		var a_p_gender=$(frm.a_p_gender).val();
-		var a_p_seat=$(frm.a_p_seat).val();
-		
-		//a_p_residentRegistration += $(frm.a_p_residentRegistration).val();
-		//a_p_residentRegistration += "-";
-		//a_p_residentRegistration += $(frm.a_p_residentRegistration1).val();
-		
-		var a_p_residentRegistration1=$(frm.a_p_residentRegistration1).val();;
-		var a_p_residentRegistration2=$(frm.a_p_residentRegistration2).val();;
-		var a_p_residentRegistration=a_p_residentRegistration1.concat("-",a_p_residentRegistration2);
-		$(frm.a_p_residentRegistration).val(a_p_residentRegistration);
-		 */
-		//alert(a_p_residentRegistration);
-		if (!confirm("여행을 떠날 준비가 되셨나요?"))
-			return;
-		//alert(email+"/"+a_p_residentRegistration);
-		//if(payName!="" || email!="" || tel!="" || birthday!="" || a_p_name!="" || a_p_gender!="" || a_p_residentRegistration!="" || a_p_seat!="" ){
-		frm.submit();
-		//}else{
-		//alert("모든 text 창을 입력해주세요 ");
-		//}
+		var radio=[];
+		for(var i=1; i<=sum; i++){
+			radio.push($("input[name='a_p_gender"+i+"']:checked").val());
+		}
+		$(frm.a_p_gender1).removeAttr("name").attr({name:"a_p_gender"});
+		alert(radio);
+		frm.a_p_gender.value = radio;
+		if (!confirm("여행을 떠날 준비가 되셨나요?"))return;
+			frm.submit();
+		if(payName!="" || email!="" || tel!="" || birthday!="" || a_p_name!="" || a_p_gender!="" || a_p_residentRegistration!="" || a_p_seat!="" ){
+			
+		}else{
+			alert("모든 text 창을 입력해주세요 ");
+		}
 	});
 
 	//좌석선택(라이트박스)
 	$("#passengers")
 			.on(
 					"click",
-					".row .seatSelection",
+					".row .seatSelection, .backseatSelection",
 					function() {
 						var a_number = $(this).attr("seat");
 						seatSelection = $(this);
@@ -428,7 +421,6 @@
 													+ i
 													+ "</button></div><br><br>";
 										}
-										html += "<div><button id='btnseatfinsh'>선택완료</button></div>"
 										$("#selectseat").html(html);
 										$("#darken-background").show();
 
@@ -439,7 +431,8 @@
 															for (var n = 0; n < datalength; n++) {
 																dataseat.push(data[n]);
 																if (dataseat[n] == thisseat.html()) {
-																	thisseat.contents().unwrap().wrap( "<img src='/resources/img/hotplace/close_icon.png' style='width:40px;height:30px'/>" );
+																	thisseat.attr('disabled',true);
+// 																	thisseat.contents().unwrap().wrap( "<img src='/resources/img/hotplace/close_icon.png' style='width:40px;height:30px'/>" );
 // 																	thisseat.html("<img src='/resources/img/hotplace/close_icon.png' style='width:40px;height:30px'/>");
 																}
 															}
@@ -452,13 +445,18 @@
 	//라이트박스 닫기
 	$("#btnClose").on("click", function() {
 		$("#darken-background").hide();
-		
+		$("#selectseat .seat button").each(function(){
+			if($(this).attr("class")=="styleseat"){
+				seatchoice += ","+$(this).html();
+			}
+		});
+		seatchoice = seatchoice.substring(1);
 		seatSelection.val(seatchoice);
 		seatchoice = "";
 		seatcount = 0;
 	});
  	
-    //라이트박스안에 버튼선택시 인풋안으로 이동 
+    //라이트박스안에 버튼선택 
 	$("#selectseat").on("click",".seat button",function(){
 		if($(this).attr("class")=="styleseat"){
 			$(this).attr("class","seat1");
@@ -467,7 +465,6 @@
 			if(seatcount >= sum){
 				alert("선택가능 인원수는"+sum+"명 입니다");
 			}else{
-				seatchoice += $(this).html();
 				$(this).attr("class","styleseat");
 				seatcount++;
 			}

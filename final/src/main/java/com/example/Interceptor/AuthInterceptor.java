@@ -20,6 +20,8 @@ public class AuthInterceptor extends HandlerInterceptorAdapter{
 			
 			//System.out.println(path+query);
 			request.getSession().setAttribute("dest", path+query); //원래가고자 했던 url을 세션에 저장
+			
+			System.out.println(path+query);
 			response.sendRedirect("/user/login");
 		}
 		return super.preHandle(request, response, handler);
