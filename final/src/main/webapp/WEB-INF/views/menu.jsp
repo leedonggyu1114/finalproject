@@ -36,10 +36,10 @@
 }
 
 #sub_menu {
+	display:none;
 	position: absolute;
 	background: white;
 	opacity: 0;
-	visivility: hidden;
 	transition: all 0.5s;
 }
 
@@ -57,12 +57,15 @@
 	color: black;
 }
 
-#main_menu>li:hover #sub_menu {
-	opacity: 1;
-	visibility: visible;
-	z-index: 10;
+#sub_menu>li>a:hover {
+	color:red;
 }
 
+#main_menu>li:hover #sub_menu {
+	display:block;
+	opacity: 1;
+	z-index: 10;
+}
 .div_menu_area_Fixed {
 	position: fixed;
 	top: 0px;
@@ -83,8 +86,6 @@
 </div>
 
 <script>
-	
-	
 	var bannerOffset = $('#div_menu_area').offset();
 	$(window).scroll(function() { //window에 스크롤링이 발생하면
 		if ($(document).scrollTop() > bannerOffset.top) { // 위치 및 사이즈를 파악하여 미리 정한 css class를 add 또는 remove 합니다.

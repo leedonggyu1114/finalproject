@@ -49,6 +49,14 @@
 	cursor:pointer;
 }
 
+.styleseat {
+	width:70px;
+	height:40px;
+	margin:5px;
+	cursor:pointer;
+	background:red;
+}
+
 .seat {
 	float: left;
 }
@@ -213,7 +221,7 @@
 							<th style="padding-bottom:20px;">휴대전화</th>
 							<td style="padding-bottom:20px;"><input type="text" name=tel id="tel" onkeyup="keyevent(this);" placeholder="-을 빼고 입력해주세요!" maxlength="13" style="width:100%;"></td>
 							<th style="padding-bottom:20px;">생년월일</th>
-							<td colspan=2 style="padding-bottom:20px;"><input type="text" name="u_birthday" id="birthday" style="width:300px;"></td>
+							<td colspan=2 style="padding-bottom:20px;"><input type="text" name="u_birthday" id="birthday" style="width:300px;" readOnly></td>
 						</tr>
 					</table>
 					<img src="/resources/img/air/air_booking2.png" width=450>
@@ -290,6 +298,8 @@
 	var backPrice = "${back.a_price}";
 	var thisseat;
 	var seatSelection;
+	var seatchoice = "";
+	var seatcount = 0;
 
 	//이메일 입력방식 선택 
 	$('#selectEmail').change(function() {
@@ -395,28 +405,29 @@
 									success : function(data) {
 										var html = "";
 										var datalength = data.length;
-										var dataseat;
+										var dataseat=[];
 										present = $(this);
 										for (var i = 1; i <= 12; i++) {
-											html += "<div class='seat div_seat1'><button class='seat1 btn_seat1'>A"
+											html += "<div class='seat div_seat1'><button class='seat1'>A"
 													+ i
-													+ "</button><button class='seat1 btn_seat1'>B"
+													+ "</button><button class='seat1'>B"
 													+ i
 													+ "</button></div>";
-											html += "<div class='seat div_seat2'><button class='seat1 btn_seat2'>C"
+											html += "<div class='seat div_seat2'><button class='seat1'>C"
 													+ i
-													+ "</button><button class='seat1 btn_seat2'>D"
+													+ "</button><button class='seat1'>D"
 													+ i
-													+ "</button><button class='seat1 btn_seat2'>E"
+													+ "</button><button class='seat1'>E"
 													+ i
-													+ "</button><button class='seat1 btn_seat2'>F"
+													+ "</button><button class='seat1'>F"
 													+ i + "</button></div>";
-											html += "<div class='seat div_seat3'><button class='seat1 btn_seat3'>G"
+											html += "<div class='seat div_seat3'><button class='seat1'>G"
 													+ i
-													+ "</button><button class='seat1 btn_seat3'>H"
+													+ "</button><button class='seat1'>H"
 													+ i
 													+ "</button></div><br><br>";
 										}
+										html += "<div><button id='btnseatfinsh'>선택완료</button></div>"
 										$("#selectseat").html(html);
 										$("#darken-background").show();
 
@@ -425,26 +436,14 @@
 														function() {
 															thisseat = $(this);
 															for (var n = 0; n < datalength; n++) {
-																dataseat = data[n];
-																if (dataseat == thisseat
-																		.html()) {
-																	thisseat
-																			.attr(
-																					'disabled',
-																					true);
+																dataseat.push(data[n]);
+																if (dataseat[n] == thisseat.html()) {
+																	thisseat.contents().unwrap().wrap( "<img src='/resources/img/hotplace/close_icon.png' style='width:40px;height:30px'/>" );
+// 																	thisseat.html("<img src='/resources/img/hotplace/close_icon.png' style='width:40px;height:30px'/>");
 																}
 															}
 														});
-
-										//디세이벌드
-										//             if("${a_startdate1 != null }"){
-										//                var seat=$(frm.a_p_backseat).val();
-										//                var thisseat=$(this).html();
-										//                alert(seat+thisseat);
-										//                if(seat == thisseat){
-										//                   thisseat.attr('disabled',true);
-										//                }
-										//             }
+										
 									}
 								});
 
@@ -452,14 +451,27 @@
 	//라이트박스 닫기
 	$("#btnClose").on("click", function() {
 		$("#darken-background").hide();
+		
+		seatSelection.val(seatchoice);
+		seatchoice = "";
+		seatcount = 0;
 	});
-
+ 	
     //라이트박스안에 버튼선택시 인풋안으로 이동 
 	$("#selectseat").on("click",".seat button",function(){
-	   var seat1=$(this).html();
-	   seatSelection.val(seat1);
-	   $("#darken-background").hide();
-	}); 
+		if($(this).attr("class")=="styleseat"){
+			$(this).attr("class","seat1");
+			seatcount--;
+		}else{
+			if(seatcount >= sum){
+				alert("선택가능 인원수는"+sum+"명 입니다");
+			}else{
+				seatchoice += $(this).html();
+				$(this).attr("class","styleseat");
+				seatcount++;
+			}
+		}
+	});
 
 
 

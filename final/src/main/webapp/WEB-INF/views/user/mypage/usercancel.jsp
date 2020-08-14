@@ -100,72 +100,70 @@
 	</div>
 </body>
 <script>
-$("#cancelUser").on("click",function(){
-	var u_id="${u_id}";
-	var u_pass=$("#u_pass").val();
-	$.ajax({
-		type:"get",
-		url:"/user/mypage/UserPass",
-		data:{"u_id":u_id,"u_pass":u_pass},
-		success:function(data){
-			if(data==0){
-				alert("비밀번호를 다시 확인하십시오.")
-			}else{
-				getCancel();
-			}
-		}
-	});
-});
-
-$("#cancelCompany").on("click",function(){
+	var u_id = "${u_id}";
+	var u_k_id = "${u_k_id}";
 	var c_id="${c_id}";
-	var c_pass=$("#c_pass").val();
-	$.ajax({
-		type:"get",
-		url:"/user/mypage/CompanyPass",
-		data:{"c_id":c_id,"c_pass":c_pass},
-		success:function(data){
-			if(data==0){
-				alert("비밀번호를 다시 확인하십시오.")
-			}else{
-				getCompanyCancel();
-			}
-		}
-	});
-});
 	
-function getCancel(){
-		if(!confirm("회원 탈퇴하시겠습니까?")) return;
-		var u_id=$("#u_id").html();
-		var u_k_id="${u_k_id}";
+	$("#cancelUser").on("click",function(){
+		var u_pass=$("#u_pass").val();
 		$.ajax({
-			type : "post",
-			url : "/user/mypage/usercancel",
-			data : {
-				"u_id" : u_id,
-				"u_k_id": u_k_id
-			},
-			success : function() {
-				alert("회원 탈퇴되었습니다.");
-				location.href = "/user/login";
+			type:"get",
+			url:"/user/mypage/UserPass",
+			data:{"u_id":u_id,"u_k_id":u_k_id,"u_pass":u_pass},
+			success:function(data){
+				if(data==0){
+					alert("비밀번호를 다시 확인하십시오.")
+				}else{
+					getCancel();
+				}
 			}
 		});
-}
-function getCompanyCancel(){
-		if(!confirm("회원 탈퇴하시겠습니까?")) return;
-		var c_id=$("#c_id").html();
-
+	});
+	
+	$("#cancelCompany").on("click",function(){
+		var c_pass=$("#c_pass").val();
 		$.ajax({
-			type : "post",
-			url : "/user/mypage/companycancel",
-			data : {
-				"c_id" : c_id
-			},
-			success : function() {
-				alert("회원 탈퇴되었습니다.");
-				location.href = "/user/login";
+			type:"get",
+			url:"/user/mypage/CompanyPass",
+			data:{"c_id":c_id,"c_pass":c_pass},
+			success:function(data){
+				if(data==0){
+					alert("비밀번호를 다시 확인하십시오.")
+				}else{
+					getCompanyCancel();
+				}
 			}
 		});
-}
+	});
+		
+	function getCancel(){
+			if(!confirm("회원 탈퇴하시겠습니까?")) return;
+			$.ajax({
+				type : "post",
+				url : "/user/mypage/usercancel",
+				data : {
+					"u_id" : u_id,
+					"u_k_id": u_k_id
+				},
+				success : function() {
+					alert("회원 탈퇴되었습니다.");
+					location.href = "/user/login";
+				}
+			});
+	}
+	function getCompanyCancel(){
+			if(!confirm("회원 탈퇴하시겠습니까?")) return;
+			$.ajax({
+				type : "post",
+				url : "/user/mypage/companycancel",
+				data : {
+					"c_id" : c_id
+				},
+				success : function() {
+					alert("회원 탈퇴되었습니다.");
+					location.href = "/user/login";
+				}
+			});
+	}
 </script>
 </html>

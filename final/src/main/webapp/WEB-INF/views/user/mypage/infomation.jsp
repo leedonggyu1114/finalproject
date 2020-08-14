@@ -110,7 +110,7 @@
 							</tr>
 							<tr class="line-info a">
 								<td width=170><span>이름</span></td>
-								<td width=500><input type="text" id="u_name" value=""></td>
+								<td width=500><input type="text" id="u_name" value="" readonly></td>
 								<td width=170><input type="hidden" id=allAddress name="u_address"></td>
 							</tr>
 							<tr class="line-info a">
