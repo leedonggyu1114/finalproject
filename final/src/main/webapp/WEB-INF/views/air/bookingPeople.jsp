@@ -269,7 +269,7 @@
 									</span>
 								</c:if>
 							</td>
-							<td></td>
+							<td><input type="hidden" name="a_p_gender"/></td>
 						</tr>
 					</table>
 					<div style="text-align:right;">
@@ -367,10 +367,13 @@
 		var radio=[];
 		for(var i=1; i<=sum; i++){
 			radio.push($("input[name='a_p_gender"+i+"']:checked").val());
+// 			$(frm.a_p_gender+i).removeAttr("name").attr({name:"a_p_gender"});
+// 			$(":radio[name='a_p_gender'][value="+radio[i-1]+"']").attr('checked', true);
 		}
-		$(frm.a_p_gender1).removeAttr("name").attr({name:"a_p_gender"});
-		alert(radio);
-		frm.a_p_gender.value = radio;
+		$("input[name='a_p_gender']").val(radio);
+
+
+		
 		if (!confirm("여행을 떠날 준비가 되셨나요?"))return;
 			frm.submit();
 		if(payName!="" || email!="" || tel!="" || birthday!="" || a_p_name!="" || a_p_gender!="" || a_p_residentRegistration!="" || a_p_seat!="" ){

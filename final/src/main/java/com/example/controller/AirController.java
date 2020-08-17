@@ -46,12 +46,17 @@ public class AirController {
 	
 		@RequestMapping("/kakaoPay")
 		public void kakaoPay(PassengersVO vo,Model model){
-			System.out.println(vo.toString());
-			model.addAttribute("residentRegistration",vo.getA_p_residentregistration());
+			model.addAttribute("residentregistration",vo.getA_p_residentregistration());
 			model.addAttribute("name",vo.getA_p_name());
 			model.addAttribute("gender",vo.getA_p_gender());
 			model.addAttribute("seat",vo.getA_p_seat());
 			model.addAttribute("backseat",vo.getA_p_backseat());
+			model.addAttribute("number",vo.getA_number());
+			model.addAttribute("number1",vo.getA_number1());
+			model.addAttribute("sum",vo.getSum());
+			model.addAttribute("airsum",vo.getAirsum());
+			model.addAttribute("payname",vo.getPayName());
+			model.addAttribute("tel",vo.getTel());
 		}
 		
 		@RequestMapping("/seatlist")
