@@ -169,104 +169,6 @@ input:focus::-webkit-input-placeholder {color:transparent; }
    transform: rotate(-45deg);
 }
 
-#div_header_bubble {
-   position: absolute;
-   top: 50%;
-   right: 6px;
-   width: 330px;
-   height: 300px;
-   visibility: hidden;
-   transition: all 0.2s;
-   opacity: 0;
-   text-align: center;
-}
-
-#bubble {
-   position: absolute;
-   bottom: 0px;
-   height: 260px;
-   width: 100%;
-   background: #FFFFFF;
-   border-radius: 0px 0px 5px 5px;
-   border: black solid 1px;
-}
-
-#bubble:after {
-   content: '';
-   position: absolute;
-   border-style: solid;
-   border-width: 0 15px 19px 16.5px;
-   border-color: #FFFFFF transparent;
-   display: block;
-   width: 0;
-   top: -18.5px;
-   right: 15px;
-   z-index: 1;
-}
-
-#bubble:before {
-   content: '';
-   position: absolute;
-   border-style: solid;
-   border-width: 0 15px 19px 16.5px;
-   border-color: black transparent;
-   display: block;
-   width: 0;
-   top: -20px;
-   right: 15px;
-   z-index: 0;
-}
-
-#div_header_bubble img {
-   opacity: 0;
-   transition: all 0.2s;
-}
-
-#div_header_bubble a:nth-child(2) {
-   margin-left: 25px;
-   margin-right: 25px;
-}
-
-#div_header_bubble #information {
-   height: 173px;
-}
-
-#div_header_bubble #menu {
-   background: #e9e9e9;
-   padding: 8px;
-   border-radius: 0px 0px 5px 5px;
-   width: 327px;
-   border-top: 1px solid black;
-}
-
-#div_header_bubble.visible {
-   visibility: visible;
-   opacity: 1;
-   z-index:9;
-}
-
-#div_header_bubble.visible img {
-   opacity: 1;
-   cursor: pointer;
-}
-
-#div_header_bubble.visible a:nth-child(2) {
-   margin-left: 25px;
-   margin-right: 25px;
-}
-
-#div_header_bubble.visible #information {
-   height: 173px;
-}
-
-#div_header_bubble.visible #menu {
-   background: #e9e9e9;
-   padding: 8px;
-   border-radius: 0px 0px 5px 5px;
-   width: 327px;
-   border-top: 1px solid black;
-}
-
 /* container ---------------------*/
 #container {
    position: relative;
@@ -592,7 +494,6 @@ input:focus::-webkit-input-placeholder {color:transparent; }
 }
 
 #div_container_tema {
-   background:orange;
    position:absolute;
    width: 65%;
    right: 0;

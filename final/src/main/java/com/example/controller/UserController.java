@@ -252,6 +252,11 @@ public class UserController {
 	public void findpassC() {
 		
 	}
+	
+	@RequestMapping("/user/mypage/bookinglist")
+	public void bookinglist() {
+		
+	}
 	//실명인증
 	@RequestMapping("/user/checkNameCompany")
 	@ResponseBody
