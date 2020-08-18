@@ -28,47 +28,27 @@
 		<input type="text" placeholder=search..>
 		<img src="${pageContext.request.contextPath}/resources/img/header/search_icon.png" width=30>
 	</div>
-	<div id="div_header_burgermenu">
-		<a href="#" class="menu">
-			<span>메뉴</span>	
+	<div style="display:inline-block; position:absolute; top:40px; right:10px;">
+		<a href="/user/mypage/infomation">
+			<img src="${pageContext.request.contextPath}/resources/img/header/mypage_icon.png" 
+			onmouseover="this.src='${pageContext.request.contextPath}/resources/img/header/mypage_icon_hover.png'" 
+			onmouseout="this.src='${pageContext.request.contextPath}/resources/img/header/mypage_icon.png'" 
+			width=50>
 		</a>
-	</div>
-	<div id="div_header_bubble">
-		<div id="bubble">
-			<div id="information">
-			</div>
-			<div id="menu">
-				<a href="/user/mypage/infomation">
-					<img src="${pageContext.request.contextPath}/resources/img/header/mypage_icon.png" 
-					onmouseover="this.src='${pageContext.request.contextPath}/resources/img/header/mypage_icon_hover.png'" 
-					onmouseout="this.src='${pageContext.request.contextPath}/resources/img/header/mypage_icon.png'" 
-					width=50>
-				</a>
-				<a href="">
-					<img src="${pageContext.request.contextPath}/resources/img/header/booking_icon.png" 
-					onmouseover="this.src='${pageContext.request.contextPath}/resources/img/header/booking_icon_hover.png'" 
-					onmouseout="this.src='${pageContext.request.contextPath}/resources/img/header/booking_icon.png'" 
-					width=50>
-				</a>
-				<a href="/hotplace/likelist">
-					<img src="${pageContext.request.contextPath}/resources/img/header/like_icon.png" 
-					onmouseover="this.src='${pageContext.request.contextPath}/resources/img/header/like_icon_hover.png'" 
-					onmouseout="this.src='${pageContext.request.contextPath}/resources/img/header/like_icon.png'" 
-					width=50>
-				</a>
-			</div>
-		</div>
+		<a href="/user/mypage/bookinglist" style="margin-left:15px; margin-right:15px;">
+			<img src="${pageContext.request.contextPath}/resources/img/header/booking_icon.png" 
+			onmouseover="this.src='${pageContext.request.contextPath}/resources/img/header/booking_icon_hover.png'" 
+			onmouseout="this.src='${pageContext.request.contextPath}/resources/img/header/booking_icon.png'" 
+			width=50>
+		</a>
+		<a href="/hotplace/likelist">
+			<img src="${pageContext.request.contextPath}/resources/img/header/like_icon.png" 
+			onmouseover="this.src='${pageContext.request.contextPath}/resources/img/header/like_icon_hover.png'" 
+			onmouseout="this.src='${pageContext.request.contextPath}/resources/img/header/like_icon.png'" 
+			width=50>
+		</a>
 	</div>
 </body>
 <script>
-
-	$(".menu").click(function(e){
-		e.preventDefault();
-		$(this).toggleClass("on");
-		$("#div_header_bubble").toggleClass("visible");
-	});
-	/*$(document).click(function(){
-		$(".menu").toggleClass("off");
-	});*/
 </script>
 </html>

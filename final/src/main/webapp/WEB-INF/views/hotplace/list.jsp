@@ -104,6 +104,7 @@
 </style>
 </head>
 <body>
+	<jsp:include page="../floatmenu.jsp"/>
    <jsp:include page="../sidebar.jsp"/>
    <button type="button" name="button" class="ac-sub-go-top" style="cursor:pointer;">위로</button>
    <div id="page">
@@ -162,7 +163,6 @@
       </div>
       <div id="footer"><jsp:include page="../footer.jsp"/></div>
    </div>
-	<jsp:include page="../chat.jsp"/>
    <jsp:include page="read(lightbox).jsp"/>
 </body>
 <script>

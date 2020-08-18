@@ -147,6 +147,7 @@
 </style>
 </head>
 <body>
+	<jsp:include page="../floatmenu.jsp"/>
 	<div id="page">
 		<div id="header"><jsp:include page="../header.jsp" /></div>
 		<div id="menu"><jsp:include page="../menu.jsp" /></div>
@@ -292,7 +293,6 @@
 		</div>
 		<div id="footer"><jsp:include page="../footer.jsp" /></div>
 	</div>
-	<jsp:include page="../chat.jsp"/>
 </body>
 <script>
 	var sum = "${sum}";
