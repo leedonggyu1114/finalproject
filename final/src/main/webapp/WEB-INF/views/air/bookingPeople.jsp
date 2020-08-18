@@ -433,7 +433,9 @@
 															thisseat = $(this);
 															for (var n = 0; n < datalength; n++) {
 																dataseat.push(data[n]);
+																alert(data[n] +"||"+thisseat.html());
 																if (dataseat[n] == thisseat.html()) {
+																	
 																	thisseat.attr('disabled',true);
 // 																	thisseat.contents().unwrap().wrap( "<img src='/resources/img/hotplace/close_icon.png' style='width:40px;height:30px'/>" );
 // 																	thisseat.html("<img src='/resources/img/hotplace/close_icon.png' style='width:40px;height:30px'/>");

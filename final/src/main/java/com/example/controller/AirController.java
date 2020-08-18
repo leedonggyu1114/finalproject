@@ -3,6 +3,7 @@ package com.example.controller;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 
 import javax.servlet.http.HttpSession;
 
@@ -21,6 +22,10 @@ import com.example.domain.AirVO;
 import com.example.domain.PassengersVO;
 import com.example.mapper.AirMapper;
 import com.example.service.AirPassengersService;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 
 @RequestMapping("/air")
 @Controller
@@ -30,11 +35,15 @@ public class AirController {
 	@Autowired
 	AirPassengersService service;
 	
-		@RequestMapping(value="/transaction",method=RequestMethod.POST)
-		public void transaction(PassengersVO vo,HttpSession session,Model model) {
-			System.out.println(vo);
-			session.setAttribute("id", "user1");
-			String u_id=(String)session.getAttribute("id");
+		@RequestMapping(value="/transaction",method=RequestMethod.GET)
+		public void transaction(ArrayList<String> a_p_residentregistration,HttpSession session) {
+			System.out.println(a_p_residentregistration);
+//			List<String> list = vo.getA_p_name();
+//			for(int i=0; i<list.size();i++) {
+//				System.out.println(list.get(i));
+//			}
+//			session.setAttribute("id", "user1");
+//			String u_id=(String)session.getAttribute("id");
 			//System.out.println(u_id);
 			//service.passengersInsert(vo,u_id);
 		}
@@ -45,12 +54,48 @@ public class AirController {
 		}
 	
 		@RequestMapping("/kakaoPay")
-		public void kakaoPay(PassengersVO vo,Model model){
-			model.addAttribute("residentregistration",vo.getA_p_residentregistration());
-			model.addAttribute("name",vo.getA_p_name());
-			model.addAttribute("gender",vo.getA_p_gender());
-			model.addAttribute("seat",vo.getA_p_seat());
-			model.addAttribute("backseat",vo.getA_p_backseat());
+		public void kakaoPay(PassengersVO vo,Locale locale,Model model){
+			System.out.println(vo.toString());
+			JSONArray jsonArray = new JSONArray(); // json타입으로 변환하기
+			for (int i = 0; i < vo.getA_p_residentregistration().size(); i++) {
+				JSONObject data = new JSONObject();
+				data.put("a_p_residentregistration", vo.getA_p_residentregistration().get(i));
+				jsonArray.add(i, data);
+			}
+			model.addAttribute("residentregistration", jsonArray);
+			jsonArray = new JSONArray(); // json타입으로 변환하기
+			for (int i = 0; i < vo.getA_p_name().size(); i++) {
+				JSONObject data = new JSONObject();
+				data.put("a_p_name", vo.getA_p_name().get(i));
+				jsonArray.add(i, data);
+			}
+			model.addAttribute("name", jsonArray);
+			jsonArray = new JSONArray(); // json타입으로 변환하기
+			for (int i = 0; i < vo.getA_p_gender().size(); i++) {
+				JSONObject data = new JSONObject();
+				data.put("a_p_gender", vo.getA_p_gender().get(i));
+				jsonArray.add(i, data);
+			}
+			model.addAttribute("gender", jsonArray);
+			jsonArray = new JSONArray(); // json타입으로 변환하기
+			for (int i = 0; i < vo.getA_p_backseat().size(); i++) {
+				JSONObject data = new JSONObject();
+				data.put("a_p_backseat", vo.getA_p_backseat().get(i));
+				jsonArray.add(i, data);
+			}
+			model.addAttribute("backseat", jsonArray);
+			jsonArray = new JSONArray(); // json타입으로 변환하기
+			for (int i = 0; i < vo.getA_p_seat().size(); i++) {
+				JSONObject data = new JSONObject();
+				data.put("a_p_seat", vo.getA_p_seat().get(i));
+				jsonArray.add(i, data);
+			}
+			model.addAttribute("seat", jsonArray);
+//			model.addAttribute("residentregistration",vo.getA_p_residentregistration());
+//			model.addAttribute("name",vo.getA_p_name());
+//			model.addAttribute("gender",vo.getA_p_gender());
+//			model.addAttribute("seat",vo.getA_p_seat());
+//			model.addAttribute("backseat",vo.getA_p_backseat());
 			model.addAttribute("number",vo.getA_number());
 			model.addAttribute("number1",vo.getA_number1());
 			model.addAttribute("sum",vo.getSum());
