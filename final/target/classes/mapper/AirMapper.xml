@@ -17,8 +17,11 @@
 		select * from tbl_air where a_number=#{a_number}
 	</select>
 	<insert id="passengersInsert">
-		insert into tbl_passengers(u_id,a_number,a_b_paydate,a_p_residentRegistration,a_p_name,a_p_gender,a_p_seat)
-		values(#{u_id},#{a_number},now(),#{a_p_residentRegistration},#{a_p_name},#{a_p_gender},#{a_p_seat});
+		insert into tbl_passengers(u_id,u_k_id,a_number,a_b_paydate,a_p_residentRegistration,a_p_name,a_p_gender,a_p_seat)
+		values(#{u_id},#{u_k_id},#{a_number},now(),#{a_p_residentRegistration},#{a_p_name},#{a_p_gender},#{a_p_seat})
+	</insert>
+	<insert id="airbookingInsert">
+		insert into tbl_air_booking values(#{u_id},#{u_k_id},#{a_number},now(),'0')
 	</insert>
 	<update id="setCount">
 		update tbl_air set a_emptyseat=a_emptyseat-#{sum} where a_number=#{a_number}

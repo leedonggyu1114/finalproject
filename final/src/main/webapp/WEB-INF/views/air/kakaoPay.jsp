@@ -13,66 +13,130 @@
 </head>
 <body>
 <script>
-	var a_p_residentregistration;
-	var a_p_name;
-	var a_p_gender;
-	var a_p_backseat;
-	var a_p_seat;
+	var a_p_residentregistration=[];
+	for(var i=0; i<${residentregistration}.length; i++){
+		var data = ${residentregistration}[i].a_p_residentregistration;
+		a_p_residentregistration.push(data);
+	}
+	var a_p_name = new Array();
+	for(var i=0; i<${name}.length; i++){
+		var data = ${name}[i].a_p_name;
+		a_p_name.push(data);
+	}
+	
+	var a_p_gender = new Array();
+	for(var i=0; i<${gender}.length; i++){
+		var data = ${gender}[i].a_p_gender;
+		a_p_gender.push(data);
+	}
+	
+	
+	var a_p_backseat = new Array();
+	if(${backseat}!=""){
+		for(var i=0; i<${backseat}.length; i++){
+			var data = ${backseat}[i].a_p_backseat;
+			a_p_backseat.push(data);
+		}
+	}
+	
+	
+	
+	var a_p_seat = new Array();
+	for(var i=0; i<${seat}.length; i++){
+		alert(${seat}[i].a_p_seat);
+		var data = ${seat}[i].a_p_seat;
+		a_p_seat.push(data);
+	}
+	
 	var number = "${number}";
 	var number1 = "${number1}";
 	var sum = "${sum}";
-	var test=[];
 	
-	$(function(){
-		var residentregistration=new Array();
-		<c:forEach items="${residentregistration}" var="vo">
-			var json = new Object();
-			json="${vo}";
-			residentregistration.push(json);
-		</c:forEach>
-		a_p_residentregistration = JSON.parse(JSON.stringify(residentregistration));
+	alert(a_p_residentregistration);
+	alert(a_p_name);
+	alert(a_p_gender);
+	alert(a_p_backseat);
+	alert(a_p_seat);
+	console.log(a_p_residentregistration);
+	console.log(a_p_name);
+	console.log(a_p_gender);
+	console.log(a_p_backseat);
+	console.log(a_p_seat);
+	
+// 	$(function(){
+// 		var residentregistration=new Array();
+// 		<c:forEach items="${residentregistration}" var="vo">
+// 			var json = new Object();
+// 			json="${vo}";
+// 			residentregistration.push(json);
+// 		</c:forEach>
+// 		a_p_residentregistration = JSON.parse(JSON.stringify(residentregistration));
 // 		for(var i=0; i<a_p_residentregistration.length; i++){
-// 			alert("test="+a_p_residentregistration[i]);
-// 			test.push(a_p_residentregistration[i]);
+// 			res.push(a_p_residentregistration[i]);
+// 			alert("res="+res[i]);
 // 		}
-		var name=new Array();
-		<c:forEach items="${name}" var="vo">
-			var json = new Object();
-			json="${vo}";
-			name.push(json);
-		</c:forEach>
-		a_p_name = JSON.parse(JSON.stringify(name));
-		var gender=new Array();
-		<c:forEach items="${gender}" var="vo">
-			var json = new Object();
-			json="${vo}";
-			gender.push(json);
-		</c:forEach>
-		a_p_gender = JSON.parse(JSON.stringify(gender));
-		var backseat=new Array();
-		<c:forEach items="${backseat}" var="vo">
-			var json = new Object();
-			json="${vo}";
-			backseat.push(json);
-		</c:forEach>
-		a_p_backseat = JSON.parse(JSON.stringify(backseat));
-		var seat=new Array();
-		<c:forEach items="${seat}" var="vo">
-			var json = new Object();
-			json="${vo}";
-			seat.push(json);
-		</c:forEach>
-		a_p_seat = JSON.parse(JSON.stringify(seat));
+		
+		
+// 		var pname=new Array();
+// 		<c:forEach items="${name}" var="vo">
+// 			var json = new Object();
+// 			json="${vo}";
+// 			pname.push(json);
+// 		</c:forEach>
+// 		a_p_name = JSON.parse(JSON.stringify(pname));
+// 		for(var i=0; i<a_p_name.length; i++){
+// 			nam.push(a_p_name[i]);
+// 			alert("nam="+nam[i]);
+// 		}
+		
+// 		var gender=new Array();
+// 		<c:forEach items="${gender}" var="vo">
+// 			var json = new Object();
+// 			json="${vo}";
+// 			gender.push(json);
+// 		</c:forEach>
+// 		a_p_gender = JSON.parse(JSON.stringify(gender));
+// 		for(var i=0; i<a_p_gender.length; i++){
+// 			gen.push(a_p_gender[i]);
+// 			alert("gen="+gen[i]);
+// 		}
+		
+// 		var backseat=new Array();
+// 		<c:forEach items="${backseat}" var="vo">
+// 			var json = new Object();
+// 			json="${vo}";
+// 			backseat.push(json);
+// 		</c:forEach>
+// 		a_p_backseat = JSON.parse(JSON.stringify(backseat));
+// 		for(var i=0; i<a_p_backseat.length; i++){
+// 			bac.push(a_p_backseat[i]);
+// 			alert("bac="+bac[i]);
+// 		}
+		
+// 		var seat=new Array();
+// 		<c:forEach items="${seat}" var="vo">
+// 			var json = new Object();
+// 			json="${vo}";
+// 			seat.push(json);
+// 		</c:forEach>
+// 		a_p_seat = JSON.parse(JSON.stringify(seat));
+// 		for(var i=0; i<a_p_seat.length; i++){
+// 			sea.push(a_p_seat[i]);
+// 			alert("sea="+sea[i]);
+// 		}
 	
-		alert("residentregistration="+a_p_residentregistration);
-		alert("name="+JSON.stringify(name));
-		alert("gender="+JSON.stringify(gender));
-		alert("seat="+JSON.stringify(seat));
-		alert("backseat="+JSON.stringify(backseat));
-		alert("number="+number);
-		alert("number1="+number1);
-		alert("sum="+sum);
+		
+// 		alert("residentregistration="+a_p_residentregistration);
+// 		alert("name="+a_p_pname);
+// 		alert("gender="+a_p_gender);
+// 		alert("seat="+a_p_seat);
+// 		alert("backseat="+a_p_backseat);
+// 		alert("number="+number);
+// 		alert("number1="+number1);
+// 		alert("sum="+sum);
 	
+// 	});
+// 	alert("test="+test[0]);
 	
 	$(function(){
 	    var IMP = window.IMP; // 생략가능
@@ -95,17 +159,18 @@
 	    	  if (rsp.success) {
 	    		  
 				$.ajax({
-					type:"post",
+					type:"get",
 					url:"/air/transaction",
+					traditional : true,
 					data:{
 						"a_p_residentregistration":a_p_residentregistration,
 						"a_p_name":a_p_name,
 						"a_p_gender":a_p_gender,
-						"a_p_seat":a_p_seat,
 						"a_p_backseat":a_p_backseat,
+						"a_p_seat":a_p_seat,
 						"a_number":number,
 						"a_number1":number1,
-						"sum":sum,
+						"sum":sum
 						},
 					success:function(){
 						alert("결제성공");
@@ -119,7 +184,7 @@
 	    	  }
 	    });
 	});
-});
+
 </script>
 </body>
 </html>
