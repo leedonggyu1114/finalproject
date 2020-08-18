@@ -174,7 +174,7 @@
 						},
 					success:function(){
 						alert("결제성공");
-						location.href="end";
+						location.href="/user/mypage/bookinglist";
 					}
 				});
 	    	  }else{

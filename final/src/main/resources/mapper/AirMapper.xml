@@ -17,8 +17,8 @@
 		select * from tbl_air where a_number=#{a_number}
 	</select>
 	<insert id="passengersInsert">
-		insert into tbl_passengers(u_id,u_k_id,a_number,a_b_paydate,a_p_residentRegistration,a_p_name,a_p_gender,a_p_seat)
-		values(#{u_id},#{u_k_id},#{a_number},now(),#{a_p_residentRegistration},#{a_p_name},#{a_p_gender},#{a_p_seat})
+		insert into tbl_passengers(u_id,u_k_id,a_number,a_p_residentRegistration,a_p_name,a_p_gender,a_p_seat)
+		values(#{u_id},#{u_k_id},#{a_number},#{a_p_residentRegistration},#{a_p_name},#{a_p_gender},#{a_p_seat})
 	</insert>
 	<insert id="airbookingInsert">
 		insert into tbl_air_booking values(#{u_id},#{u_k_id},#{a_number},now(),'0')
@@ -28,5 +28,8 @@
 	</update>
 	<select id="seatlist" resultType="string">
 		select a_p_seat from tbl_passengers where a_number=#{a_number};
+	</select>
+	<select id="bookinglist" resultType="com.example.domain.PassengersVO">
+		select a.*, b.u_id,b.u_k_id from tbl_air a, tbl_air_booking b where a.a_number=b.a_number and u_id=#{u_id} and u_k_id=#{u_k_id}
 	</select>
 </mapper>

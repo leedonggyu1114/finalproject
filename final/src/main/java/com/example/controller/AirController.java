@@ -50,11 +50,6 @@ public class AirController {
 			service.passengersInsert(vo,u_id,u_k_id);
 			return "/air/kakaoPay";
 		}
-
-		@RequestMapping("/end")
-		public void end() {
-			
-		}
 		
 	
 		@RequestMapping("/kakaoPay")
