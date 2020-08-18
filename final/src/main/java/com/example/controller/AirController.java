@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.jsoup.Jsoup;
@@ -16,6 +17,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.domain.AirVO;
@@ -36,22 +38,24 @@ public class AirController {
 	AirPassengersService service;
 	
 		@RequestMapping(value="/transaction",method=RequestMethod.GET)
-		public void transaction(ArrayList<String> a_p_residentregistration,HttpSession session) {
-			System.out.println(a_p_residentregistration);
+		public String transaction(PassengersVO vo,HttpServletRequest request,HttpSession session) {
+//			System.out.println(vo.getA_p_residentregistration().get(1));
 //			List<String> list = vo.getA_p_name();
 //			for(int i=0; i<list.size();i++) {
 //				System.out.println(list.get(i));
 //			}
-//			session.setAttribute("id", "user1");
-//			String u_id=(String)session.getAttribute("id");
-			//System.out.println(u_id);
-			//service.passengersInsert(vo,u_id);
+			String u_id=(String)session.getAttribute("u_id");
+			String u_k_id=(String)session.getAttribute("u_k_id");
+			System.out.println(u_id);
+			service.passengersInsert(vo,u_id,u_k_id);
+			return "/air/kakaoPay";
 		}
 
 		@RequestMapping("/end")
 		public void end() {
 			
 		}
+		
 	
 		@RequestMapping("/kakaoPay")
 		public void kakaoPay(PassengersVO vo,Locale locale,Model model){
@@ -77,13 +81,23 @@ public class AirController {
 				jsonArray.add(i, data);
 			}
 			model.addAttribute("gender", jsonArray);
-			jsonArray = new JSONArray(); // json타입으로 변환하기
-			for (int i = 0; i < vo.getA_p_backseat().size(); i++) {
-				JSONObject data = new JSONObject();
-				data.put("a_p_backseat", vo.getA_p_backseat().get(i));
-				jsonArray.add(i, data);
+			
+			if(vo.getA_p_backseat()!=null) {
+				jsonArray = new JSONArray(); // json타입으로 변환하기
+				for (int i = 0; i < vo.getA_p_backseat().size(); i++) {
+					JSONObject data = new JSONObject();
+					data.put("a_p_backseat", vo.getA_p_backseat().get(i));
+					jsonArray.add(i, data);
+				}
+				model.addAttribute("backseat", jsonArray);
+			}else {
+				jsonArray = new JSONArray(); // json타입으로 변환하기
+					JSONObject data = new JSONObject();
+					data.put("a_p_backseat", "");
+					jsonArray.add(0, data);
+				model.addAttribute("backseat", jsonArray);
 			}
-			model.addAttribute("backseat", jsonArray);
+			
 			jsonArray = new JSONArray(); // json타입으로 변환하기
 			for (int i = 0; i < vo.getA_p_seat().size(); i++) {
 				JSONObject data = new JSONObject();
@@ -97,7 +111,11 @@ public class AirController {
 //			model.addAttribute("seat",vo.getA_p_seat());
 //			model.addAttribute("backseat",vo.getA_p_backseat());
 			model.addAttribute("number",vo.getA_number());
-			model.addAttribute("number1",vo.getA_number1());
+			if(vo.getA_p_backseat()!=null) {
+				model.addAttribute("number1",vo.getA_number1());
+			}else {
+				model.addAttribute("number1", "");
+			}
 			model.addAttribute("sum",vo.getSum());
 			model.addAttribute("airsum",vo.getAirsum());
 			model.addAttribute("payname",vo.getPayName());

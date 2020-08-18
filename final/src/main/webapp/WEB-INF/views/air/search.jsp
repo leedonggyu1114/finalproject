@@ -494,6 +494,7 @@ ul,li{list-style:none;}
 	$(".aircount1").hide();
 
 	$("#oneWay").on("click", function() {
+		$("#edate").val("");
 		$("#edate").hide();
 		$("#sdate").css("width", "300px");
 	})

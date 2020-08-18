@@ -391,8 +391,7 @@
 					function() {
 						var a_number = $(this).attr("seat");
 						seatSelection = $(this);
-						$
-								.ajax({
+						$.ajax({
 									type : "get",
 									url : "/air/seatlist",
 									dataType : "json",
@@ -424,6 +423,7 @@
 													+ i
 													+ "</button></div><br><br>";
 										}
+										html += "<button class='choicefinish'>선택완료</button>";
 										$("#selectseat").html(html);
 										$("#darken-background").show();
 
@@ -431,11 +431,10 @@
 												.each(
 														function() {
 															thisseat = $(this);
+															
 															for (var n = 0; n < datalength; n++) {
 																dataseat.push(data[n]);
-																alert(data[n] +"||"+thisseat.html());
 																if (dataseat[n] == thisseat.html()) {
-																	
 																	thisseat.attr('disabled',true);
 // 																	thisseat.contents().unwrap().wrap( "<img src='/resources/img/hotplace/close_icon.png' style='width:40px;height:30px'/>" );
 // 																	thisseat.html("<img src='/resources/img/hotplace/close_icon.png' style='width:40px;height:30px'/>");
@@ -459,6 +458,10 @@
 		seatSelection.val(seatchoice);
 		seatchoice = "";
 		seatcount = 0;
+	});
+	//좌석선택완료
+	$("#selectseat .choicefinish").on("click",function(){
+		alert("asdf");
 	});
  	
     //라이트박스안에 버튼선택 

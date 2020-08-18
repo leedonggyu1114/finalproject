@@ -13,33 +13,33 @@
 </head>
 <body>
 <script>
-	var a_p_residentregistration=new Array();
+	var a_p_residentregistration=[];
 	for(var i=0; i<${residentregistration}.length; i++){
-		alert(${residentregistration}[i].a_p_residentregistration);
 		var data = ${residentregistration}[i].a_p_residentregistration;
 		a_p_residentregistration.push(data);
 	}
-	alert(a_p_residentregistration);
 	var a_p_name = new Array();
 	for(var i=0; i<${name}.length; i++){
-		alert(${name}[i].a_p_name);
 		var data = ${name}[i].a_p_name;
 		a_p_name.push(data);
 	}
 	
 	var a_p_gender = new Array();
 	for(var i=0; i<${gender}.length; i++){
-		alert(${gender}[i].a_p_gender);
 		var data = ${gender}[i].a_p_gender;
 		a_p_gender.push(data);
 	}
 	
+	
 	var a_p_backseat = new Array();
-	for(var i=0; i<${backseat}.length; i++){
-		alert(${backseat}[i].a_p_backseat);
-		var data = ${backseat}[i].a_p_backseat;
-		a_p_backseat.push(data);
+	if(${backseat}!=""){
+		for(var i=0; i<${backseat}.length; i++){
+			var data = ${backseat}[i].a_p_backseat;
+			a_p_backseat.push(data);
+		}
 	}
+	
+	
 	
 	var a_p_seat = new Array();
 	for(var i=0; i<${seat}.length; i++){
@@ -57,11 +57,11 @@
 	alert(a_p_gender);
 	alert(a_p_backseat);
 	alert(a_p_seat);
-// 	console.log(a_p_residentregistration);
-// 	console.log(a_p_name);
-// 	console.log(a_p_gender);
-// 	console.log(a_p_backseat);
-// 	console.log(a_p_seat);
+	console.log(a_p_residentregistration);
+	console.log(a_p_name);
+	console.log(a_p_gender);
+	console.log(a_p_backseat);
+	console.log(a_p_seat);
 	
 // 	$(function(){
 // 		var residentregistration=new Array();
@@ -161,6 +161,7 @@
 				$.ajax({
 					type:"get",
 					url:"/air/transaction",
+					traditional : true,
 					data:{
 						"a_p_residentregistration":a_p_residentregistration,
 						"a_p_name":a_p_name,
