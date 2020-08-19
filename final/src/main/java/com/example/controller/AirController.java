@@ -168,6 +168,7 @@ public class AirController {
 		@RequestMapping(value="/airList",method=RequestMethod.POST)
 		@ResponseBody
 		public HashMap<String, Object> airList(AirVO vo, String a_startdate1){
+			System.out.println("가는날짜"+vo.getA_startdate()+"오는날짜"+a_startdate1+"남은좌석"+vo.getA_emptyseat());
 			//System.out.println(vo.toString());
 			HashMap<String, Object> map=new HashMap<String, Object>();
 			String back = vo.getA_startplace();

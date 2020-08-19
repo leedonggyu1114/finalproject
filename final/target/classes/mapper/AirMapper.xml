@@ -15,7 +15,7 @@
 	<select id="airList" resultType="com.example.domain.AirVO">
 		select a.*, c.a_image
 		from tbl_air a, tbl_aircompany c 
-		where a.a_company=c.a_company and a_startplace=#{a_startplace} and a_endplace=#{a_endplace} and a_startdate=#{a_startdate} and a_emptyseat>#{a_emptyseat} 
+		where a.a_company=c.a_company and a_startplace=#{a_startplace} and a_endplace=#{a_endplace} and a_emptyseat>#{a_emptyseat}  and a_startdate like #{a_startdate}
 		order by a_price;
 	</select>
 	<select id="listRead" resultType="com.example.domain.AirVO">

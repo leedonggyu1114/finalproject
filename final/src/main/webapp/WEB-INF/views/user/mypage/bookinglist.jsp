@@ -161,36 +161,41 @@ table {
 					<input type="checkbox" id="airlist">
 					<label for="airlist">항공<em></em></label>
 					<div>
-						<jsp:useBean id="now" class="java.util.Date" />
-						<table id="tbl_airlist">
-							<tr>
-								<td width=120>구분</td>
-								<td width=110>항공편<br>항공사</td>
-								<td width=120>출발일</td>
-								<td width=70>출발시간<br>도착시간</td>
-								<td width=110>가격</td>
-								<td width=100>상태</td>
-								<td width=150></td>
-							</tr>
-							<c:forEach items="${bookinglist }" var="vo">
-								<fmt:formatDate value="${now}" pattern="yyyy-MM-dd HH:mm" var="nowDate" />
-								<fmt:parseDate value="${vo.a_startdate} ${vo.a_starttime }" pattern="yyyy-MM-dd HH:mm" var="startDate" />
-								<tr style="border-bottom:0.5px solid #e9e9e9; height:100px;">
-									<td>${vo.a_startplace } <img src="/resources/img/user/next.png">${vo.a_endplace }</td>
-									<td>${vo.a_company}<br>${vo.a_number }</td>
-									<td>${vo.a_startdate }</td>
-									<td><span class="starttime">${vo.a_starttime }</span><br>${vo.a_endtime }</td>
-									<td><span class="airprice">${vo.a_price }</span>원</td>
-									<c:if test="${vo.a_startdate > nowDate}">
-										<td style="color:blue">탑승대기</td>
-										<td><button>취소하기</button></td>
-									</c:if>
-									<c:if test="${vo.a_startdate <= nowDate}">
-										<td style="color:gray">탑승완료</td>
-									</c:if>
+						<c:if test="${bookinglist[0].a_number != null}">
+							<jsp:useBean id="now" class="java.util.Date" />
+							<table id="tbl_airlist">
+								<tr>
+									<td width=120>구분</td>
+									<td width=110>항공편<br>항공사</td>
+									<td width=120>출발일</td>
+									<td width=70>출발시간<br>도착시간</td>
+									<td width=110>가격</td>
+									<td width=100>상태</td>
+									<td width=150></td>
 								</tr>
-							</c:forEach>
-						</table>
+								<c:forEach items="${bookinglist }" var="vo">
+									<fmt:formatDate value="${now}" pattern="yyyy-MM-dd HH:mm" var="nowDate" />
+	<%-- 								<fmt:parseDate value="${vo.a_startdate} ${vo.a_starttime }" pattern="yyyy-MM-dd HH:mm" var="startDate" /> --%>
+									<tr style="border-bottom:0.5px solid #e9e9e9; height:100px;">
+										<td>${vo.a_startplace } <img src="/resources/img/user/next.png">${vo.a_endplace }</td>
+										<td>${vo.a_company}<br>${vo.a_number }</td>
+										<td>${vo.a_startdate }</td>
+										<td><span class="starttime">${vo.a_starttime }</span><br>${vo.a_endtime }</td>
+										<td><span class="airprice">${vo.a_price }</span>원</td>
+										<c:if test="${vo.a_startdate > nowDate}">
+											<td style="color:blue">탑승대기</td>
+											<td><button>취소하기</button></td>
+										</c:if>
+										<c:if test="${vo.a_startdate <= nowDate}">
+											<td style="color:gray">탑승완료</td>
+										</c:if>
+									</tr>
+								</c:forEach>
+							</table>
+						</c:if>
+						<c:if test="${bookinglist[0].a_number == null}">
+							<h2 style="text-align:center">예약된 항공내역이 없습니다</h2>
+						</c:if>
 					</div>
 				</div>
 			</div>
