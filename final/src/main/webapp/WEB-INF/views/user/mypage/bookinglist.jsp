@@ -162,10 +162,6 @@ table {
 					<label for="airlist">항공<em></em></label>
 					<div>
 						<jsp:useBean id="now" class="java.util.Date" />
-						 
-<%-- 						<fmt:formatDate value="" pattern="yyyyMMddhhmm" var="nowDate" /> --%>
-<%-- 						<fmt:formatDate value="" pattern="yyyyMMddHHmm" var="openDate"/> --%>
-<%-- 						<fmt:formatDate value="" pattern="yyyyMMddHHmm" var="closeDate"/> --%>
 
 						<table class="tbl_airlist">
 							<tr>
@@ -178,8 +174,8 @@ table {
 								<td width=150></td>
 							</tr>
 							<c:forEach items="${bookinglist }" var="vo">
-								<fmt:parseDate value="${vo.a_startdate }" pattern="yyyy/MM/dd" var="startDate" />
-								<fmt:formatDate value="${now}" pattern="yyyy/MM/dd" var="nowDate" />
+								<fmt:parseDate value="${vo.a_startdate vo.a_starttime}" pattern="yyyy/MM/dd HH:mm" var="startDate" />
+								<fmt:formatDate value="${now}" pattern="yyyy/MM/dd HH:mm" var="nowDate" />
 								<tr style="border-bottom:0.5px solid #e9e9e9; height:100px;">
 									<td>${vo.a_startplace } <img src="/resources/img/user/next.png">${vo.a_endplace }</td>
 									<td>${vo.a_company}<br>${vo.a_number }</td>
@@ -187,11 +183,11 @@ table {
 									<td><span class="starttime">${vo.a_starttime }</span><br>${vo.a_endtime }</td>
 									<td><span class="airprice">${vo.a_price }</span>원</td>
 									<c:if test="${startDate > nowDate}">
-										<td>탑승대기</td>
+										<td style="color:blue">탑승대기</td>
 										<td><button>취소하기</button></td>
 									</c:if>
-									<c:if test="${startDate <= nowDate}">
-										<td>탑승완료</td>
+									<c:if test="${startDate < nowDate}">
+										<td style="color:gray">탑승완료</td>
 									</c:if>
 								</tr>
 							</c:forEach>
