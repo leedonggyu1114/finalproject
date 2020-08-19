@@ -23,6 +23,7 @@ public interface AdminMapper {
 	
 	public List<BlackVO> blacklist(Criteria cri);
 	public List<UserVO> black(Criteria cri);
+	public String readcontent(String u_id, String u_k_id,String date);
 	public int totalcount(Criteria cri);
 	public int totalcount1(Criteria cri);
 	public void updatestatus(String u_id,String u_k_id,String status);
