@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,7 +14,6 @@
 #admin_true>div {
 	width:1000px;
 	height:100%;
-	background:orange;
 	position:relative;
 	left:50%;
 	transform:translate(-50%,0);
@@ -44,7 +43,70 @@
 }
 #tbl {
 	margin-top:20px;
+	margin-bottom:20px;
 	text-align:center;
+	border-collapse:collapse;
+}
+#tbl_title {
+	height:70px;
+	background:black;
+	color:white;
+}
+#tbl .row {
+	height:70px;
+}
+#tbl #lock {
+	width:100%;
+	height:100%;
+	background:none;
+	outline:none;
+	border:none;
+	cursor:pointer;
+}
+#tbl #lock:hover {
+	color:red;
+}
+#tbl #unlock {
+	background:none;
+	outline:none;
+	border:none;
+	cursor:pointer;
+}
+#pagination a {
+	text-decoration:none;
+	color:black;
+}
+#pagination span {
+	display:inline-block;
+	width:30px;
+	height:25px;
+	padding-top:3px;
+}
+#pagination .active {
+	border-bottom:0.5px solid black;
+}
+#tblInfo {
+	background:white;
+	width:300px;
+	height:350px;
+	position:absolute;
+	right:25px;
+	top:250px;
+	border:1px solid black;
+}
+#tblInfo button {
+	width:30px;
+	height:29.5px;
+	cursor:pointer;
+	border:none;
+	border-left:1px solid black;
+	outline:none;
+}
+#tblInfo button:hover {
+	color:red;
+}
+#tblInfo #div_content {
+	padding:10px 10px 10px 10px;
 }
 </style>
 </head>
@@ -61,37 +123,36 @@
 						<span id="total">( ${pm.totalCount} 건 )</span>
 					</form>
 						<table id="tbl" border=1>
-						<tr>
-							<td>TO</td>
-							<td>KAKAO ID</td>
-							<td>FROM</td>
-							<td>DATE</td>
-							<td>SET</td>
-							<td>DELETE</td>
+						<tr id="tbl_title">
+							<td width=150>TO</td>
+							<td width=150>KAKAO ID</td>
+							<td width=150>FROM</td>
+							<td width=300>DATE</td>
+							<td width=150>SET</td>
+							<td width=100>DELETE</td>
 						</tr>
 						<c:forEach items="${blacklist}" var="vo">
 						<tr class="row">
 							<td class="declairId">${vo.u_to_id}</td>
 							<td class="declairKakaoId">${vo.u_to_k_id}</td>
 							<td class="fromid">${vo.u_from_id}</td>
-							<td>${vo.b_content}</td>
-							<td>${vo.b_date}</td>
-							<td><input type="button" value="ID차단" id="lock"></td>
-							<td><input type="button" value="신고상태 해제" id="unlock"></td>
+							<td class="date">${vo.b_date}</td>
+							<td><input type="button" value="차단하기" id="lock"></td>
+							<td><button id="unlock"><img src="/resources/img/hotplace/close_icon.png" width=10 height=15/></button></td>
 						</tr>
 						</c:forEach>
 					</table>
 					
-					<div id="pagination">
+					<div id="pagination" style="padding:10px 0px 10px 0px; text-align:center;">
 						<c:if test="${pm.prev}">
 							<a href="${pm.startPage-1}">◀</a>
 						</c:if>
 						<c:forEach begin="${pm.startPage}" end="${pm.endPage}" var="i">
 							<c:if test="${cri.page==i}">
-								[<a href="${i}" class="active">${i}</a>]
+								<span class="active"><a href="${i}">${i}</a></span>
 							</c:if>
 							<c:if test="${cri.page!=i}">
-								[<a href="${i}">${i}</a>]
+								<span><a href="${i}">${i}</a></span>
 							</c:if>
 						</c:forEach>
 						<c:if test="${pm.next}">
@@ -99,15 +160,15 @@
 						</c:if>
 					</div>
 					
-					<table id="tblInfo" border=1>
-						<tr>
-							<td>사유</td>
-						</tr>
-						<tr id="idhidden">
-							<td width=200></td>
-						</tr>
-					</table>
+					
 				</div>
+			</div>
+		</div>
+		<div id="tblInfo">
+			<div style="height:30px; background:#e9e9e9; text-align:right; border-bottom:1px solid black; margin-left:0.5px;"><button id="btnClose">x</button></div>
+			<div id="div_content">
+				<span style="width:100%; display:inline-block; font-size:20px; margin-bottom:10px;">사유</span>
+				<span id="content"></span>
 			</div>
 		</div>
 	</div>
@@ -118,17 +179,18 @@ var keyword="${cri.keyword}";
 $("#tblInfo").css("display","none");
 
 $("#unlock").on("click",function(){
-		if(!confirm("신고 해제하시겠습니까?"))return;
-		var u_id=$("#id").html();
-		var u_k_id=$("#kakaoid").html();
-		$.ajax({
-			type:"get",
-			url:"/admin/unlockStatus",
-			data:{"u_id":u_id,"u_k_id":u_k_id},
-			success:function(){
-				alert("신고 해제되었습니다.");
-			}
-		});
+	$("#tblInfo").css("display","none");
+	if(!confirm("신고 해제하시겠습니까?"))return;
+	var u_id=$("#id").html();
+	var u_k_id=$("#kakaoid").html();
+	$.ajax({
+		type:"get",
+		url:"/admin/unlockStatus",
+		data:{"u_id":u_id,"u_k_id":u_k_id},
+		success:function(){
+			alert("신고 해제되었습니다.");
+		}
+	});
 	
 });
 
@@ -157,29 +219,22 @@ $("#tbl").on("click",".row",function(){
 	var declair=$(this).find(".declairId").html();
 	var declairkakao=$(this).find(".declairKakaoId").html();
 	var fromid=$(this).find(".fromid").html();
+	var date=$(this).find(".date").html();
 	$("#id").html(declair);
 	$("#id1").html(fromid);
 	$("#kakaoid").html(declairkakao);
 	$("#tblInfo").css("display","block");
-	
-	if(declair==0){
-		$("#kakaohidden").css("display","block");
-		$("#idhidden").css("display","none");
-	}else{
-		$("#kakaohidden").css("display","none");
-		$("#idhidden").css("display","block");
-	}
+	$("#btnClose").on("click", function(){
+		$("#tblInfo").css("display","none");
+	});
 	
 	$.ajax({
 		type:"get",
 		url:"/admin/read",
-		data:{"u_id":declair,"u_k_id":declairkakao},
+		contentType:"application/x-www-form-urlencoded;charset=UTF-8",
+		data:{"u_id":declair,"u_k_id":declairkakao,"date":date},
 		success:function(data){
-			if(data==0){
-				$("#status").html("사용");
-			}else{
-				$("#status").html("차단");
-			}
+			$("#content").html(data);
 		}
 	});
 })

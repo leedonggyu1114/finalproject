@@ -57,4 +57,8 @@
     	update tbl_user set u_status=#{param3}
     	where u_id=#{param1} and u_k_id=#{param2}
     </update>
+    
+    <select id="readcontent" resultType="string">
+    	select b_content from tbl_blacklist where u_to_id=#{param1} and u_to_k_id=#{param2} and b_date=#{param3}
+    </select>
 </mapper>
