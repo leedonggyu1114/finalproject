@@ -52,7 +52,7 @@ input[id*="list"] + label + div {
 }
 input[id*="list"]:checked + label + div {
 	max-height:1000px;
-	padding:20px 10px 20px 0px;
+	padding:20px 0px 20px 0px;
 }
 input[id*="list"]:checked + label em {
 	background-position:0 -30px;
@@ -153,7 +153,7 @@ table {
 								<td colspan=2>2020.02.02~2020.02.04</td>
 							</tr>
 							<tr>
-								<td width=380><span>50,000</span>원</td>
+								<td width=400><span>50,000</span>원</td>
 								<td width=180><button>취소하기</button></td>
 							</tr>
 						</table>
@@ -173,7 +173,7 @@ table {
 								<td width=110>항공편<br>항공사</td>
 								<td width=120>출발일</td>
 								<td width=70>출발시간<br>도착시간</td>
-								<td width=110>가격</td>
+								<td width=130>가격</td>
 								<td width=100>비고</td>
 								<td width=150></td>
 							</tr>
