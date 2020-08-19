@@ -47,10 +47,14 @@
 		<beans:constructor-arg value="c:/FinalProjectImage/companyupload"/>
 	</beans:bean>
 	
+	<beans:bean class="java.lang.String" id="airUploadPath">
+		<beans:constructor-arg value="c:/FinalProjectImage/airupload"/>
+	</beans:bean>
 	
 	<interceptors>
       <interceptor>
          <mapping path="/user/mypage/infomation"/>
+         <mapping path="/user/mypage/bookinglist"/>
          <mapping path="/hotplace/likelist"/>
          <mapping path="/air/bookingPeople"/>
          <beans:bean id="AuthInterceptor" class="com.example.Interceptor.AuthInterceptor"/>

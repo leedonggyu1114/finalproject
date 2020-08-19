@@ -226,6 +226,13 @@ ul,li{list-style:none;}
 	margin-bottom:30px;
 	cursor:pointer
 }
+#tbl img,
+#tbl1 img {
+	margin-right:3px;
+	position:relative;
+	top:3px;
+	right:2px;
+}
 </style>
 </head>
 <body>
@@ -321,7 +328,7 @@ ul,li{list-style:none;}
 				{{#each startList}}
 				<tr class="row" style="border-top:0.5px solid black;">
 					<td rowspan=2 width=50><input type="radio" name="startList" class="radio" id="startList" style="cursor:pointer;"></td>
-					<td class="a_number" style="height:40px; padding-top:10px;" width=120>{{a_number}}</td>
+					<td class="a_number" style="height:40px; padding-top:10px;" width=120><img src="/air/display?fileName={{a_image}}"/>{{a_number}}</td>
 					<td class="a_starttime" width=80 style="padding-top:10px; color:red;">{{a_starttime}}</td>
 					<td rowspan=2 class="a_runtime" width=90>{{a_runtime}}</td>
 					<td rowspan=2 class="a_price1" width=70>{{a_price}}</td>
@@ -354,7 +361,7 @@ ul,li{list-style:none;}
 				{{#each backList}}
 				<tr class="row" style="border-top:0.5px solid black;">
 					<td rowspan=2 width=50><input type="radio" name="backList" class="radio" id="startList" style="cursor:pointer;"></td>
-					<td class="a_number" style="height:40px; padding-top:10px;" width=120>{{a_number}}</td>
+					<td class="a_number" style="height:40px; padding-top:10px;" width=120><img src="/air/display?fileName={{a_image}}"/>{{a_number}}</td>
 					<td class="a_starttime" width=80 style="padding-top:10px; color:red;">{{a_starttime}}</td>
 					<td rowspan=2 class="a_runtime" width=90>{{a_runtime}}</td>
 					<td rowspan=2 class="a_price2" width=70>{{a_price}}</td>

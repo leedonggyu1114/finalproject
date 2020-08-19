@@ -6,7 +6,7 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
-public class PassengersVO extends UserVO{
+public class PassengersVO extends AirVO{
 	private String payName;
 	private String email;
 	private String tel;
@@ -125,8 +125,10 @@ public class PassengersVO extends UserVO{
 				+ ", a_p_name=" + a_p_name + ", a_p_gender=" + a_p_gender + ", a_p_residentregistration="
 				+ a_p_residentregistration + ", a_emptyseat=" + a_emptyseat + ", a_p_seat=" + a_p_seat
 				+ ", a_p_backseat=" + a_p_backseat + ", airsum=" + airsum + ", a_number=" + a_number + ", a_number1="
-				+ a_number1 + ", a_b_paydate=" + a_b_paydate + ", a_b_status=" + a_b_status + ", sum=" + sum + "]";
+				+ a_number1 + ", a_b_paydate=" + a_b_paydate + ", a_b_status=" + a_b_status + ", sum=" + sum
+				+ ", getA_startplace()=" + getA_startplace() + ", getA_endplace()=" + getA_endplace() + "]";
 	}
+	
 	
 	
 	

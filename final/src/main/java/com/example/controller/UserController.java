@@ -19,6 +19,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Repository;
+import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -29,8 +30,10 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.example.domain.CompanyOptionVO;
 import com.example.domain.CompanyVO;
+import com.example.domain.PassengersVO;
 import com.example.domain.UserTagVO;
 import com.example.domain.UserVO;
+import com.example.mapper.AirMapper;
 import com.example.mapper.UserMapper;
 import com.example.service.UserMailSendService;
 
@@ -45,6 +48,8 @@ public class UserController {
 	private String companypath;
 	@Autowired
 	UserMapper mapper;
+	@Autowired
+	AirMapper umapper;
 
 	@Autowired
 	private UserMailSendService mailSender;
@@ -254,9 +259,15 @@ public class UserController {
 	}
 	
 	@RequestMapping("/user/mypage/bookinglist")
-	public void bookinglist() {
-		
+	public void bookinglist(HttpSession session, Model model) {
+		String u_id=(String)session.getAttribute("u_id");
+		String u_k_id=(String)session.getAttribute("u_k_id");
+		System.out.println(u_id + u_k_id);
+		List<PassengersVO> bookinglist= umapper.bookinglist(u_id, u_k_id);
+		System.out.println(bookinglist);
+		model.addAttribute("bookinglist", bookinglist);
 	}
+	
 	//실명인증
 	@RequestMapping("/user/checkNameCompany")
 	@ResponseBody

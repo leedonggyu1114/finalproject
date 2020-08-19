@@ -147,8 +147,7 @@
          <script id="temp" type="text/x-handlebars-template">
         {{#each .}}
 			<figure style="float: left" class="div_hotplace_list">
-				<img class="mainimage"
-					src="/hotplace/display?fileName={{h_image}}" width=300
+				<img class="mainimage" src="/hotplace/display?fileName={{h_image}}" width=300
 					height=300 x="{{h_x}}" y="{{h_y}}" title="{{h_title}}"
 					address="{{h_address}}" detail="{{h_detail}}"
 					tag1="{{h_tag1}}" tag2="{{h_tag2}}" />

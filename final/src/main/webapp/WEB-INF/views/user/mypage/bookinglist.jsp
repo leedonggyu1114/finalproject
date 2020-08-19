@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -50,7 +51,7 @@ input[id*="list"] + label + div {
 }
 input[id*="list"]:checked + label + div {
 	max-height:1000px;
-	padding:20px 10px 20px 10px;
+	padding:20px 10px 20px 0px;
 }
 input[id*="list"]:checked + label em {
 	background-position:0 -30px;
@@ -95,45 +96,39 @@ table {
 #tbl_staylist span:nth-child(2) {
 	color:gray;
 }
-#tbl_airlist {
+.tbl_airlist {
 	text-align:center;
 	border-bottom:1px solid gray;
+	margin-bottom:10px;
 }
-#tbl_airlist tr {
+.tbl_airlist tr {
 	height:60px;
 	font-size:13px;
 }
-#tbl_airlist tr:nth-child(1) {
+.tbl_airlist tr:nth-child(1) {
 	background:#edf2f3;
 }
-#tbl_airlist img {
+.tbl_airlist img {
 	position:relative;
 	top:2px;
 	margin-left:5px;
 	margin-right:10px;
 }
-#tbl_airlist .starttime {
+.tbl_airlist .starttime {
 	color:red;
 }
-#tbl_airlist .airprice {
+.tbl_airlist .airprice {
 	font-size:15px;
 	margin-right:5px;
 }
-#tbl_airlist button {
-	width:180px;
+.tbl_airlist button {
+	width:100%;
 	height:40px;
 	border-radius:5px;
 	border:none;
 	background:#e9e9e9;
 	outline:none;
 	cursor:pointer;
-}
-#tbl_airlist tr:nth-child(3) {
-	height:80px;
-}
-#tbl_airlist tr:nth-child(3) td {
-	text-align:right;
-	padding-bottom:20px;
 }
 </style>
 </head>
@@ -165,24 +160,27 @@ table {
 					<input type="checkbox" id="airlist">
 					<label for="airlist">항공<em></em></label>
 					<div>
-						<table id="tbl_airlist">
+						<table class="tbl_airlist">
 							<tr>
-								<td width=200>구분</td>
-								<td width=120>항공편<br>항공사</td>
-								<td width=160>출발일</td>
-								<td width=120>출발시간<br>도착시간</td>
-								<td width=180>가격</td>
+								<td width=120>구분</td>
+								<td width=110>항공편<br>항공사</td>
+								<td width=120>출발일</td>
+								<td width=70>출발시간<br>도착시간</td>
+								<td width=110>가격</td>
+								<td width=100>비고</td>
+								<td width=150></td>
 							</tr>
-							<tr>
-								<td>제주 <img src="/resources/img/user/next.png">김포</td>
-								<td>아시아나<br>P10001</td>
-								<td>2020년08월01일</td>
-								<td><span class="starttime">21:00</span><br>22:30</td>
-								<td><span class="airprice">39,000</span>원</td>
+						<c:forEach items="${bookinglist }" var="vo">
+							<tr style="border-bottom:0.5px solid #e9e9e9; height:100px;">
+								<td>${vo.a_startplace } <img src="/resources/img/user/next.png">${vo.a_endplace }</td>
+								<td>${vo.a_company}<br>${vo.a_number }</td>
+								<td>${vo.a_startdate }</td>
+								<td><span class="starttime">${vo.a_starttime }</span><br>${vo.a_endtime }</td>
+								<td><span class="airprice">${vo.a_price }</span>원</td>
+								<td></td>
+								<td><button>취소하기</button></td>
 							</tr>
-							<tr>
-								<td colspan=5><button>취소하기</button></td>
-							</tr>
+						</c:forEach>
 						</table>
 					</div>
 				</div>
