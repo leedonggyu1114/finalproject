@@ -162,7 +162,7 @@ $(frm).submit(function(e){
 				$(frm).css("display","none");
 				$(frm1).css("display","block");
 				frm1.submit();
-			}else{
+			}else if(data==2){
 				alert("신고할 ID가 존재하지 않습니다.");
 				$(frm.u_to_id).val("");
 				$(frm.u_to_k_id).val("");
