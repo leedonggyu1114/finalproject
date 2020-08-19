@@ -123,26 +123,9 @@
 #booking_info tr, #passengers tr, #booking_user_info tr {
 	height:90px;
 }
-
-/* #passengers input[type="radio"] { 
-	display:none; 
-} */
-#passengers label { 
-	display:inline-block; 
-	width:60px; 
-	height:40px; 
-	border:0.5px solid #e9e9e9; 
-	margin-left:-6.5px; 
-	padding-top:8px; 
-	cursor:pointer; 
-	text-align:center; 
-} 
-#passengers input[type="radio"]:checked + label { 
-	background:#e9e9e9; 
- 	width:60px; 
-	border:0.5px solid #e9e9e9; 
- 	height:40px; 
- 	cursor:pointer; 
+#passengers input[type="radio"] {
+	cursor:pointer;
+	margin-right:10px;
 }
 </style>
 </head>
@@ -233,14 +216,8 @@
 								<td width=250 style="padding-top:20px;"><input type=text name='a_p_name'></td>
 								<th style="padding-top:20px;">성별</th>
 								<td colspan=2  width=300 style="padding-left:10px;padding-top:20px;">
-								
-									<label>남
-										<input type="radio" name="a_p_gender${vs.count }" value="male">
-									</label>
-									
-									<label>여
-										<input type="radio" name="a_p_gender${vs.count }" value="female">
-									</label>
+									남 <input type="radio" name="a_p_gender${vs.count }" value="male">
+									여 <input type="radio" name="a_p_gender${vs.count }" value="female">
 								</td>
 								<td width=190><input type="hidden" width=100></td>
 							</tr>
