@@ -27,6 +27,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.example.domain.BlackVO;
 import com.example.domain.CompanyOptionVO;
 import com.example.domain.CompanyVO;
 import com.example.domain.UserTagVO;
@@ -46,6 +47,41 @@ public class UserController {
 	@Autowired
 	UserMapper mapper;
 
+	
+	
+	@RequestMapping("/user/mypage/report")
+	public void report() {
+		
+	}
+	
+	@RequestMapping("/user/mypage/reportread")
+	@ResponseBody
+	public int reportread(String u_id) {
+		System.out.println(u_id);
+		int count1=mapper.count(u_id, "0");
+		int count2=mapper.count("0", u_id);	
+		System.out.println(count1 +count2);
+		int result=0;
+
+		if(count1==1) {
+			result=0;
+		}else if(count2==1){
+			result=1;
+		}
+
+		return result;
+	}
+	
+	@RequestMapping(value="/user/mypage/insertblack",method=RequestMethod.POST)
+	public String insertblack(BlackVO vo) {
+		System.out.println(vo.getU_from_id()+vo.getU_from_k_id()+vo.getU_to_id()+vo.getU_to_k_id()+vo.getB_content());
+		System.out.println(vo.toString());
+		mapper.insertblack(vo);
+		
+		return "/user/mypage/report";
+	}
+	
+	
 	@Autowired
 	private UserMailSendService mailSender;
 	@RequestMapping("/user/mypage/kakaolightbox")
@@ -222,6 +258,7 @@ public class UserController {
 		map.put("readtag", tvo);
 		map.put("read", vo);
 		map.put("readuser", uvo);
+		System.out.println(vo.toString());
 		return map;
 	}
 	
@@ -230,12 +267,14 @@ public class UserController {
 	public String updateKakao(UserVO vo, HttpServletRequest request) throws Exception {
 			
 			String[] arrayParam = request.getParameterValues("t_tag");
+			vo.setU_id("0");
+			System.out.println(vo.getU_id()+vo.getU_k_id()+vo.getU_name()+vo.getU_address()+vo.getU_gender()+vo.getU_tel()+vo.getU_email());
 			mapper.updateKakao(vo);
+			
 			for (int i = 0; i < arrayParam.length; i++) { 
 				System.out.println(arrayParam[i]); 
 				mapper.insertUsertag("0",vo.getU_k_id(),arrayParam[i]);
 				}
-			
 		return "redirect:/";
 	}
 	@RequestMapping("/user/mypage/infomation")

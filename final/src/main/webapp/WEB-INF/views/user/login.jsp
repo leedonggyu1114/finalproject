@@ -334,33 +334,43 @@ input[id="login-chk2"]:checked + label em {
 		$(".alert-danger").css("display", "none");
 		var u_id = $(frm.id).val();
 		var u_pass = $(frm.pass).val();
-
-		if ($(frm.chkLogin).is(":checked"))
-			chkLogin = 1;
-
+		var u_k_id="0";
 		$.ajax({
-			type : "post",
-			url : "/user/loginCheck",
-			data : {
-				"u_id" : u_id,
-				"u_pass" : u_pass,
-				"chkLogin" : chkLogin
-			},
-			success : function(data) {
-				if (data == 0) {
-					alert("아이디가 존재하지 않습니다.");
-				} else if (data == 1) {
-					alert("아이디와 패스워드를 확인해주세요.");
-				} else if (data == 2) {
-						var dest="${dest}";
-						if(dest!=""){
-							location.href = dest;
-						}else{
-							location.href="/";
+			type:"get",
+			url:"/user/mypage/read",
+			data:{"u_id":u_id,"u_pass":u_pass,"u_k_id":u_k_id},
+			success:function(data){
+				if(data.read.u_status==1){
+					alert("관리자에 의해 차단된 아이디입니다.");
+				}else{
+					if ($(frm.chkLogin).is(":checked"))
+						chkLogin = 1;
+					$.ajax({
+						type : "post",
+						url : "/user/loginCheck",
+						data : {
+							"u_id" : u_id,
+							"u_pass" : u_pass,
+							"chkLogin" : chkLogin
+						},
+						success : function(data) {
+							if (data == 0) {
+								alert("아이디가 존재하지 않습니다.");
+							} else if (data == 1) {
+								alert("아이디와 패스워드를 확인해주세요.");
+							} else if (data == 2) {
+									var dest="${dest}";
+									if(dest!=""){
+										location.href = dest;
+									}else{
+										location.href="/";
+									}
+									
+							} else {
+								$(".alert-danger").css("display", "block");
+							}
 						}
-						
-				} else {
-					$(".alert-danger").css("display", "block");
+					});
 				}
 			}
 		});

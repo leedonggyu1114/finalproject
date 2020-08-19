@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
+import com.example.domain.BlackVO;
 import com.example.domain.CompanyOptionVO;
 import com.example.domain.CompanyVO;
 import com.example.domain.UserTagVO;
@@ -59,4 +60,8 @@ public interface UserMapper {
 	//업체 회원 수정
 	public void updateCompany(CompanyVO vo);
 	public void updateCompany2(CompanyVO vo);
+	
+	//신고하기
+	public void insertblack(BlackVO vo);
+	public int count(String u_id,String u_k_id);
 }

@@ -30,4 +30,31 @@
     <update id="updateimages">
     	update tbl_hotplace_images set h_i_images=#{h_i_images} where h_x=#{h_x} and h_y=#{h_y}
     </update>
+    
+    <select id="blacklist" resultType="com.example.domain.BlackVO">
+    	select * from tbl_blacklist b, tbl_user u where b.u_to_k_id = u.u_k_id and b.u_to_id = u.u_id and
+    	u_status="0" and (u_from_k_id like concat('%',#{keyword},'%') or u_to_id like concat('%',#{keyword},'%')
+    	or u_from_k_id like concat('%',#{keyword},'%') or u_to_k_id like concat('%',#{keyword},'%'))
+    	limit ${pageStart},${perPageNum}
+    </select>
+    <select id="black" resultType="com.example.domain.UserVO">
+    	select * from tbl_user where u_status="1" and (u_id like concat('%',#{keyword},'%') or u_k_id like concat('%',#{keyword},'%')) 
+    	limit ${pageStart},${perPageNum}
+    </select>
+    <delete id="blackdelete">
+    	delete from tbl_blacklist where u_to_id=#{param1} and u_to_k_id=#{param2}
+    </delete>
+    <select id="totalcount" resultType="int">
+    	select count(*) from tbl_blacklist b, tbl_user u where b.u_to_k_id = u.u_k_id and b.u_to_id = u.u_id and
+    	u_status="0" and (u_from_k_id like concat('%',#{keyword},'%') or u_to_id like concat('%',#{keyword},'%')
+    	or u_from_k_id like concat('%',#{keyword},'%') or u_to_k_id like concat('%',#{keyword},'%'))
+    </select>
+    <select id="totalcount1" resultType="int">
+    	select count(*) from tbl_user
+    	where u_status="1"
+    </select>
+    <update id="updatestatus">
+    	update tbl_user set u_status=#{param3}
+    	where u_id=#{param1} and u_k_id=#{param2}
+    </update>
 </mapper>

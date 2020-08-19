@@ -3,6 +3,7 @@ package com.example.controller;
 import java.io.File;
 import java.nio.file.Files;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -20,8 +21,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.example.domain.Criteria;
 import com.example.domain.HotplaceVO;
+import com.example.domain.PageMaker;
+import com.example.domain.UserVO;
 import com.example.mapper.AdminMapper;
+import com.example.mapper.UserMapper;
 import com.example.service.AdminServiceInterface;
 
 @Controller
@@ -33,6 +38,8 @@ public class AdminController {
 
 	@Autowired
 	AdminMapper mapper;
+	@Autowired
+	UserMapper uMapper;
 	@Autowired
 	AdminServiceInterface service;
 	
@@ -156,12 +163,76 @@ public class AdminController {
 	@RequestMapping("userlist")
 	public void userlist() {
 	}
-	
+	/*
+	// 블랙리스트
+	@RequestMapping("blacklistget")
+	@ResponseBody
+	public HashMap<String, Object> blacklistGet() {
+		HashMap<String,Object> map= new HashMap<String,Object>();
+		map.put("blacklist", mapper.blacklist());
+		return map;
+	}
+	*/
 	// 블랙리스트
 	@RequestMapping("blacklist")
-	public void blacklist() {
+	public void blacklist(Model model ,Criteria cri) {
+		if(cri.getKeyword()==null) {
+			cri.setKeyword("");
+		}
+		cri.setPerPageNum(5);
+		PageMaker pm= new PageMaker();
+		pm.setCri(cri);
+		pm.setTotalCount(mapper.totalcount(cri));
+		model.addAttribute("cri",cri);
+		model.addAttribute("pm",pm);
+		model.addAttribute("keyword",cri.getKeyword());
+		model.addAttribute("blacklist",mapper.blacklist(cri));
 	}
 	
+	
+	@RequestMapping("black")
+	public void black(Model model ,Criteria cri) {
+		if(cri.getKeyword()==null) {
+			cri.setKeyword("");
+		}
+		cri.setPerPageNum(5);
+		PageMaker pm= new PageMaker();
+		pm.setCri(cri);
+		pm.setTotalCount(mapper.totalcount1(cri));
+		model.addAttribute("cri",cri);
+		model.addAttribute("pm",pm);
+		model.addAttribute("keyword",cri.getKeyword());
+		model.addAttribute("black",mapper.black(cri));
+	}
+	
+	@RequestMapping("read")
+	@ResponseBody
+	public String read(String u_id,String u_k_id) {
+		UserVO vo= uMapper.read(u_id,u_k_id);
+		System.out.println(vo.getU_status());
+		String status=vo.getU_status();
+		return status;
+	}
+	@RequestMapping("lockStatus")
+	public String lockStatus(String u_id,String u_k_id) {
+		System.out.println("..a");
+		mapper.updatestatus(u_id, u_k_id,"1");
+		return "/admin/blacklist";
+	}
+	
+	@RequestMapping("unlockStatus")
+	public String unlockStatus(String u_id,String u_k_id) {
+		System.out.println(u_id+"/"+u_k_id);
+		mapper.updatestatus(u_id, u_k_id,"0");
+		mapper.blackdelete(u_id, u_k_id);
+		return "/admin/blacklist";
+	}
+	
+	@RequestMapping("unlock")
+	public String unlock(String u_id,String u_k_id) {
+		mapper.blackdelete(u_id, u_k_id);
+		return "/admin/blacklist";
+	}
 	// 신고내역
 	@RequestMapping("userreport")
 	public void userreport() {

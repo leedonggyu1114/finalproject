@@ -133,4 +133,12 @@
     	update tbl_company set c_tel=#{c_tel}, c_pass=#{c_pass}, c_email=#{c_email}, c_ceo=#{c_ceo}, c_ceo_tel=#{c_ceo_tel}, c_detail=#{c_detail}, c_area=#{c_area}
     	where c_id=#{c_id}
     </update>
+    
+    <!-- 유저 신고 -->
+    <insert id="insertblack">
+    	insert into tbl_blacklist(u_from_id,u_to_id,u_from_k_id,u_to_k_id,b_content) values(#{u_from_id},#{u_to_id},#{u_from_k_id},#{u_to_k_id},#{b_content});
+    </insert>
+    <select id="count" resultType="int">
+    	select count(*) from tbl_user where u_id=#{param1} and u_k_id=#{param2}
+    </select>
 </mapper>
