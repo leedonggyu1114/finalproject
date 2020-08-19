@@ -5,6 +5,7 @@ import java.util.Date;
 public class AirVO {
 	private String a_number;
 	private String a_company;
+	private String a_image;
 	private String a_startplace;
 	private String a_endplace;
 	private String a_starttime;
@@ -14,6 +15,13 @@ public class AirVO {
 	private String a_startdate;
 	private int a_emptyseat;
 	
+	
+	public String getA_image() {
+		return a_image;
+	}
+	public void setA_image(String a_image) {
+		this.a_image = a_image;
+	}
 	public String getA_number() {
 		return a_number;
 	}

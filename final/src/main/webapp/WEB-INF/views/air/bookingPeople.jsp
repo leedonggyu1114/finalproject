@@ -123,30 +123,14 @@
 #booking_info tr, #passengers tr, #booking_user_info tr {
 	height:90px;
 }
-
-/* #passengers input[type="radio"] { 
-	display:none; 
-} */
-#passengers label { 
-	display:inline-block; 
-	width:60px; 
-	height:40px; 
-	border:0.5px solid #e9e9e9; 
-	margin-left:-6.5px; 
-	padding-top:8px; 
-	cursor:pointer; 
-	text-align:center; 
-} 
-#passengers input[type="radio"]:checked + label { 
-	background:#e9e9e9; 
- 	width:60px; 
-	border:0.5px solid #e9e9e9; 
- 	height:40px; 
- 	cursor:pointer; 
+#passengers input[type="radio"] {
+	cursor:pointer;
+	margin-right:10px;
 }
 </style>
 </head>
 <body>
+	<jsp:include page="../floatmenu.jsp"/>
 	<div id="page">
 		<div id="header"><jsp:include page="../header.jsp" /></div>
 		<div id="menu"><jsp:include page="../menu.jsp" /></div>
@@ -163,7 +147,7 @@
 
 					</tr>
 					<tr style="border-bottom:0.5px solid gray;">
-						<td>${startplace } > ${endplace }</td>
+						<td>${go.a_startplace } > ${go.a_endplace }</td>
 						<td>${go.a_company }</td>
 						<td>${go.a_number }</td>
 						<td>${go.a_starttime }</td>
@@ -172,10 +156,10 @@
 					<tr style="border-bottom:2px solid #0f4c81;">
 
 						<c:if test="${a_startdate1 == null }">
-							<td>${endplace } > ${startplace }</td>
+							<td>${back.a_endplace } > ${back.a_startplace }</td>
 						</c:if>
 						<c:if test="${a_startdate1 != '' }">
-							<td>${endplace } > ${startplace }</td>
+							<td>${back.a_endplace } > ${back.a_startplace }</td>
 							<td>${back.a_company }</td>
 							<td>${back.a_number }</td>
 							<td>${back.a_starttime }</td>
@@ -232,14 +216,8 @@
 								<td width=250 style="padding-top:20px;"><input type=text name='a_p_name'></td>
 								<th style="padding-top:20px;">성별</th>
 								<td colspan=2  width=300 style="padding-left:10px;padding-top:20px;">
-								
-									<label>남
-										<input type="radio" name="a_p_gender${vs.count }" value="male">
-									</label>
-									
-									<label>여
-										<input type="radio" name="a_p_gender${vs.count }" value="female">
-									</label>
+									남 <input type="radio" name="a_p_gender${vs.count }" value="male">
+									여 <input type="radio" name="a_p_gender${vs.count }" value="female">
 								</td>
 								<td width=190><input type="hidden" width=100></td>
 							</tr>
@@ -292,7 +270,6 @@
 		</div>
 		<div id="footer"><jsp:include page="../footer.jsp" /></div>
 	</div>
-	<jsp:include page="../chat.jsp"/>
 </body>
 <script>
 	var sum = "${sum}";
@@ -376,6 +353,7 @@
 		
 		if (!confirm("여행을 떠날 준비가 되셨나요?"))return;
 			frm.submit();
+			window.open("kakaoPay","","100px, 100px");
 		if(payName!="" || email!="" || tel!="" || birthday!="" || a_p_name!="" || a_p_gender!="" || a_p_residentRegistration!="" || a_p_seat!="" ){
 			
 		}else{
@@ -391,8 +369,7 @@
 					function() {
 						var a_number = $(this).attr("seat");
 						seatSelection = $(this);
-						$
-								.ajax({
+						$.ajax({
 									type : "get",
 									url : "/air/seatlist",
 									dataType : "json",
@@ -424,6 +401,7 @@
 													+ i
 													+ "</button></div><br><br>";
 										}
+										html += "<button class='choicefinish'>선택완료</button>";
 										$("#selectseat").html(html);
 										$("#darken-background").show();
 
@@ -431,6 +409,7 @@
 												.each(
 														function() {
 															thisseat = $(this);
+															
 															for (var n = 0; n < datalength; n++) {
 																dataseat.push(data[n]);
 																if (dataseat[n] == thisseat.html()) {
@@ -447,6 +426,11 @@
 					});
 	//라이트박스 닫기
 	$("#btnClose").on("click", function() {
+		$("#darken-background").hide();
+		seatcount = 0;
+	});
+	//좌석선택완료
+	$("#selectseat").on("click", ".choicefinish", function(){
 		$("#darken-background").hide();
 		$("#selectseat .seat button").each(function(){
 			if($(this).attr("class")=="styleseat"){

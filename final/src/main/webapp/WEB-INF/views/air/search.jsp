@@ -226,9 +226,15 @@ ul,li{list-style:none;}
 	margin-bottom:30px;
 	cursor:pointer
 }
+#tbl img,
+#tbl1 img {
+	position:relative;
+	top:3px;
+}
 </style>
 </head>
 <body>
+	<jsp:include page="../floatmenu.jsp"/>
 	<div id="page">
 		<div id="header"><jsp:include page="../header.jsp" /></div>
 		<div id="menu"><jsp:include page="../menu.jsp" /></div>
@@ -320,7 +326,8 @@ ul,li{list-style:none;}
 				{{#each startList}}
 				<tr class="row" style="border-top:0.5px solid black;">
 					<td rowspan=2 width=50><input type="radio" name="startList" class="radio" id="startList" style="cursor:pointer;"></td>
-					<td class="a_number" style="height:40px; padding-top:10px;" width=120>{{a_number}}</td>
+					<td width=50 style="padding-top:10px; padding-left:20px;"><img src="/air/display?fileName={{a_image}}"/></td>
+					<td class="a_number" style="height:40px; padding-top:10px; padding-right:20px;" width=70 >{{a_number}}</td>
 					<td class="a_starttime" width=80 style="padding-top:10px; color:red;">{{a_starttime}}</td>
 					<td rowspan=2 class="a_runtime" width=90>{{a_runtime}}</td>
 					<td rowspan=2 class="a_price1" width=70>{{a_price}}</td>
@@ -328,7 +335,7 @@ ul,li{list-style:none;}
 					<td rowspan=2 class="a_emptyseat" width=70>{{a_emptyseat}}</td>
 				</tr>
 				<tr class="row" style="border-bottom:0.5px solid black;">
-					<td class="a_company" style="height:40px; padding-bottom:10px;">{{a_company}}</td>
+					<td class="a_company" style="height:40px; padding-bottom:10px;" colspan=2>{{a_company}}</td>
 					<td class="a_endtime" style="padding-bottom:10px;">{{a_endtime}}</td>
 				</tr>
 				{{/each}} 			
@@ -353,7 +360,8 @@ ul,li{list-style:none;}
 				{{#each backList}}
 				<tr class="row" style="border-top:0.5px solid black;">
 					<td rowspan=2 width=50><input type="radio" name="backList" class="radio" id="startList" style="cursor:pointer;"></td>
-					<td class="a_number" style="height:40px; padding-top:10px;" width=120>{{a_number}}</td>
+					<td width=50 style="padding-top:10px; padding-left:20px;"><img src="/air/display?fileName={{a_image}}"/></td>
+					<td class="a_number" style="height:40px; padding-top:10px; padding-right:20px;" width=70 >{{a_number}}</td>
 					<td class="a_starttime" width=80 style="padding-top:10px; color:red;">{{a_starttime}}</td>
 					<td rowspan=2 class="a_runtime" width=90>{{a_runtime}}</td>
 					<td rowspan=2 class="a_price2" width=70>{{a_price}}</td>
@@ -361,7 +369,7 @@ ul,li{list-style:none;}
 					<td rowspan=2 class="a_emptyseat" width=70>{{a_emptyseat}}</td>
 				</tr>
 				<tr class="row" style="border-bottom:0.5px solid black;">
-					<td class="a_company" style="height:40px; padding-bottom:10px;">{{a_company}}</td>					
+					<td class="a_company" style="height:40px; padding-bottom:10px;" colspan=2>{{a_company}}</td>					
 					<td class="a_endtime" style="padding-bottom:10px;">{{a_endtime}}</td>
 				</tr>
 				{{/each}} 			
@@ -456,7 +464,6 @@ ul,li{list-style:none;}
 		</div>
 		<div id="footer"><jsp:include page="../footer.jsp"/></div>
 	</div>
-	<jsp:include page="../chat.jsp"/>
 </body>
 <script>
 	var people = 1;
@@ -494,6 +501,7 @@ ul,li{list-style:none;}
 	$(".aircount1").hide();
 
 	$("#oneWay").on("click", function() {
+		$("#edate").val("");
 		$("#edate").hide();
 		$("#sdate").css("width", "300px");
 	})
@@ -639,7 +647,6 @@ ul,li{list-style:none;}
 		var a_number = row.find(".a_number").html();
 		var a_price = row.find(".a_price1").html();
 		$("#air_check_none1").hide();
-		$("#air_check_none2").hide();
 		//alert(a_price);
 		$.ajax({
 			type : "post",
@@ -670,6 +677,7 @@ ul,li{list-style:none;}
 		var row = $(this).parent().parent();
 		var a_number = row.find(".a_number").html();
 		var a_price = row.find(".a_price2").html();
+		$("#air_check_none2").hide();
 		//alert(a_price);
 		$.ajax({
 			type : "post",
@@ -711,7 +719,7 @@ ul,li{list-style:none;}
 									monthNames : [ '1월', '2월', '3월', '4월',
 											'5월', '6월', '7월', '8월', '9월',
 											'10월', '11월', '12월' ],
-									dateFormat : "yy년mm월dd일",
+									dateFormat : "yy/mm/dd",
 									minDate : 0
 								});
 

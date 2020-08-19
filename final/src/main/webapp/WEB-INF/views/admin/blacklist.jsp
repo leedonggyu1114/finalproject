@@ -154,7 +154,6 @@ $("#tbl").on("click",".row",function(){
 		url:"/admin/read",
 		data:{"u_id":declair,"u_k_id":declairkakao},
 		success:function(data){
-			alert(data);
 			if(data==0){
 				$("#status").html("사용");
 			}else{

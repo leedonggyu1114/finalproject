@@ -4,86 +4,87 @@
 <!DOCTYPE html>
 <html>
 <head>
-   <meta charset="UTF-8">
-   <title>여행의 설렘 TOURSUM !</title>
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>   
-   <link rel="shortcut icon" type="image⁄x-icon" href="/resources/img/title_logo.png">
-   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-   <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
-   <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/style.css"/>
-   <style>
-   .usertaglistimage{
-      width:260px;
-      height:180px;
-      margin-bottom:15px;
-   }
-   #latelyhotplace{
-         position:relative;
-         margin-top:20px;
-         height:450px;
-   }
-   .latelyhotplace1 img, 
-   .latelyhotplace2 img,
-   .latelyhotplace3 img, 
-   .latelyhotplace4 img {
-      width:190px;
-      height:190px;
-      border-radius:50%;
-   }
-   .latelyhotplace1 {
-      position:absolute;
-      top:50%;
-      left:23%;
-      transform:translate(0,-50%);
-      z-index:2;
-   }
-   .latelyhotplace2 {
-      position:absolute;
-      top:50%;
-      right:23%;
-      transform:translate(0,-50%);
-      z-index:2;
-   }
-   .latelyhotplace3 {
-      position:absolute;
-      top:50%;
-      left:8%;
-      transform:translate(0,-50%);
-   }
-   .latelyhotplace4 {
-      position:absolute;
-      top:50%;
-      right:8%;
-      transform:translate(0,-50%);
-   }
-   .latelyhotplacecenter{
-      position:absolute;
-      left:50%;
-      top:39%;
-      transform:translate(-50%,-50%);
-      z-index:3;
-   }
-   .latelyhotplacecenter img {
-      width:290px;
-      height:290px;
-      border-radius:50%;
-   }
-   
-   .hotplace_tag_lightbox {
-      border:none;
-      outline:none;
-      cursor:pointer;
-      padding:5px;
-      border-radius:8px;
-      margin-right:5px;
-   }   
-   </style>
+<meta charset="UTF-8">
+<title>여행의 설렘 TOURSUM !</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>   
+<link rel="shortcut icon" type="image⁄x-icon" href="/resources/img/title_logo.png">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/style.css"/>
+<style>
+.usertaglistimage{
+   width:260px;
+   height:180px;
+   margin-bottom:15px;
+}
+#latelyhotplace{
+      position:relative;
+      margin-top:20px;
+      height:450px;
+}
+.latelyhotplace1 img, 
+.latelyhotplace2 img,
+.latelyhotplace3 img, 
+.latelyhotplace4 img {
+   width:190px;
+   height:190px;
+   border-radius:50%;
+}
+.latelyhotplace1 {
+   position:absolute;
+   top:50%;
+   left:23%;
+   transform:translate(0,-50%);
+   z-index:2;
+}
+.latelyhotplace2 {
+   position:absolute;
+   top:50%;
+   right:23%;
+   transform:translate(0,-50%);
+   z-index:2;
+}
+.latelyhotplace3 {
+   position:absolute;
+   top:50%;
+   left:8%;
+   transform:translate(0,-50%);
+}
+.latelyhotplace4 {
+   position:absolute;
+   top:50%;
+   right:8%;
+   transform:translate(0,-50%);
+}
+.latelyhotplacecenter{
+   position:absolute;
+   left:50%;
+   top:39%;
+   transform:translate(-50%,-50%);
+   z-index:3;
+}
+.latelyhotplacecenter img {
+   width:290px;
+   height:290px;
+   border-radius:50%;
+}
+
+.hotplace_tag_lightbox {
+   border:none;
+   outline:none;
+   cursor:pointer;
+   padding:5px;
+   border-radius:8px;
+   margin-right:5px;
+}   
+</style>
 </head>
 <body>
    <c:if test="${kakaoinfo==0}">
       <jsp:include page="user/mypage/kakaolightbox.jsp"/>
    </c:if>
+   <jsp:include page="floatmenu.jsp"/>
    <jsp:include page="sidebar.jsp"/>
    <button type="button" name="button" class="ac-sub-go-top" style="cursor:pointer;">위로</button>
    <div id="page">
@@ -233,33 +234,23 @@
                      <ul id="slider">
                         <li>
                            <div>
-                              <h3>Slide #1</h3>
-                              <span>Sub-title #1</span>
-                           </div> <img src="https://fakeimg.pl/350x200/960a96/000?text=11111">
+                           </div> <img src="/resources/img/slide/1.jpg">
                         </li>
                         <li>
                            <div>
-                              <h3>Slide #2</h3>
-                              <span>Sub-title #2</span>
-                           </div> <img src="https://fakeimg.pl/350x200/D27328/000?text=22222">
+                           </div> <img src="/resources/img/slide/2.jpg">
                         </li>
                         <li>
                            <div>
-                              <h3>Slide #3</h3>
-                              <span>Sub-title #3</span>
-                           </div> <img src="https://fakeimg.pl/350x200/FF607F/000?text=33333">
+                           </div> <img src="/resources/img/slide/3.jpg">
                         </li>
                         <li>
                            <div>
-                              <h3>Slide #4</h3>
-                              <span>Sub-title #4</span>
-                           </div> <img src="https://fakeimg.pl/350x200/0A6E0A/000?text=44444">
+                           </div> <img src="/resources/img/slide/4.jpg">
                         </li>
                         <li>
                            <div>
-                              <h3>Slide #5</h3>
-                              <span>Sub-title #5</span>
-                           </div> <img src="https://fakeimg.pl/350x200/0064CD/000?text=55555">
+                           </div> <img src="/resources/img/slide/5.jpg">
                         </li>
                      </ul>
                      <!--controls-->
@@ -298,7 +289,6 @@
       </div>
       <div id="footer"><jsp:include page="footer.jsp"/></div>
    </div>
-   <jsp:include page="chat.jsp"/>
 </body>
 <script>
    var u_id="${u_id}";
@@ -310,7 +300,6 @@
     
    usertaglist();
    latelyhotplace();
-   alert(u_id+u_k_id);
     $.ajax({
     	type:"get",
     	url:"/user/mypage/read",
@@ -323,9 +312,6 @@
     	}
     });
 
-   
-   
-   
    //요즘핫한지역
    function latelyhotplace(){
       $.ajax({

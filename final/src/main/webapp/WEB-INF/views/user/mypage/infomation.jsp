@@ -92,6 +92,7 @@
 <script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
 </head>
 <body>
+	<jsp:include page="../../floatmenu.jsp"/>
 	<jsp:include page="../../sidebar.jsp"/>
 	<div id="page">
 		<div id="header"><jsp:include page="../../header.jsp" /></div>
