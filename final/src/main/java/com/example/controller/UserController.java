@@ -258,6 +258,7 @@ public class UserController {
 		
 	}
 	
+	//마이페이지 항공예약
 	@RequestMapping("/user/mypage/bookinglist")
 	public void bookinglist(HttpSession session, Model model) {
 		String u_id=(String)session.getAttribute("u_id");
