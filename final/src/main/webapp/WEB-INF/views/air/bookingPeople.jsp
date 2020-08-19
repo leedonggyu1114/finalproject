@@ -147,7 +147,7 @@
 
 					</tr>
 					<tr style="border-bottom:0.5px solid gray;">
-						<td>${startplace } > ${endplace }</td>
+						<td>${go.a_startplace } > ${go.a_endplace }</td>
 						<td>${go.a_company }</td>
 						<td>${go.a_number }</td>
 						<td>${go.a_starttime }</td>
@@ -156,10 +156,10 @@
 					<tr style="border-bottom:2px solid #0f4c81;">
 
 						<c:if test="${a_startdate1 == null }">
-							<td>${endplace } > ${startplace }</td>
+							<td>${back.a_endplace } > ${back.a_startplace }</td>
 						</c:if>
 						<c:if test="${a_startdate1 != '' }">
-							<td>${endplace } > ${startplace }</td>
+							<td>${back.a_endplace } > ${back.a_startplace }</td>
 							<td>${back.a_company }</td>
 							<td>${back.a_number }</td>
 							<td>${back.a_starttime }</td>
