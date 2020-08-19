@@ -205,13 +205,12 @@ public class AdminController {
 		model.addAttribute("black",mapper.black(cri));
 	}
 	
-	@RequestMapping("read")
+	@RequestMapping(value="read", produces="application/text; charset=utf8")
 	@ResponseBody
-	public String read(String u_id,String u_k_id) {
-		UserVO vo= uMapper.read(u_id,u_k_id);
-		System.out.println(vo.getU_status());
-		String status=vo.getU_status();
-		return status;
+	public String read(String u_id,String u_k_id,String date) {
+		String content= mapper.readcontent(u_id, u_k_id, date);
+		System.out.println(content+"..");
+		return content;
 	}
 	@RequestMapping("lockStatus")
 	public String lockStatus(String u_id,String u_k_id) {
