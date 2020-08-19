@@ -376,6 +376,7 @@
 		
 		if (!confirm("여행을 떠날 준비가 되셨나요?"))return;
 			frm.submit();
+			window.open("kakaoPay","","100px, 100px");
 		if(payName!="" || email!="" || tel!="" || birthday!="" || a_p_name!="" || a_p_gender!="" || a_p_residentRegistration!="" || a_p_seat!="" ){
 			
 		}else{
@@ -449,6 +450,11 @@
 	//라이트박스 닫기
 	$("#btnClose").on("click", function() {
 		$("#darken-background").hide();
+		seatcount = 0;
+	});
+	//좌석선택완료
+	$("#selectseat").on("click", ".choicefinish", function(){
+		$("#darken-background").hide();
 		$("#selectseat .seat button").each(function(){
 			if($(this).attr("class")=="styleseat"){
 				seatchoice += ","+$(this).html();
@@ -458,10 +464,6 @@
 		seatSelection.val(seatchoice);
 		seatchoice = "";
 		seatcount = 0;
-	});
-	//좌석선택완료
-	$("#selectseat .choicefinish").on("click",function(){
-		alert("asdf");
 	});
  	
     //라이트박스안에 버튼선택 

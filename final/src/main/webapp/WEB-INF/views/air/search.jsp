@@ -712,7 +712,7 @@ ul,li{list-style:none;}
 									monthNames : [ '1월', '2월', '3월', '4월',
 											'5월', '6월', '7월', '8월', '9월',
 											'10월', '11월', '12월' ],
-									dateFormat : "yy년mm월dd일",
+									dateFormat : "yy/mm/dd",
 									minDate : 0
 								});
 
