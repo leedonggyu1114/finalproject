@@ -80,8 +80,8 @@
 		<li><a href="">유저관리</a>
 			<ul id="sub_menu">
 				<li><a href="/admin/userlist">USER LIST</a></li>
-				<li><a href="/admin/blacklist">BLACK LIST</a></li>
-				<li><a href="/admin/userreport">REPORT</a></li>
+				<li><a href="/admin/black">BLACK LIST</a></li>
+				<li><a href="/admin/blacklist">REPORT</a></li>
 			</ul>
 		</li>
 		<li><a href="">숙소관리</a>

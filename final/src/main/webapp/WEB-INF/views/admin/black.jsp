@@ -55,7 +55,6 @@
 						<a href="${pm.endPage+1}">▶</a>
 					</c:if>
 				</div>
-				<a href="/admin/blacklist">신고 내역</a>
 				</div>
 		</div>
 		

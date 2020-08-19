@@ -1,11 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
-<title>¿©ÇàÀÇ ¼³·½ TOURSUM !</title>
+<meta charset="UTF-8">
+<title>ì—¬í–‰ì˜ ì„¤ë ˜ TOURSUM !</title>
 <script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/style.css" />
 <style>
@@ -98,9 +97,9 @@
 			<div id="container">
 				<div id="user-information-area">
 					
-		<h1>½Å°í±Û °ü¸®</h1>
+			<h1>ì‹ ê³ ê¸€ ê´€ë¦¬</h1>
 		
-			<div>½Å°íÇÒ ID</div>
+			<div>ì‹ ê³ í•  ID</div>
 			<div><input type="text" id="u_to_id"></div>
 			<hr>
 			<form name="frm" action="insertblack" method="post">
@@ -112,11 +111,11 @@
 						<input type="hidden" name="u_to_k_id" value="0" id="u_k_id1"></td>
 					</tr>
 					<tr>
-						<td>½Å°í »çÀ¯</td>
+						<td>ì‹ ê³  ì‚¬ìœ </td>
 						<td><textarea name="b_content"></textarea></td>
 					</tr>
 				</table>
-				<input type="submit" value="½Å°íÇÏ±â">
+				<input type="submit" value="ì‹ ê³ í•˜ê¸°">
 			</form>
 		
 			<form name="frm1" action="insertblack" method="post">
@@ -128,11 +127,11 @@
 						<input type="hidden" name="u_to_k_id" id="u_k_id2"></td>
 					</tr>
 					<tr>
-						<td>½Å°í »çÀ¯</td>
+						<td>ì‹ ê³  ì‚¬ìœ </td>
 						<td><textarea name="b_content"></textarea></td>
 					</tr>
 				</table>
-				<input type="submit" value="½Å°íÇÏ±â">
+				<input type="submit" value="ì‹ ê³ í•˜ê¸°">
 			</form>
 		</div>
 	</div>
@@ -145,7 +144,7 @@ $(frm).submit(function(e){
 	e.preventDefault();
 	var u_id=$("#u_to_id").val();
 	var b_content=$(frm.b_content).val();
-	if(!confirm("½Å°íÇÏ½Ã°Ú½À´Ï±î?")) return;
+	if(!confirm("ì‹ ê³ í•˜ì‹œê² ìŠµë‹ˆê¹Œ?")) return;
 	$.ajax({
 		type:"get",
 		url:"/user/mypage/reportread",
@@ -163,14 +162,12 @@ $(frm).submit(function(e){
 				$(frm1).css("display","block");
 				frm1.submit();
 			}else if(data==2){
-				alert("½Å°íÇÒ ID°¡ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù.");
+				alert("ì‹ ê³ í•  IDê°€ ì¡´ì¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
 				$(frm.u_to_id).val("");
 				$(frm.u_to_k_id).val("");
 			}
 		}
 	});
 });
-
-
 </script>
 </html>
