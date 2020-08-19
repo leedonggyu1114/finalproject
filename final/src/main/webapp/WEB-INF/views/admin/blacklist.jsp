@@ -210,16 +210,14 @@ $("#lock").on("click",function(){
 	}else{
 		alert("이미 차단된 상태입니다.");
 	}
-	
-	
 });
 
 
-$("#tbl").on("click",".row",function(){
-	var declair=$(this).find(".declairId").html();
-	var declairkakao=$(this).find(".declairKakaoId").html();
-	var fromid=$(this).find(".fromid").html();
-	var date=$(this).find(".date").html();
+$("#tbl").on("click",".date",function(){
+	var declair=$(this).parent().find(".declairId").html();
+	var declairkakao=$(this).parent().find(".declairKakaoId").html();
+	var fromid=$(this).parent().find(".fromid").html();
+	var date=$(this).parent().find(".date").html();
 	$("#id").html(declair);
 	$("#id1").html(fromid);
 	$("#kakaoid").html(declairkakao);
