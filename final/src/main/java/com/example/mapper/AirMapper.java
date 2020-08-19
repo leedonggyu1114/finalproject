@@ -22,4 +22,5 @@ public interface AirMapper {
     public void setCount(@Param("sum")int sum,@Param("a_number") String a_number);
     public List<String> seatlist(String a_number);
     public List<PassengersVO> bookinglist(@Param("u_id") String u_id,@Param("u_k_id") String u_k_id);
+    public List<String> discount();
 }

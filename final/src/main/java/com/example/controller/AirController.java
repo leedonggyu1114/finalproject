@@ -238,6 +238,11 @@ public class AirController {
 	      return map;
 	   }
 	   
+	   @RequestMapping("/discount")
+       public void discount(Model model){
+          model.addAttribute("list",mapper.discount());
+       }
+	   
 	   // 이미지파일 브라우저에 출력
 		@RequestMapping("/display")
 		@ResponseBody

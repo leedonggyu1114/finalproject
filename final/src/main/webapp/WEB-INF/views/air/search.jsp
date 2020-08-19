@@ -228,10 +228,8 @@ ul,li{list-style:none;}
 }
 #tbl img,
 #tbl1 img {
-	margin-right:3px;
 	position:relative;
 	top:3px;
-	right:2px;
 }
 </style>
 </head>
@@ -328,7 +326,8 @@ ul,li{list-style:none;}
 				{{#each startList}}
 				<tr class="row" style="border-top:0.5px solid black;">
 					<td rowspan=2 width=50><input type="radio" name="startList" class="radio" id="startList" style="cursor:pointer;"></td>
-					<td class="a_number" style="height:40px; padding-top:10px;" width=120><img src="/air/display?fileName={{a_image}}"/>{{a_number}}</td>
+					<td width=50 style="padding-top:10px; padding-left:20px;"><img src="/air/display?fileName={{a_image}}"/></td>
+					<td class="a_number" style="height:40px; padding-top:10px; padding-right:20px;" width=70 >{{a_number}}</td>
 					<td class="a_starttime" width=80 style="padding-top:10px; color:red;">{{a_starttime}}</td>
 					<td rowspan=2 class="a_runtime" width=90>{{a_runtime}}</td>
 					<td rowspan=2 class="a_price1" width=70>{{a_price}}</td>
@@ -336,7 +335,7 @@ ul,li{list-style:none;}
 					<td rowspan=2 class="a_emptyseat" width=70>{{a_emptyseat}}</td>
 				</tr>
 				<tr class="row" style="border-bottom:0.5px solid black;">
-					<td class="a_company" style="height:40px; padding-bottom:10px;">{{a_company}}</td>
+					<td class="a_company" style="height:40px; padding-bottom:10px;" colspan=2>{{a_company}}</td>
 					<td class="a_endtime" style="padding-bottom:10px;">{{a_endtime}}</td>
 				</tr>
 				{{/each}} 			
@@ -361,7 +360,8 @@ ul,li{list-style:none;}
 				{{#each backList}}
 				<tr class="row" style="border-top:0.5px solid black;">
 					<td rowspan=2 width=50><input type="radio" name="backList" class="radio" id="startList" style="cursor:pointer;"></td>
-					<td class="a_number" style="height:40px; padding-top:10px;" width=120><img src="/air/display?fileName={{a_image}}"/>{{a_number}}</td>
+					<td width=50 style="padding-top:10px; padding-left:20px;"><img src="/air/display?fileName={{a_image}}"/></td>
+					<td class="a_number" style="height:40px; padding-top:10px; padding-right:20px;" width=70 >{{a_number}}</td>
 					<td class="a_starttime" width=80 style="padding-top:10px; color:red;">{{a_starttime}}</td>
 					<td rowspan=2 class="a_runtime" width=90>{{a_runtime}}</td>
 					<td rowspan=2 class="a_price2" width=70>{{a_price}}</td>
@@ -369,7 +369,7 @@ ul,li{list-style:none;}
 					<td rowspan=2 class="a_emptyseat" width=70>{{a_emptyseat}}</td>
 				</tr>
 				<tr class="row" style="border-bottom:0.5px solid black;">
-					<td class="a_company" style="height:40px; padding-bottom:10px;">{{a_company}}</td>					
+					<td class="a_company" style="height:40px; padding-bottom:10px;" colspan=2>{{a_company}}</td>					
 					<td class="a_endtime" style="padding-bottom:10px;">{{a_endtime}}</td>
 				</tr>
 				{{/each}} 			
@@ -647,7 +647,6 @@ ul,li{list-style:none;}
 		var a_number = row.find(".a_number").html();
 		var a_price = row.find(".a_price1").html();
 		$("#air_check_none1").hide();
-		$("#air_check_none2").hide();
 		//alert(a_price);
 		$.ajax({
 			type : "post",
@@ -678,6 +677,7 @@ ul,li{list-style:none;}
 		var row = $(this).parent().parent();
 		var a_number = row.find(".a_number").html();
 		var a_price = row.find(".a_price2").html();
+		$("#air_check_none2").hide();
 		//alert(a_price);
 		$.ajax({
 			type : "post",

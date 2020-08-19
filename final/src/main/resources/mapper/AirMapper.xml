@@ -7,6 +7,9 @@
 	<select id="read" resultType="String">
 		select max(a_number) from tbl_air
 	</select>
+	<select id="discount" resultType="com.example.domain.AirVO">
+		select * from tbl_air WHERE a_startdate=CURDATE() + INTERVAL 1 DAY
+	</select>
 	<select id="airList" resultType="com.example.domain.AirVO">
 		select a.*, c.a_image
 		from tbl_air a, tbl_aircompany c 
