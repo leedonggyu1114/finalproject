@@ -542,12 +542,17 @@ public class UserController {
 	@ResponseBody
 	public int loginCheck(String u_id, String u_pass, HttpSession session, String chkLogin, HttpServletResponse response) {
 		UserVO readVO=mapper.loginread(u_id);
-		System.out.println(chkLogin);
+		System.out.println(u_id);
 		int chkNum=0;
 		if(readVO!=null) {
 			if(readVO.getU_pass().equals(u_pass)) {
 				if(readVO.getU_key().equals("Y")) {
 					chkNum=2;
+					if(u_id.equals("admin")) {
+						session.setAttribute("u_id", readVO.getU_id());
+						session.setAttribute("u_k_id", readVO.getU_k_id());
+						chkNum=4;
+					}
 					session.setAttribute("u_id", readVO.getU_id());
 					session.setAttribute("u_k_id", readVO.getU_k_id());
 					if(chkLogin.equals("1")) {
