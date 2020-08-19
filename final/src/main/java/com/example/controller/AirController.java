@@ -46,6 +46,24 @@ public class AirController {
 	@Autowired
 	AirPassengersService service;
 	
+		//마이페이지 항공예약리스트
+		@RequestMapping("/bookinglist")
+		public String bookinglist(HttpSession session, Model model) {
+			String u_id=(String)session.getAttribute("u_id");
+			String u_k_id=(String)session.getAttribute("u_k_id");
+			System.out.println(u_id + u_k_id);
+			List<PassengersVO> bookinglist= mapper.bookinglist(u_id, u_k_id);
+			System.out.println(bookinglist);
+			model.addAttribute("bookinglist", bookinglist);
+			return "/user/mypage/bookinglist";
+		}
+		//항공예약 취소
+		@RequestMapping(value="/bookingcancel",method=RequestMethod.POST)
+		@ResponseBody
+		public void bookingcancel(String u_id,String u_k_id,String a_number,String a_b_paydate) {
+			
+		}
+	
 		@RequestMapping(value="/transaction",method=RequestMethod.GET)
 		public String transaction(PassengersVO vo,HttpServletRequest request,HttpSession session) {
 //			System.out.println(vo.getA_p_residentregistration().get(1));
@@ -134,15 +152,17 @@ public class AirController {
 		}
 		
 		@RequestMapping("/bookingPeople")
-		public void bookingPeople(String a_number,String a_number1,Model model,int sum,String startplace,String endplace,String a_startdate1) {
-			//System.out.println(sum);
-			//System.out.println(a_startdate1);
+		public void bookingPeople(String a_number,String a_number1,Model model,int sum,String startplace,String endplace,String a_startdate1, String price) {
+			System.out.println(sum);
+			System.out.println(a_startdate1);
+			System.out.println(price);
 			model.addAttribute("go",mapper.bookingPeople(a_number));
 			model.addAttribute("back",mapper.bookingPeople(a_number1));
 			model.addAttribute("sum", sum);
 			model.addAttribute("startplace", startplace);
 			model.addAttribute("endplace", endplace);
 			model.addAttribute("a_startdate1",  a_startdate1);
+			model.addAttribute("price", price);
 		}
 		//왕복 편도 비행기 리스트
 		@RequestMapping(value="/airList",method=RequestMethod.POST)

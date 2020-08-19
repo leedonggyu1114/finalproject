@@ -282,6 +282,7 @@
 	var seatSelection;
 	var seatchoice = "";
 	var seatcount = 0;
+	var price="${price}";
 
 	//이메일 입력방식 선택 
 	$('#selectEmail').change(function() {
@@ -328,15 +329,21 @@
 														"--", "-"));
 					});
 	//총 운임비 계산하기 
-	if (a_startdate1 == "") {
-		$(frm.airsum).val(goPrice * sum);
-		$("#airsum").html(goPrice * sum);
-	} else {
-		$(frm.airsum).val(
-				(parseInt(goPrice) + parseInt(backPrice)) * parseInt(sum));
-		$("#airsum").html(
-				(parseInt(goPrice) + parseInt(backPrice)) * parseInt(sum));
-	};
+	
+	   if(price!=""){
+	      $(frm.airsum).val(price * sum);
+	      $("#airsum").html(price * sum);
+	   }else{
+	      if (a_startdate1 == "") {
+	         $(frm.airsum).val(goPrice * sum);
+	         $("#airsum").html(goPrice * sum);
+	      } else {
+	         $(frm.airsum).val(
+	               (parseInt(goPrice) + parseInt(backPrice)) * parseInt(sum));
+	         $("#airsum").html(
+	               (parseInt(goPrice) + parseInt(backPrice)) * parseInt(sum));
+	      };
+	   }
 
 	//결제하기 
 	$(frm).submit(function(e) {
@@ -353,7 +360,7 @@
 		
 		if (!confirm("여행을 떠날 준비가 되셨나요?"))return;
 			frm.submit();
-			window.open("kakaoPay","","100px, 100px");
+// 			window.open("kakaoPay","","100px, 100px");
 		if(payName!="" || email!="" || tel!="" || birthday!="" || a_p_name!="" || a_p_gender!="" || a_p_residentRegistration!="" || a_p_seat!="" ){
 			
 		}else{

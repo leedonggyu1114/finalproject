@@ -43,7 +43,6 @@
 	
 	var a_p_seat = new Array();
 	for(var i=0; i<${seat}.length; i++){
-		alert(${seat}[i].a_p_seat);
 		var data = ${seat}[i].a_p_seat;
 		a_p_seat.push(data);
 	}
@@ -52,16 +51,16 @@
 	var number1 = "${number1}";
 	var sum = "${sum}";
 	
-	alert(a_p_residentregistration);
-	alert(a_p_name);
-	alert(a_p_gender);
-	alert(a_p_backseat);
-	alert(a_p_seat);
-	console.log(a_p_residentregistration);
-	console.log(a_p_name);
-	console.log(a_p_gender);
-	console.log(a_p_backseat);
-	console.log(a_p_seat);
+// 	alert(a_p_residentregistration);
+// 	alert(a_p_name);
+// 	alert(a_p_gender);
+// 	alert(a_p_backseat);
+// 	alert(a_p_seat);
+// 	console.log(a_p_residentregistration);
+// 	console.log(a_p_name);
+// 	console.log(a_p_gender);
+// 	console.log(a_p_backseat);
+// 	console.log(a_p_seat);
 	
 // 	$(function(){
 // 		var residentregistration=new Array();
@@ -174,7 +173,7 @@
 						},
 					success:function(){
 						alert("결제성공");
-						location.href="/user/mypage/bookinglist";
+						location.href="/air/bookinglist";
 					}
 				});
 	    	  }else{
