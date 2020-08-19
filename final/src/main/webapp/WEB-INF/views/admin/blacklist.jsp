@@ -11,7 +11,41 @@
 <script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
 <style>
-	#tbl, #tblInfo, #tblblack{border:1px solid gray; width:700px; text-align:center; }
+#admin_true>div {
+	width:1000px;
+	height:100%;
+	background:orange;
+	position:relative;
+	left:50%;
+	transform:translate(-50%,0);
+}
+#txtSearch {
+	width:240px;
+	height:40px;
+	border:none;
+	outline:none;
+	padding-left:20px;
+	border-radius:20px;
+	cursor:pointer;
+}
+#btnSearch {
+	background:none;
+	height:40px;
+	outline:none;
+	cursor:pointer;
+	border:none;
+}
+#btnSearch:hover {
+	color:red;
+}
+#total {
+	font-size:14px;
+	margin-bottom:2px;
+}
+#tbl {
+	margin-top:20px;
+	text-align:center;
+}
 </style>
 </head>
 <body>
@@ -19,74 +53,61 @@
 		<div id="admin_menu"><a href="/admin/index"><img src="/resources/img/admin/home.png" width=50/></a><jsp:include page="menu.jsp"/></div>
 		<div id="admin_container">
 			<div id="admin_true">
-				<h1>ID 신고 내역</h1>
-				<form name="frm" action="blacklist">
-				총 검색수:<span id="total">${pm.totalCount}</span>개
-					ID 검색 : <span><input type="text" id="txtSearch" name="keyword" value="${cri.keyword}"></span>
-					<span><input type="submit" value="검색" id="btnSearch"></span>
-				</form>
-					<table id="tbl">
-					<tr>
-						<td>ID</td>
-						<td>카카오 ID</td>
-						<td>신고한 ID</td>
-						<td>사유</td>
-						<td>신고 날짜</td>
-					</tr>
-					<c:forEach items="${blacklist}" var="vo">
-					<tr class="row">
-						<td class="declairId">${vo.u_to_id}</td>
-						<td class="declairKakaoId">${vo.u_to_k_id}</td>
-						<td class="fromid">${vo.u_from_id}</td>
-						<td>${vo.b_content}</td>
-						<td>${vo.b_date}</td>
-					</tr>
-					</c:forEach>
-				</table>
-				<div id="pagination">
-					<c:if test="${pm.prev}">
-						<a href="${pm.startPage-1}">◀</a>
-					</c:if>
-					<c:forEach begin="${pm.startPage}" end="${pm.endPage}" var="i">
-						<c:if test="${cri.page==i}">
-							[<a href="${i}" class="active">${i}</a>]
-						</c:if>
-						<c:if test="${cri.page!=i}">
-							[<a href="${i}">${i}</a>]
-						</c:if>
-					</c:forEach>
-					<c:if test="${pm.next}">
-						<a href="${pm.endPage+1}">▶</a>
-					</c:if>
-				</div>
-				
-				<table id="tblInfo" border=1>
-					<tr>
-						<td colspan="2">신고 ID 정보</td>
-					</tr>
-					<tr id="idhidden">
-						<td width=200>신고 아이디</td>
-						<td width=150><span id="id"></span></td>
-					</tr>
-					<tr id="kakaohidden">
-						<td width=200>신고 카카오 아이디</td>
-						<td width=150><span id="kakaoid"></span></td>
-					</tr>
-					<tr id="idhidden">
-						<td width=200>신고한 아이디</td>
-						<td width=150><span id="id1"></span></td>
-					</tr>
+				<div>
+					<img src="/resources/img/admin/report_title.png"/>
+					<form name="frm" action="blacklist">
+						<span><input type="text" id="txtSearch" name="keyword" value="${cri.keyword}"></span>
+						<span><input type="submit" value="검색" id="btnSearch"></span>
+						<span id="total">( ${pm.totalCount} 건 )</span>
+					</form>
+						<table id="tbl" border=1>
+						<tr>
+							<td>TO</td>
+							<td>KAKAO ID</td>
+							<td>FROM</td>
+							<td>DATE</td>
+							<td>SET</td>
+							<td>DELETE</td>
+						</tr>
+						<c:forEach items="${blacklist}" var="vo">
+						<tr class="row">
+							<td class="declairId">${vo.u_to_id}</td>
+							<td class="declairKakaoId">${vo.u_to_k_id}</td>
+							<td class="fromid">${vo.u_from_id}</td>
+							<td>${vo.b_content}</td>
+							<td>${vo.b_date}</td>
+							<td><input type="button" value="ID차단" id="lock"></td>
+							<td><input type="button" value="신고상태 해제" id="unlock"></td>
+						</tr>
+						</c:forEach>
+					</table>
 					
-					<tr>
-						<td>차단상태</td>
-						<td><span id="status"></span></td>
-					</tr>
-					<tr>
-						<td><input type="button" value="ID차단" id="lock"></td>
-						<td><input type="button" value="신고상태 해제" id="unlock"></td>
-					</tr>
-				</table>
-				<a href="/admin/black">블랙 리스트</a>
+					<div id="pagination">
+						<c:if test="${pm.prev}">
+							<a href="${pm.startPage-1}">◀</a>
+						</c:if>
+						<c:forEach begin="${pm.startPage}" end="${pm.endPage}" var="i">
+							<c:if test="${cri.page==i}">
+								[<a href="${i}" class="active">${i}</a>]
+							</c:if>
+							<c:if test="${cri.page!=i}">
+								[<a href="${i}">${i}</a>]
+							</c:if>
+						</c:forEach>
+						<c:if test="${pm.next}">
+							<a href="${pm.endPage+1}">▶</a>
+						</c:if>
+					</div>
+					
+					<table id="tblInfo" border=1>
+						<tr>
+							<td>사유</td>
+						</tr>
+						<tr id="idhidden">
+							<td width=200></td>
+						</tr>
+					</table>
+				</div>
 			</div>
 		</div>
 	</div>

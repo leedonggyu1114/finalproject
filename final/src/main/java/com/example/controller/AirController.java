@@ -61,7 +61,8 @@ public class AirController {
 		@RequestMapping(value="/bookingcancel",method=RequestMethod.POST)
 		@ResponseBody
 		public void bookingcancel(String u_id,String u_k_id,String a_number,String a_b_paydate) {
-			
+			System.out.println(u_id + u_k_id + a_number + a_b_paydate);
+			service.bookingcancel(u_id, u_k_id, a_number, a_b_paydate);
 		}
 	
 		@RequestMapping(value="/transaction",method=RequestMethod.GET)

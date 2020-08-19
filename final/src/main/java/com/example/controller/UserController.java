@@ -70,6 +70,8 @@ public class UserController {
 			result=0;
 		}else if(count2==1){
 			result=1;
+		}else {
+			result=2;
 		}
 
 		return result;

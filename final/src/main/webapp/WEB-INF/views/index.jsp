@@ -95,31 +95,30 @@
             <div id="div_container_quick">
                <div><p>고객님,<br><strong>어떤 여행을 꿈꾸시나요?</strong></p></div>
                <div class="tapmenu">
-                  <ul class="tabs">
+                  <ul class="tabs" >
                      <li class="tab-link current" data-tab="tab-1"><b>항공</b></li>
                      <li class="tab-link" data-tab="tab-2"><b>숙소</b></li>
                   </ul>
                   <!-- 항공 퀵 검색 -->
-                  <div id="tab-1" class="tab-content current">
-                     <ul class="tabs2">
-                        <li class="tab-link2 current2" data-tab="tab-3">편도</li>
-                        <li class="tab-link2" data-tab="tab-4">왕복</li>
-                     </ul>
+                  <div id="tab-1" class="tab-content current" >
+                  	<div style="text-align:center; margin-top:20px;">
+						<input type="radio" id="roundtrip" name="air" value="편도" checked>
+						<label for="roundtrip">왕복</label>
+						<input type="radio" id="oneway" name="air" value="왕복">
+						<label for="oneway">편도</label>
+					</div>
                      <div id="tab-3" class="tab-content2 current2">
                         <div id="tab-3-1">
-                           <input type="text" placeholder="출발지" 
-                           onfocus="this.placeholder=''" onblur="this.placeholder='출발지'">
+                           <input type="text" placeholder="출발지">
                            <img src="/resources/img/container/container_icon.png">
-                           <input type="text" placeholder="도착지" 
-                           onfocus="this.placeholder=''" onblur="this.placeholder='도착지'"><br>
+                           <input type="text" placeholder="도착지" ><br>
                         </div>
                         <div id="tab-3-2">
-                           <input type="text" class="date" placeholder="가는날"
-                           onfocus="this.placeholder=''" onblur="this.placeholder='가는날'">
+                           <input type="text" class="startdate" placeholder="가는날">
+                           <input type="text" class="enddate" placeholder="오는날">
                         </div>
                         <div id="tab-3-3">
-                           <input type="text" class="airpersons1" placeholder="인원선택"
-                           onfocus="this.placeholder=''" onblur="this.placeholder='인원선택'">
+                           <input type="text" class="airpersons1" placeholder="인원선택">
                            <div class="aircount1">
                               <h5>인원</h5>
                               <div>
@@ -142,48 +141,6 @@
                            </div>
                         </div>
                         <div id="tab-3-4">
-                           <input type="button" value="항공권 검색">
-                        </div>
-                     </div>
-                     <div id="tab-4" class="tab-content2">
-                        <div id="tab-4-1">
-                           <input type="text" placeholder="출발지"
-                           onfocus="this.placeholder=''" onblur="this.placeholder='출발지'">
-                           <img src="/resources/img/container/container_icon.png">
-                           <input type="text" placeholder="도착지"
-                           onfocus="this.placeholder=''" onblur="this.placeholder='도착지'"><br>
-                        </div>
-                        <div id="tab-4-2">
-                           <input type="text" class="date" placeholder="가는날"
-                           onfocus="this.placeholder=''" onblur="this.placeholder='가는날'">
-                           <input type="text" class="date" placeholder="오는날"
-                           onfocus="this.placeholder=''" onblur="this.placeholder='오는날'">
-                        </div>
-                        <div id="tab-4-3">
-                           <input type="text" class="airpersons2" placeholder="인원선택"
-                           onfocus="this.placeholder=''" onblur="this.placeholder='인원선택'">
-                           <div class="aircount2">
-                              <h5>인원</h5>
-                              <div>
-                                 <div>
-                                    <span>성인</span>
-                                    <button>-</button>
-                                    <input type="text" value="1" readonly>
-                                    <button>+</button>
-                                 </div>
-                                 <div>
-                                    <span>아동</span>
-                                    <button>-</button>
-                                    <input type="text" value="1" readonly>
-                                    <button>+</button>
-                                 </div>
-                                 <div>
-                                    <button id="btn">선택완료</button>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                        <div id="tab-4-4">
                            <input type="button" value="항공권 검색">
                         </div>
                      </div>
@@ -297,6 +254,16 @@
    $(".staycount").hide();
    $(".aircount1").hide();
    $(".aircount2").hide();
+   
+   $("#oneway").click(function(){
+	   $(".enddate").hide();
+	   $(".startdate").css("width", "331");
+   });
+   
+   $("#roundtrip").click(function(){
+	   $(".startdate").css("width", "150");
+	   $(".enddate").show();
+   });
     
    usertaglist();
    latelyhotplace();
@@ -463,18 +430,9 @@
       $("#" + tab_id).addClass('current');
    })
 
-   $('ul.tabs2 li').click(function() {
-      var tab_id = $(this).attr('data-tab');
-
-      $('ul.tabs2 li').removeClass('current2');
-      $('.tab-content2').removeClass('current2');
-
-      $(this).addClass('current2');
-      $("#" + tab_id).addClass('current2');
-   })
-
    // 달력
-   $(".date").datepicker({});
+   $(".startdate").datepicker({});
+   $(".enddate").datepicker({});
 
    // 인원선택
    $(".staypersons").toggle(function() {
