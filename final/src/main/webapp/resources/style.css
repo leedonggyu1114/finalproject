@@ -254,13 +254,11 @@ input:focus::-webkit-input-placeholder {color:transparent; }
 }
 
 /*tab2*/
-.tapmenu ul.tabs2 {
-   margin: 0px;
-   padding: 0px;
-   list-style: none;
+.tapmenu #tab-1 input[type="radio"] {
+	display:none;
 }
 
-.tapmenu ul.tabs2 li {
+.tapmenu #tab-1 label {
    background: none;
    color: black;
    display: inline-block;
@@ -269,14 +267,18 @@ input:focus::-webkit-input-placeholder {color:transparent; }
    text-align: center;
    border-radius: 4px 4px 4px 4px;
    padding: 10px;
-   margin-top: 20px;
-   position: relative;
-   left: 27%;
 }
 
-.tapmenu ul.tabs2 li.current2 {
-   background: black;
-   color: white;
+.tapmenu #tab-1 input[type="radio"]:checked + label {
+	background:black;
+	color:white;
+	width:80px;
+	height:40px;
+	border-radius: 4px 4px 4px 4px;
+	cursor:pointer;
+}
+
+#tab-3-2 input {
 }
 
 .tapmenu .tab-content2 {
@@ -335,7 +337,10 @@ input:focus::-webkit-input-placeholder {color:transparent; }
    text-align:center;
    font-size:15px;
    cursor:pointer;
-   margin-right:180px;
+}
+
+#tab-3-2 input[type="text"]:nth-child(2) {
+	margin-left:26px;
 }
 
 #tab-4-2 input[type="text"] {
