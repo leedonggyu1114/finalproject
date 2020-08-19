@@ -35,7 +35,7 @@
 			onmouseout="this.src='${pageContext.request.contextPath}/resources/img/header/mypage_icon.png'" 
 			width=50>
 		</a>
-		<a href="/user/mypage/bookinglist" style="margin-left:15px; margin-right:15px;">
+		<a href="/air/bookinglist" style="margin-left:15px; margin-right:15px;">
 			<img src="${pageContext.request.contextPath}/resources/img/header/booking_icon.png" 
 			onmouseover="this.src='${pageContext.request.contextPath}/resources/img/header/booking_icon_hover.png'" 
 			onmouseout="this.src='${pageContext.request.contextPath}/resources/img/header/booking_icon.png'" 

@@ -48,8 +48,6 @@ public class UserController {
 	private String companypath;
 	@Autowired
 	UserMapper mapper;
-	@Autowired
-	AirMapper umapper;
 
 	@Autowired
 	private UserMailSendService mailSender;
@@ -258,16 +256,7 @@ public class UserController {
 		
 	}
 	
-	//마이페이지 항공예약
-	@RequestMapping("/user/mypage/bookinglist")
-	public void bookinglist(HttpSession session, Model model) {
-		String u_id=(String)session.getAttribute("u_id");
-		String u_k_id=(String)session.getAttribute("u_k_id");
-		System.out.println(u_id + u_k_id);
-		List<PassengersVO> bookinglist= umapper.bookinglist(u_id, u_k_id);
-		System.out.println(bookinglist);
-		model.addAttribute("bookinglist", bookinglist);
-	}
+	
 	
 	//실명인증
 	@RequestMapping("/user/checkNameCompany")

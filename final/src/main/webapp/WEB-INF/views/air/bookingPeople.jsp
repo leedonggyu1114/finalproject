@@ -353,7 +353,7 @@
 		
 		if (!confirm("여행을 떠날 준비가 되셨나요?"))return;
 			frm.submit();
-			window.open("kakaoPay","","100px, 100px");
+// 			window.open("kakaoPay","","100px, 100px");
 		if(payName!="" || email!="" || tel!="" || birthday!="" || a_p_name!="" || a_p_gender!="" || a_p_residentRegistration!="" || a_p_seat!="" ){
 			
 		}else{
