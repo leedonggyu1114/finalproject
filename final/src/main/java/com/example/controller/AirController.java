@@ -152,15 +152,17 @@ public class AirController {
 		}
 		
 		@RequestMapping("/bookingPeople")
-		public void bookingPeople(String a_number,String a_number1,Model model,int sum,String startplace,String endplace,String a_startdate1) {
-			//System.out.println(sum);
-			//System.out.println(a_startdate1);
+		public void bookingPeople(String a_number,String a_number1,Model model,int sum,String startplace,String endplace,String a_startdate1, String price) {
+			System.out.println(sum);
+			System.out.println(a_startdate1);
+			System.out.println(price);
 			model.addAttribute("go",mapper.bookingPeople(a_number));
 			model.addAttribute("back",mapper.bookingPeople(a_number1));
 			model.addAttribute("sum", sum);
 			model.addAttribute("startplace", startplace);
 			model.addAttribute("endplace", endplace);
 			model.addAttribute("a_startdate1",  a_startdate1);
+			model.addAttribute("price", price);
 		}
 		//왕복 편도 비행기 리스트
 		@RequestMapping(value="/airList",method=RequestMethod.POST)

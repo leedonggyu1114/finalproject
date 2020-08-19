@@ -282,6 +282,7 @@
 	var seatSelection;
 	var seatchoice = "";
 	var seatcount = 0;
+	var price="${price}";
 
 	//이메일 입력방식 선택 
 	$('#selectEmail').change(function() {
@@ -328,15 +329,21 @@
 														"--", "-"));
 					});
 	//총 운임비 계산하기 
-	if (a_startdate1 == "") {
-		$(frm.airsum).val(goPrice * sum);
-		$("#airsum").html(goPrice * sum);
-	} else {
-		$(frm.airsum).val(
-				(parseInt(goPrice) + parseInt(backPrice)) * parseInt(sum));
-		$("#airsum").html(
-				(parseInt(goPrice) + parseInt(backPrice)) * parseInt(sum));
-	};
+	
+	   if(price!=""){
+	      $(frm.airsum).val(price * sum);
+	      $("#airsum").html(price * sum);
+	   }else{
+	      if (a_startdate1 == "") {
+	         $(frm.airsum).val(goPrice * sum);
+	         $("#airsum").html(goPrice * sum);
+	      } else {
+	         $(frm.airsum).val(
+	               (parseInt(goPrice) + parseInt(backPrice)) * parseInt(sum));
+	         $("#airsum").html(
+	               (parseInt(goPrice) + parseInt(backPrice)) * parseInt(sum));
+	      };
+	   }
 
 	//결제하기 
 	$(frm).submit(function(e) {
