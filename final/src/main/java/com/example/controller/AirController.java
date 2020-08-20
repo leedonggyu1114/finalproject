@@ -28,6 +28,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.domain.AirVO;
+import com.example.domain.IndexAirSearchVO;
 import com.example.domain.PassengersVO;
 import com.example.mapper.AirMapper;
 import com.example.service.AirPassengersService;
@@ -51,9 +52,7 @@ public class AirController {
 		public String bookinglist(HttpSession session, Model model) {
 			String u_id=(String)session.getAttribute("u_id");
 			String u_k_id=(String)session.getAttribute("u_k_id");
-			System.out.println(u_id + u_k_id);
 			List<PassengersVO> bookinglist= mapper.bookinglist(u_id, u_k_id);
-			System.out.println(bookinglist);
 			model.addAttribute("bookinglist", bookinglist);
 			return "/user/mypage/bookinglist";
 		}
@@ -74,7 +73,6 @@ public class AirController {
 //			}
 			String u_id=(String)session.getAttribute("u_id");
 			String u_k_id=(String)session.getAttribute("u_k_id");
-			System.out.println(u_id);
 			service.passengersInsert(vo,u_id,u_k_id);
 			return "/air/kakaoPay";
 		}
@@ -82,7 +80,6 @@ public class AirController {
 	
 		@RequestMapping("/kakaoPay")
 		public void kakaoPay(PassengersVO vo,Locale locale,Model model){
-			System.out.println(vo.toString());
 			JSONArray jsonArray = new JSONArray(); // json타입으로 변환하기
 			for (int i = 0; i < vo.getA_p_residentregistration().size(); i++) {
 				JSONObject data = new JSONObject();
@@ -154,9 +151,6 @@ public class AirController {
 		
 		@RequestMapping("/bookingPeople")
 		public void bookingPeople(String a_number,String a_number1,Model model,int sum,String startplace,String endplace,String a_startdate1, String price) {
-			System.out.println(sum);
-			System.out.println(a_startdate1);
-			System.out.println(price);
 			model.addAttribute("go",mapper.bookingPeople(a_number));
 			model.addAttribute("back",mapper.bookingPeople(a_number1));
 			model.addAttribute("sum", sum);
@@ -195,9 +189,8 @@ public class AirController {
 		}
 		
 		@RequestMapping("/search")
-		public void search(HttpSession session) {
-			session.setAttribute("user1", "user1");
-		      String user1=(String) session.getAttribute("user1");
+		public void search(IndexAirSearchVO vo, Model model) {
+			model.addAttribute("vo", vo);
 		}
 		
 		@RequestMapping("/listRead")

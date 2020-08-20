@@ -165,12 +165,13 @@
    <jsp:include page="read(lightbox).jsp"/>
 </body>
 <script>
-   var x;
-   var y;
-   var u_id="${u_id}";
-   var u_k_id="${u_k_id}";
-   
-   //새로고침시 url파라미터 제거
+
+	var x;
+	var y;
+	var u_id = "${u_id}";
+	var u_k_id = "${u_k_id}";
+
+	//새로고침시 url파라미터 제거
 	window.onkeydown = function() {
 		var kcode = event.keyCode;
 		if (kcode == 116) {
