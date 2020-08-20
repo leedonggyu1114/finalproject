@@ -263,7 +263,6 @@ public class UserController {
 		map.put("readtag", tvo);
 		map.put("read", vo);
 		map.put("readuser", uvo);
-		System.out.println(vo.toString());
 		return map;
 	}
 	

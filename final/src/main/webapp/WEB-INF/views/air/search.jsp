@@ -70,7 +70,7 @@ ul,li{list-style:none;}
 	border:0.5px solid #e9e9e9;
 	padding-left:10px;
 	cursor:pointer;
-	line-height:40px;
+	line-height:50px;
 }
 #div_SEplace img {
 	position:absolute;
