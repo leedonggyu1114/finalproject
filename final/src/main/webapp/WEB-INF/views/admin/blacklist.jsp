@@ -85,6 +85,9 @@
 #pagination .active {
 	border-bottom:0.5px solid black;
 }
+#pagination .active a {
+	color:red;
+}
 #tblInfo {
 	background:white;
 	width:300px;
