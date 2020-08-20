@@ -666,16 +666,51 @@ input:focus::-webkit-input-placeholder {color:transparent; }
 #div_container_area3 {
    width: 100%;
    height: 800px;
-   background: #C1CECE;
+   background: #EDF2F3;
    z-index: -2;
    padding-top:80px;
    padding-bottom:80px;
+   padding-left:80px;
+   position:relative;
+}
+
+#div_container_area3 #first_area {
+	height:100%;
+	width:500px;
+	background:white;
+	border-radius:0px 0px 10px 10px;
+}
+
+#div_container_area3 #area3_title {
+	position:absolute;
+	top:75px;
+	right:310px;
+}
+
+#div_container_area3 #second_area {
+	background:white;
+	width:500px;
+	height:150px;
+	position:absolute;
+	right:85px;
+	bottom:240px;
+	border-radius:0px 10px 10px 0px;
+}
+
+#div_container_area3 #third_area {
+	background:white;
+	width:500px;
+	height:150px;
+	position:absolute;
+	right:85px;
+	bottom:80px;
+	border-radius:0px 10px 10px 0px;
 }
 
 #div_container_area4 {
    width: 100%;
    height: 600px;
-   background: #EDF2F3;
+   background: white;
    z-index: -2;
    padding-top:80px;
    padding-bottom:60px;

@@ -88,7 +88,7 @@
    <jsp:include page="sidebar.jsp"/>
    <button type="button" name="button" class="ac-sub-go-top" style="cursor:pointer;">위로</button>
    <div id="page">
-      <div id="header"><jsp:include page="header.jsp"/></div>
+      <div id="header" ><jsp:include page="header.jsp"/></div>
       <div id="menu"><jsp:include page="menu.jsp"/></div>
       <div id="container">
          <div id="div_container_area1"> <!-- 퀵검색, 테마 -->
@@ -233,12 +233,39 @@
 	            <div id="userrecommendlist" style="margin:auto;margin-top:20px;"></div>
 	         </div>
          </c:if>
-         <div id="div_container_area3"> <!-- 땡처리 -->
+         
+         <!-- 숙소 예약,결제많은순 start ---------------------------------------------------->
+         <div id="div_container_area3"> 
+         
+         	<div id="first_area">
+         		<img src="/resources/img/area3_sample.jpg" width=500 height=500/>
+         		<div style="font-size:30px; font-weight:bold; padding-left:10px;">Hotel name</div>
+         		<div style="padding-left:10px; color:gray;">제주</div>
+         		<div style="font-size:25px; font-weight:bold; margin-top:25px; text-align:right; padding-right:10px;">49,900 원~</div>
+         	</div>
+         	
+         	<div id="area3_title"><img src="/resources/img/area3_title.png"/></div>
+         	<div id="second_area">
+         		<img src="/resources/img/area3_sample2.jpg" width=150 height=150/>
+         		<div style="position:absolute; left:160px; top:10px; font-size:23px; font-weight:bold;">Hotel name</div>
+         		<div style="position:absolute; left:160px; top:40px; color:gray;">부산</div>
+         		<div style="position:absolute; bottom:10px; right:10px; font-weight:bold;">29,900 원~</div>
+         	</div>
+         	
+         	<div id="third_area">
+         		<img src="/resources/img/area3_sample2.jpg" width=150 height=150/>
+         		<div style="position:absolute; left:160px; top:10px; font-size:23px; font-weight:bold;">Hotel name</div>
+         		<div style="position:absolute; left:160px; top:40px; color:gray;">부산</div>
+         		<div style="position:absolute; bottom:10px; right:10px; font-weight:bold;">29,900 원~</div>
+         	</div>
+         	
+         </div>
+         <!-- 숙소 예약,결제많은순 end ------------------------------------------------------>
+         
+         <div id="div_container_area4"> <!-- 땡처리 -->
          
          </div>
-         <div id="div_container_area4"> <!-- 숙소 예약,결제많은순 -->
          
-         </div>
          <div id="div_container_area5">
             <div style="margin-left:20px"><h2>주목! 요즘HOT한 여행지</h2></div>
             <div id="latelyhotplace"></div> 
