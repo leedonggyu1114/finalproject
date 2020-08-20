@@ -15,7 +15,7 @@
 	<select id="airList" resultType="com.example.domain.AirVO">
 		select a.*, c.a_image
 		from tbl_air a, tbl_aircompany c 
-		where a.a_company=c.a_company and a_startplace=#{a_startplace} and a_endplace=#{a_endplace} and a_startdate=#{a_startdate} and a_emptyseat>#{a_emptyseat} 
+		where a.a_company=c.a_company and a_startplace=#{a_startplace} and a_endplace=#{a_endplace} and a_emptyseat>#{a_emptyseat}  and a_startdate like #{a_startdate}
 		order by a_price;
 	</select>
 	<select id="listRead" resultType="com.example.domain.AirVO">
@@ -31,14 +31,17 @@
 	<insert id="airbookingInsert">
 		insert into tbl_air_booking values(#{u_id},#{u_k_id},#{a_number},now(),'0')
 	</insert>
-	<update id="setCount">
+	<update id="minCount">
 		update tbl_air set a_emptyseat=a_emptyseat-#{sum} where a_number=#{a_number}
+	</update>
+	<update id="plusCount">
+		update tbl_air set a_emptyseat=a_emptyseat+#{sum} where a_number=#{a_number}
 	</update>
 	<select id="seatlist" resultType="string">
 		select a_p_seat from tbl_passengers where a_number=#{a_number};
 	</select>
 	<select id="bookinglist" resultType="com.example.domain.PassengersVO">
-		select a.*, b.u_id,b.u_k_id,a_b_paydate from tbl_air a, tbl_air_booking b where a.a_number=b.a_number and u_id=#{u_id} and u_k_id=#{u_k_id}
+		select a.*, b.u_id,b.u_k_id,a_b_paydate,a_b_status from tbl_air a, tbl_air_booking b where a.a_number=b.a_number and u_id=#{u_id} and u_k_id=#{u_k_id}  order by a_startdate desc, a_starttime desc
 	</select>
 	<update id="bookingcancel">
 		update tbl_air_booking set a_b_status='1' where u_id=#{u_id} and u_k_id=#{u_k_id} and a_number=#{a_number} and a_b_paydate=#{a_b_paydate}
@@ -46,4 +49,7 @@
 	<delete id="passengersdelete">
 		delete from tbl_passengers where u_id=#{u_id} and u_k_id=#{u_k_id} and a_number=#{a_number}
 	</delete>
+	<select id="passengerscount" resultType="int">
+		select count(u_id) from tbl_passengers where u_id=#{u_id} and u_k_id=#{u_k_id} and a_number=#{a_number}
+	</select>
 </mapper>

@@ -34,7 +34,7 @@ public class AirPassengersServiceImpl implements AirPassengersService {
 				mapper.passengersInsert(u_id, u_k_id, vo.getA_number(), vo.getA_p_residentregistration().get(i), 
 						vo.getA_p_name().get(i),vo.getA_p_gender().get(i) , vo.getA_p_seat().get(i));
 			}
-			mapper.setCount(vo.getSum(), vo.getA_number());
+			mapper.minCount(vo.getSum(), vo.getA_number());
 		}else {
 			System.out.println("not null");
 			mapper.airbookingInsert(u_id, u_k_id, vo.getA_number());
@@ -47,11 +47,20 @@ public class AirPassengersServiceImpl implements AirPassengersService {
 				mapper.passengersInsert(u_id, u_k_id, vo.getA_number1(), vo.getA_p_residentregistration().get(i), 
 						vo.getA_p_name().get(i),vo.getA_p_gender().get(i) , vo.getA_p_backseat().get(i));
 			}
-			mapper.setCount(vo.getSum(), vo.getA_number());
-			mapper.setCount(vo.getSum(), vo.getA_number1());
+			mapper.minCount(vo.getSum(), vo.getA_number());
+			mapper.minCount(vo.getSum(), vo.getA_number1());
 		}
 		
 		
 		
+	}
+
+	@Override
+	public void bookingcancel(String u_id, String u_k_id, String a_number, String a_b_paydate) {
+		int sum = mapper.passengerscount(u_id, u_k_id, a_number);
+		mapper.passengersdelete(u_id, u_k_id, a_number);
+		mapper.bookingcancel(u_id, u_k_id, a_number, a_b_paydate);
+		System.out.println(sum);
+		mapper.plusCount(sum, a_number);
 	}
 }

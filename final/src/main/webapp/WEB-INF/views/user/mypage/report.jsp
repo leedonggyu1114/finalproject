@@ -155,12 +155,14 @@ $(frm).submit(function(e){
 				$(frm).css("display","block");
 				$(frm1).css("display","none");
 				frm.submit();
+				alert("신고 처리 완료되었습니다.");
 			}else if(data==1){
 				$(frm1.u_to_k_id).val(u_id);
 				$(frm1.b_content).val(b_content);
 				$(frm).css("display","none");
 				$(frm1).css("display","block");
 				frm1.submit();
+				alert("신고 처리 완료되었습니다.");
 			}else if(data==2){
 				alert("신고할 ID가 존재하지 않습니다.");
 				$(frm.u_to_id).val("");

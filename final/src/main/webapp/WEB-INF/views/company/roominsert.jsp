@@ -139,6 +139,12 @@
 						<td> 평점 </td>
 						<td><input type="text" name="r_grade"></td>
 					</tr>
+					<tr>
+						<td width=100><input type="button" value="추가이미지" id="btnImage">
+						</td>
+						<td width=150 height=150><input type="file" name="files" accept="image/*" multiple>
+						<div id="listFile"></div></td>
+					</tr>
 				</table>
 				<input type="submit" value="룸 등록">
 				</form>
@@ -150,14 +156,25 @@
 </body>
 <script>
 
+$("#btnImage").on("click", function() {
+	$(frm.files).click();
+});
 
-//이미지 클릭시
+$(frm.files).change(function() {
+	var files = $(frm.files)[0].files;
+	var html = "";
+	$.each(files, function(index, file) {
+		html += "<img src='" + URL.createObjectURL(file) + "'>";
+	});
+	$("#listFile").html(html);
+});
+
 $("#image").click(function() {
 	$(frm.file).click();
 });
-//대표 이미지 화면 출력
+
 $(frm.file).on("change", function() {
-	var file = $(frm1.file1)[0].files[0];
+	var file = $(frm.file)[0].files[0];
 	$("#image").attr("src", URL.createObjectURL(file));
 });
 

@@ -357,14 +357,17 @@ input[id="login-chk2"]:checked + label em {
 								alert("아이디가 존재하지 않습니다.");
 							} else if (data == 1) {
 								alert("아이디와 패스워드를 확인해주세요.");
-							} else if (data == 2) {
+							} else if (data == 2 || data == 4) {
 									var dest="${dest}";
-									if(dest!=""){
-										location.href = dest;
+									if(data == 4){
+										location.href = "/admin/index";
 									}else{
-										location.href="/";
+										if(dest!=""){
+											location.href = dest;
+										}else{
+											location.href="/";
+										}
 									}
-									
 							} else {
 								$(".alert-danger").css("display", "block");
 							}

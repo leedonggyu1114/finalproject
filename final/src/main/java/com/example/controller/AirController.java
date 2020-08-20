@@ -61,7 +61,8 @@ public class AirController {
 		@RequestMapping(value="/bookingcancel",method=RequestMethod.POST)
 		@ResponseBody
 		public void bookingcancel(String u_id,String u_k_id,String a_number,String a_b_paydate) {
-			
+			System.out.println(u_id + u_k_id + a_number + a_b_paydate);
+			service.bookingcancel(u_id, u_k_id, a_number, a_b_paydate);
 		}
 	
 		@RequestMapping(value="/transaction",method=RequestMethod.GET)
@@ -168,6 +169,7 @@ public class AirController {
 		@RequestMapping(value="/airList",method=RequestMethod.POST)
 		@ResponseBody
 		public HashMap<String, Object> airList(AirVO vo, String a_startdate1){
+			System.out.println("가는날짜"+vo.getA_startdate()+"오는날짜"+a_startdate1+"남은좌석"+vo.getA_emptyseat());
 			//System.out.println(vo.toString());
 			HashMap<String, Object> map=new HashMap<String, Object>();
 			String back = vo.getA_startplace();

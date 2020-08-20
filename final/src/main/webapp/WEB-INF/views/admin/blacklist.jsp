@@ -178,11 +178,12 @@ var keyword="${cri.keyword}";
 
 $("#tblInfo").css("display","none");
 
-$("#unlock").on("click",function(){
+
+$("#tbl").on("click",".row #unlock",function(){
 	$("#tblInfo").css("display","none");
-	if(!confirm("신고 해제하시겠습니까?"))return;
-	var u_id=$("#id").html();
-	var u_k_id=$("#kakaoid").html();
+	var u_id=$(this).parent().parent().find(".declairId").html();
+	var u_k_id=$(this).parent().parent().find(".declairKakaoId").html();
+	if(!confirm("신고 해제하시겠습니까?")) return;
 	$.ajax({
 		type:"get",
 		url:"/admin/unlockStatus",
@@ -190,30 +191,21 @@ $("#unlock").on("click",function(){
 		success:function(){
 			alert("신고 해제되었습니다.");
 		}
+	});	
+});
+$("#tbl").on("click",".row #lock",function(){
+	var u_id=$(this).parent().parent().find(".declairId").html();
+	var u_k_id=$(this).parent().parent().find(".declairKakaoId").html();
+	if(!confirm("ID를 차단 등록하시겠습니까?"))return;
+	$.ajax({
+		type:"get",
+		url:"/admin/lockStatus",
+		data:{"u_id":u_id,"u_k_id":u_k_id},
+		success:function(){
+			alert("차단 등록되었습니다.");
+		}
 	});
-	
 });
-
-$("#lock").on("click",function(){
-	if($("#status").html()=="사용"){
-		if(!confirm("ID를 차단 등록하시겠습니까?"))return;
-		var u_id=$("#id").html();
-		var u_k_id=$("#kakaoid").html();
-		$.ajax({
-			type:"get",
-			url:"/admin/lockStatus",
-			data:{"u_id":u_id,"u_k_id":u_k_id},
-			success:function(){
-				alert("차단 등록되었습니다.");
-			}
-		});
-	}else{
-		alert("이미 차단된 상태입니다.");
-	}
-	
-	
-});
-
 
 $("#tbl").on("click",".row",function(){
 	var declair=$(this).find(".declairId").html();
