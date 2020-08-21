@@ -13,13 +13,16 @@
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/style.css"/>
 <style>
+#page {
+	height:2500px;
+}
 ul,li{list-style:none;}
-.slide{height:700px; overflow:hidden; z-index:-3; position:relative; bottom:3381.5px;}
+.slide{height:700px; overflow:hidden; z-index:-3; position:relative; bottom:2320px;}
 .slide ul{position:relative;height:100%;}
 .slide li{position:absolute;left:0;right:0;top:0;bottom:0;opacity:0;animation:fade 12s infinite;}
-.slide li:nth-child(1){background:#c1cece;animation-delay:0s}
-.slide li:nth-child(2){background:#9ea19a;animation-delay:3s}
-.slide li:nth-child(3){background:#f1eeeb;animation-delay:6s}
+.slide li:nth-child(1){background:#B8D6F2;animation-delay:0s}
+.slide li:nth-child(2){background:#D7E2FA;animation-delay:3s}
+.slide li:nth-child(3){background:#F5D7E2;animation-delay:6s}
 .slide li:nth-child(4){background:#e8d8d0;animation-delay:9s}
 .slide li:nth-child(5){background:#edf2f3;animation-delay:12s}
  /* 100 / 8 = 12.5 */
@@ -95,6 +98,54 @@ ul,li{list-style:none;}
    border-radius:8px;
    margin-right:5px;
 }   
+.image {
+	display: block;
+	overflow: hidden;
+	width: 150px;
+	height: 150px;
+	cursor: pointer;
+}
+
+.image>img {
+	width: 100%;
+	transition: transform 1s;
+}
+
+.image:hover>img {
+	transform: translate(0%, 0%) scale(1.04);
+}
+.image_first {
+	display: block;
+	overflow: hidden;
+	width: 500px;
+	height: 500px;
+	cursor: pointer;
+}
+
+.image_first>img {
+	width: 100%;
+	transition: transform 1s;
+}
+
+.image_first:hover>img {
+	transform: translate(0%, 0%) scale(1.04);
+}
+.image_user {
+	display: block;
+	overflow: hidden;
+	width: 260px;
+	height: 180px;
+	cursor: pointer;
+}
+
+.image_user>img {
+	width: 100%;
+	transition: transform 1s;
+}
+
+.image_user:hover>img {
+	transform: translate(0%, 0%) scale(1.04);
+}
 </style>
 </head>
 <body>
@@ -107,7 +158,7 @@ ul,li{list-style:none;}
 		style="cursor: pointer;">위로</button>
 	<div id="page">
 		<div id="header"><jsp:include page="header.jsp" /></div>
-		<div id="menu"><jsp:include page="menu.jsp" /></div>
+		<div id="menu"><jsp:include page="indexmenu.jsp" /></div>
 		<div id="container">
 			<div id="div_container_area1">
 				<!-- 퀵검색, 테마 -->
@@ -226,7 +277,7 @@ ul,li{list-style:none;}
 									<div></div> <img src="/resources/img/slide/2.jpg">
 								</li>
 								<li>
-									<div></div> <img src="/resources/img/slide/3.jpg">
+									<div></div> <img src="/resources/img/slide/33.jpg">
 								</li>
 								<li>
 									<div></div> <img src="/resources/img/slide/4.jpg">
@@ -274,7 +325,7 @@ ul,li{list-style:none;}
 			<div id="div_container_area3">
 
 				<div id="first_area">
-					<img src="/resources/img/area3_sample.jpg" width=500 height=500 />
+					<div class="image_first"><img src="/resources/img/area3_sample.jpg" width=500 height=500 /></div>
 					<div
 						style="font-size: 30px; font-weight: bold; padding-left: 10px;">Hotel
 						name</div>
@@ -288,7 +339,7 @@ ul,li{list-style:none;}
 					<img src="/resources/img/area3_title.png" />
 				</div>
 				<div id="second_area">
-					<img src="/resources/img/area3_sample2.jpg" width=150 height=150 />
+					<div class="image"><img src="/resources/img/area3_sample2.jpg" width=150 height=150 /></div>
 					<div
 						style="position: absolute; left: 160px; top: 10px; font-size: 23px; font-weight: bold;">Hotel
 						name</div>
@@ -300,7 +351,7 @@ ul,li{list-style:none;}
 				</div>
 
 				<div id="third_area">
-					<img src="/resources/img/area3_sample2.jpg" width=150 height=150 />
+					<div class="image"><img src="/resources/img/area3_sample2.jpg" width=150 height=150 /></div>
 					<div
 						style="position: absolute; left: 160px; top: 10px; font-size: 23px; font-weight: bold;">Hotel
 						name</div>
@@ -326,8 +377,10 @@ ul,li{list-style:none;}
 		</div>
 		<div id="footer"><jsp:include page="footer.jsp" /></div>
 	</div>
-	<div
-		style="width: 100%; height: 800px; background: #edf2f3; position: absolute; z-index: -10; top: 1330.5px;"></div>
+	<div style="width: 100%; height: 800px; background: #EFE1D8; position: absolute; 
+		z-index: -10; top: 1330.5px;"></div>
+	<div style="width: 100%; height:600px; background: #edf2f3; position:absolute;
+		z-index:-10; top:2730px;"></div>
 	<div class="slide">
 		<ul>
 			<li></li>
@@ -478,7 +531,7 @@ ul,li{list-style:none;}
 							tag1 = userrecommendlist[i].h_tag1;
 							tag2 = userrecommendlist[i].h_tag2;
 							html += "<div style='float:left; margin:20px;' class=''>";
-							html += "<a href='/hotplace/list#"+userrecommendlist[i].h_x+"|"+userrecommendlist[i].h_y+"'><img class='usertaglistimage' src='/hotplace/display?fileName="
+							html += "<a href='/hotplace/list#"+userrecommendlist[i].h_x+"|"+userrecommendlist[i].h_y+"'><div class='image_user'><img class='usertaglistimage' src='/hotplace/display?fileName="
 									+ userrecommendlist[i].h_image
 									+ "'  x='"
 									+ userrecommendlist[i].h_x
@@ -494,7 +547,7 @@ ul,li{list-style:none;}
 									+ userrecommendlist[i].h_tag1
 									+ "' tag2='"
 									+ userrecommendlist[i].h_tag2
-									+ "'/></a>";
+									+ "'/></div></a>";
 							html += "<div style='margin-bottom:3px;'>"
 									+ userrecommendlist[i].h_area + "</div>";
 							html += "<div style='font-size:18px;font-weight:bold;margin-bottom:5px;'>"
@@ -578,7 +631,7 @@ ul,li{list-style:none;}
 							tag1 = userrecommendlist[i].h_tag1;
 							tag2 = userrecommendlist[i].h_tag2;
 							html += "<div style='float:left; margin:20px;' class=''>";
-							html += "<a href='/hotplace/list#"+userrecommendlist[i].h_x+"|"+userrecommendlist[i].h_y+"'><img class='usertaglistimage' src='/hotplace/display?fileName="
+							html += "<a href='/hotplace/list#"+userrecommendlist[i].h_x+"|"+userrecommendlist[i].h_y+"'><div class='image_user'><img class='usertaglistimage' src='/hotplace/display?fileName="
 									+ userrecommendlist[i].h_image
 									+ "'  x='"
 									+ userrecommendlist[i].h_x
@@ -594,7 +647,7 @@ ul,li{list-style:none;}
 									+ userrecommendlist[i].h_tag1
 									+ "' tag2='"
 									+ userrecommendlist[i].h_tag2
-									+ "'/></a>";
+									+ "'/></div></a>";
 							html += "<div style='margin-bottom:3px;'>"
 									+ userrecommendlist[i].h_area + "</div>";
 							html += "<div style='font-size:18px;font-weight:bold;margin-bottom:5px;'>"
