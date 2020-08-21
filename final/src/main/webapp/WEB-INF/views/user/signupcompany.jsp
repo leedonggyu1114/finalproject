@@ -621,9 +621,7 @@ var txtEmailType=$("#txtEmailType").val();
 		var passread=$("#passread1").val();
 		var idread=$("#idread1").val();
 		var numread=$("#numberread").val();
-		if($("input:checkbox[name='r_o_option']").is(":checked")==false){
-			alert("호텔 옵션을 1개이상 선택해주세요.");
-		}else{
+		
 			if($("#c_x").val()=="" || $("#c_y").val()==""){
 			alert("좌표가 존재하지 않습니다. 주소를 확인하세요");
 		}else{
@@ -652,12 +650,17 @@ var txtEmailType=$("#txtEmailType").val();
 					if(numread==0){
 						alert("사업자번호를 확인하세요");
 					}else{
-						frm1.submit();
+						if($("input:checkbox[name='hoption']").is(":checked")==false){
+							alert("옵션을 1개 이상 선택하세요");
+						}else{
+							frm1.submit();
+						}
+						
 					}
 				}
 			}
 		}
-		}
+		
 	});
 
 	//이미지 클릭시
