@@ -18,6 +18,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -47,25 +48,49 @@ public class AdminController {
 	@Autowired
 	AdminServiceInterface service;
 	
+	// 관리자 index
+	@RequestMapping("index")
+	public String index(HttpSession session) {
+		String u_id = (String)session.getAttribute("u_id");
+		if(u_id=="admin") {
+			return "index";
+		}else {
+			return "redirect:/";
+		}
+	}	
+	
+	
 	@RequestMapping("hotplace_list")
-	public void list(Model model, HttpSession session) {
+	public String list(Model model, HttpSession session) {
 		String u_id = (String)session.getAttribute("u_id");
 		if(u_id=="admin") {
 			model.addAttribute("list",mapper.list());
+			return "hotplace_list";
+		}else {
+			return "redirect:/";
 		}
 	}
 	
 	@RequestMapping("hotplace_read")
-	public void readimages(Model model,String h_x,String h_y, HttpSession session){
+	public String readimages(Model model,String h_x,String h_y, HttpSession session){
 		String u_id = (String)session.getAttribute("u_id");
 		if(u_id=="admin") {
 			model.addAttribute("vo", mapper.read(h_x,h_y));
 			model.addAttribute("imagelist", mapper.imagelist(h_x,h_y));
+			return "hotplace_read";
+		}else {
+			return "redirect:/";
 		}
 	}
 	
 	@RequestMapping("hotplace_insert")
-	public void insert(HttpSession session) {
+	public String insert(HttpSession session) {
+		String u_id = (String)session.getAttribute("u_id");
+		if(u_id=="admin") {
+			return "hotplace_insert";
+		}else {
+			return "redirect:/";
+		}
 		
 	}
 	
@@ -168,7 +193,13 @@ public class AdminController {
 	
 	// 유저리스트
 	@RequestMapping("userlist")
-	public void userlist() {
+	public String userlist(HttpSession session) {
+		String u_id = (String)session.getAttribute("u_id");
+		if(u_id=="admin") {
+			return "userlist";
+		}else {
+			return "redirect:/";
+		}
 	}
 	/*
 	// 블랙리스트
@@ -182,80 +213,135 @@ public class AdminController {
 	*/
 	// 블랙리스트
 	@RequestMapping("blacklist")
-	public void blacklist(Model model ,Criteria cri) {
-		if(cri.getKeyword()==null) {
-			cri.setKeyword("");
+	public String blacklist(Model model ,Criteria cri,HttpSession  session) {
+		String u_id = (String)session.getAttribute("u_id");
+		if(u_id=="admin") {
+			if(cri.getKeyword()==null) {
+				cri.setKeyword("");
+			}
+			cri.setPerPageNum(5);
+			PageMaker pm= new PageMaker();
+			pm.setCri(cri);
+			pm.setTotalCount(mapper.totalcount(cri));
+			model.addAttribute("cri",cri);
+			model.addAttribute("pm",pm);
+			model.addAttribute("keyword",cri.getKeyword());
+			model.addAttribute("blacklist",mapper.blacklist(cri));
+			return "blacklist";
+		}else {
+			return "redirect:/";
 		}
-		cri.setPerPageNum(5);
-		PageMaker pm= new PageMaker();
-		pm.setCri(cri);
-		pm.setTotalCount(mapper.totalcount(cri));
-		model.addAttribute("cri",cri);
-		model.addAttribute("pm",pm);
-		model.addAttribute("keyword",cri.getKeyword());
-		model.addAttribute("blacklist",mapper.blacklist(cri));
 	}
 	
 	
 	@RequestMapping("black")
-	public void black(Model model ,Criteria cri) {
-		if(cri.getKeyword()==null) {
-			cri.setKeyword("");
+	public String black(Model model ,Criteria cri,HttpSession session) {
+		String u_id = (String)session.getAttribute("u_id");
+		if(u_id=="admin") {
+			return "black";
+		}else {
+			if(cri.getKeyword()==null) {
+				cri.setKeyword("");
+			}
+			cri.setPerPageNum(5);
+			PageMaker pm= new PageMaker();
+			pm.setCri(cri);
+			pm.setTotalCount(mapper.totalcount1(cri));
+			model.addAttribute("cri",cri);
+			model.addAttribute("pm",pm);
+			model.addAttribute("keyword",cri.getKeyword());
+			model.addAttribute("black",mapper.black(cri));
+			return "redirect:/";
 		}
-		cri.setPerPageNum(5);
-		PageMaker pm= new PageMaker();
-		pm.setCri(cri);
-		pm.setTotalCount(mapper.totalcount1(cri));
-		model.addAttribute("cri",cri);
-		model.addAttribute("pm",pm);
-		model.addAttribute("keyword",cri.getKeyword());
-		model.addAttribute("black",mapper.black(cri));
 	}
 	
 	@RequestMapping(value="read", produces="application/text; charset=utf8")
 	@ResponseBody
-	public String read(String u_id,String u_k_id,String date) {
-		String content= mapper.readcontent(u_id, u_k_id, date);
-		System.out.println(content+"..");
-		return content;
+	public String read(String u_id,String u_k_id,String date,HttpSession session) {
+		String u_id1 = (String)session.getAttribute("u_id");
+		if(u_id1=="admin") {
+			String content= mapper.readcontent(u_id, u_k_id, date);
+			return content;
+		}else {
+			return "";
+		}
 	}
 	@RequestMapping("lockStatus")
-	public String lockStatus(String u_id,String u_k_id) {
-		System.out.println("..a");
-		mapper.updatestatus(u_id, u_k_id,"1");
-		return "/admin/blacklist";
+	public String lockStatus(String u_id,String u_k_id,HttpSession session) {
+		String u_id1 = (String)session.getAttribute("u_id");
+		if(u_id1=="admin") {
+			mapper.updatestatus(u_id, u_k_id,"1");
+			return "/admin/blacklist";
+		}else {
+			return "redirect:/";
+		}
+		
 	}
 	
 	@RequestMapping("unlockStatus")
-	public String unlockStatus(String u_id,String u_k_id) {
-		System.out.println(u_id+"/"+u_k_id);
-		mapper.updatestatus(u_id, u_k_id,"0");
-		mapper.blackdelete(u_id, u_k_id);
-		return "/admin/blacklist";
+	public String unlockStatus(String u_id,String u_k_id,HttpSession session) {
+		String u_id1 = (String)session.getAttribute("u_id");
+		if(u_id1=="admin") {
+			mapper.updatestatus(u_id, u_k_id,"0");
+			mapper.blackdelete(u_id, u_k_id);
+			return "/admin/blacklist";
+		}else {
+			return "redirect:/";
+		}
+		
 	}
 	
 	@RequestMapping("unlock")
-	public String unlock(String u_id,String u_k_id) {
-		mapper.blackdelete(u_id, u_k_id);
-		return "/admin/blacklist";
+	public String unlock(String u_id,String u_k_id,HttpSession session) {
+		String u_id1 = (String)session.getAttribute("u_id");
+		if(u_id1=="admin") {
+			mapper.blackdelete(u_id, u_k_id);
+			return "blacklist";
+		}else {
+			return "redirect:/";
+		}
 	}
 	// 신고내역
 	@RequestMapping("userreport")
-	public void userreport() {
+	public String userreport(HttpSession session) {
+		String u_id = (String)session.getAttribute("u_id");
+		if(u_id=="admin") {
+			return "userreport";
+		}else {
+			return "redirect:/";
+		}
 	}
 	
 	// 문의하기
 	@RequestMapping("chat")
-	public void chat() {
+	public String chat(HttpSession session) {
+		String u_id = (String)session.getAttribute("u_id");
+		if(u_id=="admin") {
+			return "chat";
+		}else {
+			return "redirect:/";
+		}
 	}	
 	
 	// 업체리스트
 	@RequestMapping("staylist")
-	public void staylist() {
+	public String staylist(HttpSession session) {
+		String u_id = (String)session.getAttribute("u_id");
+		if(u_id=="admin") {
+			return "staylist";
+		}else {
+			return "redirect:/";
+		}
 	}
 	
 	// 업체요청
 	@RequestMapping("stayrequest")
-	public void stayrequest() {
+	public String stayrequest(HttpSession session) {
+		String u_id = (String)session.getAttribute("u_id");
+		if(u_id=="admin") {
+			return "stayrequest";
+		}else {
+			return "redirect:/";
+		}
 	}
 }

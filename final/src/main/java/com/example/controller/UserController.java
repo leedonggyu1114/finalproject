@@ -571,10 +571,7 @@ public class UserController {
 		return chkNum;
 	}
 	
-	// 관리자 index
-	@RequestMapping("/admin/index")
-	public void index() {
-	}
+	
 	
 	//업체로그인
 	@RequestMapping(value="/user/loginCheckCompany",method=RequestMethod.POST)
