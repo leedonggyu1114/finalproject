@@ -261,20 +261,20 @@ ul,li{list-style:none;}
 					
 					<!-- 줄발지, 도착지 -->
 					<div id="div_SEplace">
-						<input type="text" name="a_startplace" placeholder="출발지">
+						<input type="text" name="a_startplace" placeholder="출발지" value="${vo.a_startplace }">
 						<img src="/resources/img/container/container_icon.png">
-						<input type="text" name="a_endplace" placeholder="도착지">
+						<input type="text" name="a_endplace" placeholder="도착지" value="${vo.a_endplace }">
 					</div>
 					
 					<!-- 가는날, 오는날 -->
 					<div id="div_Sdate">
-						<input type="text" name="a_startdate" id="sdate" placeholder="가는날"> 
-						<input type="text" name="a_startdate1" id="edate" placeholder="오는날 ">
+						<input type="text" name="a_startdate" id="sdate" placeholder="가는날" value="${vo.a_startdate }"> 
+						<input type="text" name="a_startdate1" id="edate" placeholder="오는날 " value="${vo.a_startdate1 }">
 					</div>
 					
 					<!-- 인원선택 -->
 					<div id="reserver" style="float:right; position:relative;">
-							<input type="text" class="a_emptyseat" placeholder="인원선택">
+							<input type="text" class="a_emptyseat" placeholder="성인:1 청소년:0">
 							<div class="aircount1">
 								<h5>인원</h5>
 								<div class="aircount_row">
@@ -473,30 +473,50 @@ ul,li{list-style:none;}
 	var startdate;
 	var startdate1;
 	var emptyseat;
-	//var sum=people+child;
+
 	
+	
+	//새로고침시 url파라미터 제거
+	window.onkeydown = function() {
+		var kcode = event.keyCode;
+		if (kcode == 116) {
+			history.replaceState({}, null, location.pathname);
+		}
+	}
+
+	//인덱스에서 넘어온뒤 바로 검색
+	$(document).ready(function() {
+		if ("${vo.a_startplace }" != ""){
+			if("${vo.a_startdate1 }" == ""){
+				$("#oneWay").click();
+			}
+			$("#reserver .a_emptyseat").val("성인:${vo.people} 청소년:${vo.child}");
+			$(frm.search).click();
+		}
+	});
+
 	// 합계
-	$("#tbl").on("click",".row .radio",function(){
-      var row=$(this).parent().parent();
-      var a_price1=row.find(".a_price1").html();
-      var a_price2=$("#booking1").find(".a_price1").html();
-      if(a_price2 != null){
-         $("#priceSum").html(parseInt(a_price1)+parseInt(a_price2));
-      }else if(a_price2 == null){
-         $("#priceSum").html(a_price1); 
-      }
-   });
-   $("#tbl1").on("click",".row .radio",function(){
-      var row=$(this).parent().parent();
-      var a_price2=row.find(".a_price2").html();
-      var a_price=$("#booking").find(".a_price").html();
-      if(a_price != null){
-         $("#priceSum").html(parseInt(a_price)+parseInt(a_price2));
-      }else if(a_price == null){
-         $("#priceSum").html(a_price2);
-      }
-   });
-	
+	$("#tbl").on("click", ".row .radio", function() {
+		var row = $(this).parent().parent();
+		var a_price1 = row.find(".a_price1").html();
+		var a_price2 = $("#booking1").find(".a_price1").html();
+		if (a_price2 != null) {
+			$("#priceSum").html(parseInt(a_price1) + parseInt(a_price2));
+		} else if (a_price2 == null) {
+			$("#priceSum").html(a_price1);
+		}
+	});
+	$("#tbl1").on("click", ".row .radio", function() {
+		var row = $(this).parent().parent();
+		var a_price2 = row.find(".a_price2").html();
+		var a_price = $("#booking").find(".a_price").html();
+		if (a_price != null) {
+			$("#priceSum").html(parseInt(a_price) + parseInt(a_price2));
+		} else if (a_price == null) {
+			$("#priceSum").html(a_price2);
+		}
+	});
+
 	$("#roundTrip").prop('checked', true);
 	$(".aircount1").hide();
 
@@ -614,91 +634,105 @@ ul,li{list-style:none;}
 						airList();
 					}
 				}/*else{
-							function airList(){
-							$.ajax({
-								type : "post",
-								url : "/air/airList",
-								dataType : "json",
-								data : {
-									"a_startplace" : startplace,
-									"a_endplace" : endplace,
-									"a_startdate" : startdate,
-									"a_startdate1" : startdate1,
-									"a_emptyseat" : emptyseat
-								},
-								success : function(data) {
-									var template = Handlebars.compile($("#temp").html());
-									$("#tbl").html(template(data));
-									
-									var template1 = Handlebars.compile($("#temp1").html());
-									$("#tbl1").html(template1(data));
-									//alert(startdate1);
-							
-								}
-							});
-						}
-						};
+															function airList(){
+															$.ajax({
+																type : "post",
+																url : "/air/airList",
+																dataType : "json",
+																data : {
+																	"a_startplace" : startplace,
+																	"a_endplace" : endplace,
+																	"a_startdate" : startdate,
+																	"a_startdate1" : startdate1,
+																	"a_emptyseat" : emptyseat
+																},
+																success : function(data) {
+																	var template = Handlebars.compile($("#temp").html());
+																	$("#tbl").html(template(data));
+																	
+																	var template1 = Handlebars.compile($("#temp1").html());
+																	$("#tbl1").html(template1(data));
+																	//alert(startdate1);
+															
+																}
+															});
+														}
+														};
 				 */
 			});
-	
-	//booking
-	$("#tbl").on("click", ".row .radio", function() {
-		var row = $(this).parent().parent();
-		var a_number = row.find(".a_number").html();
-		var a_price = row.find(".a_price1").html();
-		$("#air_check_none1").hide();
-		//alert(a_price);
-		$.ajax({
-			type : "post",
-			url : "/air/listRead",
-			dataType : "json",
-			data : {
-				"a_number" : a_number
-			},
-			success : function(data) {
-				var template = Handlebars.compile($("#bookingtemp").html());
-				$("#booking").html(template(data));
 
-				$("#booking .bookPoeple").html("성인 " + people + "  청소년 " + child);
-				//$("#booking .bookChild").append(child); 
-				//alert(people+"/" + child +"/"+ a_price);
-				$("#booking .a_price").html(a_price * (people + child) + " 원");
-				//location.href="bookingPeople?a_number"+a_number;
-				$("#air_check_none2").show();
-				sumprice1=a_price*(people+child);
-	            $("#priceSum").html(parseInt(sumprice1)+parseInt(sumprice2));
-			}
-			
-		});
-	});
+	//booking
+	$("#tbl").on(
+			"click",
+			".row .radio",
+			function() {
+				var row = $(this).parent().parent();
+				var a_number = row.find(".a_number").html();
+				var a_price = row.find(".a_price1").html();
+				$("#air_check_none1").hide();
+				//alert(a_price);
+				$.ajax({
+					type : "post",
+					url : "/air/listRead",
+					dataType : "json",
+					data : {
+						"a_number" : a_number
+					},
+					success : function(data) {
+						var template = Handlebars.compile($("#bookingtemp")
+								.html());
+						$("#booking").html(template(data));
+
+						$("#booking .bookPoeple").html(
+								"성인 " + people + "  청소년 " + child);
+						//$("#booking .bookChild").append(child); 
+						//alert(people+"/" + child +"/"+ a_price);
+						$("#booking .a_price").html(
+								a_price * (people + child) + " 원");
+						//location.href="bookingPeople?a_number"+a_number;
+						$("#air_check_none2").show();
+						sumprice1 = a_price * (people + child);
+						$("#priceSum").html(
+								parseInt(sumprice1) + parseInt(sumprice2));
+					}
+
+				});
+			});
 
 	//booking1
-	$("#tbl1").on("click", ".row .radio", function() {
-		var row = $(this).parent().parent();
-		var a_number = row.find(".a_number").html();
-		var a_price = row.find(".a_price2").html();
-		$("#air_check_none2").hide();
-		//alert(a_price);
-		$.ajax({
-			type : "post",
-			url : "/air/listRead",
-			dataType : "json",
-			data : {
-				"a_number" : a_number
-			},
-			success : function(data) {
-				var template1 = Handlebars.compile($("#bookingtemp1").html());
-				$("#booking1").html(template1(data));
+	$("#tbl1").on(
+			"click",
+			".row .radio",
+			function() {
+				var row = $(this).parent().parent();
+				var a_number = row.find(".a_number").html();
+				var a_price = row.find(".a_price2").html();
+				$("#air_check_none2").hide();
+				//alert(a_price);
+				$.ajax({
+					type : "post",
+					url : "/air/listRead",
+					dataType : "json",
+					data : {
+						"a_number" : a_number
+					},
+					success : function(data) {
+						var template1 = Handlebars.compile($("#bookingtemp1")
+								.html());
+						$("#booking1").html(template1(data));
 
-				$("#booking1 .bookPoeple").html("성인 " + people + "  청소년 " + child);
-				//$("#booking1 .bookChild").append(child); 
-				$("#booking1 .a_price1").html(a_price * (people + child) + " 원");
-				sumprice2=a_price*(people+child);
-	            $("#priceSum").html(parseInt(sumprice1)+parseInt(sumprice2));
-			}
-		});
+						$("#booking1 .bookPoeple").html(
+								"성인 " + people + "  청소년 " + child);
+						//$("#booking1 .bookChild").append(child); 
+						$("#booking1 .a_price1").html(
+								a_price * (people + child) + " 원");
+						sumprice2 = a_price * (people + child);
+						$("#priceSum").html(
+								parseInt(sumprice1) + parseInt(sumprice2));
+					}
+				});
 
-	});
+			});
 
 	//날짜 받기
 	$(document).ready(
@@ -742,7 +776,7 @@ ul,li{list-style:none;}
 									selectedDate);
 						});
 			});
-	
+
 	function airList() {
 		$.ajax({
 			type : "post",
@@ -757,7 +791,7 @@ ul,li{list-style:none;}
 			},
 			success : function(data) {
 				$("html").animate({
-					scrollTop: 450
+					scrollTop : 450
 				}, 500);
 				var template = Handlebars.compile($("#temp").html());
 				$("#tbl").html(template(data));

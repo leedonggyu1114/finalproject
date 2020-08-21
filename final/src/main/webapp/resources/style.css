@@ -348,8 +348,8 @@ input:focus::-webkit-input-placeholder {color:transparent; }
    margin-top:5px;
 }
 
-#tab-2-4 input[type="button"],
-#tab-3-4 input[type="button"] {
+#tab-2-4 input[type="submit"],
+#tab-3-4 input[type="submit"] {
    border:none;
    border-radius:3px 3px 3px 3px;
    height:50px;
@@ -418,20 +418,24 @@ input:focus::-webkit-input-placeholder {color:transparent; }
 
 #tab-3-3 .aircount1 span,
 #tab-2-3 .staycount span {
-   margin-right:70px;
+	width:120px;
+	display:inline-block;
+	margin-right:10px;
 }
 
-#tab-3-3 .aircount1 div button,
-#tab-2-3 .staycount div button {
+#tab-3-3 .aircount1 div input[type="button"],
+#tab-2-3 .staycount div input[type="button"] {
    width:40px;
    height:40px;
    border-radius:50%;
    border:1px solid #0f4c81;
    cursor:pointer;
    font-size:15px;
+   background:#EFEFEF;
 }
 
 #tab-3-3 .aircount1 div #btn,
+#tab-3-3 .aircount1 div #airbtn,
 #tab-2-3 .staycount div #btn {
    width:100%;
    border-radius:3px 3px 3px 3px;
@@ -666,7 +670,6 @@ input:focus::-webkit-input-placeholder {color:transparent; }
 #div_container_area4 {
    width: 100%;
    height: 600px;
-   background: orange;
    z-index: -2;
    padding-top:80px;
    padding-bottom:60px;

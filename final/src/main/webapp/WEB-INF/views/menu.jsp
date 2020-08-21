@@ -3,8 +3,8 @@
 <style>
 #div_menu_area {
 	width: 1200px;
-	border-top: 1px solid black;
-	border-bottom: 1px solid black;
+	border-top: 0.5px solid black;
+	border-bottom: 0.5px solid black;
 	background: white;
 	height: 50px;
 	text-align: center;

@@ -13,6 +13,9 @@
     <select id="usertaglist" resultType="com.example.domain.HotplaceVO">
     	select h.* from tbl_tag t right join tbl_hotplace h on t.t_tag = h.h_tag1 or t.t_tag=h.h_tag2 where t_id=#{u_id} and t_k_id=#{u_k_id}
     </select>
+    <select id="userjustlist" resultType="com.example.domain.HotplaceVO">
+    	select * from tbl_hotplace
+    </select>
     <select id="latelyhotplace" resultType="hashmap">
     	select count(u_id) cnt, l.h_x, l.h_y,h_image,h_title,h_tag1,h_tag2,h_detail from tbl_like l,tbl_hotplace h where l.h_x=h.h_x and l.h_y=h.h_y group by h_x,h_y order by cnt desc limit 0,5
     </select>
@@ -42,7 +45,7 @@
     	select count(l.u_id) from tbl_like l, tbl_user u where l.u_id=u.u_id and u_birthday between date_add(now(), interval -49 year) and date_add(now(), interval -39 year) and h_x=#{h_x} and h_y=#{h_y}
     </select>
     <select id="age50" resultType="int">
-    	select count(l.u_id) from tbl_like l, tbl_user u where l.u_id=u.u_id and u_birthday between date_add(now(), interval -100 year) and date_add(now(), interval -49 year) and h_x=#{h_x} and h_y=#{h_y}
+    	select count(l.u_id) from tbl_like l, tbl_user u where l.u_id=u.u_id and u_birthday between date_add(now(), interval -1000 year) and date_add(now(), interval -49 year) and h_x=#{h_x} and h_y=#{h_y}
     </select>
     
     <select id="sexM" resultType="int">
