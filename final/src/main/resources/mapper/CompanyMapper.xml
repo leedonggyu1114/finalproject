@@ -2,7 +2,32 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.mapper.CompanyMapper">
 	<insert id="roominsert">
-  		 insert into tbl_room()
+  		 insert into tbl_room(r_id,r_roomnum,r_title,r_detail,r_persons,r_image,r_price,r_status)
+  		 	values(#{r_id},#{r_roomnum},#{r_title},#{r_detail},#{r_persons},#{r_image},#{r_price},"0")
   	</insert> 
-  		
+  	<insert id="roomimagesinsert">
+  		insert into tbl_room_images(r_i_id,r_i_roomnum,r_i_images) values(#{param1},#{param2},#{param3})
+  	</insert>	
+  	<select id="roomlist" resultType="com.example.domain.RoomVO">
+  		select * from tbl_room where r_id=#{r_id}
+  		limit #{pageStart},#{perPageNum}
+  	</select>
+  	<insert id="insertRoomoption">
+  		insert into tbl_room_option(r_o_id,r_o_roomnum,r_o_option) values(#{param1},#{param2},#{param3})
+  	</insert>
+  	<select id="roomreadCount" resultType="int">
+  		select count(*) from tbl_room where r_id=#{param1} and r_roomnum=#{param2}
+  	</select>
+  	<select id="totalCount" resultType="int">
+  		select count(*) from tbl_room where r_id=#{r_id}
+  	</select>
+  	<select id="imagesread" resultType="com.example.domain.RoomVO">
+  		select * from tbl_room_images where r_i_roomnum=#{param2} and r_i_id=#{param1}
+  	</select>
+  	<select id="read" resultType="com.example.domain.RoomVO">
+  		select * from tbl_room where r_id=#{param1} and r_roomnum=#{param2}
+  	</select>
+  	<select id="readRoomoption" resultType="com.example.domain.RoomVO">
+  		select * from tbl_room_option where r_o_id=#{param1} and r_o_roomnum=#{param2}
+  	</select>
 </mapper>

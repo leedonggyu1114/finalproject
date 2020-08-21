@@ -272,7 +272,6 @@ public class UserController {
 			
 			String[] arrayParam = request.getParameterValues("t_tag");
 			vo.setU_id("0");
-			System.out.println(vo.getU_id()+vo.getU_k_id()+vo.getU_name()+vo.getU_address()+vo.getU_gender()+vo.getU_tel()+vo.getU_email());
 			mapper.updateKakao(vo);
 			
 			for (int i = 0; i < arrayParam.length; i++) { 

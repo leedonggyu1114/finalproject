@@ -620,11 +620,13 @@
 			}else{
 				$("#image1").attr("src","/resources/img/user/profileC.png");
 			}
+			
 			//호텔 태그 읽기	
 			var option=[];
 			    $.each(data.readOption, function(index,readOption){
 				  	option.push(readOption.c_o_option);
 			   });
+			    
 			    $("input[name=hoption]").each(function(index, item){
 			    	 for(var i=0; i<option.length; i++){
 			    		if($(this).val()==Number(option[i])){

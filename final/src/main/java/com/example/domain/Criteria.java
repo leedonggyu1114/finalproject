@@ -5,6 +5,16 @@ public class Criteria {
 	private int perPageNum;
 	private String searchType;
 	private String keyword;
+	private String r_id;
+	
+	
+	public String getR_id() {
+		return r_id;
+	}
+
+	public void setR_id(String r_id) {
+		this.r_id = r_id;
+	}
 
 	public Criteria() {
 		this(1, 10);

@@ -13,7 +13,53 @@ public class RoomVO {
 	private double r_grade;
 	private String r_status;
 	private List<String> images;
+
+	private String r_i_id;
+	private String r_i_roomnum;
+	private String r_i_images;
 	
+	private String r_o_id;
+	private String r_o_roomnum;
+	private String r_o_option;
+	
+	
+	
+	public String getR_o_id() {
+		return r_o_id;
+	}
+	public void setR_o_id(String r_o_id) {
+		this.r_o_id = r_o_id;
+	}
+	public String getR_o_roomnum() {
+		return r_o_roomnum;
+	}
+	public void setR_o_roomnum(String r_o_roomnum) {
+		this.r_o_roomnum = r_o_roomnum;
+	}
+	public String getR_o_option() {
+		return r_o_option;
+	}
+	public void setR_o_option(String r_o_option) {
+		this.r_o_option = r_o_option;
+	}
+	public String getR_i_id() {
+		return r_i_id;
+	}
+	public void setR_i_id(String r_i_id) {
+		this.r_i_id = r_i_id;
+	}
+	public String getR_i_roomnum() {
+		return r_i_roomnum;
+	}
+	public void setR_i_roomnum(String r_i_roomnum) {
+		this.r_i_roomnum = r_i_roomnum;
+	}
+	public String getR_i_images() {
+		return r_i_images;
+	}
+	public void setR_i_images(String r_i_images) {
+		this.r_i_images = r_i_images;
+	}
 	public String getR_id() {
 		return r_id;
 	}
@@ -78,8 +124,11 @@ public class RoomVO {
 	public String toString() {
 		return "RoomVO [r_id=" + r_id + ", r_roomnum=" + r_roomnum + ", r_title=" + r_title + ", r_detail=" + r_detail
 				+ ", r_persons=" + r_persons + ", r_image=" + r_image + ", r_price=" + r_price + ", r_grade=" + r_grade
-				+ ", r_status=" + r_status + "]";
+				+ ", r_status=" + r_status + ", images=" + images + ", r_i_id=" + r_i_id + ", r_i_roomnum="
+				+ r_i_roomnum + ", r_i_images=" + r_i_images + ", r_o_id=" + r_o_id + ", r_o_roomnum=" + r_o_roomnum
+				+ ", r_o_option=" + r_o_option + "]";
 	}
+	
 	
 	
 }
