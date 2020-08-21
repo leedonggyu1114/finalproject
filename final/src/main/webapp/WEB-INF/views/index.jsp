@@ -17,11 +17,11 @@ ul,li{list-style:none;}
 .slide{height:700px; overflow:hidden; z-index:-3; position:relative; bottom:3381.5px;}
 .slide ul{position:relative;height:100%;}
 .slide li{position:absolute;left:0;right:0;top:0;bottom:0;opacity:0;animation:fade 12s infinite;}
-.slide li:nth-child(1){background:red;animation-delay:0s}
-.slide li:nth-child(2){background:orange;animation-delay:3s}
-.slide li:nth-child(3){background:yellow;animation-delay:6s}
-.slide li:nth-child(4){background:green;animation-delay:9s}
-.slide li:nth-child(5){background:blue;animation-delay:12s}
+.slide li:nth-child(1){background:#c1cece;animation-delay:0s}
+.slide li:nth-child(2){background:#9ea19a;animation-delay:3s}
+.slide li:nth-child(3){background:#f1eeeb;animation-delay:6s}
+.slide li:nth-child(4){background:#e8d8d0;animation-delay:9s}
+.slide li:nth-child(5){background:#edf2f3;animation-delay:12s}
  /* 100 / 8 = 12.5 */
 @keyframes fade {
   0% {opacity:0;}
