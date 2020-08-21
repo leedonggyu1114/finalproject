@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.mapper.HotplaceMapper">
     <select id="list" resultType="com.example.domain.HotplaceVO">
-    	select * from tbl_hotplace
+    	select count(l.h_x) cnt,h.* from tbl_like l right join tbl_hotplace h on l.h_x=h.h_x and l.h_y=h.h_y group by h.h_x, h.h_y order by cnt desc, h.h_image desc
     </select>
     <select id="imagelist" resultType="string">
     	select h_i_images from tbl_hotplace_images where h_x=#{h_x} and h_y=#{h_y} order by h_i_images
@@ -65,6 +65,6 @@
     	select l.u_id,h.* from tbl_like l,tbl_hotplace h where l.h_x=h.h_x and l.h_y=h.h_y and u_id=#{param1} and u_k_id=#{param2}
     </select>
     <select id="likeuserlist" resultType="hashmap">
-    	select l.*, u.u_image, u.u_gender from tbl_like l,tbl_user u where u.u_id=l.u_id and h_x=#{h_x} and h_y=#{h_y}
+    	select l.*, u.u_image, u.u_gender from tbl_like l,tbl_user u where u.u_id=l.u_id and u.u_k_id=l.u_k_id and h_x=#{h_x} and h_y=#{h_y}
     </select>
 </mapper>

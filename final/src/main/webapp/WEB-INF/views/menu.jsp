@@ -41,6 +41,7 @@
 	background: white;
 	opacity: 0;
 	transition: all 0.5s;
+	
 }
 
 #sub_menu>li {
@@ -65,6 +66,7 @@
 	display:block;
 	opacity: 1;
 	z-index: 10;
+	box-shadow:0px 6px 8px gray;
 }
 .div_menu_area_Fixed {
 	position: fixed;

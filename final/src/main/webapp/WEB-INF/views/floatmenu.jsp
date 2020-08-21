@@ -9,8 +9,8 @@
 	position: absolute;
 	width: 110px;
 	height: 150px;
-	left: 100px;
-	top: 200px;
+	left: 140px;
+	top: 300px;
 	border-radius:6px 6px 6px 6px;
 }
 #floatMenu #background {

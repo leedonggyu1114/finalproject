@@ -36,7 +36,7 @@
 	position:absolute; top:50%; left:50%;
 	transform:translate(-50%,-50%);
 	position:relative;
-	padding:70px 10px 10px 10px;
+	padding:20px 10px 10px 10px;
 }
 
 #lightbox #btnClose {
@@ -54,7 +54,11 @@
 	height:40px;
 	margin:5px;
 	cursor:pointer;
-	background:red;
+	background:black;
+	color:white;
+	border-radius:3px;
+	border:0.5px solid gray;
+	outline:none;
 }
 
 .seat {
@@ -76,10 +80,6 @@
 .div_seat2 {
 	margin-right:30px;
 }
-
-.div_seat3 {
-}
-
 
 
 #air_booking_area {
@@ -126,6 +126,17 @@
 #passengers input[type="radio"] {
 	cursor:pointer;
 	margin-right:10px;
+}
+.choicefinish {
+	width:200px;
+	height:40px;
+	outline:none;
+	border:none;
+	background:#0f4c81;
+	color:white;
+	border-radius:5px;
+	margin-top:20px;
+	cursor:pointer;
 }
 </style>
 </head>

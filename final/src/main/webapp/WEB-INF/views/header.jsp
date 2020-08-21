@@ -23,12 +23,9 @@
 			<a href="https://kauth.kakao.com/oauth/logout?client_id=44c4398b724d06191dbaf99c087795b1&logout_redirect_uri=http://localhost:8088/user/login">로그아웃</a>
 		</c:if>
 	</div>
-	<a href="/"><img src="${pageContext.request.contextPath}/resources/img/logo.png" width=200 id="header_logo"></a>
-	<div id="div_header_search">
-		<input type="text" placeholder=search..>
-		<img src="${pageContext.request.contextPath}/resources/img/header/search_icon.png" width=30>
-	</div>
-	<div style="display:inline-block; position:absolute; top:40px; right:10px;">
+	<a href="/"><img src="${pageContext.request.contextPath}/resources/img/logo4.png" width=300 id="header_logo"></a>
+
+	<div style="display:inline-block; position:absolute; top:50%; transform:translate(0,-50%); right:10px;">
 		<a href="/user/mypage/infomation">
 			<img src="${pageContext.request.contextPath}/resources/img/header/mypage_icon.png" 
 			onmouseover="this.src='${pageContext.request.contextPath}/resources/img/header/mypage_icon_hover.png'" 

@@ -70,7 +70,7 @@ ul,li{list-style:none;}
 	border:0.5px solid #e9e9e9;
 	padding-left:10px;
 	cursor:pointer;
-	line-height:50px;
+	line-height:51px;
 }
 #div_SEplace img {
 	position:absolute;
@@ -274,7 +274,7 @@ ul,li{list-style:none;}
 					
 					<!-- 인원선택 -->
 					<div id="reserver" style="float:right; position:relative;">
-							<input type="text" class="a_emptyseat" placeholder="성인:1 청소년:0">
+							<input type="text" class="a_emptyseat" placeholder="성인 1  청소년 0">
 							<div class="aircount1">
 								<h5>인원</h5>
 								<div class="aircount_row">
@@ -490,7 +490,7 @@ ul,li{list-style:none;}
 			if("${vo.a_startdate1 }" == ""){
 				$("#oneWay").click();
 			}
-			$("#reserver .a_emptyseat").val("성인:${vo.people} 청소년:${vo.child}");
+			$("#reserver .a_emptyseat").val("성인 ${vo.people}  청소년 ${vo.child}");
 			$(frm.search).click();
 		}
 	});
@@ -577,7 +577,7 @@ ul,li{list-style:none;}
 	$("#btn").on("click", function() {
 		//people=$("#reserver").find(".people").val();
 		//child=$("#reserver").find(".child").val();
-		$(".a_emptyseat").val("성인:" + people + "청소년:" + child);
+		$(".a_emptyseat").val("성인 " + people + "  청소년 " + child);
 	});
 	//성인-
 	$("#reserver").on("click", ".peopleSubtract", function() {
