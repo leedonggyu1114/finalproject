@@ -165,12 +165,13 @@
    <jsp:include page="read(lightbox).jsp"/>
 </body>
 <script>
-   var x;
-   var y;
-   var u_id="${u_id}";
-   var u_k_id="${u_k_id}";
-   
-   //새로고침시 url파라미터 제거
+
+	var x;
+	var y;
+	var u_id = "${u_id}";
+	var u_k_id = "${u_k_id}";
+
+	//새로고침시 url파라미터 제거
 	window.onkeydown = function() {
 		var kcode = event.keyCode;
 		if (kcode == 116) {
@@ -182,13 +183,13 @@
 	$(document).ready(function() {
 		var page_url = window.location.href;
 		var page_id = page_url.substring(page_url.lastIndexOf("#") + 1);
-		var scrollx = page_id.substring(0, page_id.indexOf("|"));
-		var scrolly = page_id.substring(page_id.indexOf("|") + 1);
-		if (scrollx != "") {
+		x = page_id.substring(0, page_id.indexOf("|"));
+		y = page_id.substring(page_id.indexOf("|") + 1);
+		if (x != "") {
 			$(".mainimage").each(function() {
 				//thiss=$(this);
-				x = $(this).attr("x");
-				y = $(this).attr("y");
+				var scrollx = $(this).attr("x");
+				var scrolly = $(this).attr("y");
 				if (x == scrollx && y == scrolly) {
 					var scroll = $(this).offset().top;
 					$("html").animate({

@@ -382,6 +382,19 @@
 						      	</tr>
 						      	
 						      </table>
+						      <div>별점  :	<span id="star1"><img src="/resources/img/star/star0.png"></span>
+						      		  	<span id="star2"><img src="/resources/img/star/star05.png"></span>
+						      			<span id="star3"><img src="/resources/img/star/star10.png"></span>
+						      			<span id="star4"><img src="/resources/img/star/star15.png"></span>
+						      			<span id="star5"><img src="/resources/img/star/star20.png"></span>
+						      			<span id="star6"><img src="/resources/img/star/star25.png"></span>
+						      		  	<span id="star7"><img src="/resources/img/star/star30.png"></span>
+						      			<span id="star8"><img src="/resources/img/star/star35.png"></span>
+						      			<span id="star9"><img src="/resources/img/star/star40.png"></span>
+						      			<span id="star10"><img src="/resources/img/star/star45.png"></span>
+						      			<span id="star11"><img src="/resources/img/star/star50.png"></span>
+						     	 </div>
+						      
 						      <script id="temp" type="text/x-handlebars-template">
 								{{#each image}}
 									<span><img src="/displayRoom?fileName={{r_i_images}}" Style="width:100px;height:100px;"></span>
@@ -399,8 +412,12 @@
 	</div>
 </body>
 <script>
+$("#star1").hide();$("#star3").hide();$("#star5").hide();$("#star7").hide();$("#star9").hide();
+$("#star2").hide();$("#star4").hide();$("#star6").hide();$("#star8").hide();$("#star10").hide();$("#star11").hide();
 $(":checkbox").css("display","none");
 $("#darken-background").hide();
+$("input:checkbox[name='r_o_option1']").prop("checked", false);
+
 $("input[name=r_o_option]").on("click",function(){
 	var tag1=$(this).parent().find("#tag1");
 	var tag2=$(this).parent().find("#tag1-1");
@@ -452,9 +469,14 @@ $(frm).submit(function(e){
 			}	
 	});
 
-
-
 $("#tbl").on("click", ".row", function() {
+	$("input[name=r_o_option1]").prop("checked",false);
+	$("input[name=r_o_option1]").parent().find("#tag1").css("display","inline-block");
+	$("input[name=r_o_option1]").parent().find("#tag1-1").css("display","none");
+
+	$("#star1").hide();$("#star3").hide();$("#star5").hide();$("#star7").hide();$("#star9").hide();
+	$("#star2").hide();$("#star4").hide();$("#star6").hide();$("#star8").hide();$("#star10").hide();$("#star11").hide();
+	
 	var r_i_roomnum=$(this).find(".roomnum").html();
 	var r_i_id="${c_id}";
 	$.ajax({
@@ -471,6 +493,29 @@ $("#tbl").on("click", ".row", function() {
 			 $("#roomnum1").html(data.read.r_roomnum);
 			 $("#detail1").html(data.read.r_detail);
 			 $("#repimage").attr("src", "/displayRoom?fileName="+data.read.r_image);
+			 if(data.read.r_status=="0"){
+				 $("#star1").show();
+			 }else if(data.read.r_status=="0.5"){
+				 $("#star2").show();
+			 }else if(data.read.r_status=="1"){
+				 $("#star3").show();
+			 }else if(data.read.r_status=="1.5"){
+				 $("#star4").show();
+			 }else if(data.read.r_status=="2"){
+				 $("#star5").show();
+			 }else if(data.read.r_status=="2.5"){
+				 $("#star6").show();
+			 }else if(data.read.r_status=="3"){
+				 $("#star7").show();
+			 }else if(data.read.r_status=="3.5"){
+				 $("#star8").show();
+			 }else if(data.read.r_status=="4"){
+				 $("#star9").show();
+			 }else if(data.read.r_status=="4.5"){
+				 $("#star10").show();
+			 }else if(data.read.r_status=="5"){
+				 $("#star11").show();
+			 }
 			//룸 옵션 읽기	
 				var option1=[];
 				    $.each(data.option, function(index, option){
@@ -484,11 +529,10 @@ $("#tbl").on("click", ".row", function() {
 								
 								tag1.css("display","none");
 								tag2.css("display","inline-block");
-					    		$(this).attr("checked",true);
+					    		$(this).prop("checked",true);
 					    	}
 				    	}
 				    });
-			 
 		}
 	});
 });

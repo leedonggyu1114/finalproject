@@ -85,6 +85,9 @@
 #pagination .active {
 	border-bottom:0.5px solid black;
 }
+#pagination .active a {
+	color:red;
+}
 #tblInfo {
 	background:white;
 	width:300px;
@@ -159,8 +162,6 @@
 							<a href="${pm.endPage+1}">▶</a>
 						</c:if>
 					</div>
-					
-					
 				</div>
 			</div>
 		</div>
@@ -190,6 +191,7 @@ $("#tbl").on("click",".row #unlock",function(){
 		data:{"u_id":u_id,"u_k_id":u_k_id},
 		success:function(){
 			alert("신고 해제되었습니다.");
+			location.href="/admin/blacklist";
 		}
 	});	
 });
@@ -203,15 +205,16 @@ $("#tbl").on("click",".row #lock",function(){
 		data:{"u_id":u_id,"u_k_id":u_k_id},
 		success:function(){
 			alert("차단 등록되었습니다.");
+			location.href="/admin/blacklist";
 		}
 	});
 });
 
-$("#tbl").on("click",".row",function(){
-	var declair=$(this).find(".declairId").html();
-	var declairkakao=$(this).find(".declairKakaoId").html();
-	var fromid=$(this).find(".fromid").html();
-	var date=$(this).find(".date").html();
+$("#tbl").on("click",".row .date",function(){
+	var declair=$(this).parent().find(".declairId").html();
+	var declairkakao=$(this).parent().find(".declairKakaoId").html();
+	var fromid=$(this).parent().find(".fromid").html();
+	var date=$(this).parent().find(".date").html();
 	$("#id").html(declair);
 	$("#id1").html(fromid);
 	$("#kakaoid").html(declairkakao);

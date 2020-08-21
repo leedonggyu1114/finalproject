@@ -601,7 +601,6 @@
 
 	//성별차트
 	function getsexchart() {
-
 		google.charts.load("current", {
 			packages : [ "corechart" ]
 		});

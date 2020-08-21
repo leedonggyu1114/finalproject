@@ -72,7 +72,10 @@ public class CompanyConroller {
 		model.addAttribute("cri",cri);
 		model.addAttribute("pm",pm);
 		model.addAttribute("list",mapper.roomlist(cri));
-		
+	}
+	//숙소search페이지 이동
+	@RequestMapping("/stay/search")
+	public void staysearch() {
 	}
 	
 	//룸등록

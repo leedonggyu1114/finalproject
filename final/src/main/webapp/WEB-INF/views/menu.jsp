@@ -3,8 +3,8 @@
 <style>
 #div_menu_area {
 	width: 1200px;
-	border-top: 1px solid black;
-	border-bottom: 1px solid black;
+	border-top: 0.5px solid black;
+	border-bottom: 0.5px solid black;
 	background: white;
 	height: 50px;
 	text-align: center;
@@ -75,7 +75,7 @@
 <div id="div_menu_area">
 	<ul id="main_menu">
 		<li><a href="/air/search">항공예약</a></li>
-		<li><a href="/air/bookinglist">숙소예약</a></li>
+		<li><a href="/stay/search">숙소예약</a></li>
 		<li><a href="/hotplace/list" id="hotplace">여행추천</a></li>
 		<li><a href="">땡처리</a>
 			<ul id="sub_menu">

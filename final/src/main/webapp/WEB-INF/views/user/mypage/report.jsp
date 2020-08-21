@@ -6,135 +6,82 @@
 <meta charset="UTF-8">
 <title>여행의 설렘 TOURSUM !</title>
 <script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/style.css" />
 <style>
-#user-information-area {
-	padding:40px;
-	position:relative;
-	margin-bottom:30px;
+body {
+	margin:0;
+	papdding:0;
 }
-#user-information-area #info,
-#user-information-area #companyInfo {
-	position:relative;
-	left:50%;
-	transform:translate(-50%,0);
-	margin-top:20px;
-}
-#user-information-area .line-info {
-	height:60px;
-}
-#user-information-area .line-info td:nth-child(1),
-#user-information-area .line-address td:nth-child(1) {
-	text-align:left;
-	padding-left:7px;
-}
-#user-information-area .line-info td:nth-child(2),
-#user-information-area .line-address td:nth-child(2) {
-	padding-left:10px;
-	padding-right:10px;
-}
-#info span,
-#companyInfo span {
-	background: #0f4c81;
-	color:white;
-	height:40px;
-	width:155.78px;
-	display:inline-block;
-	padding-top:11px;
-	padding-left:10px;
-	border-radius:3px 3px 3px 3px;
-	font-size:13px;
-}
-#user-information-area [type="text"],
-#user-information-area [type="password"],
-#user-information-area [type="submit"] {
-	height:40px;
-	padding-left:10px;
-	border-radius:3px 3px 3px 3px;
-	border:0.5px solid #e9e9e9;
-	cursor:pointer;
-}
-#user-information-area .line-info.a input {
-	width:100%;
-}
-#user-information-area select {
-	border-radius:3px 3px 3px 3px;
-	border:0.5px solid #e9e9e9;
-	cursor:pointer;
-	padding-left:10px;
-}
-#tag img{
-	width:180px;
-	height:190px;
-	cursor:pointer;
-	margin-bottom:20px;
-	border-radius:8px 8px 8px 8px;
-	margin-left:10px;
-	margin-right:10px;
-}
-#hoption img {
-	width:198px;
-	margin-bottom:25px;
-	margin-left:5px;
-	cursor:pointer;
-}
-#companyInfo textarea {
-	width:100%;
-	height:80px;
-	padding:10px;
-	border-radius:3px 3px 3px 3px;
-	border:0.5px solid #e9e9e9;
-	cursor:pointer;
+table {
+	border-collapse:collapse;
+	border:0.5px solid black;
 }
 </style>
-<script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
 </head>
 <body>
-	<jsp:include page="../../sidebar.jsp"/>
-		<div id="page">
-			<div id="header"><jsp:include page="../../header.jsp" /></div>
-			<div id="menu"><jsp:include page="../../menu.jsp" /></div>
-			<div id="container">
-				<div id="user-information-area">
-					
-			<h1>신고글 관리</h1>
-		
-			<div>신고할 ID</div>
-			<div><input type="text" id="u_to_id"></div>
-			<hr>
-			<form name="frm" action="insertblack" method="post">
-				<div><input type="hidden" name="u_from_id" value="${u_id}"></div>
-				<div><input type="hidden" name="u_from_k_id" value="${u_k_id}"></div>
-				<table>
-					<tr>
-						<td><input type="hidden" name="u_to_id" id="u_id1">
-						<input type="hidden" name="u_to_k_id" value="0" id="u_k_id1"></td>
-					</tr>
-					<tr>
-						<td>신고 사유</td>
-						<td><textarea name="b_content"></textarea></td>
-					</tr>
-				</table>
-				<input type="submit" value="신고하기">
-			</form>
-		
-			<form name="frm1" action="insertblack" method="post">
-				<div><input type="hidden" name="u_from_id" value="${u_id}"></div>
-				<div><input type="hidden" name="u_from_k_id" value="${u_k_id}"></div>
-				<table>
-					<tr>
-						<td><input type="hidden" name="u_to_id" id="u_id2" value="0">
-						<input type="hidden" name="u_to_k_id" id="u_k_id2"></td>
-					</tr>
-					<tr>
-						<td>신고 사유</td>
-						<td><textarea name="b_content"></textarea></td>
-					</tr>
-				</table>
-				<input type="submit" value="신고하기">
-			</form>
-		</div>
+<div style="height:500px; width:400px;">
+	<div style="padding-top:20px;">
+		<img src="/resources/img/report.png"/>
 	</div>
+	<div style="padding:10px; text-align:center;">
+		<input type="text" value="신고 대상" style="border:none; outline:none; height:20px; background:none; width:60px; cursor:pointer;">
+		<input type="text" id="u_to_id" 
+		style="border:none; outline:none; margin-left:10px; height:30px;
+		padding-left:10px; font-size:18px; width:130px; text-align:center; 
+		border-bottom:0.5px solid gray; font-weight:bold;">
+	</div>
+	
+	<form name="frm" action="insertblack" method="post">
+		<div><input type="hidden" name="u_from_id" value="${u_id}"></div>
+		<div><input type="hidden" name="u_from_k_id" value="${u_k_id}"></div>
+		<table>
+			<tr style="text-align:center;">
+				<td width=400 style="height:40px; background:black; color:white;">
+					신고사유
+					<input type="hidden" name="u_to_id" id="u_id1">
+					<input type="hidden" name="u_to_k_id" id="u_k_id1" value="0">
+				</td>
+			</tr>
+			<tr>
+				<td style="height:250px;">
+					<textarea name="b_content" 
+					style="width:350px; height:210px; outline:none; text-align:left; border:none;
+					padding:20px;"></textarea>
+				</td>
+			</tr>
+		</table>
+		<div style="padding-top:10px; padding-bottom:10px; text-align:center; margin-top:10px;">
+			<input type="submit" value="신고하기" 
+			style="background:#0f4c81; color:white; width:200px; height:40px; border:none;
+			outline:none; border-radius:5px; cursor:pointer;">
+		</div>
+	</form>
+	
+	<form name="frm1" action="insertblack" method="post">
+		<div><input type="hidden" name="u_from_id" value="${u_id}"></div>
+		<div><input type="hidden" name="u_from_k_id" value="${u_k_id}"></div>
+		<table>
+			<tr style="text-align:center;">
+				<td width=400 style="height:40px; background:black; color:white;">
+					신고사유
+					<input type="hidden" name="u_to_id" id="u_id2" value="0">
+					<input type="hidden" name="u_to_k_id" id="u_k_id2">
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<textarea name="b_content"
+					style="width:350px; height:210px; outline:none; text-align:left; border:none;
+					padding:20px;"></textarea>
+				</td>
+			</tr>
+		</table>
+		<div style="padding-top:10px; padding-bottom:10px; text-align:center; margin-top:10px;">
+			<input type="submit" value="신고하기"
+			style="background:#0f4c81; color:white; width:200px; height:40px; border:none;
+			outline:none; border-radius:5px; cursor:pointer;">
+		</div>
+	</form>
+	
 </div>
 </body>
 <script>
