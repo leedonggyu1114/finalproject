@@ -412,8 +412,8 @@ public class UserController {
 	//PASS찾기 아이디 인증
 	@RequestMapping("/user/idCheckPass")
 	@ResponseBody
-	public String idCheckPass(String u_id) {
-		String i=mapper.readid(u_id);
+	public String idCheckPass(String u_id,String u_k_id) {
+		String i=mapper.readid(u_id,u_k_id);
 		return i;
 	}
 	//PASS찾기 아이디/이름/성명,이메일 체크
@@ -485,7 +485,8 @@ public class UserController {
 	@ResponseBody
 	public int idCheck(String u_id,String u_k_id) {
 		int result=0;	
-		String readid=mapper.readid(u_id);
+		System.out.println(u_id+"."+u_k_id);
+		String readid=mapper.readid(u_id,u_k_id);
 		
 		if(readid.equals("1")) {
 			UserVO vo=mapper.read(u_id,u_k_id);
@@ -625,7 +626,7 @@ public class UserController {
 		
 		String[] arrayParam = request.getParameterValues("t_tag");
 		
-		String id=mapper.readid(vo.getU_id());
+		String id=mapper.readid(vo.getU_id(),vo.getU_k_id());
 		UserVO read=mapper.read(vo.getU_id(), vo.getU_k_id());
 		
 		if(id.equals("1")) {//아이디 존재여부 확인

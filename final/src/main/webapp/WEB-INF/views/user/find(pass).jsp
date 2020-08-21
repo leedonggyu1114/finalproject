@@ -143,10 +143,11 @@ $("#passreset").hide();
 	//아이디 확인
 	$("#btnidCheck").on("click",function(){
 		var id=$("#txtId").val();
+		var u_k_id="0";
 			$.ajax({
 				type:"get",
 				url:"/user/idCheckPass",
-				data:{"u_id":id},
+				data:{"u_id":id,"u_k_id":u_k_id},
 				success:function(data){
 					if(data==1){
 						$("#idfind").hide();

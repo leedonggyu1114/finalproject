@@ -184,6 +184,7 @@
 </head>
 <body>
 	<form name="frm" action="insert" method="post" enctype="multipart/form-data">
+	<div><input type="hidden" id="u_k_id" name="u_k_id" value="0"></div>
 		<div id="user-area">
 		<table id="userCheck">
 			<tr class="line-img">
@@ -437,12 +438,13 @@ $(":checkbox").css("display","none");
 	$("#btnCheck").on("click", function() {
 		if ($("#id").val() != "") {
 			var u_id = $("#id").val();
-
+			var u_k_id="0"; 
 			$.ajax({
 				type : "get",
 				url : "/user/idCheck",
 				data : {
-					"u_id" : u_id
+					"u_id" : u_id,
+					"u_k_id" : u_k_id
 				},
 				success : function(data) {
 					if (data == 1) {
@@ -542,16 +544,19 @@ $(":checkbox").css("display","none");
 
 		var passread = $("#passread").val();
 		var idread = $("#idread").val();
-		if (idread == 1 && passread == 1) {
-			frm.submit();
-		} else if (idread == 0 && passread == 1) {
-			alert("아이디를 중복확인하세요");
-		} else if (idread == 1 && passread == 0) {
-			alert("패스워드가 일치하는지 확인하세요");
-		} else if (idread == 0 && passread == 0) {
-			alert("아이디를 중복확인하세요");
-		}
-
+		if($("input:checkbox[name='t_tag']").is(":checked")==false){
+			alert("옵션을 1개 이상 선택하세요");
+		}else{
+			if (idread == 1 && passread == 1) {
+				frm.submit();
+			} else if (idread == 0 && passread == 1) {
+				alert("아이디를 중복확인하세요");
+			} else if (idread == 1 && passread == 0) {
+				alert("패스워드가 일치하는지 확인하세요");
+			} else if (idread == 0 && passread == 0) {
+				alert("아이디를 중복확인하세요");
+			}
+		}	
 	});
 
 	//이미지 클릭시
