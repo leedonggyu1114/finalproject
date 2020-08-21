@@ -100,6 +100,7 @@
 							고객님,<br>
 							<strong>어떤 여행을 꿈꾸시나요?</strong>
 						</p>
+
 					</div>
 					<div class="tapmenu">
 						<ul class="tabs">
@@ -155,44 +156,46 @@
 							</div>
 						</form>
 						<!-- 숙박 퀵 검색 -->
-						<div id="tab-2" class="tab-content">
-							<div id="tab-2-1">
-								<input type="text" placeholder="지역선택"
-									onfocus="this.placeholder=''" onblur="this.placeholder='지역선택'">
-							</div>
-							<div id="tab-2-2">
-								<input type="text" class="placedate" placeholder="체크인 / 체크아웃"
-									onfocus="this.placeholder=''"
-									onblur="this.placeholder='체크인 / 체크아웃'">
-							</div>
-							<div id="tab-2-3">
-								<input type="text" class="staypersons" placeholder="인원선택"
-									onfocus="this.placeholder=''" onblur="this.placeholder='인원선택'">
-								<div class="staycount">
-									<h5>인원</h5>
-									<div>
+						<form name="stayfrm" action="/stay/search">
+							<div id="tab-2" class="tab-content">
+								<div id="tab-2-1">
+									<input type="text" placeholder="지역선택"
+										onfocus="this.placeholder=''" onblur="this.placeholder='지역선택'">
+								</div>
+								<div id="tab-2-2">
+									<input type="text" class="placedate" placeholder="체크인 / 체크아웃"
+										onfocus="this.placeholder=''"
+										onblur="this.placeholder='체크인 / 체크아웃'">
+								</div>
+								<div id="tab-2-3">
+									<input type="text" class="staypersons" placeholder="인원선택"
+										onfocus="this.placeholder=''" onblur="this.placeholder='인원선택'">
+									<div class="staycount">
+										<h5>인원</h5>
 										<div>
-											<span>성인</span>
-											<button>-</button>
-											<input type="text" value="1" readonly>
-											<button>+</button>
-										</div>
-										<div>
-											<span>청소년/어린이</span>
-											<button>-</button>
-											<input type="text" value="1" readonly>
-											<button>+</button>
-										</div>
-										<div>
-											<button id="btn">선택완료</button>
+											<div>
+												<span>성인</span>
+												<input type="button" value="-">
+												<input type="text" value="1" readonly>
+												<input type="button" value="+">
+											</div>
+											<div>
+												<span>청소년/어린이</span>
+												<input type="button" value="-">
+												<input type="text" value="1" readonly>
+												<input type="button" value="+">
+											</div>
+											<div>
+												<input type="button" id="btn" value="선택완료">
+											</div>
 										</div>
 									</div>
 								</div>
+								<div id="tab-2-4">
+									<input type="submit" value="숙소 검색">
+								</div>
 							</div>
-							<div id="tab-2-4">
-								<input type="button" value="숙소 검색">
-							</div>
-						</div>
+						</form>
 					</div>
 				</div>
 				<div id="div_container_tema">
@@ -241,10 +244,58 @@
 					<div id="userrecommendlist" style="margin: auto; margin-top: 20px;"></div>
 				</div>
 			</c:if>
+			<c:if test="${u_id==null }">
+				<div id="div_container_area2"
+					style="padding-top: 80px; padding-bottom: 40px">
+					<div style="margin-left: 20px">
+						<h2>요즘 가볼만한 곳</h2>
+					</div>
+					<div id="userjustlist" style="margin: auto; margin-top: 20px;"></div>
+				</div>
+			</c:if>
+			<!-- 숙소 예약,결제많은순 start ---------------------------------------------------->
 			<div id="div_container_area3">
-				<!-- 땡처리 -->
+
+				<div id="first_area">
+					<img src="/resources/img/area3_sample.jpg" width=500 height=500 />
+					<div
+						style="font-size: 30px; font-weight: bold; padding-left: 10px;">Hotel
+						name</div>
+					<div style="padding-left: 10px; color: gray;">제주</div>
+					<div
+						style="font-size: 25px; font-weight: bold; margin-top: 25px; text-align: right; padding-right: 10px;">49,900
+						원~</div>
+				</div>
+
+				<div id="area3_title">
+					<img src="/resources/img/area3_title.png" />
+				</div>
+				<div id="second_area">
+					<img src="/resources/img/area3_sample2.jpg" width=150 height=150 />
+					<div
+						style="position: absolute; left: 160px; top: 10px; font-size: 23px; font-weight: bold;">Hotel
+						name</div>
+					<div
+						style="position: absolute; left: 160px; top: 40px; color: gray;">부산</div>
+					<div
+						style="position: absolute; bottom: 10px; right: 10px; font-weight: bold;">29,900
+						원~</div>
+				</div>
+
+				<div id="third_area">
+					<img src="/resources/img/area3_sample2.jpg" width=150 height=150 />
+					<div
+						style="position: absolute; left: 160px; top: 10px; font-size: 23px; font-weight: bold;">Hotel
+						name</div>
+					<div
+						style="position: absolute; left: 160px; top: 40px; color: gray;">부산</div>
+					<div
+						style="position: absolute; bottom: 10px; right: 10px; font-weight: bold;">29,900
+						원~</div>
+				</div>
 
 			</div>
+			<!-- 숙소 예약,결제많은순 end ------------------------------------------------------>
 			<div id="div_container_area4">
 				<!-- 숙소 예약,결제많은순 -->
 
@@ -258,6 +309,7 @@
 		</div>
 		<div id="footer"><jsp:include page="footer.jsp" /></div>
 	</div>
+
 </body>
 <script>
 	var u_id = "${u_id}";
@@ -292,6 +344,7 @@
 	});
 
 	usertaglist();
+	userjustlist();
 	latelyhotplace();
 	$.ajax({
 		type : "get",
@@ -477,6 +530,109 @@
 					}
 				});
 	}
+	
+	
+	//일반유저추천 여행지
+	function userjustlist() {
+		$
+				.ajax({
+					type : "get",
+					url : "/hotplace/userjustlist",
+					dataType : "json",
+					success : function(data) {
+						var html = "";
+						var tag1 = 0;
+						var tag2 = 0;
+						for (var i = 0; i < data.length; i++) {
+							userrecommendlist.push(data[i]);
+						}
+
+						for (var i = 0; i < 4; i++) {
+							tag1 = userrecommendlist[i].h_tag1;
+							tag2 = userrecommendlist[i].h_tag2;
+							html += "<div style='float:left; margin:20px;' class=''>";
+							html += "<a href='/hotplace/list#"+userrecommendlist[i].h_x+"|"+userrecommendlist[i].h_y+"'><img class='usertaglistimage' src='/hotplace/display?fileName="
+									+ userrecommendlist[i].h_image
+									+ "'  x='"
+									+ userrecommendlist[i].h_x
+									+ "' y='"
+									+ userrecommendlist[i].h_y
+									+ "' title='"
+									+ userrecommendlist[i].h_title
+									+ "' address='"
+									+ userrecommendlist[i].h_address
+									+ "' detail='"
+									+ userrecommendlist[i].h_detail
+									+ "' tag1='"
+									+ userrecommendlist[i].h_tag1
+									+ "' tag2='"
+									+ userrecommendlist[i].h_tag2
+									+ "'/></a>";
+							html += "<div style='margin-bottom:3px;'>"
+									+ userrecommendlist[i].h_area + "</div>";
+							html += "<div style='font-size:18px;font-weight:bold;margin-bottom:5px;'>"
+									+ userrecommendlist[i].h_title + "</div>";
+							if (tag1 == "01") {
+								html += "<button class='hotplace_tag_lightbox' style='float:left'>#힐링</button>"
+							} else if (tag1 == "02") {
+								html += "<button class='hotplace_tag_lightbox' style='float:left'>#헬스케어</button>"
+							} else if (tag1 == "03") {
+								html += "<button class='hotplace_tag_lightbox' style='float:left'>#익사이팅</button>"
+							} else if (tag1 == "04") {
+								html += "<button class='hotplace_tag_lightbox' style='float:left'>#나홀로여행</button>"
+							} else if (tag1 == "05") {
+								html += "<button class='hotplace_tag_lightbox' style='float:left'>#가족과함께</button>"
+							} else if (tag1 == "06") {
+								html += "<button class='hotplace_tag_lightbox' style='float:left'>#연인과함께</button>"
+							} else if (tag1 == "07") {
+								html += "<button class='hotplace_tag_lightbox' style='float:left'>#친구와함께</button>"
+							} else if (tag1 == "08") {
+								html += "<button class='hotplace_tag_lightbox' style='float:left'>#먹방</button>"
+							} else if (tag1 == "10") {
+								html += "<button class='hotplace_tag_lightbox' style='float:left'>#도심속여행</button>"
+							} else if (tag1 == "11") {
+								html += "<button class='hotplace_tag_lightbox' style='float:left'>#나만아는</button>"
+							} else if (tag1 == "12") {
+								html += "<button class='hotplace_tag_lightbox' style='float:left'>#야경</button>"
+							} else if (tag1 == "13") {
+								html += "<button class='hotplace_tag_lightbox' style='float:left'>#교육</button>"
+							}
+
+							if (tag2 == "01") {
+								html += "<button class='hotplace_tag_lightbox' style='float:left'>#힐링</button>"
+							} else if (tag2 == "02") {
+								html += "<button class='hotplace_tag_lightbox' style='float:left'>#헬스케어</button>"
+							} else if (tag2 == "03") {
+								html += "<button class='hotplace_tag_lightbox' style='float:left'>#익사이팅</button>"
+							} else if (tag2 == "04") {
+								html += "<button class='hotplace_tag_lightbox' style='float:left'>#나홀로여행</button>"
+							} else if (tag2 == "05") {
+								html += "<button class='hotplace_tag_lightbox' style='float:left'>#가족과함께</button>"
+							} else if (tag2 == "06") {
+								html += "<button class='hotplace_tag_lightbox' style='float:left'>#연인과함께</button>"
+							} else if (tag2 == "07") {
+								html += "<button class='hotplace_tag_lightbox' style='float:left'>#친구와함께</button>"
+							} else if (tag2 == "08") {
+								html += "<button class='hotplace_tag_lightbox' style='float:left'>#먹방</button>"
+							} else if (tag2 == "10") {
+								html += "<button class='hotplace_tag_lightbox' style='float:left'>#도심속여행</button>"
+							} else if (tag2 == "11") {
+								html += "<button class='hotplace_tag_lightbox' style='float:left'>#나만아는</button>"
+							} else if (tag2 == "12") {
+								html += "<button class='hotplace_tag_lightbox' style='float:left'>#야경</button>"
+							} else if (tag2 == "13") {
+								html += "<button class='hotplace_tag_lightbox' style='float:left'>#교육</button>"
+							}
+
+							html += "</div>";
+						}
+						$("#userjustlist").html(html);
+					}
+				});
+	}
+	
+	
+	
 
 	// 항공, 숙소 퀵 검색
 	$('ul.tabs li').click(function() {

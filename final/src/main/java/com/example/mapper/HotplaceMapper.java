@@ -14,6 +14,7 @@ public interface HotplaceMapper {
 	public ArrayList<String> imagelist(@Param("h_x") String h_x, @Param("h_y") String h_y);
 	public List<HotplaceVO> taglist(String tag);
 	public List<HotplaceVO> usertaglist(@Param("u_id") String u_id, @Param("u_k_id") String u_k_id);
+	public List<HotplaceVO> userjustlist();
 	public List<HashMap<String, Object>> latelyhotplace();
 	//public HashMap<String, Object> agefell(HashMap<String, Object> map);
 	public int age10(@Param("h_x") String h_x, @Param("h_y") String h_y);

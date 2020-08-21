@@ -311,7 +311,6 @@
 		var tel2 = $("#telFirst").val();
 		var tel3 = $("#telSecond").val();
 		$("#txtTel").val(tel1 + "-" + tel2 + "-" + tel3);
-		if (!confirm("회원 정보를 제출하시겠습니까?")) return;
 		frm.submit();
 	});
 	

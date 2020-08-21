@@ -61,7 +61,7 @@
 		<div id="menu"><jsp:include page="../menu.jsp" /></div>
 		<div id="container">
 			<div id="airdiscount-area">
-				<img src="/resources/img/sale/sale_title.png"/>
+				<img src="/resources/img/sale/sale_title2.jpg"/>
 				<table id="discount">
 					<tr id="discount-title">
 						<td width=180>구분</td>
