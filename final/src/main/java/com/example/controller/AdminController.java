@@ -7,7 +7,10 @@ import java.util.HashMap;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
+import org.openqa.selenium.remote.NewSessionPayload;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -18,6 +21,7 @@ import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
@@ -32,10 +36,10 @@ import com.example.service.AdminServiceInterface;
 @Controller
 @RequestMapping("/admin/")
 public class AdminController {
+	
 	@Resource(name="hotplaceUploadPath") //servlet-context.xml에서 지정한 아이디
 	private String path;
-
-
+	
 	@Autowired
 	AdminMapper mapper;
 	@Autowired
@@ -44,26 +48,29 @@ public class AdminController {
 	AdminServiceInterface service;
 	
 	@RequestMapping("hotplace_list")
-	public void list(Model model) {
-		//HashMap<String, Object> imagelist=new HashMap<String, Object>();
-		
-		model.addAttribute("list",mapper.list());
+	public void list(Model model, HttpSession session) {
+		String u_id = (String)session.getAttribute("u_id");
+		if(u_id=="admin") {
+			model.addAttribute("list",mapper.list());
+		}
 	}
 	
 	@RequestMapping("hotplace_read")
-	public void readimages(Model model,String h_x,String h_y){
-		System.out.println(h_x + h_y);
-		model.addAttribute("vo", mapper.read(h_x,h_y));
-		model.addAttribute("imagelist", mapper.imagelist(h_x,h_y));
+	public void readimages(Model model,String h_x,String h_y, HttpSession session){
+		String u_id = (String)session.getAttribute("u_id");
+		if(u_id=="admin") {
+			model.addAttribute("vo", mapper.read(h_x,h_y));
+			model.addAttribute("imagelist", mapper.imagelist(h_x,h_y));
+		}
 	}
 	
 	@RequestMapping("hotplace_insert")
-	public void insert() {
+	public void insert(HttpSession session) {
+		
 	}
 	
 	@RequestMapping(value="insertPost", method = RequestMethod.POST)
 	public String insertPost(HotplaceVO vo, MultipartHttpServletRequest multi)throws Exception {
-		System.out.println(vo.toString());
 		//대표이미지 업로드
 		MultipartFile file=multi.getFile("file");
 		if(!file.isEmpty()) {
