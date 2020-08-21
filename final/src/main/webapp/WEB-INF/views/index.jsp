@@ -98,6 +98,54 @@ ul,li{list-style:none;}
    border-radius:8px;
    margin-right:5px;
 }   
+.image {
+	display: block;
+	overflow: hidden;
+	width: 150px;
+	height: 150px;
+	cursor: pointer;
+}
+
+.image>img {
+	width: 100%;
+	transition: transform 1s;
+}
+
+.image:hover>img {
+	transform: translate(0%, 0%) scale(1.04);
+}
+.image_first {
+	display: block;
+	overflow: hidden;
+	width: 500px;
+	height: 500px;
+	cursor: pointer;
+}
+
+.image_first>img {
+	width: 100%;
+	transition: transform 1s;
+}
+
+.image_first:hover>img {
+	transform: translate(0%, 0%) scale(1.04);
+}
+.image_user {
+	display: block;
+	overflow: hidden;
+	width: 260px;
+	height: 180px;
+	cursor: pointer;
+}
+
+.image_user>img {
+	width: 100%;
+	transition: transform 1s;
+}
+
+.image_user:hover>img {
+	transform: translate(0%, 0%) scale(1.04);
+}
 </style>
 </head>
 <body>
@@ -277,7 +325,7 @@ ul,li{list-style:none;}
 			<div id="div_container_area3">
 
 				<div id="first_area">
-					<img src="/resources/img/area3_sample.jpg" width=500 height=500 />
+					<div class="image_first"><img src="/resources/img/area3_sample.jpg" width=500 height=500 /></div>
 					<div
 						style="font-size: 30px; font-weight: bold; padding-left: 10px;">Hotel
 						name</div>
@@ -291,7 +339,7 @@ ul,li{list-style:none;}
 					<img src="/resources/img/area3_title.png" />
 				</div>
 				<div id="second_area">
-					<img src="/resources/img/area3_sample2.jpg" width=150 height=150 />
+					<div class="image"><img src="/resources/img/area3_sample2.jpg" width=150 height=150 /></div>
 					<div
 						style="position: absolute; left: 160px; top: 10px; font-size: 23px; font-weight: bold;">Hotel
 						name</div>
@@ -303,7 +351,7 @@ ul,li{list-style:none;}
 				</div>
 
 				<div id="third_area">
-					<img src="/resources/img/area3_sample2.jpg" width=150 height=150 />
+					<div class="image"><img src="/resources/img/area3_sample2.jpg" width=150 height=150 /></div>
 					<div
 						style="position: absolute; left: 160px; top: 10px; font-size: 23px; font-weight: bold;">Hotel
 						name</div>
@@ -483,7 +531,7 @@ ul,li{list-style:none;}
 							tag1 = userrecommendlist[i].h_tag1;
 							tag2 = userrecommendlist[i].h_tag2;
 							html += "<div style='float:left; margin:20px;' class=''>";
-							html += "<a href='/hotplace/list#"+userrecommendlist[i].h_x+"|"+userrecommendlist[i].h_y+"'><img class='usertaglistimage' src='/hotplace/display?fileName="
+							html += "<a href='/hotplace/list#"+userrecommendlist[i].h_x+"|"+userrecommendlist[i].h_y+"'><div class='image_user'><img class='usertaglistimage' src='/hotplace/display?fileName="
 									+ userrecommendlist[i].h_image
 									+ "'  x='"
 									+ userrecommendlist[i].h_x
@@ -499,7 +547,7 @@ ul,li{list-style:none;}
 									+ userrecommendlist[i].h_tag1
 									+ "' tag2='"
 									+ userrecommendlist[i].h_tag2
-									+ "'/></a>";
+									+ "'/></div></a>";
 							html += "<div style='margin-bottom:3px;'>"
 									+ userrecommendlist[i].h_area + "</div>";
 							html += "<div style='font-size:18px;font-weight:bold;margin-bottom:5px;'>"
@@ -583,7 +631,7 @@ ul,li{list-style:none;}
 							tag1 = userrecommendlist[i].h_tag1;
 							tag2 = userrecommendlist[i].h_tag2;
 							html += "<div style='float:left; margin:20px;' class=''>";
-							html += "<a href='/hotplace/list#"+userrecommendlist[i].h_x+"|"+userrecommendlist[i].h_y+"'><img class='usertaglistimage' src='/hotplace/display?fileName="
+							html += "<a href='/hotplace/list#"+userrecommendlist[i].h_x+"|"+userrecommendlist[i].h_y+"'><div class='image_user'><img class='usertaglistimage' src='/hotplace/display?fileName="
 									+ userrecommendlist[i].h_image
 									+ "'  x='"
 									+ userrecommendlist[i].h_x
@@ -599,7 +647,7 @@ ul,li{list-style:none;}
 									+ userrecommendlist[i].h_tag1
 									+ "' tag2='"
 									+ userrecommendlist[i].h_tag2
-									+ "'/></a>";
+									+ "'/></div></a>";
 							html += "<div style='margin-bottom:3px;'>"
 									+ userrecommendlist[i].h_area + "</div>";
 							html += "<div style='font-size:18px;font-weight:bold;margin-bottom:5px;'>"

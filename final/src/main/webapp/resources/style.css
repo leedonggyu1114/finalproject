@@ -191,14 +191,14 @@ input:focus::-webkit-input-placeholder {color:transparent; }
 #div_container_quick p {
    font-size: 30px;
    position:absolute;
-   top:4%;
-   left:2%;
+   top:90px;
+   left:40px;
 }
 
 #div_container_quick .tapmenu {
    display: inline-block;
    position: absolute;
-   top:7%;
+   top:200px;
    left: 2%;
    width: 31%;
    margin: 0 auto;
@@ -623,10 +623,10 @@ input:focus::-webkit-input-placeholder {color:transparent; }
    width: 100%;
    height: 800px;
    background: #EFE1D8;
-   z-index: -2;
+   z-index: 0;
    padding-top:80px;
    padding-bottom:80px;
-   padding-left:80px;
+   padding-left:65px;
    position:relative;
 }
 
@@ -636,6 +636,7 @@ input:focus::-webkit-input-placeholder {color:transparent; }
 	background:white;
 	border-radius:0px 0px 10px 10px;
 	box-shadow:5px 5px 15px gray;
+	cursor:pointer;
 }
 
 #div_container_area3 #area3_title {
@@ -653,6 +654,7 @@ input:focus::-webkit-input-placeholder {color:transparent; }
 	bottom:260px;
 	border-radius:0px 10px 10px 0px;
 	box-shadow:5px 5px 15px gray;
+	cursor:pointer;
 }
 
 #div_container_area3 #third_area {
@@ -665,6 +667,7 @@ input:focus::-webkit-input-placeholder {color:transparent; }
 	border-radius:0px 10px 10px 0px;
 	box-shadow:5px 5px 15px gray;
 	z-index:8;
+	cursor:pointer;
 }
 
 #div_container_area4 {

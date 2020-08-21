@@ -72,7 +72,7 @@
 	top: 0px;
 }
 .div_menu_area_Fixed #main_menu>li:nth-child(1) {
-	margin-left:555px;
+	margin-left:554px;
 }
 </style>
 
