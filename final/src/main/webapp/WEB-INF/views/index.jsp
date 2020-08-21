@@ -50,31 +50,32 @@ ul,li{list-style:none;}
    width:190px;
    height:190px;
    border-radius:50%;
+   box-shadow:3px 3px 10px black;
 }
 .latelyhotplace1 {
    position:absolute;
    top:50%;
-   left:23%;
+   left:20.5%;
    transform:translate(0,-50%);
    z-index:2;
 }
 .latelyhotplace2 {
    position:absolute;
    top:50%;
-   right:23%;
+   right:20.5%;
    transform:translate(0,-50%);
    z-index:2;
 }
 .latelyhotplace3 {
    position:absolute;
    top:50%;
-   left:8%;
+   left:3%;
    transform:translate(0,-50%);
 }
 .latelyhotplace4 {
    position:absolute;
    top:50%;
-   right:8%;
+   right:3%;
    transform:translate(0,-50%);
 }
 .latelyhotplacecenter{
@@ -314,8 +315,8 @@ ul,li{list-style:none;}
 			</c:if>
 			<c:if test="${u_id==null }">
 				<div id="div_container_area2"
-					style="padding-top: 80px; padding-bottom: 40px">
-					<div style="margin-left: 20px">
+					style="padding-top: 90px; padding-bottom: 40px">
+					<div style="margin-left: 20px; margin-top:15px;">
 						<h2>요즘 가볼만한 곳</h2>
 					</div>
 					<div id="userjustlist" style="margin: auto; margin-top: 20px;"></div>
@@ -336,7 +337,7 @@ ul,li{list-style:none;}
 				</div>
 
 				<div id="area3_title">
-					<img src="/resources/img/area3_title.png" />
+					<img src="/resources/img/area3_title2.png" />
 				</div>
 				<div id="second_area">
 					<div class="image"><img src="/resources/img/area3_sample2.jpg" width=150 height=150 /></div>
@@ -377,8 +378,7 @@ ul,li{list-style:none;}
 		</div>
 		<div id="footer"><jsp:include page="footer.jsp" /></div>
 	</div>
-	<div style="width: 100%; height: 800px; background: #EFE1D8; position: absolute; 
-		z-index: -10; top: 1330.5px;"></div>
+	<div id="area3_background"></div>
 	<div style="width: 100%; height:600px; background: #edf2f3; position:absolute;
 		z-index:-10; top:2730px;"></div>
 	<div class="slide">
@@ -484,8 +484,8 @@ ul,li{list-style:none;}
 										+ data[i].h_x
 										+ "' y='"
 										+ data[i].h_y
-										+ "'/></a>";
-								html += "<div style='text-align:center;'>"
+										+ "' style='box-shadow:3px 3px 10px black;'/></a>";
+								html += "<div style='text-align:center;margin-top:15px;'>"
 										+ data[i].h_title + "</div>";
 								html += "</div>";
 							} else {
@@ -497,7 +497,7 @@ ul,li{list-style:none;}
 										+ "' y='"
 										+ data[i].h_y
 										+ "'/></a>";
-								html += "<div style='text-align:center'>"
+								html += "<div style='text-align:center; margin-top:15px;'>"
 										+ data[i].h_title + "</div>";
 								html += "</div>";
 							}
