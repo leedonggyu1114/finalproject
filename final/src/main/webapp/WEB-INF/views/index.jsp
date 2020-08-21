@@ -13,6 +13,23 @@
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/style.css"/>
 <style>
+ul,li{list-style:none;}
+.slide{height:700px; overflow:hidden; z-index:-3; position:relative; bottom:3381.5px;}
+.slide ul{position:relative;height:100%;}
+.slide li{position:absolute;left:0;right:0;top:0;bottom:0;opacity:0;animation:fade 12s infinite;}
+.slide li:nth-child(1){background:red;animation-delay:0s}
+.slide li:nth-child(2){background:orange;animation-delay:3s}
+.slide li:nth-child(3){background:yellow;animation-delay:6s}
+.slide li:nth-child(4){background:green;animation-delay:9s}
+.slide li:nth-child(5){background:blue;animation-delay:12s}
+ /* 100 / 8 = 12.5 */
+@keyframes fade {
+  0% {opacity:0;}
+  5% {opacity:1;}
+  25% {opacity:1;}
+  30% {opacity:0;}
+  100% {opacity:0;}
+}
 .usertaglistimage{
    width:260px;
    height:180px;
@@ -262,9 +279,11 @@
          </div>
          <!-- 숙소 예약,결제많은순 end ------------------------------------------------------>
          
-         <div id="div_container_area4"> <!-- 땡처리 -->
-         
+         <!-- 땡처리 start -------------------------------------------------------------->
+         <div id="div_container_area4"> 
+         	
          </div>
+         <!-- 땡처리 end -------------------------------------------------------------->
          
          <div id="div_container_area5">
             <div style="margin-left:20px"><h2>주목! 요즘HOT한 여행지</h2></div>
@@ -273,6 +292,16 @@
       </div>
       <div id="footer"><jsp:include page="footer.jsp"/></div>
    </div>
+   <div style="width:100%; height:800px; background:#edf2f3; position:absolute; z-index:-10; top:1330.5px;"></div>
+	<div class="slide">
+    <ul>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+  </div>
 </body>
 <script>
    var u_id="${u_id}";
