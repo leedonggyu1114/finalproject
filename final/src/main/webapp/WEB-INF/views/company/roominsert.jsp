@@ -476,7 +476,6 @@ $("#tbl").on("click", ".row", function() {
 
 	$("#star1").hide();$("#star3").hide();$("#star5").hide();$("#star7").hide();$("#star9").hide();
 	$("#star2").hide();$("#star4").hide();$("#star6").hide();$("#star8").hide();$("#star10").hide();$("#star11").hide();
-	
 	var r_i_roomnum=$(this).find(".roomnum").html();
 	var r_i_id="${c_id}";
 	$.ajax({
