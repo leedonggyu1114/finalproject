@@ -492,27 +492,27 @@ $("#tbl").on("click", ".row", function() {
 			 $("#roomnum1").html(data.read.r_roomnum);
 			 $("#detail1").html(data.read.r_detail);
 			 $("#repimage").attr("src", "/displayRoom?fileName="+data.read.r_image);
-			 if(data.read.r_status=="0"){
+			 if(data.read.r_grade==0){
 				 $("#star1").show();
-			 }else if(data.read.r_status=="0.5"){
+			 }else if(0<data.read.r_grade && data.read.r_grade<=0.5){
 				 $("#star2").show();
-			 }else if(data.read.r_status=="1"){
+			 }else if(0.5<data.read.r_grade && data.read.r_grade<=1){
 				 $("#star3").show();
-			 }else if(data.read.r_status=="1.5"){
+			 }else if(1<data.read.r_grade && data.read.r_grade<=1.5){
 				 $("#star4").show();
-			 }else if(data.read.r_status=="2"){
+			 }else if(1.5<data.read.r_grade && data.read.r_grade<=2){
 				 $("#star5").show();
-			 }else if(data.read.r_status=="2.5"){
+			 }else if(2<data.read.r_grade && data.read.r_grade<=2.5){
 				 $("#star6").show();
-			 }else if(data.read.r_status=="3"){
+			 }else if(2.5<data.read.r_grade && data.read.r_grade<=3){
 				 $("#star7").show();
-			 }else if(data.read.r_status=="3.5"){
+			 }else if(3<data.read.r_grade && data.read.r_grade<=3.5){
 				 $("#star8").show();
-			 }else if(data.read.r_status=="4"){
+			 }else if(3.5<data.read.r_grade && data.read.r_grade<=4){
 				 $("#star9").show();
-			 }else if(data.read.r_status=="4.5"){
+			 }else if(4<data.read.r_grade && data.read.r_grade<=4.5){
 				 $("#star10").show();
-			 }else if(data.read.r_status=="5"){
+			 }else if(4.5<data.read.r_grade && data.read.r_grade<=5){
 				 $("#star11").show();
 			 }
 			//룸 옵션 읽기	
