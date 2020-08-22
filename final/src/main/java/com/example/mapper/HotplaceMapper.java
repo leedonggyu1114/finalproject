@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
+import com.example.domain.CompanyVO;
 import com.example.domain.HotplaceVO;
 
 public interface HotplaceMapper {
@@ -28,4 +29,5 @@ public interface HotplaceMapper {
 	public void likedelete(@Param("h_x") String h_x, @Param("h_y") String h_y, @Param("u_id") String u_id, @Param("u_k_id") String u_k_id);
 	public ArrayList<HotplaceVO> likelist(String u_id,String u_k_id);
 	public ArrayList<HashMap<String, Object>> likeuserlist(@Param("h_x") String h_x, @Param("h_y") String h_y);
+	public List<CompanyVO> hotplacehotel(String c_x);
 }
