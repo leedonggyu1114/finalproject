@@ -152,6 +152,7 @@
 	var imagepage = 0;
 	var images = [];
 	
+	
 	//맵새로고침
 	$(".maprefresh").on("click",function(){
 		getmap();
@@ -396,6 +397,7 @@
 
 						$("body").css("overflow", "hidden");//body 스크롤바 없애기
 
+						
 						getlikeuserlist();
 						getmap();
 						getagechart();
@@ -488,6 +490,10 @@
 		$("#userpagination").html(html);
 	}
 	
+	
+	
+	
+	
 
 	//지도촐력
 	function getmap() {
@@ -499,15 +505,25 @@
 		};
 
 		var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
-
+		
+		
 		//근처 호텔띄우기
+		var positions=new Array();
 		$.ajax({
 			type:"get",
 			url:"hotplacehotel",
 			dataType:"json",
 			data:{"c_x":x},
 			success:function(data){
+				
 				alert("succes");
+				for(var i=0; i<data.length; i++){
+					var insidedata ={};
+					insidedata.content = data[i].c_name;
+					insidedata.latlng = new kakao.maps.LatLng(data[i].c_y, data[i].c_x);
+					positions.push(insidedata);
+					console.log(positions[i]);
+				}
 			}
 		});
 		

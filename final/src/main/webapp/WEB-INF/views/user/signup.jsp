@@ -391,6 +391,16 @@ $(":checkbox").css("display","none");
 	});
 
 	
+
+	$(document).on("keyup", "#id", function() {
+		$(this).val($(this).val().replace(/[0-9]|[^\!-z]/gi, ""));
+	});
+
+	$(document).on("keyup", "#telFirst ,#telSecond ,#year ,#MM ,#dd",
+			function() {
+				$(this).val($(this).val().replace(/[^0-9]/g, ""));
+			});
+
 	$("#email").change(function() {
 		var email = $("#email option:selected").val();
 		if (email != "direct") {
@@ -437,7 +447,7 @@ $(":checkbox").css("display","none");
 	$("#btnCheck").on("click", function() {
 		if ($("#id").val() != "") {
 			var u_id = $("#id").val();
-			var u_k_id="0"; 
+			var u_k_id = "0";
 			$.ajax({
 				type : "get",
 				url : "/user/idCheck",
@@ -523,7 +533,7 @@ $(":checkbox").css("display","none");
 		//주소 합치기
 		var address = $("#sample6_address").val();
 		var addressDetail = $("#sample6_detailAddress").val();
-		
+
 		var allAddress = address + "," + addressDetail;
 		//생일 합치기
 		var birthday = year + "-" + MM + "-" + dd;
@@ -543,9 +553,9 @@ $(":checkbox").css("display","none");
 
 		var passread = $("#passread").val();
 		var idread = $("#idread").val();
-		if($("input:checkbox[name='t_tag']").is(":checked")==false){
+		if ($("input:checkbox[name='t_tag']").is(":checked") == false) {
 			alert("옵션을 1개 이상 선택하세요");
-		}else{
+		} else {
 			if (idread == 1 && passread == 1) {
 				frm.submit();
 			} else if (idread == 0 && passread == 1) {
@@ -555,7 +565,7 @@ $(":checkbox").css("display","none");
 			} else if (idread == 0 && passread == 0) {
 				alert("아이디를 중복확인하세요");
 			}
-		}	
+		}
 	});
 
 	//이미지 클릭시
