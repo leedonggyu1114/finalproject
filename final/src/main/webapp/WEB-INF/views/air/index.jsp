@@ -12,8 +12,8 @@
    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/style.css"/>
 </head>
 <body>
+
    <div id="page">
-  
       <div id="container">
          <div id="div_container_area1"> <!-- 퀵검색, 테마 -->
             <div id="div_container_quick">

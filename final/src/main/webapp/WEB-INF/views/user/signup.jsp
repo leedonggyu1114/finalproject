@@ -5,8 +5,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>여행의 설렘 TOURSUM !</title>
-	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=593e08eb668b13510d3ab2e0c94c93a7&libraries=services"></script>
-	<script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
+	
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/style.css" />
 <style>
 #user-area {
