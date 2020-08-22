@@ -10,6 +10,7 @@
 <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/style.css" />
 <link rel="shortcut icon" type="image⁄x-icon" href="/resources/img/title_logo.png">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
 <style>
 #user-booking-list-area {
 	position:relative;
@@ -145,19 +146,21 @@ table {
 					<input type="checkbox" id="staylist">
 					<label for="staylist">숙소<em></em></label>
 					<div>
-						<table id="tbl_staylist">
-							<tr>
-								<td rowspan=3 width=220><img src="/resources/img/user/smaple.jpg" width=210 height=170></td>
-								<td colspan=2><span>HOTEL이름</span> <span>(302호)</span></td>
-							</tr>
-							<tr>
-								<td colspan=2>2020.02.02~2020.02.04</td>
-							</tr>
-							<tr>
-								<td width=400><span>50,000</span>원</td>
-								<td width=180><button>취소하기</button></td>
-							</tr>
-						</table>
+					
+						<table id="tbl"></table>
+                        <script id="temp" type="text/x-handlebars-template"> 
+                           {{#each .}}
+                              <tr>
+                                 <td><img src="/displayCompany?fileName={{r_image}}"  id="image" width=150></td>
+                                 <td>{{c_name}}</td>
+                                 <td>{{r_roomnum}}</td>
+                                 <td>{{r_b_checkin}}</td>
+                              <td>{{r_b_checkout}}</td>
+                              <td>{{r_price}}</td>
+                              </tr>
+                           {{/each}}
+                        </script>
+					
 					</div>
 					<input type="checkbox" id="airlist">
 					<label for="airlist">항공<em></em></label>
@@ -214,6 +217,21 @@ table {
 <script>
 	var u_id="${u_id}";
 	var u_k_id="${u_k_id}";
+	
+    getroombooking();
+    function getroombooking() {
+       $.ajax({
+          type:"post",
+          url:"/user/userroombooking",
+          dataType:"json",
+          data:{"u_id":u_id,"u_k_id":u_k_id},
+          success:function(data){
+            //alert(u_id+u_k_id);
+             var template = Handlebars.compile($("#temp").html());
+                  $("#tbl").html(template(data));
+               }
+       });
+    }
 	
 	
 	//항공예약취소

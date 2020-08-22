@@ -1,5 +1,6 @@
 package com.example.mapper;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
@@ -64,4 +65,6 @@ public interface UserMapper {
 	//신고하기
 	public void insertblack(BlackVO vo);
 	public int count(String u_id,String u_k_id);
+	
+	public List<HashMap<String,Object>>userroombooking(@Param("u_id")String u_id,@Param("u_k_id") String u_k_id);
 }

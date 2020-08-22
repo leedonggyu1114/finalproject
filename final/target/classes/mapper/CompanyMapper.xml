@@ -30,4 +30,17 @@
   	<select id="readRoomoption" resultType="com.example.domain.RoomVO">
   		select * from tbl_room_option where r_o_id=#{param1} and r_o_roomnum=#{param2}
   	</select>
+  	<select id="hotellist" resultType="com.example.domain.CompanyVO">
+        select c.c_id,c.c_name,c.c_image,min(r.r_price) r from tbl_company c,tbl_room r where c.c_id=r.r_id GROUP BY c.c_image
+        limit #{pageStart},#{perPageNum}
+    </select>
+    <select id="countpage" resultType="int">
+       select count(*) from tbl_company
+    </select>
+    <select id="companyread" resultType="com.example.domain.CompanyVO">
+       select c.*,min(r.r_price) r from tbl_company c,tbl_room r where c.c_id=r.r_id and c_id=#{c_id} GROUP BY c.c_image;
+    </select>
+    <select id="hotelread" resultType="hashmap">
+ 		select c_image,c_name,min(r_price) r,c_address,c_tel,c_grade from tbl_room r, tbl_company c where r.r_id=c.c_id and c.c_id=#{c_id}
+    </select>
 </mapper>

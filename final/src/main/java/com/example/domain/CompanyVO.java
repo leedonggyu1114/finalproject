@@ -1,6 +1,6 @@
 package com.example.domain;
 
-public class CompanyVO {
+public class CompanyVO extends RoomVO{
 	private String c_id;
 	private String c_pass;
 	private String c_name;
@@ -170,9 +170,13 @@ public class CompanyVO {
 				+ ", c_email=" + c_email + ", c_address=" + c_address + ", c_image=" + c_image + ", c_number="
 				+ c_number + ", c_ceo=" + c_ceo + ", c_ceo_tel=" + c_ceo_tel + ", c_x=" + c_x + ", c_y=" + c_y
 				+ ", c_detail=" + c_detail + ", c_area=" + c_area + ", c_status=" + c_status + ", c_sale=" + c_sale
-				+ ", c_option=" + c_option + ", c_key=" + c_key + "]";
+				+ ", c_option=" + c_option + ", c_key=" + c_key + ", getR_price()=" + getR_price() + "]";
 	}
 
+
+	
+
+	
 	
 
 }

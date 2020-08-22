@@ -73,10 +73,7 @@ public class CompanyConroller {
 		model.addAttribute("pm",pm);
 		model.addAttribute("list",mapper.roomlist(cri));
 	}
-	//숙소search페이지 이동
-	@RequestMapping("/stay/search")
-	public void staysearch() {
-	}
+	
 	
 	//룸등록
 		@RequestMapping(value="/company/insertroom",method=RequestMethod.POST)
@@ -127,5 +124,49 @@ public class CompanyConroller {
 			}
 			return result;
 		}
+		
+		@RequestMapping("/stay/search")
+		   public String companylist(Model model,Criteria cri) {
+		       cri.setPerPageNum(2);
+		       PageMaker pm=new PageMaker();
+		       pm.setCri(cri);
+		       pm.setTotalCount(mapper.countpage());
+		       model.addAttribute("cri",cri);
+		       model.addAttribute("pm",pm);
+		       model.addAttribute("list",mapper.hotellist(cri));
+		       return "/stay/search";
+		   }
+		@RequestMapping(value="/stay/read",method=RequestMethod.POST)
+		@ResponseBody
+		public List<HashMap<String,Object>> hotelread(String c_id) {
+			List<HashMap<String,Object>> read=mapper.hotelread(c_id);
+			return read;	
+		}
+		
+		@RequestMapping("/stay/read")
+		public void hotelread(Model model,String c_id) {
+			model.addAttribute("c_id",c_id);
+		}
+		
+		   @RequestMapping("/company/companyread")
+		   public void companyread(Model model,String c_id) {
+		      model.addAttribute("vo",mapper.companyread(c_id));
+		   }
+		   
+		   // 이미지파일 브라우저에 출력
+		      @RequestMapping("/company/hoteldisplay")
+		      @ResponseBody
+		      public ResponseEntity<byte[]> displays(String fileName) throws Exception {
+		         ResponseEntity<byte[]> result = null;
+		         // display fileName이 있는 경우
+		         if (!fileName.equals("")) {
+		            File file = new File(companypath + File.separator + fileName);
+		            HttpHeaders header = new HttpHeaders();
+		            header.add("Content-Type", Files.probeContentType(file.toPath()));
+		            result = new ResponseEntity<>(FileCopyUtils.copyToByteArray(file), header, HttpStatus.OK);
+		         }
+		         return result;
+		      }
+		   
 		
 }
