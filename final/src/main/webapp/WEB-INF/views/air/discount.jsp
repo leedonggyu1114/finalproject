@@ -94,6 +94,19 @@
 							<td style="padding-bottom:25px;">${vo.a_endtime }</td>
 							<td class="a_price" style="border-bottom:0.5px solid gray; padding-bottom:25px;"><fmt:formatNumber value="${vo.a_price/2 }" pattern="#,###"/> 원</td>
 						</tr>
+						<tr class="aircount1">
+							<td colspan=4 class="row">
+								<h5>인원</h5>
+								<span class="age">성인</span> 
+								<input type="button" value="-" class="peopleSubtract"> 
+								<input type="text" value="1" size="1" class="people"> 
+								<input type="button" value="+" class="peoplePlus">
+								<span class="age">청소년/어린이</span> 
+								<input type="button" value="-" class="childSubtract"> 
+								<input type="text" value="0" readonly size="1" class="child"> 
+								<input type="button" value="+" class="childPlus">
+							</td>
+						</tr>
 					</c:forEach>
 				</table>
 				<div id="reserver">
@@ -133,10 +146,26 @@
 
 	$(".aircount1").hide();
 	//인원선택
-	$(".a_emptyseat").on("click", function() {
-		discountsum = $(this);
-		$(".aircount1").show();
-	});
+// 	$(".a_emptyseat").on("click", function() {
+// 		discountsum = $(this);
+// 		discountsum.parent().parent().next().next().show().addClass("open");
+// 		if(discountsum){
+			
+// 		}
+// 	});
+	
+
+	$(".a_emptyseat").click(
+		function(event) {
+			$target = $(event.target);
+			discountsum = $(this);
+			discountsum.parent().parent().next().next().show();
+			if (!$target.closest(discountsum.parent().parent().next().next()).length
+					&& $(discountsum.parent().parent().next().next()).is(":visible")) {
+				discountsum.parent().parent().next().next().hide();
+			}
+		});
+
 	//성인-
 	$("#reserver").on("click", ".peopleSubtract", function() {
 		if (people == 0) {
@@ -170,18 +199,22 @@
 		discountsum.val(people + "," + child);
 		$(".aircount1").hide();
 	});
-	$("#discount").on("click",".row .paybtn",function(){
-		var row=$(this).parent().parent();
-		var a_number=row.find(".a_number").html();
-		var sum=parseInt(people)+parseInt(child);
-		var a_emptyseat=row.find(".a_emptyseat").html();
-		var price=row.find(".a_price").html();
-		alert(a_number+sum+a_emptyseat+price);
-		if(a_emptyseat < sum){
-			alert("예약 인원이 너무 많습니다");
-		}else{
-			location.href="/air/bookingPeople?a_number="+a_number+"&sum="+sum+"&price="+price;
-		}
-	 });
+	$("#discount").on(
+			"click",
+			".row .paybtn",
+			function() {
+				var row = $(this).parent().parent();
+				var a_number = row.find(".a_number").html();
+				var sum = parseInt(people) + parseInt(child);
+				var a_emptyseat = row.find(".a_emptyseat").html();
+				var price = row.find(".a_price").html();
+				alert(a_number + sum + a_emptyseat + price);
+				if (a_emptyseat < sum) {
+					alert("예약 인원이 너무 많습니다");
+				} else {
+					location.href = "/air/bookingPeople?a_number=" + a_number
+							+ "&sum=" + sum + "&price=" + price;
+				}
+			});
 </script>
 </html>

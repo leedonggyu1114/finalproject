@@ -391,7 +391,6 @@ input[id="login-chk2"]:checked + label em {
 
 		if ($(frm1.chkLogin).is(":checked"))
 			chkLogin = 1;
-		alert(chkLogin);
 		$.ajax({
 			type : "post",
 			url : "/user/loginCheckCompany",
