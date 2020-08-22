@@ -4,10 +4,11 @@
 <!DOCTYPE html>
 <html>
 <head profile="http://www.w3.org/2005/10/profile">
-	<meta charset="UTF-8">
-	<title>여행의 설렘 TOURSUM !</title>
-	<link rel="icon" type="image/png" href="http://example.com/myicon.png"> 
-	
+<meta charset="UTF-8">
+<title>여행의 설렘 TOURSUM !</title>
+<link rel="icon" type="image/png" href="http://example.com/myicon.png">
+<style>
+</style>
 </head>
 <body>
 <%-- ${u_id},${u_k_id} --%>
@@ -23,31 +24,7 @@
 			<a href="https://kauth.kakao.com/oauth/logout?client_id=44c4398b724d06191dbaf99c087795b1&logout_redirect_uri=http://localhost:8088/user/login">로그아웃</a>
 		</c:if>
 	</div>
-	<a href="/"><img src="${pageContext.request.contextPath}/resources/img/logo.png" width=200 id="header_logo"></a>
-	<div id="div_header_search">
-		<input type="text" placeholder=search..>
-		<img src="${pageContext.request.contextPath}/resources/img/header/search_icon.png" width=30>
-	</div>
-	<div style="display:inline-block; position:absolute; top:40px; right:10px;">
-		<a href="/user/mypage/infomation">
-			<img src="${pageContext.request.contextPath}/resources/img/header/mypage_icon.png" 
-			onmouseover="this.src='${pageContext.request.contextPath}/resources/img/header/mypage_icon_hover.png'" 
-			onmouseout="this.src='${pageContext.request.contextPath}/resources/img/header/mypage_icon.png'" 
-			width=50>
-		</a>
-		<a href="/air/bookinglist" style="margin-left:15px; margin-right:15px;">
-			<img src="${pageContext.request.contextPath}/resources/img/header/booking_icon.png" 
-			onmouseover="this.src='${pageContext.request.contextPath}/resources/img/header/booking_icon_hover.png'" 
-			onmouseout="this.src='${pageContext.request.contextPath}/resources/img/header/booking_icon.png'" 
-			width=50>
-		</a>
-		<a href="/hotplace/likelist">
-			<img src="${pageContext.request.contextPath}/resources/img/header/like_icon.png" 
-			onmouseover="this.src='${pageContext.request.contextPath}/resources/img/header/like_icon_hover.png'" 
-			onmouseout="this.src='${pageContext.request.contextPath}/resources/img/header/like_icon.png'" 
-			width=50>
-		</a>
-	</div>
+	<a href="/"><img src="${pageContext.request.contextPath}/resources/img/logo4.png" width=300 id="header_logo"></a>
 </body>
 <script>
 </script>

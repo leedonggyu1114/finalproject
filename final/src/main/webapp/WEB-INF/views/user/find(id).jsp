@@ -63,6 +63,7 @@
 </style>
 </head>
 <body>
+	<jsp:include page="../sidebar.jsp" />
 	<div id="page">
 		<div id="header"><jsp:include page="../header.jsp"/></div>
 		<div id="menu"><jsp:include page="../menu.jsp"/></div>

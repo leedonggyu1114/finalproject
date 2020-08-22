@@ -22,4 +22,5 @@ public interface CompanyMapper {
 	public int countpage();
 	public CompanyVO companyread(String c_id);
 	public List<HashMap<String,Object>> hotelread(String c_id);
+	public List<RoomVO> companyroomlist(String c_id);
 }

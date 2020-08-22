@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.example.domain.CompanyVO;
 import com.example.domain.HotplaceVO;
 import com.example.mapper.HotplaceMapper;
 
@@ -136,6 +137,17 @@ public class HotplaceController {
 		System.out.println("delete");
 		mapper.likedelete(h_x, h_y, u_id, u_k_id);
 	}
+	
+	@RequestMapping("hotplacehotel")
+	@ResponseBody
+	public List<CompanyVO> hotplacehotel(String c_x){
+		List<CompanyVO> hotplacehotel = mapper.hotplacehotel(c_x);
+		
+		return hotplacehotel;
+	}
+	
+	
+	
 	
 	@RequestMapping("agechart")
 	@ResponseBody

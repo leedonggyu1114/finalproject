@@ -36,7 +36,7 @@
 	position:absolute; top:50%; left:50%;
 	transform:translate(-50%,-50%);
 	position:relative;
-	padding:70px 10px 10px 10px;
+	padding:20px 10px 10px 10px;
 }
 
 #lightbox #btnClose {
@@ -54,7 +54,11 @@
 	height:40px;
 	margin:5px;
 	cursor:pointer;
-	background:red;
+	background:black;
+	color:white;
+	border-radius:3px;
+	border:0.5px solid gray;
+	outline:none;
 }
 
 .seat {
@@ -76,10 +80,6 @@
 .div_seat2 {
 	margin-right:30px;
 }
-
-.div_seat3 {
-}
-
 
 
 #air_booking_area {
@@ -127,9 +127,21 @@
 	cursor:pointer;
 	margin-right:10px;
 }
+.choicefinish {
+	width:200px;
+	height:40px;
+	outline:none;
+	border:none;
+	background:#0f4c81;
+	color:white;
+	border-radius:5px;
+	margin-top:20px;
+	cursor:pointer;
+}
 </style>
 </head>
 <body>
+	<jsp:include page="../sidebar.jsp" />
 	<jsp:include page="../floatmenu.jsp"/>
 	<div id="page">
 		<div id="header"><jsp:include page="../header.jsp" /></div>
@@ -347,23 +359,37 @@
 
 	//결제하기 
 	$(frm).submit(function(e) {
+		
 		e.preventDefault();
-		var radio=[];
-		for(var i=1; i<=sum; i++){
-			radio.push($("input[name='a_p_gender"+i+"']:checked").val());
-// 			$(frm.a_p_gender+i).removeAttr("name").attr({name:"a_p_gender"});
-// 			$(":radio[name='a_p_gender'][value="+radio[i-1]+"']").attr('checked', true);
+		var payname = $(frm.payName).val();
+		email += $(frm.str_email).val();
+		email += "@";
+		email += $(frm.str_email1).val();
+		var tel = $(frm.tel).val();
+		var birthday = $(frm.u_birthday).val();
+		var a_p_name = $(frm.a_p_name).val();
+		var a_p_gender = $(frm.a_p_gender).val();
+		var a_p_residentRegistration = $(frm.a_p_residentRegistration)
+				.val();
+		var a_p_seat = $(frm.a_p_seat).val();
+		var radio = [];
+		for (var i = 1; i <= sum; i++) {
+			radio.push($("input[name='a_p_gender" + i + "']:checked")
+					.val());
+			// 			$(frm.a_p_gender+i).removeAttr("name").attr({name:"a_p_gender"});
+			// 			$(":radio[name='a_p_gender'][value="+radio[i-1]+"']").attr('checked', true);
 		}
 		$("input[name='a_p_gender']").val(radio);
 
+		if (!confirm("여행을 떠날 준비가 되셨나요?"))
+			return;
+		frm.submit();
+		// 			window.open("kakaoPay","","100px, 100px");
+		if (payName != "" || email != "" || tel != "" || birthday != ""
+				|| a_p_name != "" || a_p_gender != ""
+				|| a_p_residentRegistration != "" || a_p_seat != "") {
 
-		
-		if (!confirm("여행을 떠날 준비가 되셨나요?"))return;
-			frm.submit();
-// 			window.open("kakaoPay","","100px, 100px");
-		if(payName!="" || email!="" || tel!="" || birthday!="" || a_p_name!="" || a_p_gender!="" || a_p_residentRegistration!="" || a_p_seat!="" ){
-			
-		}else{
+		} else {
 			alert("모든 text 창을 입력해주세요 ");
 		}
 	});
@@ -376,7 +402,8 @@
 					function() {
 						var a_number = $(this).attr("seat");
 						seatSelection = $(this);
-						$.ajax({
+						$
+								.ajax({
 									type : "get",
 									url : "/air/seatlist",
 									dataType : "json",
@@ -386,14 +413,13 @@
 									success : function(data) {
 										var html = "";
 										var datalength = data.length;
-										var dataseat=[];
+										var dataseat = [];
 										present = $(this);
 										for (var i = 1; i <= 12; i++) {
 											html += "<div class='seat div_seat1'><button class='seat1'>A"
 													+ i
 													+ "</button><button class='seat1'>B"
-													+ i
-													+ "</button></div>";
+													+ i + "</button></div>";
 											html += "<div class='seat div_seat2'><button class='seat1'>C"
 													+ i
 													+ "</button><button class='seat1'>D"
@@ -416,17 +442,22 @@
 												.each(
 														function() {
 															thisseat = $(this);
-															
+
 															for (var n = 0; n < datalength; n++) {
-																dataseat.push(data[n]);
-																if (dataseat[n] == thisseat.html()) {
-																	thisseat.attr('disabled',true);
-// 																	thisseat.contents().unwrap().wrap( "<img src='/resources/img/hotplace/close_icon.png' style='width:40px;height:30px'/>" );
-// 																	thisseat.html("<img src='/resources/img/hotplace/close_icon.png' style='width:40px;height:30px'/>");
+																dataseat
+																		.push(data[n]);
+																if (dataseat[n] == thisseat
+																		.html()) {
+																	thisseat
+																			.attr(
+																					'disabled',
+																					true);
+																	// 																	thisseat.contents().unwrap().wrap( "<img src='/resources/img/hotplace/close_icon.png' style='width:40px;height:30px'/>" );
+																	// 																	thisseat.html("<img src='/resources/img/hotplace/close_icon.png' style='width:40px;height:30px'/>");
 																}
 															}
 														});
-										
+
 									}
 								});
 
@@ -437,11 +468,11 @@
 		seatcount = 0;
 	});
 	//좌석선택완료
-	$("#selectseat").on("click", ".choicefinish", function(){
+	$("#selectseat").on("click", ".choicefinish", function() {
 		$("#darken-background").hide();
-		$("#selectseat .seat button").each(function(){
-			if($(this).attr("class")=="styleseat"){
-				seatchoice += ","+$(this).html();
+		$("#selectseat .seat button").each(function() {
+			if ($(this).attr("class") == "styleseat") {
+				seatchoice += "," + $(this).html();
 			}
 		});
 		seatchoice = seatchoice.substring(1);
@@ -449,23 +480,21 @@
 		seatchoice = "";
 		seatcount = 0;
 	});
- 	
-    //라이트박스안에 버튼선택 
-	$("#selectseat").on("click",".seat button",function(){
-		if($(this).attr("class")=="styleseat"){
-			$(this).attr("class","seat1");
+
+	//라이트박스안에 버튼선택 
+	$("#selectseat").on("click", ".seat button", function() {
+		if ($(this).attr("class") == "styleseat") {
+			$(this).attr("class", "seat1");
 			seatcount--;
-		}else{
-			if(seatcount >= sum){
-				alert("선택가능 인원수는"+sum+"명 입니다");
-			}else{
-				$(this).attr("class","styleseat");
+		} else {
+			if (seatcount >= sum) {
+				alert("선택가능 인원수는" + sum + "명 입니다");
+			} else {
+				$(this).attr("class", "styleseat");
 				seatcount++;
 			}
 		}
 	});
-
-
 
 	//생일 받기
 	$(document).ready(

@@ -136,6 +136,7 @@ table {
 </style>
 </head>
 <body>
+	<jsp:include page="../../sidebar.jsp" />
 	<div id="page">
 		<div id="header"><jsp:include page="../../header.jsp" /></div>
 		<div id="menu"><jsp:include page="../../menu.jsp" /></div>
@@ -233,6 +234,17 @@ table {
        });
     }
 	
+	$("#staylist").click(function(){
+		$("html").animate({
+			scrollTop: 250
+		}, 600);
+	});
+	
+	$("#airlist").click(function(){
+		$("html").animate({
+			scrollTop: 250
+		}, 600);
+	});
 	
 	//항공예약취소
 	$("#tbl_airlist").on("click",".btnbookingcancel",function(){

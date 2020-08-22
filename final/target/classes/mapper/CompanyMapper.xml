@@ -43,4 +43,7 @@
     <select id="hotelread" resultType="hashmap">
  		select c_image,c_name,min(r_price) r,c_address,c_tel,c_grade from tbl_room r, tbl_company c where r.r_id=c.c_id and c.c_id=#{c_id}
     </select>
+     <select id="companyroomlist" resultType="com.example.domain.RoomVO">
+        select r.* from tbl_room r,tbl_company c where r.r_id=c.c_id and c.c_id=#{c_id}
+     </select>
 </mapper>

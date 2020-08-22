@@ -2,14 +2,13 @@
 	pageEncoding="UTF-8"%>
 <style>
 #div_menu_area {
-	width: 142%;
+	width: 100%;
 	border-top: 0.5px solid black;
 	border-bottom: 0.5px solid black;
 	background: white;
 	height: 50px;
 	text-align: center;
 	z-index: 10;
-	margin-left:-252px;
 }
 
 #main_menu, #sub_menu {
@@ -25,7 +24,7 @@
 }
 
 #main_menu>li:nth-child(1) {
-	margin-left: 32.5%;
+	margin-left: 34.3%;
 }
 
 #main_menu>li>a {
@@ -66,13 +65,14 @@
 	display:block;
 	opacity: 1;
 	z-index: 10;
+	box-shadow:0px 6px 8px black;
 }
 .div_menu_area_Fixed {
 	position: fixed;
 	top: 0px;
 }
 .div_menu_area_Fixed #main_menu>li:nth-child(1) {
-	margin-left:554px;
+	margin-left:650px;
 }
 </style>
 

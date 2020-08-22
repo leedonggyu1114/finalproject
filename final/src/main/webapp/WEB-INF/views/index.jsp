@@ -11,10 +11,10 @@
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/style.css"/>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/indexstyle.css"/>
 <style>
 #page {
-	height:2500px;
+	height:2550px;
 }
 ul,li{list-style:none;}
 .slide{height:700px; overflow:hidden; z-index:-3; position:relative; bottom:2320px;}
@@ -196,7 +196,7 @@ ul,li{list-style:none;}
 											name="a_startdate1" id="edate" placeholder="오는날">
 									</div>
 									<div id="tab-3-3">
-										<input type="text" class="airpersons1" placeholder="성인:1 청소년:0">
+										<input type="text" class="airpersons1" placeholder="성인 1  청소년 0">
 										<div class="aircount1">
 											<h5>인원</h5>
 											<div id="reserver">
@@ -380,7 +380,7 @@ ul,li{list-style:none;}
 	</div>
 	<div id="area3_background"></div>
 	<div style="width: 100%; height:600px; background: #edf2f3; position:absolute;
-		z-index:-10; top:2730px;"></div>
+		z-index:-10; top:2779px;"></div>
 	<div class="slide">
 		<ul>
 			<li></li>
@@ -732,7 +732,7 @@ ul,li{list-style:none;}
 		//people=$("#reserver").find(".people").val();
 		//child=$("#reserver").find(".child").val();
 		$(".aircount1").hide();
-		$(".airpersons1").val("성인:" + people + "청소년:" + child);
+		$(".airpersons1").val("성인 " + people + "  청소년 " + child);
 	});
 	//성인-
 	$("#reserver").on("click", ".peopleSubtract", function() {
