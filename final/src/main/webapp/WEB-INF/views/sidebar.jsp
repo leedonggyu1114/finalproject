@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 	
 <!DOCTYPE html>
 <html>
 <head>
@@ -57,8 +57,8 @@
 }
 
 .menu-trigger.active span:nth-of-type(3) {
-	-webkit-transform: translateY(-12.9px) rotate(45deg);
-	transform: translateY(-12.9px) rotate(45deg);
+	-webkit-transform: translateY(-12px) rotate(45deg);
+	transform: translateY(-12px) rotate(45deg);
 }
 
 /* 마이페이지 */
@@ -97,6 +97,7 @@
 	padding-left:45px;
 	padding-top:15px;
 	padding-bottom:15px;
+	cursor:pointer;
 }
 
 #mypage_info:hover,
@@ -173,9 +174,16 @@
 	<aside class="sidebar-mypage">
 		<div class="sidebar-mypage-content">
 			<h1>MYPAGE</h1>
-			<div id="mypage_info"><a href="/user/mypage/infomation">내 정보</a></div>
-			<div id="mypage_booking"><a href="/air/bookinglist">예약내역</a></div>
-			<div id="mypage_like"><a href="/hotplace/likelist">찜목록</a></div>
+			<c:if test="${c_id==null}">
+				<div id="mypage_info"><a href="/user/mypage/infomation">내 정보</a></div>
+				<div id="mypage_booking"><a href="/air/bookinglist">예약내역</a></div>
+				<div id="mypage_like"><a href="/hotplace/likelist">찜목록</a></div>
+			</c:if>
+			<c:if test="${ c_id!=null }">
+				<div id="mypage_info"><a href="/user/mypage/infomation">내 정보</a></div>
+				<div id="mypage_booking"><a href="/company/roominsert">숙소등록</a></div>
+				<div id="mypage_like"><a href="">모름</a></div>
+			</c:if>
 		</div>
 	</aside>
 </body>
@@ -183,15 +191,37 @@
 	// mypage
 	$(function(){
 		var duration = 300;
-
-		var $sidebar = $('.sidebar-mypage');
+		var $sidebar1 = $('.sidebar-mypage');
+		var $sidebar = $('.sidebar');
 		var $sidebarButton = $('.menu-trigger').on('click', function() {
+			$sidebar1.toggleClass('open');
+			if ($sidebar1.hasClass('open')) {
+				$(".menu-trigger").addClass("active");
+				$sidebar1.stop(true).animate({
+					right : '-70px'
+				}, duration, 'easeOutBack');
+				$sidebar.stop(true).animate({
+					right : '-400px'
+				}, duration, 'easeInBack');
+			} else {
+				$sidebar1.stop(true).animate({
+					right : '-400px'
+				}, duration, 'easeInBack');
+				$(".menu-trigger").removeClass("active");
+			}
+			;
+		});
+		
+		var $sidebarButton = $('.sidebar-btn').on('click', function() {
 			$sidebar.toggleClass('open');
-			$(this).toggleClass('active');
 			if ($sidebar.hasClass('open')) {
 				$sidebar.stop(true).animate({
 					right : '-70px'
 				}, duration, 'easeOutBack');
+				$sidebar1.stop(true).animate({
+					right : '-400px'
+				}, duration, 'easeInBack');
+				$(".menu-trigger").removeClass("active");
 			} else {
 				$sidebar.stop(true).animate({
 					right : '-400px'
@@ -200,25 +230,5 @@
 			;
 		});
 	})
-	
-	// cart
-	$(function() {
-		var duration = 300;
-
-		var $sidebar = $('.sidebar');
-		var $sidebarButton = $('.sidebar-btn').on('click', function() {
-			$sidebar.toggleClass('open');
-			if ($sidebar.hasClass('open')) {
-				$sidebar.stop(true).animate({
-					right : '-70px'
-				}, duration, 'easeOutBack');
-			} else {
-				$sidebar.stop(true).animate({
-					right : '-400px'
-				}, duration, 'easeInBack');
-			}
-			;
-		});
-	});
 </script>
 </html>
