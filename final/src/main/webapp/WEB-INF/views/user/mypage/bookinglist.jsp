@@ -215,6 +215,17 @@ table {
 	var u_id="${u_id}";
 	var u_k_id="${u_k_id}";
 	
+	$("#staylist").click(function(){
+		$("html").animate({
+			scrollTop: 250
+		}, 600);
+	});
+	
+	$("#airlist").click(function(){
+		$("html").animate({
+			scrollTop: 250
+		}, 600);
+	});
 	
 	//항공예약취소
 	$("#tbl_airlist").on("click",".btnbookingcancel",function(){

@@ -4,10 +4,67 @@
 <!DOCTYPE html>
 <html>
 <head profile="http://www.w3.org/2005/10/profile">
-	<meta charset="UTF-8">
-	<title>여행의 설렘 TOURSUM !</title>
-	<link rel="icon" type="image/png" href="http://example.com/myicon.png"> 
-	
+<meta charset="UTF-8">
+<title>여행의 설렘 TOURSUM !</title>
+<link rel="icon" type="image/png" href="http://example.com/myicon.png">
+<style>
+#header_menu {
+	width: 300px;
+	height: 50px;
+	background: orange;
+}
+
+.menu-trigger, .menu-trigger span {
+	display: inline-block;
+	transition: all .4s;
+	box-sizing: border-box;
+}
+
+.menu-trigger {
+	position: relative;
+	width: 35px;
+	height: 28px;
+}
+
+.menu-trigger span {
+	position: absolute;
+	left: 0;
+	width: 100%;
+	height: 2px;
+	display:inline-block;
+	background-color: black;
+	border-radius: 10px;
+}
+
+.menu-trigger span:nth-of-type(1) {
+	top: 0;
+}
+
+.menu-trigger span:nth-of-type(2) {
+	top: 50%;
+	transform:translate(0,-50%);
+}
+
+.menu-trigger span:nth-of-type(3) {
+	bottom: 0;
+}
+
+<!--
+-->
+.menu-trigger.active span:nth-of-type(1) {
+	-webkit-transform: translateY(13px) rotate(-45deg);
+	transform: translateY(13px) rotate(-45deg);
+}
+
+.menu-trigger.active span:nth-of-type(2) {
+	opacity: 0;
+}
+
+.menu-trigger.active span:nth-of-type(3) {
+	-webkit-transform: translateY(-12.9px) rotate(45deg);
+	transform: translateY(-12.9px) rotate(45deg);
+}
+</style>
 </head>
 <body>
 <%-- ${u_id},${u_k_id} --%>
@@ -45,7 +102,17 @@
 			width=50>
 		</a>
 	</div>
+	<div id="header_menu">
+		<a class="menu-trigger" href="#">
+			<span> </span>
+			<span> </span>
+			<span> </span>
+		</a>
+	</div>
 </body>
 <script>
+	$(".menu-trigger").on("click", function(){
+		$(this).toggleClass('active');
+	});
 </script>
 </html>

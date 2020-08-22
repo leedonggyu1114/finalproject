@@ -158,7 +158,7 @@ ul,li{list-style:none;}
 	<button type="button" name="button" class="ac-sub-go-top"
 		style="cursor: pointer;">위로</button>
 	<div id="page">
-		<div id="header"><jsp:include page="header.jsp" /></div>
+		<div id="header" style="border:1px solid black;"><jsp:include page="header.jsp" /></div>
 		<div id="menu"><jsp:include page="indexmenu.jsp" /></div>
 		<div id="container">
 			<div id="div_container_area1">
