@@ -52,8 +52,8 @@ public class AdminController {
 	@RequestMapping("index")
 	public String index(HttpSession session) {
 		String u_id = (String)session.getAttribute("u_id");
-		if(u_id=="admin") {
-			return "index";
+		if(u_id.equals("admin")) {
+			return "/admin/index";
 		}else {
 			return "redirect:/";
 		}
@@ -63,9 +63,9 @@ public class AdminController {
 	@RequestMapping("hotplace_list")
 	public String list(Model model, HttpSession session) {
 		String u_id = (String)session.getAttribute("u_id");
-		if(u_id=="admin") {
+		if(u_id.equals("admin")) {
 			model.addAttribute("list",mapper.list());
-			return "hotplace_list";
+			return "/admin/hotplace_list";
 		}else {
 			return "redirect:/";
 		}
@@ -74,10 +74,10 @@ public class AdminController {
 	@RequestMapping("hotplace_read")
 	public String readimages(Model model,String h_x,String h_y, HttpSession session){
 		String u_id = (String)session.getAttribute("u_id");
-		if(u_id=="admin") {
+		if(u_id.equals("admin")) {
 			model.addAttribute("vo", mapper.read(h_x,h_y));
 			model.addAttribute("imagelist", mapper.imagelist(h_x,h_y));
-			return "hotplace_read";
+			return "/admin/hotplace_read";
 		}else {
 			return "redirect:/";
 		}
@@ -86,8 +86,8 @@ public class AdminController {
 	@RequestMapping("hotplace_insert")
 	public String insert(HttpSession session) {
 		String u_id = (String)session.getAttribute("u_id");
-		if(u_id=="admin") {
-			return "hotplace_insert";
+		if(u_id.equals("admin")) {
+			return "/admin/hotplace_insert";
 		}else {
 			return "redirect:/";
 		}
@@ -195,8 +195,8 @@ public class AdminController {
 	@RequestMapping("userlist")
 	public String userlist(HttpSession session) {
 		String u_id = (String)session.getAttribute("u_id");
-		if(u_id=="admin") {
-			return "userlist";
+		if(u_id.equals("admin")) {
+			return "/admin/userlist";
 		}else {
 			return "redirect:/";
 		}
@@ -215,7 +215,7 @@ public class AdminController {
 	@RequestMapping("blacklist")
 	public String blacklist(Model model ,Criteria cri,HttpSession  session) {
 		String u_id = (String)session.getAttribute("u_id");
-		if(u_id=="admin") {
+		if(u_id.equals("admin")) {
 			if(cri.getKeyword()==null) {
 				cri.setKeyword("");
 			}
@@ -227,7 +227,7 @@ public class AdminController {
 			model.addAttribute("pm",pm);
 			model.addAttribute("keyword",cri.getKeyword());
 			model.addAttribute("blacklist",mapper.blacklist(cri));
-			return "blacklist";
+			return "/admin/blacklist";
 		}else {
 			return "redirect:/";
 		}
@@ -237,9 +237,7 @@ public class AdminController {
 	@RequestMapping("black")
 	public String black(Model model ,Criteria cri,HttpSession session) {
 		String u_id = (String)session.getAttribute("u_id");
-		if(u_id=="admin") {
-			return "black";
-		}else {
+		if(u_id.equals("admin")) {
 			if(cri.getKeyword()==null) {
 				cri.setKeyword("");
 			}
@@ -251,6 +249,9 @@ public class AdminController {
 			model.addAttribute("pm",pm);
 			model.addAttribute("keyword",cri.getKeyword());
 			model.addAttribute("black",mapper.black(cri));
+			return "/admin/black";
+		}else {
+			
 			return "redirect:/";
 		}
 	}
@@ -259,7 +260,7 @@ public class AdminController {
 	@ResponseBody
 	public String read(String u_id,String u_k_id,String date,HttpSession session) {
 		String u_id1 = (String)session.getAttribute("u_id");
-		if(u_id1=="admin") {
+		if(u_id.equals("admin")) {
 			String content= mapper.readcontent(u_id, u_k_id, date);
 			return content;
 		}else {
@@ -269,7 +270,7 @@ public class AdminController {
 	@RequestMapping("lockStatus")
 	public String lockStatus(String u_id,String u_k_id,HttpSession session) {
 		String u_id1 = (String)session.getAttribute("u_id");
-		if(u_id1=="admin") {
+		if(u_id.equals("admin")) {
 			mapper.updatestatus(u_id, u_k_id,"1");
 			return "/admin/blacklist";
 		}else {
@@ -281,7 +282,7 @@ public class AdminController {
 	@RequestMapping("unlockStatus")
 	public String unlockStatus(String u_id,String u_k_id,HttpSession session) {
 		String u_id1 = (String)session.getAttribute("u_id");
-		if(u_id1=="admin") {
+		if(u_id.equals("admin")) {
 			mapper.updatestatus(u_id, u_k_id,"0");
 			mapper.blackdelete(u_id, u_k_id);
 			return "/admin/blacklist";
@@ -294,9 +295,9 @@ public class AdminController {
 	@RequestMapping("unlock")
 	public String unlock(String u_id,String u_k_id,HttpSession session) {
 		String u_id1 = (String)session.getAttribute("u_id");
-		if(u_id1=="admin") {
+		if(u_id.equals("admin")) {
 			mapper.blackdelete(u_id, u_k_id);
-			return "blacklist";
+			return "/admin/blacklist";
 		}else {
 			return "redirect:/";
 		}
@@ -305,8 +306,8 @@ public class AdminController {
 	@RequestMapping("userreport")
 	public String userreport(HttpSession session) {
 		String u_id = (String)session.getAttribute("u_id");
-		if(u_id=="admin") {
-			return "userreport";
+		if(u_id.equals("admin")) {
+			return "/admin/userreport";
 		}else {
 			return "redirect:/";
 		}
@@ -316,8 +317,8 @@ public class AdminController {
 	@RequestMapping("chat")
 	public String chat(HttpSession session) {
 		String u_id = (String)session.getAttribute("u_id");
-		if(u_id=="admin") {
-			return "chat";
+		if(u_id.equals("admin")) {
+			return "/admin/chat";
 		}else {
 			return "redirect:/";
 		}
@@ -327,8 +328,8 @@ public class AdminController {
 	@RequestMapping("staylist")
 	public String staylist(HttpSession session) {
 		String u_id = (String)session.getAttribute("u_id");
-		if(u_id=="admin") {
-			return "staylist";
+		if(u_id.equals("admin")) {
+			return "/admin/staylist";
 		}else {
 			return "redirect:/";
 		}
@@ -338,8 +339,8 @@ public class AdminController {
 	@RequestMapping("stayrequest")
 	public String stayrequest(HttpSession session) {
 		String u_id = (String)session.getAttribute("u_id");
-		if(u_id=="admin") {
-			return "stayrequest";
+		if(u_id.equals("admin")) {
+			return "/admin/stayrequest";
 		}else {
 			return "redirect:/";
 		}

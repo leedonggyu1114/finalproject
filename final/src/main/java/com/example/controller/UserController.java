@@ -541,7 +541,6 @@ public class UserController {
 	@ResponseBody
 	public int loginCheck(String u_id, String u_pass, HttpSession session, String chkLogin, HttpServletResponse response) {
 		UserVO readVO=mapper.loginread(u_id);
-		System.out.println(u_id);
 		int chkNum=0;
 		if(readVO!=null) {
 			if(readVO.getU_pass().equals(u_pass)) {
@@ -578,7 +577,6 @@ public class UserController {
 	@ResponseBody
 	public int loginCheckCompany(String c_id,String c_pass,String c_number, String chkLogin,HttpSession session,HttpServletResponse response) {
 		CompanyVO readVO=mapper.readCompany(c_id);
-		System.out.println(chkLogin);
 		int chkNum=0;
 		
 		if(readVO!=null) {
