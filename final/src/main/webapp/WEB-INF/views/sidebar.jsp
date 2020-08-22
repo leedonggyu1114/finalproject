@@ -178,12 +178,7 @@
 				<div id="mypage_info"><a href="/user/mypage/infomation">내 정보</a></div>
 				<div id="mypage_booking"><a href="/air/bookinglist">예약내역</a></div>
 				<div id="mypage_like"><a href="/hotplace/likelist">찜목록</a></div>
-			</c:if>   
-<%-- 			<c:if test="${ u_id!=null && u_k_id=='0' }"> --%>
-<!-- 				<div id="mypage_info"><a href="/user/mypage/infomation">내 정보</a></div> -->
-<!-- 				<div id="mypage_booking"><a href="/air/bookinglist">예약내역</a></div> -->
-<!-- 				<div id="mypage_like"><a href="/hotplace/likelist">찜목록</a></div> -->
-<%-- 			</c:if> --%>
+			</c:if>
 			<c:if test="${ c_id!=null }">
 				<div id="mypage_info"><a href="/user/mypage/infomation">내 정보</a></div>
 				<div id="mypage_booking"><a href="/company/roominsert">숙소등록</a></div>
