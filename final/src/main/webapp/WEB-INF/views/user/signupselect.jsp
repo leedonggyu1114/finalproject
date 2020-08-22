@@ -7,6 +7,8 @@
 <title>여행의 설렘 TOURSUM !</title>
 <link rel="shortcut icon" type="image⁄x-icon" href="/resources/img/title_logo.png">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/style.css" />
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=593e08eb668b13510d3ab2e0c94c93a7&libraries=services"></script>
+<script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
 <style>
 	#signup-area {
 		padding:40px;
@@ -64,6 +66,7 @@
 </style>
 </head>
 <body>
+	<jsp:include page="../sidebar.jsp" />
 	<div id="page">
 		<div id="header"><jsp:include page="../header.jsp" /></div>
 		<div id="menu"><jsp:include page="../menu.jsp" /></div>
@@ -99,6 +102,5 @@
 		$("#" + tab_id).addClass('current');
 	})
 </script>
-<script
-	src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js?autoload=false"></script>
+<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js?autoload=false"></script>
 </html>

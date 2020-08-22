@@ -141,6 +141,7 @@
 </style>
 </head>
 <body>
+	<jsp:include page="../sidebar.jsp" />
 	<jsp:include page="../floatmenu.jsp"/>
 	<div id="page">
 		<div id="header"><jsp:include page="../header.jsp" /></div>
