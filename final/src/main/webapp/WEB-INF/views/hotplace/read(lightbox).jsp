@@ -518,7 +518,7 @@
 					test.content = "<div>"+data[i].c_name+"</div>";
 					test.latlng = new kakao.maps.LatLng(data[i].c_y, data[i].c_x);
 					positions.push(test);
-				
+				}
 				for (var i = 0; i < positions.length; i++) {
 					// 마커를 생성합니다
 					var marker = new kakao.maps.Marker({
