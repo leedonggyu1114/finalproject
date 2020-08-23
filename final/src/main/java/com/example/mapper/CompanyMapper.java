@@ -1,5 +1,6 @@
 package com.example.mapper;
 
+import java.util.HashMap;
 import java.util.List;
 
 import com.example.domain.CompanyVO;
@@ -17,4 +18,9 @@ public interface CompanyMapper {
 	public List<RoomVO> imagesread(String r_i_id, String r_i_roomnum);
 	public RoomVO read(String r_id,String r_roomnum);
 	public List<RoomVO> readRoomoption(String r_o_id,String r_o_roomnum);
+	public List<CompanyVO> hotellist(Criteria cri);
+	public int countpage();
+	public CompanyVO companyread(String c_id);
+	public List<HashMap<String,Object>> hotelread(String c_id);
+	public List<RoomVO> companyroomlist(String c_id);
 }

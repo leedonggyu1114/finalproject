@@ -38,100 +38,14 @@
    text-align: center;
    position: relative;
 }
-#page{
-	margin:auto;
-	
-}
-#tag img{
-	width:80px;
-	height:80px;
-	cursor:pointer;
-	margin-bottom:20px;
-	border-radius:8px 8px 8px 8px;
-	margin-left:10px;
-	margin-right:10px;
-}
-#user-information-area {
-	padding:40px;
-	position:relative;
-	margin-bottom:30px;
-}
-#user-information-area #info,
-#user-information-area #companyInfo {
+#roominsert_area {
 	position:relative;
 	left:50%;
 	transform:translate(-50%,0);
-	margin-top:20px;
+	width:1000px;
+	border-radius:5px 5px 5px 5px;	
+	background:yellow;
 }
-#user-information-area .line-info {
-	height:60px;
-}
-#user-information-area .line-info td:nth-child(1),
-#user-information-area .line-address td:nth-child(1) {
-	text-align:left;
-	padding-left:7px;
-}
-#user-information-area .line-info td:nth-child(2),
-#user-information-area .line-address td:nth-child(2) {
-	padding-left:10px;
-	padding-right:10px;
-}
-#info span,
-#companyInfo span {
-	background: #0f4c81;
-	color:white;
-	height:40px;
-	width:155.78px;
-	display:inline-block;
-	padding-top:11px;
-	padding-left:10px;
-	border-radius:3px 3px 3px 3px;
-	font-size:13px;
-}
-#user-information-area [type="text"],
-#user-information-area [type="password"],
-#user-information-area [type="submit"] {
-	height:40px;
-	padding-left:10px;
-	border-radius:3px 3px 3px 3px;
-	border:0.5px solid #e9e9e9;
-	cursor:pointer;
-}
-#user-information-area .line-info.a input {
-	width:100%;
-}
-#user-information-area select {
-	border-radius:3px 3px 3px 3px;
-	border:0.5px solid #e9e9e9;
-	cursor:pointer;
-	padding-left:10px;
-}
-#tag img{
-	width:180px;
-	height:190px;
-	cursor:pointer;
-	margin-bottom:20px;
-	border-radius:8px 8px 8px 8px;
-	margin-left:10px;
-	margin-right:10px;
-}
-#hoption img {
-	width:198px;
-	margin-bottom:25px;
-	margin-left:5px;
-	cursor:pointer;
-}
-#companyInfo textarea {
-	width:100%;
-	height:80px;
-	padding:10px;
-	border-radius:3px 3px 3px 3px;
-	border:0.5px solid #e9e9e9;
-	cursor:pointer;
-}
-#tbl{border:1px solid gray; text-algin:center; margin:auto; width:1000px;}
-
-#roptionB img{width:200px; height:80px;}
 </style>
 <script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
 </head>
@@ -142,114 +56,115 @@
 		<div id="header"><jsp:include page="../header.jsp" /></div>
 		<div id="menu"><jsp:include page="../menu.jsp" /></div>
 		<div id="container">
-			<div id="user-information-area">
+			<div id="roominsert_area">
 			<h1>룸 등록</h1>
-			
 			<form name="frm" action="insertroom" method="post" enctype="multipart/form-data" accept-charset="UTF-8">
-				<table>
+				<table border=1>
 					<tr>
-						<td>숙소 아이디</td>
-						<td><input type="text" name="r_id" value="${c_id}" readonly></td>
-					</tr>
-					<tr>
-						<td> 호 수 </td>
+						<td><span>숙소명</span></td>
+						<td>
+							<input type="text" name="r_title" id="title">
+							<input type="hidden" name="r_id" value="${c_id}" readonly>
+						</td>
+						<td><span>호 수</span></td>
 						<td><input type="text" name="r_roomnum" id="roomnum"></td>
 					</tr>
 					<tr>
-						<td> 방 이름 </td>
-						<td><input type="text" name="r_title" id="title"></td>
-					</tr>
-					<tr>
-						<td> 룸 설명 </td>
-						<td><textarea name="r_detail" id="detail"></textarea></td>
-					</tr>
-					<tr>
-						<td> 수용 인원 수 </td>
+						<td><span>최대 인원 수</span></td>
 						<td><input type="text" name="r_persons" id="persons"></td>
-					</tr>
-					<tr>
-						<td> 대표 이미지 </td>
-						<td><input type="file" name="file" style="visibility: hidden;"><br>
-						<img src="http://placehold.it/150x150" id="image" width=200 height=200><br></td>
-					</tr>
-				
-					<tr>
-						<td> 가격 </td>
+						<td><span>가격</span></td>
 						<td><input type="text" name="r_price" id="price"></td>
 					</tr>
 					<tr>
-						<td width=100><input type="button" value="추가이미지" id="btnImage">
+						<td colspan=4><span>숙소 옵션을 선택해주세요.</span></td>
+					</tr>
+					<tr>
+						<td colspan=4>
+						<div id="roption" style="text-align:center;">
+							<span id="roption1">
+								<input type="checkbox" id="r_option1" name="r_o_option" value="01">
+									<label for="r_option1" id="tag1"><img src="/resources/img/roomoption/Roption_coffemaker_icon2.png"></label>
+									<label for="r_option1" id="tag1-1" style="display:none;"><img src="/resources/img/roomoption/Roption_coffemaker_icon_hover.png"></label>
+							</span>
+							<span id="roption2">
+								<input type="checkbox" id="r_option2" name="r_o_option" value="02">
+									<label for="r_option2" id="tag1"><img src="/resources/img/roomoption/Roption_ketchen_icon2.png"></label>
+									<label for="r_option2" id="tag1-1" style="display:none;"><img src="/resources/img/roomoption/Roption_ketchen_icon_hover.png"></label>
+							</span>
+							<span id="roption3">
+								<input type="checkbox" id="r_option3" name="r_o_option" value="03">
+									<label for="r_option3" id="tag1"><img src="/resources/img/roomoption/Roption_shampoo_icon2.png"></label>
+									<label for="r_option3" id="tag1-1" style="display:none;"><img src="/resources/img/roomoption/Roption_shampoo_icon_hover.png"></label>
+							</span>
+							<span id="roption4">
+								<input type="checkbox" id="r_option4" name="r_o_option" value="04">
+									<label for="r_option4" id="tag1"><img src="/resources/img/roomoption/Roption_Bathtub_icon2.png"></label>
+									<label for="r_option4" id="tag1-1" style="display:none;"><img src="/resources/img/roomoption/Roption_Bathtub_icon_hover.png"></label>
+							</span>
+							<span id="roption5">
+								<input type="checkbox" id="r_option5" name="r_o_option" value="05">
+									<label for="r_option5" id="tag1"><img src="/resources/img/roomoption/Roption_airconditioner_icon2.png"></label>
+									<label for="r_option5" id="tag1-1" style="display:none;"><img src="/resources/img/roomoption/Roption_airconditioner_icon_hover.png"></label>
+							</span>
+							<span id="roption6">
+								<input type="checkbox" id="r_option6" name="r_o_option" value="06">
+									<label for="r_option6" id="tag1"><img src="/resources/img/roomoption/Roption_safebox_icon2.png"></label>
+									<label for="r_option6" id="tag1-1" style="display:none;"><img src="/resources/img/roomoption/Roption_safebox_icon_hover.png"></label>
+							</span>
+							<span id="roption7">
+								<input type="checkbox" id="r_option7" name="r_o_option" value="07">
+									<label for="r_option7" id="tag1"><img src="/resources/img/roomoption/Roption_minibar_icon2.png"></label>
+									<label for="r_option7" id="tag1-1" style="display:none;"><img src="/resources/img/roomoption/Roption_minibar_icon_hover.png"></label>
+							</span>
+							<span id="roption8">
+								<input type="checkbox" id="r_option8" name="r_o_option" value="08">
+									<label for="r_option8" id="tag1"><img src="/resources/img/roomoption/Roption_wifi_icon2.png"></label>
+									<label for="r_option8" id="tag1-1" style="display:none;"><img src="/resources/img/roomoption/Roption_wifi_icon_hover.png"></label>
+							</span>
+							<span id="roption9">
+								<input type="checkbox" id="r_option9" name="r_o_option" value="09">
+									<label for="r_option9" id="tag1"><img src="/resources/img/roomoption/Roption_tv_icon2.png"></label>
+									<label for="r_option9" id="tag1-1" style="display:none;"><img src="/resources/img/roomoption/Roption_tv_icon_hover.png"></label>
+							</span>
+							<span id="roption10">
+								<input type="checkbox" id="r_option10" name="r_o_option" value="10">
+									<label for="r_option10" id="tag1"><img src="/resources/img/roomoption/Roption_computer_icon2.png"></label>
+									<label for="r_option10" id="tag1-1" style="display:none;"><img src="/resources/img/roomoption/Roption_computer_icon_hover.png"></label>
+							</span>
+							<span id="roption11">
+								<input type="checkbox" id="r_option11" name="r_o_option" value="11">
+									<label for="r_option11" id="tag1"><img src="/resources/img/roomoption/Roption_refrigerator_icon2.png"></label>
+									<label for="r_option11" id="tag1-1" style="display:none;"><img src="/resources/img/roomoption/Roption_refrigerator_icon_hover.png"></label>
+							</span>
+							<span id="roption12">
+								<input type="checkbox" id="r_option12" name="r_o_option" value="12">
+									<label for="r_option12" id="tag1"><img src="/resources/img/roomoption/Roption_hairdryer_icon2.png"></label>
+									<label for="r_option12" id="tag1-1" style="display:none;"><img src="/resources/img/roomoption/Roption_hairdryer_icon_hover.png"></label>
+							</span>
+						</div>
 						</td>
-						<td width=150 height=150><input type="file" name="files" accept="image/*" multiple>
-						<div id="listFile"></div></td>
+					</tr>
+					<tr>
+						<td>세부설명</td>
+						<td colspan=3><textarea name="r_detail" id="detail"></textarea></td>
+					</tr>
+					<tr>
+						<td> 대표 이미지 </td>
+						<td>
+							<input type="file" name="file" style="visibility: hidden;"><br>
+							<img src="http://placehold.it/150x150" id="image" width=200 height=200><br>
+						</td>
+					</tr>
+					<tr>
+						<td width=100>추가이미지</td>
+						<td width=150 height=150>
+							<input type="file" name="files" accept="image/*" multiple>
+							<div id="listFile"></div>
+						</td>
 					</tr>
 				</table>
-				<div style="text-align:center; background:#efefef; padding:10px 0px 10px 0px; border-radius:3px 3px 3px 3px; margin:25px 5px 35px 5px; font-size:14.5px;">룸 옵션 선택</div>
-					<div id="roption" style="text-align:center;">
-						<span id="roption1">
-							<input type="checkbox" id="r_option1" name="r_o_option" value="01">
-								<label for="r_option1" id="tag1"><img src="/resources/img/roomoption/Roption_coffemaker_icon2.png"></label>
-								<label for="r_option1" id="tag1-1" style="display:none;"><img src="/resources/img/roomoption/Roption_coffemaker_icon_hover.png"></label>
-						</span>
-						<span id="roption2">
-							<input type="checkbox" id="r_option2" name="r_o_option" value="02">
-								<label for="r_option2" id="tag1"><img src="/resources/img/roomoption/Roption_ketchen_icon2.png"></label>
-								<label for="r_option2" id="tag1-1" style="display:none;"><img src="/resources/img/roomoption/Roption_ketchen_icon_hover.png"></label>
-						</span>
-						<span id="roption3">
-							<input type="checkbox" id="r_option3" name="r_o_option" value="03">
-								<label for="r_option3" id="tag1"><img src="/resources/img/roomoption/Roption_shampoo_icon2.png"></label>
-								<label for="r_option3" id="tag1-1" style="display:none;"><img src="/resources/img/roomoption/Roption_shampoo_icon_hover.png"></label>
-						</span>
-						<span id="roption4">
-							<input type="checkbox" id="r_option4" name="r_o_option" value="04">
-								<label for="r_option4" id="tag1"><img src="/resources/img/roomoption/Roption_Bathtub_icon2.png"></label>
-								<label for="r_option4" id="tag1-1" style="display:none;"><img src="/resources/img/roomoption/Roption_Bathtub_icon_hover.png"></label>
-						</span>
-						<span id="roption5">
-							<input type="checkbox" id="r_option5" name="r_o_option" value="05">
-								<label for="r_option5" id="tag1"><img src="/resources/img/roomoption/Roption_airconditioner_icon2.png"></label>
-								<label for="r_option5" id="tag1-1" style="display:none;"><img src="/resources/img/roomoption/Roption_airconditioner_icon_hover.png"></label>
-						</span>
-						<span id="roption6">
-							<input type="checkbox" id="r_option6" name="r_o_option" value="06">
-								<label for="r_option6" id="tag1"><img src="/resources/img/roomoption/Roption_safebox_icon2.png"></label>
-								<label for="r_option6" id="tag1-1" style="display:none;"><img src="/resources/img/roomoption/Roption_safebox_icon_hover.png"></label>
-						</span>
-						<span id="roption7">
-							<input type="checkbox" id="r_option7" name="r_o_option" value="07">
-								<label for="r_option7" id="tag1"><img src="/resources/img/roomoption/Roption_minibar_icon2.png"></label>
-								<label for="r_option7" id="tag1-1" style="display:none;"><img src="/resources/img/roomoption/Roption_minibar_icon_hover.png"></label>
-						</span>
-						<span id="roption8">
-							<input type="checkbox" id="r_option8" name="r_o_option" value="08">
-								<label for="r_option8" id="tag1"><img src="/resources/img/roomoption/Roption_wifi_icon2.png"></label>
-								<label for="r_option8" id="tag1-1" style="display:none;"><img src="/resources/img/roomoption/Roption_wifi_icon_hover.png"></label>
-						</span>
-						<span id="roption9">
-							<input type="checkbox" id="r_option9" name="r_o_option" value="09">
-								<label for="r_option9" id="tag1"><img src="/resources/img/roomoption/Roption_tv_icon2.png"></label>
-								<label for="r_option9" id="tag1-1" style="display:none;"><img src="/resources/img/roomoption/Roption_tv_icon_hover.png"></label>
-						</span>
-						<span id="roption10">
-							<input type="checkbox" id="r_option10" name="r_o_option" value="10">
-								<label for="r_option10" id="tag1"><img src="/resources/img/roomoption/Roption_computer_icon2.png"></label>
-								<label for="r_option10" id="tag1-1" style="display:none;"><img src="/resources/img/roomoption/Roption_computer_icon_hover.png"></label>
-						</span>
-						<span id="roption11">
-							<input type="checkbox" id="r_option11" name="r_o_option" value="11">
-								<label for="r_option11" id="tag1"><img src="/resources/img/roomoption/Roption_refrigerator_icon2.png"></label>
-								<label for="r_option11" id="tag1-1" style="display:none;"><img src="/resources/img/roomoption/Roption_refrigerator_icon_hover.png"></label>
-						</span>
-						<span id="roption12">
-							<input type="checkbox" id="r_option12" name="r_o_option" value="12">
-								<label for="r_option12" id="tag1"><img src="/resources/img/roomoption/Roption_hairdryer_icon2.png"></label>
-								<label for="r_option12" id="tag1-1" style="display:none;"><img src="/resources/img/roomoption/Roption_hairdryer_icon_hover.png"></label>
-						</span>
-					</div>
 				<input type="submit" value="룸 등록">
 				</form>	
-				
 				<h1>룸 목록</h1>
 				<span id="total">( ${pm.totalCount} 건 )</span>
 				<table id="tbl">
@@ -300,7 +215,6 @@
 							<a href="${pm.endPage+1}">▶</a>
 						</c:if>
 					</div>
-					
 					
 					<div id="darken-background">
 						<div id="lightbox">
@@ -476,7 +390,6 @@ $("#tbl").on("click", ".row", function() {
 
 	$("#star1").hide();$("#star3").hide();$("#star5").hide();$("#star7").hide();$("#star9").hide();
 	$("#star2").hide();$("#star4").hide();$("#star6").hide();$("#star8").hide();$("#star10").hide();$("#star11").hide();
-	
 	var r_i_roomnum=$(this).find(".roomnum").html();
 	var r_i_id="${c_id}";
 	$.ajax({
@@ -563,7 +476,8 @@ $(frm.file).on("change", function() {
 $("#pagination").on("click","a",function(e){
 	e.preventDefault();
 	var page=$(this).attr("href");
-	location.href="roominsert?page="+page;
+	var c_id="${c_id}";
+	location.href="roominsert?c_id="+c_id+"&&page="+page;
 });
 
 $("#tbl").on("click", ".row", function() {

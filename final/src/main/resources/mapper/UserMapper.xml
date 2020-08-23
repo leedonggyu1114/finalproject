@@ -141,4 +141,9 @@
     <select id="count" resultType="int">
     	select count(*) from tbl_user where u_id=#{param1} and u_k_id=#{param2}
     </select>
+    
+     <select id="userroombooking" resultType="hashmap">
+       select u.u_id, c.c_name, r.r_roomnum ,  r.r_price, r_image, rb.r_b_checkin, rb.r_b_checkout from tbl_user u , tbl_company c, tbl_room r, tbl_room_booking rb where r.r_id=c.c_id and u.u_id=rb.u_id and u.u_k_id=rb.u_k_id and r.r_roomnum=rb.r_roomnum and rb.r_id=c.c_id and u.u_id=#{u_id} and u.u_k_id=#{u_k_id}
+    </select>
+    
 </mapper>

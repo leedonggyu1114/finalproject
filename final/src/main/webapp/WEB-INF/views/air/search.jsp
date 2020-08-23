@@ -633,32 +633,7 @@ ul,li{list-style:none;}
 					} else {
 						airList();
 					}
-				}/*else{
-															function airList(){
-															$.ajax({
-																type : "post",
-																url : "/air/airList",
-																dataType : "json",
-																data : {
-																	"a_startplace" : startplace,
-																	"a_endplace" : endplace,
-																	"a_startdate" : startdate,
-																	"a_startdate1" : startdate1,
-																	"a_emptyseat" : emptyseat
-																},
-																success : function(data) {
-																	var template = Handlebars.compile($("#temp").html());
-																	$("#tbl").html(template(data));
-																	
-																	var template1 = Handlebars.compile($("#temp1").html());
-																	$("#tbl1").html(template1(data));
-																	//alert(startdate1);
-															
-																}
-															});
-														}
-														};
-				 */
+				}
 			});
 
 	//booking
@@ -799,7 +774,6 @@ ul,li{list-style:none;}
 				var template1 = Handlebars.compile($("#temp1").html());
 				$("#tbl1").html(template1(data));
 				//alert(startdate1);
-
 			}
 		});
 	};

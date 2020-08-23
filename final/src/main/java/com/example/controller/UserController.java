@@ -50,7 +50,14 @@ public class UserController {
 	@Autowired
 	UserMapper mapper;
 
-	
+	@RequestMapping(value="/user/userroombooking",method=RequestMethod.POST)
+	   @ResponseBody
+	   public List<HashMap<String,Object>> userroombooking(HttpSession session){
+	      String u_id=(String)session.getAttribute("u_id");
+	       String u_k_id=(String)session.getAttribute("u_k_id");
+	       List<HashMap<String,Object>> map=mapper.userroombooking(u_id, u_k_id);
+	       return map;
+	      }
 	
 	@RequestMapping("/user/mypage/report")
 	public void report() {
@@ -258,7 +265,7 @@ public class UserController {
 	public HashMap<String, Object> read(String u_id, String u_k_id) {
 		HashMap<String, Object> map=new HashMap<String, Object>();
 		UserVO vo=mapper.kakaoread(u_id, u_k_id);
-		UserVO uvo=mapper.read(u_id,u_k_id);
+		String uvo=mapper.readid(u_id,u_k_id);
 		List<UserTagVO> tvo=mapper.readtag(u_id);
 		map.put("readtag", tvo);
 		map.put("read", vo);

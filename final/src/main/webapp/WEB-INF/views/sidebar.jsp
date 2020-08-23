@@ -181,7 +181,7 @@
 			</c:if>
 			<c:if test="${ c_id!=null }">
 				<div id="mypage_info"><a href="/user/mypage/infomation">내 정보</a></div>
-				<div id="mypage_booking"><a href="/company/roominsert">숙소등록</a></div>
+				<div id="mypage_booking"><a href="/company/roominsert?c_id=${c_id}">숙소등록</a></div>
 				<div id="mypage_like"><a href="">모름</a></div>
 			</c:if>
 		</div>
@@ -209,7 +209,6 @@
 				}, duration, 'easeInBack');
 				$(".menu-trigger").removeClass("active");
 			}
-			;
 		});
 		
 		var $sidebarButton = $('.sidebar-btn').on('click', function() {
@@ -227,7 +226,6 @@
 					right : '-400px'
 				}, duration, 'easeInBack');
 			}
-			;
 		});
 	})
 </script>

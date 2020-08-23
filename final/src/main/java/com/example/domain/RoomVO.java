@@ -22,8 +22,16 @@ public class RoomVO {
 	private String r_o_roomnum;
 	private String r_o_option;
 	
+	private String r;
 	
+
 	
+	public String getR() {
+		return r;
+	}
+	public void setR(String r) {
+		this.r = r;
+	}
 	public String getR_o_id() {
 		return r_o_id;
 	}
@@ -126,9 +134,9 @@ public class RoomVO {
 				+ ", r_persons=" + r_persons + ", r_image=" + r_image + ", r_price=" + r_price + ", r_grade=" + r_grade
 				+ ", r_status=" + r_status + ", images=" + images + ", r_i_id=" + r_i_id + ", r_i_roomnum="
 				+ r_i_roomnum + ", r_i_images=" + r_i_images + ", r_o_id=" + r_o_id + ", r_o_roomnum=" + r_o_roomnum
-				+ ", r_o_option=" + r_o_option + "]";
+				+ ", r_o_option=" + r_o_option + ", r=" + r + "]";
 	}
-	
+
 	
 	
 }

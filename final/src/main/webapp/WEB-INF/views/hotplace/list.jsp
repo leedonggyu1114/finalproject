@@ -88,47 +88,47 @@
    cursor:pointer;
 }
 #hotplace_tag {
-	height:49px;
-	padding:10px 0px 10px 0px;
-	position:absolute;
-	bottom:0px;
+   height:49px;
+   padding:10px 0px 10px 0px;
+   position:absolute;
+   bottom:0px;
 }
 #hotplace_tag button {
-	border:none;
-	outline:none;
-	cursor:pointer;
-	border-radius:8px 8px 8px 8px;
-	padding:5px;
-	margin-right:5px;
+   border:none;
+   outline:none;
+   cursor:pointer;
+   border-radius:8px 8px 8px 8px;
+   padding:5px;
+   margin-right:5px;
 }
 </style>
 </head>
 <body>
-	<jsp:include page="../floatmenu.jsp"/>
+   <jsp:include page="../floatmenu.jsp"/>
    <jsp:include page="../sidebar.jsp"/>
    <button type="button" name="button" class="ac-sub-go-top" style="cursor:pointer;">위로</button>
    <div id="page">
       <div id="header"><jsp:include page="../header.jsp"/></div>
       <div id="menu"><jsp:include page="../menu.jsp"/></div>
       <div id="container">
-		<div style="position:relative;">
-			<div style="height:199px; text-align:center; padding-top:30px;"><img src="/resources/img/hotplace/hotplace_title2.png" width=800/></div>
-			<div id="hotplace_tag">
-	         	<button tag="">#ALL</button>
-	         	<button tag="01">#힐링</button>
-	         	<button tag="02">#헬스케어</button>
-	         	<button tag="03">#익사이팅</button>
-	         	<button tag="04">#나홀로여행</button>
-	         	<button tag="05">#가족과함께</button>
-	         	<button tag="06">#연인과함께</button>
-	         	<button tag="07">#친구와함께</button>
-	         	<button tag="08">#먹방</button>
-	         	<button tag="10">#도심속여행</button>
-	         	<button tag="11">#나만아는</button>
-	         	<button tag="12">#야경</button>
-	         	<button tag="13">#교육</button>
-			</div>
-      	</div>
+      <div style="position:relative;">
+         <div style="height:199px; text-align:center; padding-top:30px;"><img src="/resources/img/hotplace/hotplace_title2.png" width=800/></div>
+         <div id="hotplace_tag">
+               <button tag="">#ALL</button>
+               <button tag="01">#힐링</button>
+               <button tag="02">#헬스케어</button>
+               <button tag="03">#익사이팅</button>
+               <button tag="04">#나홀로여행</button>
+               <button tag="05">#가족과함께</button>
+               <button tag="06">#연인과함께</button>
+               <button tag="07">#친구와함께</button>
+               <button tag="08">#먹방</button>
+               <button tag="10">#도심속여행</button>
+               <button tag="11">#나만아는</button>
+               <button tag="12">#야경</button>
+               <button tag="13">#교육</button>
+         </div>
+         </div>
          <!-- 여행추천list시작 -->
          <div id="divlist">
             <c:forEach items="${list }" var="vo">
@@ -146,18 +146,18 @@
          </div>
          <script id="temp" type="text/x-handlebars-template">
         {{#each .}}
-			<figure style="float: left" class="div_hotplace_list">
-				<img class="mainimage" src="/hotplace/display?fileName={{h_image}}" width=300
-					height=300 x="{{h_x}}" y="{{h_y}}" title="{{h_title}}"
-					address="{{h_address}}" detail="{{h_detail}}"
-					tag1="{{h_tag1}}" tag2="{{h_tag2}}" />
-				<figcaption class="div_hotplace_maintitle">
-					<h3>{{h_title}}</h3>
-					<img src="/resources/img/hotplace/like.png" class="hotplace_like" />
-				</figcaption>
-			</figure>
-		{{/each}}
-		</script>
+         <figure style="float: left" class="div_hotplace_list">
+            <img class="mainimage" src="/hotplace/display?fileName={{h_image}}" width=300
+               height=300 x="{{h_x}}" y="{{h_y}}" title="{{h_title}}"
+               address="{{h_address}}" detail="{{h_detail}}"
+               tag1="{{h_tag1}}" tag2="{{h_tag2}}" />
+            <figcaption class="div_hotplace_maintitle">
+               <h3>{{h_title}}</h3>
+               <img src="/resources/img/hotplace/like.png" class="hotplace_like" />
+            </figcaption>
+         </figure>
+      {{/each}}
+      </script>
          <!-- 여행추천list끝 -->
       </div>
       <div id="footer"><jsp:include page="../footer.jsp"/></div>
@@ -166,203 +166,203 @@
 </body>
 <script>
 
-	var x;
-	var y;
-	var u_id = "${u_id}";
-	var u_k_id = "${u_k_id}";
+   var x;
+   var y;
+   var u_id = "${u_id}";
+   var u_k_id = "${u_k_id}";
 
-	//새로고침시 url파라미터 제거
-	window.onkeydown = function() {
-		var kcode = event.keyCode;
-		if (kcode == 116) {
-			history.replaceState({}, null, location.pathname);
-		}
-	}
+   //새로고침시 url파라미터 제거
+   window.onkeydown = function() {
+      var kcode = event.keyCode;
+      if (kcode == 116) {
+         history.replaceState({}, null, location.pathname);
+      }
+   }
 
-	//인덱스에서 넘어온 hotplace스크롤
-	$(document).ready(function() {
-		var page_url = window.location.href;
-		var page_id = page_url.substring(page_url.lastIndexOf("#") + 1);
-		x = page_id.substring(0, page_id.indexOf("|"));
-		y = page_id.substring(page_id.indexOf("|") + 1);
-		if (x != "") {
-			$(".mainimage").each(function() {
-				//thiss=$(this);
-				var scrollx = $(this).attr("x");
-				var scrolly = $(this).attr("y");
-				if (x == scrollx && y == scrolly) {
-					var scroll = $(this).offset().top;
-					$("html").animate({
-						scrollTop : scroll - 200
-					}, 500);
-					$(this).click();
-				}
-			});
-		}
-	});
+   //인덱스에서 넘어온 hotplace스크롤
+   $(document).ready(function() {
+      var page_url = window.location.href;
+      var page_id = page_url.substring(page_url.lastIndexOf("#") + 1);
+      x = page_id.substring(0, page_id.indexOf("|"));
+      y = page_id.substring(page_id.indexOf("|") + 1);
+      if (x != "") {
+         $(".mainimage").each(function() {
+            //thiss=$(this);
+            var scrollx = $(this).attr("x");
+            var scrolly = $(this).attr("y");
+            if (x == scrollx && y == scrolly) {
+               var scroll = $(this).offset().top;
+               $("html").animate({
+                  scrollTop : scroll - 200
+               }, 500);
+               $(this).click();
+            }
+         });
+      }
+   });
 
-	//tag리스트 출력
-	$("#hotplace_tag").on("click", "button", function() {
-		var tag = $(this).attr("tag");
-		$.ajax({
-			type : "get",
-			url : "taglist",
-			dataType : "json",
-			data : {
-				"h_tag" : tag
-			},
-			success : function(data) {
-				var template = Handlebars.compile($("#temp").html());
-				$("#divlist").html(template(data));
-				setlikelist();
-			}
-		});
-	});
+   //tag리스트 출력
+   $("#hotplace_tag").on("click", "button", function() {
+      var tag = $(this).attr("tag");
+      $.ajax({
+         type : "get",
+         url : "taglist",
+         dataType : "json",
+         data : {
+            "h_tag" : tag
+         },
+         success : function(data) {
+            var template = Handlebars.compile($("#temp").html());
+            $("#divlist").html(template(data));
+            setlikelist();
+         }
+      });
+   });
 
-	// top 스크롤
-	$(window).scroll(function() {
-		var quickHeight = $(document).scrollTop(); //스크롤 높이가 500 이상이면 나타나기
-		if (500 <= quickHeight) {
-			$('.ac-sub-go-top').css('display', 'block');
-		} else {
-			$('.ac-sub-go-top').css('display', 'none');
-		}
-	});
+   // top 스크롤
+   $(window).scroll(function() {
+      var quickHeight = $(document).scrollTop(); //스크롤 높이가 500 이상이면 나타나기
+      if (500 <= quickHeight) {
+         $('.ac-sub-go-top').css('display', 'block');
+      } else {
+         $('.ac-sub-go-top').css('display', 'none');
+      }
+   });
 
-	$('.ac-sub-go-top').click(function() {//위로가기 버튼을 클릭했을때
-		$('html, body').animate({
-			scrollTop : '0'
-		}, 800);
-	});
+   $('.ac-sub-go-top').click(function() {//위로가기 버튼을 클릭했을때
+      $('html, body').animate({
+         scrollTop : '0'
+      }, 800);
+   });
 
-	//좋아요 출력하기
-	setlikelist();
-	function setlikelist() {
+   //좋아요 출력하기
+   setlikelist();
+   function setlikelist() {
 
-		$
-				.ajax({
-					type : "get",
-					url : "likeset",
-					dataType : "json",
-					data : {
-						"u_id" : u_id,
-						"u_k_id" : u_k_id
-					},
-					success : function(data) {
-						var likeset = [];
-						for (var i = 0; i < data.length; i++) {
-							likeset.push(data[i]);
-						}
+      $
+            .ajax({
+               type : "get",
+               url : "likeset",
+               dataType : "json",
+               data : {
+                  "u_id" : u_id,
+                  "u_k_id" : u_k_id
+               },
+               success : function(data) {
+                  var likeset = [];
+                  for (var i = 0; i < data.length; i++) {
+                     likeset.push(data[i]);
+                  }
 
-						$(".mainimage")
-								.each(
-										function() {
-											var like = $(this);
-											var check = true;
-											var c_x = $(this).attr("x");
-											var c_y = $(this).attr("y");
-											for (var i = 0; i < likeset.length; i++) {
-												if (likeset[i].h_x == c_x
-														&& likeset[i].h_y == c_y) {
-													check = false;
-												}
-											}
-											if (check == false) {
-												$(like)
-														.parent()
-														.find(
-																".div_hotplace_maintitle .hotplace_like")
-														.attr("src",
-																"/resources/img/hotplace/like_hover.png");
-											}
-										});
+                  $(".mainimage")
+                        .each(
+                              function() {
+                                 var like = $(this);
+                                 var check = true;
+                                 var c_x = $(this).attr("x");
+                                 var c_y = $(this).attr("y");
+                                 for (var i = 0; i < likeset.length; i++) {
+                                    if (likeset[i].h_x == c_x
+                                          && likeset[i].h_y == c_y) {
+                                       check = false;
+                                    }
+                                 }
+                                 if (check == false) {
+                                    $(like)
+                                          .parent()
+                                          .find(
+                                                ".div_hotplace_maintitle .hotplace_like")
+                                          .attr("src",
+                                                "/resources/img/hotplace/like_hover.png");
+                                 }
+                              });
 
-					}
-				});
-	}
+               }
+            });
+   }
 
-	//좋아요누르기
-	$("#divlist")
-			.on(
-					"click",
-					".hotplace_like",
-					function(e) {
-						e.stopPropagation();
-						var like = $(this);
+   //좋아요누르기
+   $("#divlist")
+         .on(
+               "click",
+               ".hotplace_like",
+               function(e) {
+                  e.stopPropagation();
+                  var like = $(this);
 
-						if (u_id == "") {
-							alert("로그인이 필요한 서비스 입니다");
-						} else {
+                  if (u_id == "") {
+                     alert("로그인이 필요한 서비스 입니다");
+                  } else {
 
-							x = $(this).parent().parent().find(".mainimage")
-									.attr("x");
-							y = $(this).parent().parent().find(".mainimage")
-									.attr("y");
+                     x = $(this).parent().parent().find(".mainimage")
+                           .attr("x");
+                     y = $(this).parent().parent().find(".mainimage")
+                           .attr("y");
 
-							$
-									.ajax({
-										type : "get",
-										url : "likeset",
-										dataType : "json",
-										data : {
-											"u_id" : u_id,
-											"u_k_id" : u_k_id
-										},
-										success : function(data) {
-											var check = true;
-											if (check) {
-												for (var i = 0; i < data.length; i++) {
-													if (data[i].h_x == x
-															&& data[i].h_y == y) {
-														check = false;
-													}
-												}
-											}
+                     $
+                           .ajax({
+                              type : "get",
+                              url : "likeset",
+                              dataType : "json",
+                              data : {
+                                 "u_id" : u_id,
+                                 "u_k_id" : u_k_id
+                              },
+                              success : function(data) {
+                                 var check = true;
+                                 if (check) {
+                                    for (var i = 0; i < data.length; i++) {
+                                       if (data[i].h_x == x
+                                             && data[i].h_y == y) {
+                                          check = false;
+                                       }
+                                    }
+                                 }
 
-											if (check == true) {
-												$
-														.ajax({
-															type : "post",
-															url : "likeinsert",
-															data : {
-																"h_x" : x,
-																"h_y" : y,
-																"u_id" : u_id,
-																"u_k_id" : u_k_id
-															},
-															success : function() {
-																$(like)
-																		.attr(
-																				'src',
-																				'/resources/img/hotplace/like_hover.png');
-															}
-														});
-											} else {
-												$
-														.ajax({
-															type : "post",
-															url : "likedelete",
-															data : {
-																"h_x" : x,
-																"h_y" : y,
-																"u_id" : u_id,
-																"u_k_id" : u_k_id
-															},
-															success : function() {
-																$(like)
-																		.attr(
-																				'src',
-																				'/resources/img/hotplace/like.png');
-															}
-														});
-											}
+                                 if (check == true) {
+                                    $
+                                          .ajax({
+                                             type : "post",
+                                             url : "likeinsert",
+                                             data : {
+                                                "h_x" : x,
+                                                "h_y" : y,
+                                                "u_id" : u_id,
+                                                "u_k_id" : u_k_id
+                                             },
+                                             success : function() {
+                                                $(like)
+                                                      .attr(
+                                                            'src',
+                                                            '/resources/img/hotplace/like_hover.png');
+                                             }
+                                          });
+                                 } else {
+                                    $
+                                          .ajax({
+                                             type : "post",
+                                             url : "likedelete",
+                                             data : {
+                                                "h_x" : x,
+                                                "h_y" : y,
+                                                "u_id" : u_id,
+                                                "u_k_id" : u_k_id
+                                             },
+                                             success : function() {
+                                                $(like)
+                                                      .attr(
+                                                            'src',
+                                                            '/resources/img/hotplace/like.png');
+                                             }
+                                          });
+                                 }
 
-										}
+                              }
 
-									});
+                           });
 
-						}
+                  }
 
-					});
+               });
 </script>
 </html>
