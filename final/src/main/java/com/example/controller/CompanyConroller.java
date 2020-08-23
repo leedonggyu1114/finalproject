@@ -127,7 +127,7 @@ public class CompanyConroller {
 		
 		@RequestMapping("/stay/search")
 		   public String companylist(Model model,Criteria cri) {
-		       cri.setPerPageNum(2);
+		       cri.setPerPageNum(10);
 		       PageMaker pm=new PageMaker();
 		       pm.setCri(cri);
 		       pm.setTotalCount(mapper.countpage());
