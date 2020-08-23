@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -50,6 +52,109 @@ ul,li{list-style:none;}
 	line-height:50px;
 	margin-top:25px;
 }
+/*인원선택*/
+#reserver .aircount1 {
+	position:absolute;
+	top:85px;
+	background:white;
+	width:300px;
+	height:350px;
+	z-index:30;
+	border-radius:3px 3px 3px 3px;
+	transtion:all 1s;
+	padding:10px;
+	box-shadow:3px 3px 15px gray;
+}
+#reserver .aircount1 h5 {
+	text-align:left;
+	margin-top:5px;
+	margin-bottom:10px;
+	font-size:20px;
+	color:gray;
+}
+#reserver .aircount1>.aircount_row {
+	background:white;
+	border-top:2px solid gray;
+	border-bottom:2px solid black;
+	padding-top:5px;
+	padding-bottom:5px;
+	height:280px;
+	text-align:center;
+}
+#reserver .aircount1>.aircount_row>.row {
+	margin:5px 0px 5px 0px;
+	height:50px;
+}
+#reserver .aircount1>.aircount_row>.row:nth-child(1) {
+	margin-bottom:5px;
+	margin-top:10px;
+}
+#reserver .aircount1 .age {
+	display:inline-block;
+	width:120px;
+}
+#reserver .aircount1 .aircount_row input[type="button"] {
+	width:40px;
+	height:40px;
+	border-radius:50%;
+	border:1px solid #0f4c81;
+	cursor:pointer;
+	font-size:15px;
+}
+#reserver .aircount1 .aircount_row #btn {
+	width:100%;
+	border-radius:3px 3px 3px 3px;
+	background:#0f4c81;
+	color:white;
+	float:right;
+	margin-top:100px;
+}
+#reserver .aircount1 .aircount_row input[type="text"] {
+	width:40px;
+	height:40px;
+	text-align:center;
+	padding-left:0;
+	background:none;
+	outline:none;
+	border:none;
+}
+
+#companylist {
+	border-top:3px solid #0f4c81;
+	border-bottom:3px solid #0f4c81;
+	cursor:pointer;
+}
+
+table {
+	border-collapse:collapse;
+}
+
+#companylist button {
+	width:200px;
+	height:40px;
+	border:none;
+	outline:none;
+	border-radius:5px;
+	cursor:pointer;
+	margin-top:10px;
+}
+
+#pagination {
+	margin-top:20px;
+	margin-bottom:20px;	
+}
+
+#pagination a {
+	display:inline-block;
+	text-decoration:none;
+	color:black;
+	width:20px;
+	margin-right:7px;
+}
+
+#pagination .active a {
+	font-size:30px;
+}
 </style>
 </head>
 <body>
@@ -73,13 +178,12 @@ ul,li{list-style:none;}
 				<div id="stay_search">
 					<div style="height: 177.33px; text-align: center;">
 						<input type="text" placeholder=지역선택
-							style="width: 150px; margin-right: 10px;" id="areasearch">
-						<input type="text" name="a_startdate" id="sdate" placeholder="체크인">
-						<input type="text" name="a_startdate1" id="edate"
-							placeholder="체크아웃">
+							style="width: 100px;" id="areasearch">
+						<input type="text" name="a_startdate" id="sdate" placeholder="체크인" style="width:150px">
+						<input type="text" name="a_startdate1" id="edate" placeholder="체크아웃" style="width:150px">
 						<!-- 인원선택 -->
-						<div id="reserver" style="position: relative;">
-							<input type="text" class="a_emptyseat" placeholder="성인 1  청소년 0">
+						<div id="reserver" style="position: relative; display:inline-block;">
+							<input type="text" class="a_emptyseat" placeholder="성인 1  청소년 0" style="width:300px;">
 							<div class="aircount1">
 								<h5>인원</h5>
 								<div class="aircount_row">
@@ -107,22 +211,22 @@ ul,li{list-style:none;}
 				</div>
 			</div>
 			<!-- 1end -------------------------------------------------------------------------------->
-			<span id="total">( ${pm.totalCount} 건 )</span>
+			국내숙소<span id="total">( ${pm.totalCount} 건 )</span>
 			<table id="companylist">
-				<tr>
-					<td>호텔 이미지</td>
-					<td>호텔 이름</td>
-					<td>가격</td>
-					<td>주소</td>
-				</tr>
 				<c:forEach items="${list}" var="vo">
-					<tr class="row">
-						<td class="c_id">${vo.c_id}</td>
-						<td><img src="/company/hoteldisplay?fileName=${vo.c_image}"
-							id="image" width=150></td>
-						<td>${vo.c_name }</td>
-						<td>${vo.r}~</td>
-						<td>${vo.c_address }</td>
+					<tr class="row" >
+						<td class="c_id" style="display:none;">${vo.c_id}</td>
+						<td rowspan=2 width=300 height=230 style="border-bottom:0.5px solid #e9e9e9;"><img src="/company/hoteldisplay?fileName=${vo.c_image}" id="image" width=280 height=203 style="margin-left:10px;"></td>
+						<td style="padding-left:10px;width:900px; height:90px;">
+							<span style="font-size:30px; font-weight:bold;">${vo.c_name }</span><br>
+							<span style="font-size:13px; color:gray; ">${vo.c_address }</span>
+						</td>
+					</tr>
+					<tr>
+						<td style="text-align:right; padding-right:10px; padding-top:20px; border-bottom:0.5px solid #e9e9e9;">
+						최저가 <span style="font-size:25px; font-weight:bold; color:#0f4c81;"><fmt:formatNumber value="${vo.r}" pattern="#,###"/> ~</span><br>
+						<button>보러가기</button>
+						</td>
 					</tr>
 				</c:forEach>
 			</table>
@@ -132,10 +236,10 @@ ul,li{list-style:none;}
 				</c:if>
 				<c:forEach begin="${pm.startPage}" end="${pm.endPage}" var="i">
 					<c:if test="${pm.cri.page == i}">
-						<a href="${i}" class='active'>${i}</a>
+						<span class='active'><a href="${i}" >${i}</a></span>
 					</c:if>
 					<c:if test="${pm.cri.page != i}">
-						<a href="${i}">${i}</a>
+						<span><a href="${i}">${i}</a></span>
 					</c:if>
 				</c:forEach>
 				<c:if test="${pm.next}">

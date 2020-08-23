@@ -117,6 +117,7 @@ ul,li{list-style:none;}
 	border-radius:3px 3px 3px 3px;
 	transtion:all 1s;
 	padding:10px;
+	box-shadow:3px 3px 15px gray;
 }
 #reserver .aircount1 h5 {
 	text-align:left;
