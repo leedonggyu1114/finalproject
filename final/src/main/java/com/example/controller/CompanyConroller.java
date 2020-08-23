@@ -46,7 +46,6 @@ public class CompanyConroller {
 	@ResponseBody
 	public HashMap<String, Object> getroomread(String r_i_id, String r_i_roomnum){
 		HashMap<String, Object> map= new HashMap<String, Object>();
-		System.out.println(mapper.imagesread(r_i_id, r_i_roomnum));
 		map.put("option", mapper.readRoomoption(r_i_id, r_i_roomnum));
 		map.put("image", mapper.imagesread(r_i_id, r_i_roomnum));
 		map.put("read", mapper.read(r_i_id,r_i_roomnum));
