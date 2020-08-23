@@ -340,7 +340,7 @@ input[id="login-chk2"]:checked + label em {
 			url:"/user/mypage/read",
 			data:{"u_id":u_id,"u_pass":u_pass,"u_k_id":u_k_id},
 			success:function(data){
-				if(data.read.u_status==1){
+				if(data.readuser.u_status==1){
 					alert("관리자에 의해 차단된 아이디입니다.");
 				}else{
 					if ($(frm.chkLogin).is(":checked"))

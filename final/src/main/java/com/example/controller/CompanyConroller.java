@@ -61,7 +61,7 @@ public class CompanyConroller {
 		return rvo;
 	}
 	@RequestMapping("/company/roominsert")
-	public void insertroom(Model model,String c_id, Criteria cri) {
+	public String insertroom(Model model,String c_id, Criteria cri) {
 		cri.setR_id(c_id);
 		cri.setPerPageNum(5);
 		PageMaker pm=new PageMaker();
@@ -71,6 +71,7 @@ public class CompanyConroller {
 		model.addAttribute("cri",cri);
 		model.addAttribute("pm",pm);
 		model.addAttribute("list",mapper.roomlist(cri));
+		return "/company/roominsert";
 	}
 	
 	
@@ -107,8 +108,8 @@ public class CompanyConroller {
 					System.out.println(arrayParam[i]); 
 					mapper.insertRoomoption(vo.getR_id(),vo.getR_roomnum(),arrayParam[i]);
 					}
-			
-			return "redirect:/company/roominsert";
+				System.out.println(vo.getR_id());
+			return "redirect:/company/roominsert?page=1&&c_id="+vo.getR_id();
 		}
 		@RequestMapping("/displayRoom")
 		@ResponseBody

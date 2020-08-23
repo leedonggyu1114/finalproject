@@ -562,7 +562,8 @@ $(frm.file).on("change", function() {
 $("#pagination").on("click","a",function(e){
 	e.preventDefault();
 	var page=$(this).attr("href");
-	location.href="roominsert?page="+page;
+	var c_id="${c_id}";
+	location.href="roominsert?c_id="+c_id+"&&page="+page;
 });
 
 $("#tbl").on("click", ".row", function() {
