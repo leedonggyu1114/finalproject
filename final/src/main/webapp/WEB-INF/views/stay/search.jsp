@@ -69,10 +69,10 @@ ul,li{list-style:none;}
 				</div>	
 				<div id="air_search">
 					<div style="height:177.33px; text-align:center;">
-						<input type="text" placeholder=지역선택 style="width:150px; margin-right:10px;">
-						<input type="text" placeholder=체크인&nbsp;/&nbsp;체크아웃 style="width:280px; margin-right:10px;">
-						<input type="text" placeholder=인원선택 style="margin-right:10px;">
-						<input type="button" value="검색" 
+						<input type="text" placeholder=지역선택 style="width:150px; margin-right:10px;" id="areasearch">
+						<input type="text" placeholder=체크인&nbsp;/&nbsp;체크아웃 style="width:280px; margin-right:10px;" id="check">
+						<input type="text" placeholder=인원선택 style="margin-right:10px;" id="persons">
+						<input type="button" value="검색" id="btnsearch"
 						style="width:200px; height:50px; border:0.5px solid #e9e9e9; outline:none; 
 						border-radius:5px; background:#0f4c81; color:white; cursor:pointer;">
 					</div>
@@ -117,6 +117,18 @@ ul,li{list-style:none;}
 </body>
 <script>
 var id="${u_id}";
+$("#air_search").on("click", "#btnsearch",function(){
+	var area=$("#areasearch").val();
+	var check=$("#check").val();
+	var persons=$("#persons").val();
+	alert(area+check+persons);
+/*	$.ajax({
+		type:"get",
+		url:"",
+		data:{""}
+	});*/
+});
+
 //페이징
 $("#pagination").on("click", "a", function(e) {
    e.preventDefault();
