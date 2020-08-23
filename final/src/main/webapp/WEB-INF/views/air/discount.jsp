@@ -154,6 +154,7 @@
 							<td style="padding-bottom:25px;">${vo.a_endtime }</td>
 							<td class="a_price" style="border-bottom:0.5px solid gray; padding-bottom:25px;"><fmt:formatNumber value="${vo.a_price/2 }" pattern="#,###"/> 원</td>
 						</tr>
+						
 						<tr class="aircount1">
 							<td colspan=9 class="row">
 								<div class="discount_person">인원을 선택해 주세요.</div>
@@ -172,28 +173,30 @@
 						</tr>
 					</c:forEach>
 				</table>
-<!-- 				<div id="reserver"> -->
-<!-- 					<div class="aircount1"> -->
-<!-- 						<h5>인원</h5> -->
-<!-- 						<div class="aircount_row"> -->
-<!-- 							<div class="row"> -->
-<!-- 								<span class="age">성인</span>  -->
-<!-- 								<input type="button" value="-" class="peopleSubtract">  -->
-<!-- 								<input type="text" value="1" size="1" class="people">  -->
-<!-- 								<input type="button" value="+" class="peoplePlus"> -->
-<!-- 							</div> -->
-<!-- 							<div class="row"> -->
-<!-- 								<span class="age">청소년/어린이</span>  -->
-<!-- 								<input type="button" value="-" class="childSubtract">  -->
-<!-- 								<input type="text" value="0" readonly size="1" class="child">  -->
-<!-- 								<input type="button" value="+" class="childPlus"> -->
-<!-- 							</div> -->
-<!-- 							<div> -->
-<!-- 								<input type="button" id="btn" value="선택완료"> -->
-<!-- 							</div> -->
-<!-- 						</div> -->
-<!-- 					</div> -->
-<!-- 				</div> -->
+				<!--  
+				<div id="reserver">
+					<div class="aircount1">
+						<h5>인원</h5>
+						<div class="aircount_row">
+							<div class="row">
+								<span class="age">성인</span> 
+								<input type="button" value="-" class="peopleSubtract"> 
+								<input type="text" value="1" size="1" class="people"> 
+								<input type="button" value="+" class="peoplePlus">
+							</div>
+							<div class="row">
+								<span class="age">청소년/어린이</span> 
+								<input type="button" value="-" class="childSubtract"> 
+								<input type="text" value="0" readonly size="1" class="child"> 
+								<input type="button" value="+" class="childPlus">
+							</div>
+							<div>
+								<input type="button" id="btn" value="선택완료">
+							</div>
+						</div>
+					</div>
+				</div>
+				-->
 			</div>
 		</div>
 		<div id="footer"><jsp:include page="../footer.jsp" /></div>
@@ -207,11 +210,30 @@
 	$(".aircount1").hide();
 	//인원선택
 	$(".a_emptyseat").on("click", function() {
+		$(".aircount1").hide();
 		discountsum = $(this);
-		discountsum.parent().parent().next().next().show().addClass("open");
-		}
+		discountsum.parent().parent().next().next().show();
 	});
 
+
+	
+	$("#discount").on("click", ".peopleSubtract", function() {
+		var people=$(this).parent().find(".people").val();
+		if (people > 1) {
+			people = people - 1;
+			//$(".people").val(people);
+			alert()
+			$(this).parent().find(".people").val(people);
+		}
+	});
+	$("#discount").on("click", ".peoplePlus", function() {
+		var people=$(this).parent().find(".people").val();
+		if (people > 1) {
+			people = people + 1;
+			//$(".people").val(people);
+			$(this).parent().find(".people").val(people);
+		}
+	});
 	//성인-
 	$("#reserver").on("click", ".peopleSubtract", function() {
 		if (people == 0) {
