@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,6 +9,7 @@
 <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 <link rel="shortcut icon" type="image⁄x-icon" href="/resources/img/title_logo.png">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/style.css"/>
+<script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
 <style>
 ul,li{list-style:none;}
 .slide{height:400px;}
@@ -77,8 +79,55 @@ ul,li{list-style:none;}
 				</div>
 			</div>	
 			<!-- 1end -------------------------------------------------------------------------------->
+			<span id="total">( ${pm.totalCount} 건 )</span>
+				<table id="companylist">
+			      <tr>
+			            <td>호텔 이미지</td>
+			            <td>호텔 이름</td>
+			            <td>가격</td>
+			         </tr>
+			      <c:forEach items="${list}" var="vo" >
+			         <tr class="row">
+			            <td class="c_id">${vo.c_id}</td>
+			            <td><img src="/company/hoteldisplay?fileName=${vo.c_image}" id="image" width=150></td>
+			            <td>${vo.c_name }</td>
+			            <td>${vo.r}~</td>
+			         </tr>
+			      </c:forEach>
+			      </table>
+			      <div id="pagination">
+			         <c:if test="${pm.prev}">
+			            <a href="${pm.startPage-1}">◀</a>
+			         </c:if>
+			         <c:forEach begin="${pm.startPage}" end="${pm.endPage}" var="i">
+			            <c:if test="${pm.cri.page == i}">
+			               <a href="${i}" class='active'>${i}</a>
+			            </c:if>
+			            <c:if test="${pm.cri.page != i}">
+			               <a href="${i}">${i}</a>
+			            </c:if>
+			         </c:forEach>
+			         <c:if test="${pm.next}">
+			            <a href="${pm.endPage+1}">▶</a>
+			         </c:if>
+			      </div>
+			   </div>
 		</div>
 		<div id="footer"><jsp:include page="../footer.jsp"/></div>
-	</div>		
 </body>
+<script>
+var id="${u_id}";
+//페이징
+$("#pagination").on("click", "a", function(e) {
+   e.preventDefault();
+   page = $(this).attr("href");
+   location.href = "/stay/search?page=" + page;
+});
+//호텔읽기 
+$("#companylist").on("click",".row",function(){
+   var c_id=$(this).find(".c_id").html();
+   location.href="/stay/read?c_id="+c_id;
+});
+
+</script>
 </html>

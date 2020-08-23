@@ -52,28 +52,68 @@
 	border-radius:5px;
 }
 .aircount1 {
-	background:orange;
-	height:150px;
+	height:110px;
 }
 
 .peopleSubtract,
 .peoplePlus,
 .childSubtract,
 .childPlus {
-	width:50px;
-	height:50px;
+	width:40px;
+	height:40px;
 	border-radius:50%;
 	outline:none;
 	cursor:pointer;
 	border:0.5px solid #0f4c81;
 }
-.aircount_div {
-	background:pink;
-	width:100%;
-	height:100%;
+.peoplePlus {
+	margin-right:40px;
+}
+.people,
+.child {
+	width:40px;
+	height:40px;
+	border:none;
+	outline:none;
+	border-radius:5px;
+	text-align:center;
+	background:none;
+}
+
+#btn {
+	width:80px;
+	height:40px;
+	background:#0f4c81;
+	border:none;
+	outline:none;
+	cursor:pointer;
+	border-radius:5px;
+	color:white;
 	float:right;
-	padding-top:20px;
-	padding-bottom:20px;
+	margin-right:23px;
+}
+.discount_person {
+	display:inline-block;
+	width:30%;
+	font-size:18px;
+	color:gray;
+	padding-top:36px;
+	padding-bottom:36px;
+}
+.aircount_div {
+	display:inline-block;
+	width:70%;
+	float:right;
+	padding-top:28px;
+	padding-bottom:28px;
+}
+.peopleSubtract,
+.childSubtract {
+	margin-left:10px;
+}
+.age {
+	position:relative;
+	top:3px;
 }
 </style>
 </head>
@@ -116,14 +156,15 @@
 						</tr>
 						<tr class="aircount1">
 							<td colspan=9 class="row">
+								<div class="discount_person">인원을 선택해 주세요.</div>
 								<div class="aircount_div">
 									<span class="age">성인</span> 
 									<input type="button" value="-" class="peopleSubtract"> 
-									<input type="text" value="1" size="1" class="people"> 
+									<input type="text" value="1" class="people" readonly> 
 									<input type="button" value="+" class="peoplePlus">
 									<span class="age">청소년/어린이</span> 
 									<input type="button" value="-" class="childSubtract"> 
-									<input type="text" value="0" readonly size="1" class="child"> 
+									<input type="text" value="0" readonly class="child"> 
 									<input type="button" value="+" class="childPlus">
 									<input type="button" id="btn" value="선택완료">
 								</div>
@@ -163,13 +204,11 @@
 	var child = 0;
 	var discountsum;
 
-	$(".aircount1").show();
+	$(".aircount1").hide();
 	//인원선택
 	$(".a_emptyseat").on("click", function() {
 		discountsum = $(this);
 		discountsum.parent().parent().next().next().show().addClass("open");
-		if(discountsum){
-			
 		}
 	});
 

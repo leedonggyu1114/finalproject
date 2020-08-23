@@ -50,7 +50,14 @@ public class UserController {
 	@Autowired
 	UserMapper mapper;
 
-	
+	@RequestMapping(value="/user/userroombooking",method=RequestMethod.POST)
+	   @ResponseBody
+	   public List<HashMap<String,Object>> userroombooking(HttpSession session){
+	      String u_id=(String)session.getAttribute("u_id");
+	       String u_k_id=(String)session.getAttribute("u_k_id");
+	       List<HashMap<String,Object>> map=mapper.userroombooking(u_id, u_k_id);
+	       return map;
+	      }
 	
 	@RequestMapping("/user/mypage/report")
 	public void report() {
