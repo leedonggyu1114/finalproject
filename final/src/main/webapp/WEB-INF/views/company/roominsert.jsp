@@ -10,8 +10,7 @@
 <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
 <title>여행의 설렘 TOURSUM !</title>
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/style.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/style.css" />
 <style>
 #darken-background {
    position: fixed;
@@ -37,7 +36,7 @@
    box-shadow: 0px 5px 5px rgba(34, 25, 25, 0.4);
    text-align: center;
    position: relative;
-   padding:10px;
+   padding:20px 10px 10px 10px;
 }
 
 #btnClose {
@@ -54,6 +53,7 @@
 	border-top:1px solid #e9e9e9;
 	border-bottom:1px solid #e9e9e9;
 	margin-top:20px;
+	margin-bottom:15px;
 }
 
 #div_star img {
@@ -62,8 +62,26 @@
 
 #div_star {
 	position:absolute;
-	top:465px;
+	top:478px;
 	left:310px;
+}
+
+#div_option {
+	display:inline-block;
+	width:237.04px;
+	float:left;
+}
+
+#roptionB {
+	display:inline-block;
+	width:740.74px;
+	float:left;
+	text-align:left;
+	padding-left:22px;
+}
+
+#roptionB img {
+	width:148px;
 }
 
 #roominsert_area {
@@ -363,13 +381,13 @@ table td {
 			<div id="darken-background">
 				<div id="lightbox">
 					<div>
-						<img src="http://placehold.it/450x300" id="repimage" Style="width: 500px; height: 350px;">
+						<img src="http://placehold.it/500x350" id="repimage" Style="width: 500px; height: 350px;">
 					</div>
 					<div id="images"></div>
 					<script id="temp" type="text/x-handlebars-template">
-								{{#each image}}
-									<span><img src="/displayRoom?fileName={{r_i_images}}" Style="width:100px;height:70px;"></span>
-								{{/each}}
+					{{#each image}}
+						<span><img src="/displayRoom?fileName={{r_i_images}}" Style="width:100px;height:70px;"></span>
+					{{/each}}
 					</script>
 					<table id="tbl2">
 						<tr height=40>
@@ -390,17 +408,18 @@ table td {
 					<div id="div_star">
 						<span id="star1"><img src="/resources/img/star/star0.png"></span> 
 						<span id="star2"><img src="/resources/img/star/star05.png"></span> 
-							<span id="star3"><img src="/resources/img/star/star10.png"></span> 
-							<span id="star4"><img src="/resources/img/star/star15.png"></span> 
-							<span id="star5"><img src="/resources/img/star/star20.png"></span> 
-							<span id="star6"><img src="/resources/img/star/star25.png"></span> 
-							<span id="star7"><img src="/resources/img/star/star30.png"></span> 
-							<span id="star8"><img src="/resources/img/star/star35.png"></span> 
-							<span id="star9"><img src="/resources/img/star/star40.png"></span> 
-							<span id="star10"><img src="/resources/img/star/star45.png"></span> 
-							<span id="star11"><img src="/resources/img/star/star50.png"></span>
+						<span id="star3"><img src="/resources/img/star/star10.png"></span> 
+						<span id="star4"><img src="/resources/img/star/star15.png"></span> 
+						<span id="star5"><img src="/resources/img/star/star20.png"></span> 
+						<span id="star6"><img src="/resources/img/star/star25.png"></span> 
+						<span id="star7"><img src="/resources/img/star/star30.png"></span> 
+						<span id="star8"><img src="/resources/img/star/star35.png"></span> 
+						<span id="star9"><img src="/resources/img/star/star40.png"></span> 
+						<span id="star10"><img src="/resources/img/star/star45.png"></span> 
+						<span id="star11"><img src="/resources/img/star/star50.png"></span>
 					</div>
-					<div id="roptionB" style="text-align: center;">
+					<div id="div_option">옵션</div>
+					<div id="roptionB">
 						<span id="roption1">
 							<input type="checkbox" id="Rr_option1" name="r_o_option1" value="01"> 
 							<label for="Rr_option1" id="tag1">
@@ -418,7 +437,7 @@ table td {
 							<label for="Rr_option2" id="tag1-1" style="display: none;">
 								<img src="/resources/img/roomoption/Roption_ketchen_icon_hover.png">
 							</label>
-						</span> 
+						</span> <br>
 						<span id="roption3"> 
 							<input type="checkbox" id="Rr_option3" name="r_o_option1" value="03"> 
 							<label for="Rr_option3" id="tag1">
@@ -436,7 +455,7 @@ table td {
 							<label for="Rr_option4" id="tag1-1" style="display: none;">
 								<img src="/resources/img/roomoption/Roption_Bathtub_icon_hover.png">
 							</label>
-						</span> 
+						</span> <br>
 						<span id="roption5"> 
 							<input type="checkbox" id="Rr_option5" name="r_o_option1" value="05"> 
 							<label for="Rr_option5" id="tag1">
@@ -453,7 +472,7 @@ table td {
 							<label for="Rr_option6" id="tag1-1" style="display: none;">
 								<img src="/resources/img/roomoption/Roption_safebox_icon_hover.png">
 							</label>
-						</span>
+						</span> <br>
 						<span id="roption7"> 
 							<input type="checkbox" id="Rr_option7" name="r_o_option1" value="07"> 
 							<label for="Rr_option7" id="tag1">
@@ -470,7 +489,7 @@ table td {
 							<label for="Rr_option8" id="tag1-1" style="display: none;">
 								<img src="/resources/img/roomoption/Roption_wifi_icon_hover.png">
 							</label>
-						</span> 
+						</span> <br>
 						<span id="roption9"> 
 							<input type="checkbox" id="Rr_option9" name="r_o_option1" value="09"> 
 							<label for="Rr_option9" id="tag1">
@@ -487,7 +506,7 @@ table td {
 							<label for="Rr_option10" id="tag1-1" style="display: none;">
 								<img src="/resources/img/roomoption/Roption_computer_icon_hover.png">
 							</label>
-						</span> 
+						</span> <br>
 						<span id="roption11"> 
 							<input type="checkbox" id="Rr_option11" name="r_o_option1" value="11"> 
 							<label for="Rr_option11" id="tag1">
