@@ -50,6 +50,11 @@
 	border:none;
 }
 
+#tbl2 {
+	border-top:1px solid #e9e9e9;
+	margin-top:20px;
+}
+
 #roominsert_area {
 	position:relative;
 	left:50%;
@@ -355,21 +360,21 @@ table td {
 									<span><img src="/displayRoom?fileName={{r_i_images}}" Style="width:100px;height:70px;"></span>
 								{{/each}}
 					</script>
-					<table id="tbl2">
+					<table id="tbl2" border=1>
 						<tr>
-							<td>✔ 호 수 : <span id="roomnum1"></span></td>
-							<td>✔ 방 이름 : <span id="title1"></span></td>
-							<td>✔ 최대 인원 수 : <span id="persons1"></span>명
-							</td>
-							<td>✔ 가 격 : <span id="price1"></span>원
+							<td width=238>객실 정보</td>
+							<td>
+								<span id="title1"></span><span id="roomnum1"></span><br>
+								최대 인원 수 / <span id="persons1"></span><br>
+								<span id="price1"></span>원
 							</td>
 						</tr>
 						<tr>
-							<td>상세 설명 : <span id="detail1"></span></td>
+							<td>상세 설명<span id="detail1"></span></td>
 						</tr>
 					</table>
 					<div>
-						별점 : 
+						평점  
 						<span id="star1"><img src="/resources/img/star/star0.png"></span> 
 						<span id="star2"><img src="/resources/img/star/star05.png"></span> 
 							<span id="star3"><img src="/resources/img/star/star10.png"></span> 
