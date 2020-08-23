@@ -46,6 +46,16 @@
 	border-radius:5px 5px 5px 5px;	
 	background:yellow;
 }
+#tbl_roominsert .span {
+	display:inline-block;
+	width:100%;
+	height:100%;
+	border:none;
+	outline:none;
+	border-radius:5px;
+	background:#0f4c81;
+	color:white;
+}
 </style>
 <script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
 </head>
@@ -59,20 +69,20 @@
 			<div id="roominsert_area">
 			<h1>룸 등록</h1>
 			<form name="frm" action="insertroom" method="post" enctype="multipart/form-data" accept-charset="UTF-8">
-				<table border=1>
+				<table border=1 id="tbl_roominsert">
 					<tr>
-						<td><span>숙소명</span></td>
+						<td width=150><span class="span">숙소명</span></td>
 						<td>
 							<input type="text" name="r_title" id="title">
 							<input type="hidden" name="r_id" value="${c_id}" readonly>
 						</td>
-						<td><span>호 수</span></td>
+						<td width=150><span class="span">호 수</span></td>
 						<td><input type="text" name="r_roomnum" id="roomnum"></td>
 					</tr>
 					<tr>
-						<td><span>최대 인원 수</span></td>
+						<td><span class="span">최대 인원 수</span></td>
 						<td><input type="text" name="r_persons" id="persons"></td>
-						<td><span>가격</span></td>
+						<td><span class="span">가격</span></td>
 						<td><input type="text" name="r_price" id="price"></td>
 					</tr>
 					<tr>
@@ -145,18 +155,18 @@
 						</td>
 					</tr>
 					<tr>
-						<td>세부설명</td>
+						<td><span class="span">세부설명</span></td>
 						<td colspan=3><textarea name="r_detail" id="detail"></textarea></td>
 					</tr>
 					<tr>
-						<td> 대표 이미지 </td>
+						<td><span class="span">대표 이미지</span></td>
 						<td>
 							<input type="file" name="file" style="visibility: hidden;"><br>
 							<img src="http://placehold.it/150x150" id="image" width=200 height=200><br>
 						</td>
 					</tr>
 					<tr>
-						<td width=100>추가이미지</td>
+						<td width=100><span class="span">추가이미지</span></td>
 						<td width=150 height=150>
 							<input type="file" name="files" accept="image/*" multiple>
 							<div id="listFile"></div>
