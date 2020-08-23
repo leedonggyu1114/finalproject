@@ -398,9 +398,10 @@ ul,li{list-style:none;}
    var people = 1;
    var child = 0;
 
-   $(".staycount").hide();
-   $(".aircount1").hide();
-   $(".aircount2").hide();
+	
+	$(".staycount").hide();
+	$(".aircount1").hide();
+	$(".aircount2").hide();
 
    //항공왕복 편도 템플릿
    $("#oneway").click(function() {
@@ -439,7 +440,7 @@ ul,li{list-style:none;}
             location.href = "/user/login"
          }
       }
-   });
+   })
 
    //인덱스 항공검색
    $(airfrm).submit(function(e){
