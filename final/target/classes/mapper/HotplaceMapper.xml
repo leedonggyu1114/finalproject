@@ -68,6 +68,7 @@
     	select l.*, u.u_image, u.u_gender from tbl_like l,tbl_user u where u.u_id=l.u_id and u.u_k_id=l.u_k_id and h_x=#{h_x} and h_y=#{h_y}
     </select>
     <select id="hotplacehotel" resultType="com.example.domain.CompanyVO">
-    	select * from tbl_company where c_x-#{c_x} <![CDATA[ < ]]> '0.01' and c_x-#{c_x} <![CDATA[ > ]]> '-0.01'
+<!--     	select * from tbl_company where c_x-#{c_x} <![CDATA[ < ]]> '0.01' and c_x-#{c_x} <![CDATA[ > ]]> '-0.01' -->
+    	select * from tbl_company where c_x-#{param1} <![CDATA[ < ]]> '0.1' and c_x-#{param1} <![CDATA[ > ]]> '-0.1' and c_y-#{param2} <![CDATA[ < ]]> '0.1' and c_y-#{param2} <![CDATA[ > ]]> '-0.1'
     </select>
 </mapper>

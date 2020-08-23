@@ -152,7 +152,6 @@
 	var imagepage = 0;
 	var images = [];
 	
-	
 	//맵새로고침
 	$(".maprefresh").on("click",function(){
 		getmap();
@@ -397,7 +396,6 @@
 
 						$("body").css("overflow", "hidden");//body 스크롤바 없애기
 
-						
 						getlikeuserlist();
 						getmap();
 						getagechart();
@@ -491,20 +489,20 @@
 	}
 	
 	
+////////////////////////////////////////////////////////////////////////////////////	
 	
 	
 	
-
 	//지도촐력
 	function getmap() {
-		
 		
 		$.ajax({
 			type:"get",
 			url:"hotplacehotel",
 			dataType:"json",
-			data:{"c_x":x},
+			data:{"c_x":x,"c_y":y},
 			success:function(data){
+				
 				var mapContainer = document.getElementById('map'), // 지도를 표시할 div  
 				mapOption = {
 					center : new kakao.maps.LatLng(y, x), // 지도의 중심좌표
@@ -514,16 +512,12 @@
 
 				var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
 				
-				//근처 
-				var positions=[];
-				var test = "";
-				var xytest;
+				var positions = [];
 				for(var i=0; i<data.length; i++){
-					xytest = new kakao.maps.LatLng(data[i].c_y+","+data[i].c_x);
-					test += "{content : '<div>"+data[i].c_name+"</div>',latlng : "+xytest+"},";
-					alert(test);
+					var test = {};
+					test.content = "<div>"+data[i].c_name+"</div>";
+					test.latlng = new kakao.maps.LatLng(data[i].c_y, data[i].c_x);
 					positions.push(test);
-				}
 				
 				for (var i = 0; i < positions.length; i++) {
 					// 마커를 생성합니다
@@ -561,26 +555,13 @@
 						infowindow.close();
 					};
 				}
-				
 			}
 		});
 		
-// 		var positions = [ {
-// 			content : '<div>카카오</div>',
-// 			latlng : new kakao.maps.LatLng(33.450705, 126.570677)
-// 		}, {
-// 			content : '<div>생태연못</div>',
-// 			latlng : new kakao.maps.LatLng(33.450936, 126.569477)
-// 		}, {
-// 			content : '<div>텃밭</div>',
-// 			latlng : new kakao.maps.LatLng(33.450879, 126.569940)
-// 		}, {
-// 			content : '<div>근린공원</div>',
-// 			latlng : new kakao.maps.LatLng(33.451393, 126.570738)
-// 		} ];
-
-		
 	}
+	
+
+
 
 	function getagechart() {
 		//연령벌 차트
