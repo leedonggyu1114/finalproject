@@ -52,7 +52,18 @@
 
 #tbl2 {
 	border-top:1px solid #e9e9e9;
+	border-bottom:1px solid #e9e9e9;
 	margin-top:20px;
+}
+
+#div_star img {
+	width:148px;
+}
+
+#div_star {
+	position:absolute;
+	top:465px;
+	left:310px;
 }
 
 #roominsert_area {
@@ -360,21 +371,23 @@ table td {
 									<span><img src="/displayRoom?fileName={{r_i_images}}" Style="width:100px;height:70px;"></span>
 								{{/each}}
 					</script>
-					<table id="tbl2" border=1>
+					<table id="tbl2">
+						<tr height=40>
+							<td width=238 rowspan=3 style="padding-bottom:145px;">객실 정보</td>
+							<td style="padding-left:22px; text-align:left; padding-top:10px;">평점</td>
+						</tr>
 						<tr>
-							<td width=238>객실 정보</td>
-							<td>
-								<span id="title1"></span><span id="roomnum1"></span><br>
-								최대 인원 수 / <span id="persons1"></span><br>
-								<span id="price1"></span>원
+							<td width=742 style="text-align:left; padding-left:22px;">
+								<span id="title1" style="font-size:30px; font-weight:bold;"></span> <span style="color:gray;">(<span id="roomnum1"></span>호)</span><br>
+								<span style="color:gray; display:inline-block; margin-top:10px;">최대 인원 수 / <span id="persons1"></span></span><br>
+								<span style="display:inline-block; color:gray; margin-top:10px;"><span id="price1"> </span>원</span>
 							</td>
 						</tr>
 						<tr>
-							<td>상세 설명<span id="detail1"></span></td>
+							<td height=50 style="text-align:left; padding-left:22px;">상세 설명 : <span id="detail1"></span></td>
 						</tr>
 					</table>
-					<div>
-						평점  
+					<div id="div_star">
 						<span id="star1"><img src="/resources/img/star/star0.png"></span> 
 						<span id="star2"><img src="/resources/img/star/star05.png"></span> 
 							<span id="star3"><img src="/resources/img/star/star10.png"></span> 

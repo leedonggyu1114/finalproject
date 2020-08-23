@@ -209,7 +209,6 @@
 	$(".a_emptyseat").on("click", function() {
 		discountsum = $(this);
 		discountsum.parent().parent().next().next().show().addClass("open");
-		}
 	});
 
 	//성인-
