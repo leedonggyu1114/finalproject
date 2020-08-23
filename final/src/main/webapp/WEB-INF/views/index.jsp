@@ -398,6 +398,11 @@ ul,li{list-style:none;}
 	var people = 1;
 	var child = 0;
 
+	usertaglist();
+	userjustlist();
+	latelyhotplace();
+	
+	
 	$(".staycount").hide();
 	$(".aircount1").hide();
 	$(".aircount2").hide();
@@ -423,9 +428,7 @@ ul,li{list-style:none;}
 		$(airfrm.a_startdate1).show();
 	});
 
-	usertaglist();
-	userjustlist();
-	latelyhotplace();
+	
 	$.ajax({
 		type : "get",
 		url : "/user/mypage/read",
