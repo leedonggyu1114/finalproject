@@ -70,7 +70,9 @@ ul,li{list-style:none;}
 				<div id="air_search">
 					<div style="height:177.33px; text-align:center;">
 						<input type="text" placeholder=지역선택 style="width:150px; margin-right:10px;" id="areasearch">
-						<input type="text" placeholder=체크인&nbsp;/&nbsp;체크아웃 style="width:280px; margin-right:10px;" id="check">
+						<input type="hidden" placeholder=체크인&nbsp;/&nbsp;체크아웃 style="width:280px; margin-right:10px;" id="check">
+						<input type="text" name="a_startdate" id="sdate" placeholder="체크인"> 
+						<input type="text" name="a_startdate1" id="edate" placeholder="체크아웃">
 						<input type="text" placeholder=인원선택 style="margin-right:10px;" id="persons">
 						<input type="button" value="검색" id="btnsearch"
 						style="width:200px; height:50px; border:0.5px solid #e9e9e9; outline:none; 
@@ -128,6 +130,50 @@ $("#air_search").on("click", "#btnsearch",function(){
 		data:{""}
 	});*/
 });
+
+//날짜 받기
+$(document).ready(
+		function() {
+			$("#sdate,#edate")
+					.datepicker(
+							{
+								changeMonth : true, //년을 바꿀수 있는 셀렉박스 
+								changeYear : true, //년을 바꿀수 있는 셀렉박스 
+								showMonthAfterYear : true,
+								nextText : '다음 달',
+								//dayNames: ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'],
+								dayNamesMin : [ '일', '월', '화', '수', '목',
+										'금', '토' ],
+								monthNamesShort : [ '1월', '2월', '3월', '4월',
+										'5월', '6월', '7월', '8월', '9월',
+										'10월', '11월', '12월' ],
+								monthNames : [ '1월', '2월', '3월', '4월',
+										'5월', '6월', '7월', '8월', '9월',
+										'10월', '11월', '12월' ],
+								dateFormat : "yy/mm/dd",
+								minDate : 0
+							});
+
+			$('#sdate').datepicker("option", "maxDate", $("#edate").val());
+			$('#sdate').datepicker(
+					"option",
+					"onClose",
+					function(selectedDate) {
+						$("#edate").datepicker("option", "minDate",
+								selectedDate);
+					});
+
+			$('#edate').datepicker();
+			$('#edate').datepicker("option", "minDate", $("#sdate").val());
+			$('#edate').datepicker(
+					"option",
+					"onClose",
+					function(selectedDate) {
+						$("#sdate").datepicker("option", "maxDate",
+								selectedDate);
+					});
+		});
+
 
 //페이징
 $("#pagination").on("click", "a", function(e) {
