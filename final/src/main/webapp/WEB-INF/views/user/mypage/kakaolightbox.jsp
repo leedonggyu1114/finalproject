@@ -5,10 +5,9 @@
 <head>
 <meta charset="EUC-KR">
 <title>여행의 설렘 TOURSUM !</title>
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 </head>
-
 <style>
-
 #darken-background {
    position: fixed;
    top: 50%;

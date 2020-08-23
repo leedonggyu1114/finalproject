@@ -402,6 +402,7 @@
 						getmap();
 						getagechart();
 						getsexchart();
+						
 					});
 	$("#btnClose").on("click", function(event) {
 		userlikelist = [];
@@ -485,7 +486,6 @@
 			}else{
 				html += "<div page="+i+"></div>";
 			}
-			
 		}
 		$("#userpagination").html(html);
 	}
@@ -507,39 +507,41 @@
 		var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
 		
 		
-		//근처 호텔띄우기
-		var positions=new Array();
-		$.ajax({
-			type:"get",
-			url:"hotplacehotel",
-			dataType:"json",
-			data:{"c_x":x},
-			success:function(data){
-				
-				alert("succes");
-				for(var i=0; i<data.length; i++){
-					var insidedata ={};
-					insidedata.content = data[i].c_name;
-					insidedata.latlng = new kakao.maps.LatLng(data[i].c_y, data[i].c_x);
-					positions.push(insidedata);
-					console.log(positions[i]);
-				}
-			}
-		});
+// 		//근처 
+// 		var positions=[];
+// 		$.ajax({
+// 			type:"get",
+// 			url:"hotplacehotel",
+// 			dataType:"json",
+// 			data:{"c_x":x},
+// 			success:function(data){
+// 				for(var i=0; i<data.length; i++){
+// 					var test = "";
+// 					alert(data[i].c_name);
+// 					if(i==data.length-1){
+// 						test += "{content : '<div>"+data[i].c_name+"</div>',latlng : new kakao.maps.LatLng("+data[i].c_y+","+data[i].c_x+")}";
+// 						positions.push(test);
+// 					}else{
+// 						test += "{content : '<div>"+data[i].c_name+"</div>',latlng : new kakao.maps.LatLng("+data[i].c_y+","+data[i].c_x+")},";
+// 						positions.push(test);
+// 					}
+// 				}
+// 			}
+// 		});
 		
-// 		positions = [ {
-// 			content : '<div>카카오</div>',
-// 			latlng : new kakao.maps.LatLng(33.450705, 126.570677)
-// 		}, {
-// 			content : '<div>생태연못</div>',
-// 			latlng : new kakao.maps.LatLng(33.450936, 126.569477)
-// 		}, {
-// 			content : '<div>텃밭</div>',
-// 			latlng : new kakao.maps.LatLng(33.450879, 126.569940)
-// 		}, {
-// 			content : '<div>근린공원</div>',
-// 			latlng : new kakao.maps.LatLng(33.451393, 126.570738)
-// 		} ];
+		var positions = [ {
+			content : '<div>카카오</div>',
+			latlng : new kakao.maps.LatLng(33.450705, 126.570677)
+		}, {
+			content : '<div>생태연못</div>',
+			latlng : new kakao.maps.LatLng(33.450936, 126.569477)
+		}, {
+			content : '<div>텃밭</div>',
+			latlng : new kakao.maps.LatLng(33.450879, 126.569940)
+		}, {
+			content : '<div>근린공원</div>',
+			latlng : new kakao.maps.LatLng(33.451393, 126.570738)
+		} ];
 
 		for (var i = 0; i < positions.length; i++) {
 			// 마커를 생성합니다

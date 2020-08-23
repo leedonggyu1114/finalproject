@@ -209,7 +209,6 @@
 				}, duration, 'easeInBack');
 				$(".menu-trigger").removeClass("active");
 			}
-			;
 		});
 		
 		var $sidebarButton = $('.sidebar-btn').on('click', function() {
@@ -227,7 +226,6 @@
 					right : '-400px'
 				}, duration, 'easeInBack');
 			}
-			;
 		});
 	})
 </script>

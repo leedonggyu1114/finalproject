@@ -55,6 +55,11 @@ input[id*="list"] + label + div {
 input[id*="list"]:checked + label + div {
 	max-height:1000px;
 	padding:20px 0px 20px 0px;
+	overflow-y:auto; 
+	qoverflow-x:hidden;
+}
+input[id*="list"]:checked + label + div::-webkit-scrollbar {
+	display: none;
 }
 input[id*="list"]:checked + label em {
 	background-position:0 -30px;
