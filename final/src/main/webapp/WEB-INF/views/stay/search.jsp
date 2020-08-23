@@ -6,10 +6,13 @@
 <head>
 <meta charset="UTF-8">
 <title>여행의 설렘 TOURSUM !</title>
-<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<!-- <script src="http://code.jquery.com/jquery-1.9.1.js"></script> -->
 <link rel="shortcut icon" type="image⁄x-icon" href="/resources/img/title_logo.png">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/style.css"/>
-<script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
+<!-- <script src="http://code.jquery.com/jquery-3.1.1.min.js"></script> -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
 <style>
 ul,li{list-style:none;}
 .slide{height:400px;}
