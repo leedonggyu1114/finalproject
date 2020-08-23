@@ -145,14 +145,16 @@
 							<td style="padding-top:25px; color:red;">${vo.a_starttime }</td>
 							<td rowspan=2 style="border-bottom:0.5px solid gray;">${vo.a_runtime }</td>
 							<td class="a_emptyseat" rowspan=2 style="border-bottom:0.5px solid gray;">${vo.a_emptyseat }</td>
-							<td style="padding-top:25px;text-decoration:line-through;"><fmt:formatNumber value="${vo.a_price}" pattern="#,###"/> 원</td>
+							<td class="a_price" style="padding-top:25px;"><fmt:formatNumber value="${vo.a_price/2 }" pattern="#,###"/> 원</td>
 							<td rowspan=2 style="border-bottom:0.5px solid gray;"> <input type="text" class="a_emptyseat" placeholder="인원선택" size=4> </td>
 							<td rowspan=2 style="border-bottom:0.5px solid gray;"><input type="button" value="결제하기" class="paybtn"></td>
+							<td><input type="hidden" value="" id="a_price1"></td>
 						</tr>
 						<tr style="height:50px; border-bottom:0.5px solid gray;">
 							<td colspan=2 style="padding-bottom:25px;">${vo.a_company }</td>
 							<td style="padding-bottom:25px;">${vo.a_endtime }</td>
-							<td class="a_price" style="border-bottom:0.5px solid gray; padding-bottom:25px;"><fmt:formatNumber value="${vo.a_price/2 }" pattern="#,###"/> 원</td>
+							<td style="padding-bottom:25px; text-decoration:line-through;"><fmt:formatNumber value="${vo.a_price}" pattern="#,###"/> 원</td>
+							
 						</tr>
 						
 						<tr class="aircount1">
@@ -167,7 +169,7 @@
 									<input type="button" value="-" class="childSubtract"> 
 									<input type="text" value="0" readonly class="child"> 
 									<input type="button" value="+" class="childPlus">
-									<input type="button" id="btn" value="선택완료">
+									<input type="button" class="btn" value="선택완료">
 								</div>
 							</td>
 						</tr>
@@ -219,51 +221,39 @@
 	
 	$("#discount").on("click", ".peopleSubtract", function() {
 		var people=$(this).parent().find(".people").val();
-		if (people > 1) {
-			people = people - 1;
-			//$(".people").val(people);
-			alert()
+		if (people >= 1) {
+			people = Number(people) - 1;
 			$(this).parent().find(".people").val(people);
 		}
 	});
 	$("#discount").on("click", ".peoplePlus", function() {
 		var people=$(this).parent().find(".people").val();
-		if (people > 1) {
-			people = people + 1;
-			//$(".people").val(people);
+		if (people >= 0) {
+			people = Number(people) + 1;
 			$(this).parent().find(".people").val(people);
 		}
 	});
-	//성인-
-	$("#reserver").on("click", ".peopleSubtract", function() {
-		if (people == 0) {
-
-		} else if (people > 1) {
-			people = people - 1;
-			$(".people").val(people);
+	
+	$("#discount").on("click", ".childSubtract", function() {
+		
+		var child=$(this).parent().find(".child").val();
+		if (child >= 1) {
+			child = Number(child) - 1;
+			$(this).parent().find(".child").val(child);
 		}
 	});
-	//성인+
-	$("#reserver").on("click", ".row .peoplePlus", function() {
-		people = people + 1;
-		$(".people").val(people);
-	});
-	//청소년-
-	$("#reserver").on("click", ".childSubtract", function() {
-		if (child == 0) {
-
-		} else if (child > 0) {
-			child = child - 1;
-			$(".child").val(child);
+	$("#discount").on("click", ".childPlus", function() {
+		var child=$(this).parent().find(".child").val();
+		if (child >= 0) {
+			child = Number(child) + 1;
+			$(this).parent().find(".child").val(child);
 		}
 	});
-	//청소년+
-	$("#reserver").on("click", ".row .childPlus", function() {
-		child++;
-		$(".child").val(child);
-	});
+
 	//선택완료시 성인 청소년 넣기 
-	$("#btn").on("click", function() {
+	$("#discount").on("click",".btn", function() {
+		var people=$(this).parent().find(".people").val();
+		var child=$(this).parent().find(".child").val();
 		discountsum.val(people + "," + child);
 		$(".aircount1").hide();
 	});
@@ -277,11 +267,19 @@
 				var a_emptyseat = row.find(".a_emptyseat").html();
 				var price = row.find(".a_price").html();
 				alert(a_number + sum + a_emptyseat + price);
+				var fullStr = price;
+				var sliceStr = fullStr.slice(0,-1);
+				var beforeAdd = sliceStr;
+				var afterAdd = beforeAdd.split(',');
+				var price1=afterAdd[0]+afterAdd[1];
 				if (a_emptyseat < sum) {
 					alert("예약 인원이 너무 많습니다");
 				} else {
 					location.href = "/air/bookingPeople?a_number=" + a_number
-							+ "&sum=" + sum + "&price=" + price;
+							+ "&sum=" + sum + "&price=" + price1;
+					
+					
+				
 				}
 			});
 </script>
