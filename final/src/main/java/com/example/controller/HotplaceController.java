@@ -140,8 +140,8 @@ public class HotplaceController {
 	
 	@RequestMapping("hotplacehotel")
 	@ResponseBody
-	public List<CompanyVO> hotplacehotel(String c_x){
-		List<CompanyVO> hotplacehotel = mapper.hotplacehotel(c_x);
+	public List<CompanyVO> hotplacehotel(String c_x,String c_y){
+		List<CompanyVO> hotplacehotel = mapper.hotplacehotel(c_x,c_y);
 		
 		return hotplacehotel;
 	}
