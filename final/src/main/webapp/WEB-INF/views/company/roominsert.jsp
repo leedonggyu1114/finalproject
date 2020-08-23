@@ -44,17 +44,104 @@
 	transform:translate(-50%,0);
 	width:1000px;
 	border-radius:5px 5px 5px 5px;	
-	background:yellow;
 }
 #tbl_roominsert .span {
 	display:inline-block;
 	width:100%;
-	height:100%;
+	height:40px;
+	padding-left:10px;
+	padding-top:10.5px;
 	border:none;
 	outline:none;
 	border-radius:5px;
 	background:#0f4c81;
 	color:white;
+	font-size:15px;
+}
+
+#tbl_roominsert .span_detail {
+	display:inline-block;
+	width:100%;
+	height:80px;
+	padding-left:10px;
+	padding-top:28px;
+	border:none;
+	outline:none;
+	border-radius:5px;
+	background:#0f4c81;
+	color:white;
+	font-size:15px;
+}
+
+#tbl_roominsert .span_image {
+	display:inline-block;
+	width:100%;
+	height:201px;
+	padding-left:10px;
+	padding-top:90px;
+	border:none;
+	outline:none;
+	border-radius:5px;
+	background:#0f4c81;
+	color:white;
+	font-size:15px;
+}
+
+#tbl_roominsert .span_images {
+	display:inline-block;
+	width:100%;
+	height:112px;
+	padding-left:10px;
+	padding-top:50px;
+	border:none;
+	outline:none;
+	border-radius:5px;
+	background:#0f4c81;
+	color:white;
+	font-size:15px;
+}
+
+#tbl_roominsert textarea {
+	width:100%;
+	height:80px;
+	border:0.5px solid #e9e9e9;
+	border-radius:3px;
+	cursor:pointer;
+	padding-left:10px;
+	padding-top:10px;
+	font-size:18px;
+}
+
+#tbl_roominsert input[type="text"] {
+	height:40px;
+	border:0.5px solid #e9e9e9;
+	border-radius:3px;
+	cursor:pointer;
+	padding-left:10px;
+	padding-right:10px;
+	width:100%
+}
+
+table {
+	border-collapse:collapse;
+}
+
+table td {
+	padding-left:10px; padding-right:10px;
+}
+
+#roption img {
+	padding:5px 0px 5px 0px;
+	width:148px;
+	cursor:pointer;
+}
+#insert {
+	width:150px;
+	height:40px;
+	border-radius:5px;
+	outline:none;
+	cursor:pointer;
+	border:0.5px solid #e9e9e9;
 }
 </style>
 <script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
@@ -69,26 +156,30 @@
 			<div id="roominsert_area">
 			<h1>룸 등록</h1>
 			<form name="frm" action="insertroom" method="post" enctype="multipart/form-data" accept-charset="UTF-8">
-				<table border=1 id="tbl_roominsert">
-					<tr>
-						<td width=150><span class="span">숙소명</span></td>
-						<td>
+				<table id="tbl_roominsert">
+					<tr style="height:70px;">
+						<td width=170><span class="span">숙소명</span></td>
+						<td width=300>
 							<input type="text" name="r_title" id="title">
 							<input type="hidden" name="r_id" value="${c_id}" readonly>
 						</td>
-						<td width=150><span class="span">호 수</span></td>
+						<td width=170><span class="span">호 수</span></td>
 						<td><input type="text" name="r_roomnum" id="roomnum"></td>
 					</tr>
-					<tr>
+					<tr style="height:70px;">
 						<td><span class="span">최대 인원 수</span></td>
 						<td><input type="text" name="r_persons" id="persons"></td>
 						<td><span class="span">가격</span></td>
-						<td><input type="text" name="r_price" id="price"></td>
+						<td><input type="text" name="r_price" id="price" style="text-align:right; width:300px; margin-right:10px;" placeholder=하루기준>원</td>
 					</tr>
-					<tr>
-						<td colspan=4><span>숙소 옵션을 선택해주세요.</span></td>
+					<tr style="height:70px;">
+						<td colspan=4>
+							<span style="background:#efefef; display:inline-block; width:100%; text-align:center; padding-top:10px; padding-bottom:10px; border-radius:3px;">
+								옵션을 선택해주세요.
+							</span>
+						</td>
 					</tr>
-					<tr>
+					<tr style="height:150px;">
 						<td colspan=4>
 						<div id="roption" style="text-align:center;">
 							<span id="roption1">
@@ -154,26 +245,28 @@
 						</div>
 						</td>
 					</tr>
-					<tr>
-						<td><span class="span">세부설명</span></td>
-						<td colspan=3><textarea name="r_detail" id="detail"></textarea></td>
+					<tr style="height:100px;">
+						<td><span class="span_detail">세부설명</span></td>
+						<td colspan=3 style="padding-top:5.5px;"><textarea name="r_detail" id="detail"></textarea></td>
 					</tr>
-					<tr>
-						<td><span class="span">대표 이미지</span></td>
-						<td>
-							<input type="file" name="file" style="visibility: hidden;"><br>
-							<img src="http://placehold.it/150x150" id="image" width=200 height=200><br>
+					<tr style="height:240px;">
+						<td><span class="span_image">대표 이미지</span></td>
+						<td colspan=3>
+							<input type="file" name="file" style="display: none;"><br>
+							<img src="http://placehold.it/150x150" id="image" width=200 height=200 style="position:relative; bottom:10px;">
 						</td>
 					</tr>
 					<tr>
-						<td width=100><span class="span">추가이미지</span></td>
-						<td width=150 height=150>
-							<input type="file" name="files" accept="image/*" multiple>
+						<td width=100><span class="span_images">추가이미지</span></td>
+						<td width=150 height=150 colspan=3>
+							<input type="file" name="files" accept="image/*" multiple style="margin-bottom:5px;">
 							<div id="listFile"></div>
 						</td>
 					</tr>
 				</table>
-				<input type="submit" value="룸 등록">
+				<div style="height:100px; text-align:center;">
+					<input type="submit" value="숙소 등록하기" id="insert">
+				</div>
 				</form>	
 				<h1>룸 목록</h1>
 				<span id="total">( ${pm.totalCount} 건 )</span>
@@ -469,7 +562,7 @@ $(frm.files).change(function() {
 	var files = $(frm.files)[0].files;
 	var html = "";
 	$.each(files, function(index, file) {
-		html += "<img src='" + URL.createObjectURL(file) + "'>";
+		html += "<img src='" + URL.createObjectURL(file) + "' style='width:120px; height:80px; margin-right:10px;'>";
 	});
 	$("#listFile").html(html);
 });
