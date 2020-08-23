@@ -435,7 +435,7 @@ ul,li{list-style:none;}
          "u_k_id" : u_k_id
       },
       success : function(data) {
-         if (data.read.u_status == 1) {
+         if (data.readuser.u_status == 1) {
             alert("관리자에 의해 차단 된 아이디입니다.");
             location.href = "/user/login"
          }
