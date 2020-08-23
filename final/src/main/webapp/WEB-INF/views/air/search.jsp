@@ -571,13 +571,8 @@ ul,li{list-style:none;}
 		$(".aircount1").show();
 		$("#btn").on("click", function() {
 			$(".aircount1").hide();
+			$(".a_emptyseat").val("성인 " + people + "  청소년 " + child);
 		});
-	});
-	//인원
-	$("#btn").on("click", function() {
-		//people=$("#reserver").find(".people").val();
-		//child=$("#reserver").find(".child").val();
-		$(".a_emptyseat").val("성인 " + people + "  청소년 " + child);
 	});
 	//성인-
 	$("#reserver").on("click", ".peopleSubtract", function() {
