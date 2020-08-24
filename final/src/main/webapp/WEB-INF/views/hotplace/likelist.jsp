@@ -69,7 +69,7 @@
       <div id="container">
          <!-- 여행추천list시작 -->
          <div id="likelist-area">
-         	<div style="margin-top:38px; margin-bottom:18px;"><img src="/resources/img/hotplace/likelist_title.png" width=320 style="position:relative; left:50%; transform:translate(-50%,0);"/></div>
+         	<div style="margin-top:38px; margin-bottom:18px;"><img src="/resources/img/hotplace/likelist.png" width=300 style="position:relative; left:50%; transform:translate(-50%,0);"/></div>
             <c:forEach items="${likelist }" var="vo">
                <figure style="float: left" class="div_hotplace_list">
                   <div style="width:250px;height:330px; border:0.5px solid gray; float:left; margin:25px; border-radius:0px 8px 8px 8px; cursor:pointer;">

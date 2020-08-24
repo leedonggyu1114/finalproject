@@ -233,10 +233,71 @@ ul,li{list-style:none;}
 	position:relative;
 	top:3px;
 }
+
+.menu-trigger, .menu-trigger span {
+	display: inline-block;
+	transition: all .4s;
+	box-sizing: border-box;
+}
+
+.menu-trigger {
+	position: absolute;
+	right:370px;
+	top:73px;
+	width: 35px;
+	height: 28px;
+	z-index:9;
+}
+
+.menu-trigger span {
+	position: absolute;
+	left: 0;
+	width: 100%;
+	height: 2px;
+	display:inline-block;
+	background-color: black;
+	border-radius: 10px;
+}
+
+.menu-trigger span:nth-of-type(1) {
+	top: 0.5px;
+}
+
+.menu-trigger span:nth-of-type(2) {
+	top: 50%;
+	transform:translate(0,-50%);
+}
+
+.menu-trigger span:nth-of-type(3) {
+	bottom: 0.6px;
+}
+.sidebar-btn {
+	color: #fff;
+	outline: none;
+	cursor:pointer;
+	position:absolute; 
+	top:66px;
+	right:426px;
+	z-index:9;
+	border:none;
+	background:none;
+}
+
+.sidebar-btn img {
+	cursor:pointer;
+}
 </style>
 </head>
 <body>
 	<jsp:include page="../floatmenu.jsp"/>
+	<button class="sidebar-btn">
+		<img src="/resources/img/cart.png" width=45>
+	</button>
+	<a class="menu-trigger" href="#">
+		<span> </span>
+		<span> </span>
+		<span> </span>
+	</a>
 	<div id="page">
 		<div id="header"><jsp:include page="../header.jsp" /></div>
 		<div id="menu"><jsp:include page="../menu.jsp" /></div>
@@ -382,7 +443,7 @@ ul,li{list-style:none;}
 			<div id="div_air_check">
 			<table id="air_check_none1">
 				<tr class="none_title" style="border-bottom:0.5px solid gray;">
-					<td width=150 style="border-right:0.5px solid gray; background:#E3B8C7; font-size:15px; font-weight:bold;">가는항공</td>
+					<td width=150 style="border-right:0.5px solid gray; background:#e8d8d0; font-size:15px; font-weight:bold;">가는항공</td>
 					<td width=180></td>
 					<td width=40>▶</td>
 					<td width=180></td>
@@ -401,7 +462,7 @@ ul,li{list-style:none;}
 			</table>
 			<table id="air_check_none2">
 				<tr class="none_title" style="border-bottom:0.5px solid gray;">
-					<td width=150 style="border-right:0.5px solid gray; background:#67ACC3; font-size:15px; font-weight:bold;">오는항공</td>
+					<td width=150 style="border-right:0.5px solid gray; background:#c2cece; font-size:15px; font-weight:bold;">오는항공</td>
 					<td width=180></td>
 					<td width=40>▶</td>
 					<td width=180></td>
@@ -421,7 +482,7 @@ ul,li{list-style:none;}
 			<table id="booking"></table>
 			<script id="bookingtemp" type="text/x-handlebars-template">
 				<tr class="none_title" style="border-bottom:0.5px solid gray;">
-					<td width=150 style="border-right:0.5px solid gray; background:#E3B8C7; font-size:15px; font-weight:bold;">가는항공</td>
+					<td width=150 style="border-right:0.5px solid gray; background:#e8d8d0; font-size:15px; font-weight:bold;">가는항공</td>
 					<td width=180>{{a_startplace}}</td>
 					<td width=40>▶</td>
 					<td width=180>{{a_endplace}}</td>
@@ -441,7 +502,7 @@ ul,li{list-style:none;}
 			<table id="booking1"></table>
 			<script id="bookingtemp1" type="text/x-handlebars-template">
 				<tr class="none_title" style="border-bottom:0.5px solid gray;">
-					<td width=150 style="border-right:0.5px solid gray; background:#67ACC3; font-size:15px; font-weight:bold;">오는항공</td>
+					<td width=150 style="border-right:0.5px solid gray; background:#c2cece; font-size:15px; font-weight:bold;">오는항공</td>
 					<td width=180>{{a_startplace}}</td>
 					<td width=40>▶</td>
 					<td width=180>{{a_endplace}}</td>
@@ -459,7 +520,7 @@ ul,li{list-style:none;}
 				</tr>
 			</script>
 			</div>
-			<div style="text-align:right; padding-right:30px; font-size:25px;">결제예정금액</div>
+			<div style="text-align:right; padding-right:30px; font-size:25px; color:gray;">결제예정금액</div>
 			<div style="text-align:right; padding-right:30px; font-size:30px; margin-top:10px;"><span id=priceSum style="display:inline-block; width:500px; color:red;"></span> 원</div>
 			<br>
 			<input type="button" value="예약하기" id="btnbooking">

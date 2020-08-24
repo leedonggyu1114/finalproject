@@ -24,7 +24,7 @@
 			<a href="https://kauth.kakao.com/oauth/logout?client_id=44c4398b724d06191dbaf99c087795b1&logout_redirect_uri=http://localhost:8088/user/login">로그아웃</a>
 		</c:if>
 	</div>
-	<a href="/"><img src="${pageContext.request.contextPath}/resources/img/logo4.png" width=300 id="header_logo"></a>
+	<a href="/"><img src="${pageContext.request.contextPath}/resources/img/logo.png" width=300 id="header_logo"></a>
 </body>
 <script>
 </script>

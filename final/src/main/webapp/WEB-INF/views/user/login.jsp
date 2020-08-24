@@ -204,7 +204,7 @@ input[id="login-chk2"]:checked + label em {
 		<div id="menu"><jsp:include page="../menu.jsp" /></div>
 		<div id="container">
 			<div id="login-area">
-				<img src="/resources/img/user/login_title.png" width=170 style="display:inline-black; position:relative; left:50%; transform:translate(-50%,0); margin-bottom:20px;"/>
+				<img src="/resources/img/user/login_title2.png" style="display:inline-black; position:relative; left:50%; transform:translate(-50%,0); margin-bottom:20px;"/>
 				<ul class="login-tab">
 					<li class="tab-link current" data-tab="Regular" id="tab-regular">
 						<b>일반</b>

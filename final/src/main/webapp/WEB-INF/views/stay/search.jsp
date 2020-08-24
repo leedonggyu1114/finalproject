@@ -140,8 +140,9 @@ table {
 }
 
 #pagination {
-	margin-top:20px;
-	margin-bottom:20px;	
+	margin-top:60px;
+	margin-bottom:60px;	
+	text-align:center;
 }
 
 #pagination a {
@@ -211,14 +212,14 @@ table {
 				</div>
 			</div>
 			<!-- 1end -------------------------------------------------------------------------------->
-			국내숙소<span id="total">( ${pm.totalCount} 건 )</span>
+			<div style="text-align:right;"><span id="total">( ${pm.totalCount} 건 )</span></div>
 			<table id="companylist">
 				<c:forEach items="${list}" var="vo">
 					<tr class="row" >
 						<td class="c_id" style="display:none;">${vo.c_id}</td>
 						<td rowspan=2 width=300 height=230 style="border-bottom:0.5px solid #e9e9e9;"><img src="/company/hoteldisplay?fileName=${vo.c_image}" id="image" width=280 height=203 style="margin-left:10px;"></td>
 						<td style="padding-left:10px;width:900px; height:90px;">
-							<span style="font-size:30px; font-weight:bold;">${vo.c_name }</span><br>
+							<span style="font-size:25px; font-weight:bold; font-family:'맑은 고딕'; color:#373737;">${vo.c_name }</span><br>
 							<span style="font-size:13px; color:gray; ">${vo.c_address }</span>
 						</td>
 					</tr>
@@ -247,8 +248,8 @@ table {
 				</c:if>
 			</div>
 		</div>
+		<div id="footer"><jsp:include page="../footer.jsp" /></div>
 	</div>
-	<div id="footer"><jsp:include page="../footer.jsp" /></div>
 </body>
 <script>
 	var id = "${u_id}";

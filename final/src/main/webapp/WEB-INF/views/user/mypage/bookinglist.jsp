@@ -147,7 +147,7 @@ table {
 		<div id="menu"><jsp:include page="../../menu.jsp" /></div>
 		<div id="container">
 			<div id="user-booking-list-area">
-				<img src="/resources/img/user/bookinglist-title.png" style="position:relative; left:50%; transform:translate(-50%,0); margin-bottom:20px;"/>
+				<img src="/resources/img/user/booking.png" style="position:relative; left:11%; margin-bottom:20px;"/>
 				<div class="accordion">
 					<input type="checkbox" id="staylist">
 					<label for="staylist">숙소<em></em></label>

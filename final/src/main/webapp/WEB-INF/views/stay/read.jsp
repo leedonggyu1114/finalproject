@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -65,6 +67,16 @@
 	left:310px;
 }
 
+#div_star2 img {
+	width:130px;
+}
+
+#div_star2 {
+	position:absolute;
+	top:42px;
+	right:495px;
+}
+
 #div_option {
 	display:inline-block;
 	width:237.04px;
@@ -83,6 +95,9 @@
 	width:148px;
 }
 
+table {
+	border-collapse:collapse;
+}
 </style>
 <body>
 	<jsp:include page="../floatmenu.jsp"/>
@@ -92,35 +107,61 @@
 		<div id="menu"><jsp:include page="../menu.jsp" /></div>
 		<div id="container">
 			<div id="hotelread_area">
-				<h1>Hotel read</h1>
-				<table id="tbl"></table>
+				<table id="tbl" style="border-top:3px solid #0f4c81; border-bottom:3px solid #0f4c81;"></table>
 				<script id="temp" type="text/x-handlebars-template">
 				{{#each .}}
 				<tr>
-					<td><img src="/company/hoteldisplay?fileName={{c_image}}" id="image" width=150></td>
-					<td>{{r}}</td>
-					<td>{{c_address}}</td>
-					<td>{{c_name}}</td>
-					<td>{{c_grade}}</td>
-					<td>{{c_tel}}</td>
-				</tr>		
+					<td rowspan=2 height=560><img src="/company/hoteldisplay?fileName={{c_image}}" id="image" width=500></td>
+					<td width=700 style="padding-left:30px; height:300px; padding-bottom:70px;">
+						<span style="display:inline-block; margin-bottom:20px; color:gray;">평점</span>
+						<span style="visibility:hidden;">{{c_grade}}</span><br>
+						<span style="font-size:30px; font-weight:bold; font-family:'맑은 고딕'; display:inline-block; margin-bottom:10px;">{{c_name}}</span><br>
+						<span style="display:inline-block; margin-bottom:10px; color:gray;">{{c_address}}</span><br>
+						<span style="color:gray;">{{c_tel}}</span><br>
+					</td>
+				</tr>	
+				<tr>
+					<td style="text-align:right; padding-right:15px; padding-top:45px;">
+						<span style="font-size:20px; color:gray;">최저가</span><br>
+						<span style="font-size:30px; font-weight:bold; color:#0f4c81;">{{r}}</span> <span style="font-size:25px;">원 ~</span><br>
+						<span style="display:inline-block; margin-top:30px;"><button style="background:#0f4c81; width:200px; height:50px; border-radius:5px; outline:none; border:none; color:white; cursor:pointer;">최저가 예약하기</button></span>
+					</td>
+				</tr>	
 				{{/each}}
 				</script>
+				<div id="div_star2">
+						<span id="star21"><img src="/resources/img/star/star0.png"></span> 
+						<span id="star22"><img src="/resources/img/star/star05.png"></span> 
+						<span id="star23"><img src="/resources/img/star/star10.png"></span> 
+						<span id="star24"><img src="/resources/img/star/star15.png"></span> 
+						<span id="star25"><img src="/resources/img/star/star20.png"></span> 
+						<span id="star26"><img src="/resources/img/star/star25.png"></span> 
+						<span id="star27"><img src="/resources/img/star/star30.png"></span> 
+						<span id="star28"><img src="/resources/img/star/star35.png"></span> 
+						<span id="star29"><img src="/resources/img/star/star40.png"></span> 
+						<span id="star210"><img src="/resources/img/star/star45.png"></span> 
+						<span id="star211"><img src="/resources/img/star/star50.png"></span>
+				</div>
 				
-				<h1>호텔의 룸 리스트</h1>
-				<table id="tbl1" width=700></table>
+				<div style="height:60px; margin-top:40px;"><img src="/resources/img/stay/hotelread_title.png"/></div>
+				<table id="tbl1"></table>
 				<script id="temp1" type="text/x-handlebars-template">
+				<tr style="background:#efefef;">
+					<td width=600 style="text-align:center; height:40px;">객실명</td>
+					<td width=200 style="text-align:center;">최대 인원</td>
+					<td width=400 style="text-align:center;">가격(하루기준)</td>
+				</tr>
 				{{#each .}}
-				<tr class="row">
-					<td class="roomnum">{{r_roomnum}}</td>S
-					<td>{{r_title}}</td>
-					<td>{{r_persons}}</td>
-					<td>{{r_price}}</td>
-					<td>{{r_grade}}</td>
+				<tr class="row" style="border-bottom:0.5px solid #e9e9e9; cursor:pointer;">
+					<td style="padding-left:15px; height:80px;"><span style="font-size:20px;">{{r_title}}</span> <span style="font-size:13px; color:gray;">(<span class="roomnum">{{r_roomnum}}</span>호)</span></td>
+					<td style="text-align:center;">{{r_persons}}</td>
+					<td style="text-align:right; padding-right:15px;">{{r_price}} 원</td>
+					<td style="visibility:hidden;">{{r_grade}}</td>
 				</tr>
 				{{/each}} 
 				</script>
 			</div>
+			
 			<div id="darken-background">
 				<div id="lightbox">
 					<div>
@@ -284,6 +325,8 @@ var c_id="${c_id}";
 roomlist();
 $("#star1").hide();$("#star3").hide();$("#star5").hide();$("#star7").hide();$("#star9").hide();
 $("#star2").hide();$("#star4").hide();$("#star6").hide();$("#star8").hide();$("#star10").hide();$("#star11").hide();
+$("#star21").hide();$("#star23").hide();$("#star25").hide();$("#star27").hide();$("#star29").hide();
+$("#star22").hide();$("#star24").hide();$("#star26").hide();$("#star28").hide();$("#star210").hide();$("#star211").hide();
 $(":checkbox").css("display","none");
 $("#darken-background").hide();
 $("input:checkbox[name='r_o_option1']").prop("checked", false);
@@ -320,8 +363,33 @@ $.ajax({
 	url:"/stay/read",
 	data:{"c_id":c_id},
 	success:function(data){
+		var c_grade="${c_grade}";
 		var temp=Handlebars.compile($("#temp").html());
 		 $("#tbl").html(temp(data));
+		 
+		 if(c_grade==0) {
+			 $("#star21").show();
+		 }else if(0<c_grade && c_grade<=0.5) {
+			 $("#star22").show();
+		 }else if(0.5<c_grade && c_grade<=1) {
+			 $("#star23").show();
+		 }else if(1<c_grade && c_grade<=1.5) {
+			 $("#star24").show();
+		 }else if(1.5<c_grade && c_grade<=2) {
+			 $("#star25").show();
+		 }else if(2<c_grade && c_grade<=2.5) {
+			 $("#star26").show();
+		 }else if(2.5<c_grade && c_grade<=3) {
+			 $("#star27").show();
+		 }else if(3<c_grade && c_grade<=3.5) {
+			 $("#star28").show();
+		 }else if(3.5<c_grade && c_grade<=4) {
+			 $("#star29").show();
+		 }else if(4<c_grade && c_grade<=4.5) {
+			 $("#star210").show();
+		 }else if(4.5<c_grade && c_grade<=5) {
+			 $("#star211").show();
+		 }
 	}
 });
 

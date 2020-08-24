@@ -76,7 +76,7 @@
 		<div id="menu"><jsp:include page="../menu.jsp" /></div>
 		<div id="container">
 			<div id="findpass_area">
-				<div style="margin-top:40px; margin-bottom:20px;"><img src="/resources/img/user/findpass_title.png" width=275 style="position:relative; left:50%; transform:translate(-50%,0);"/></div>
+				<div style="margin-top:40px; margin-bottom:20px;"><img src="/resources/img/user/findpass.png" width=275 style="position:relative; left:50%; transform:translate(-50%,0);"/></div>
 				<table id="idfind">
 					<tr>
 						<td colspan=3 style="padding-left:10px; color:gray;">아이디 확인 후 비밀번호를 재설정할 수 있습니다.</td>

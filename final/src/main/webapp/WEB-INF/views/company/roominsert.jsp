@@ -217,11 +217,11 @@ table td {
 		<div id="menu"><jsp:include page="../menu.jsp" /></div>
 		<div id="container">
 			<div id="roominsert_area">
-			<h1>룸 등록</h1>
+			<div style="height:60px; margin-top:20px;"><img src="/resources/img/company/roominsert_title.png"/></div>
 			<form name="frm" action="insertroom" method="post" enctype="multipart/form-data" accept-charset="UTF-8">
 				<table id="tbl_roominsert">
 					<tr style="height:70px;">
-						<td width=170><span class="span">숙소명</span></td>
+						<td width=170><span class="span">객실명</span></td>
 						<td width=300>
 							<input type="text" name="r_title" id="title">
 							<input type="hidden" name="r_id" value="${c_id}" readonly>
@@ -328,11 +328,11 @@ table td {
 					</tr>
 				</table>
 				<div style="height:100px; text-align:center; border-bottom:1px solid black; margin-bottom:20px;">
-					<input type="submit" value="숙소 등록하기" id="insert">
+					<input type="submit" value="객실 등록하기" id="insert">
 				</div>
 				</form>	
-				<h1>나의 숙소 정보</h1>
-				<span id="total">( ${pm.totalCount} 건 )</span>
+				<div style="height:60px; margin-top:40px;"><img src="/resources/img/company/roominsert_title2.png"/></div>
+				<span id="total" style="position:absolute; top:1073px; left:150px;">( ${pm.totalCount} 건 )</span>
 				<table id="tbl" style="border-top:3px solid #0f4c81; border-bottom:3px solid #0f4c81; cursor:pointer;">
 				
 				<c:forEach items="${list}" var="vo">
