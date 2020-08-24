@@ -80,7 +80,7 @@
 	background:none;
 }
 
-#btn {
+.btn {
 	width:80px;
 	height:40px;
 	background:#0f4c81;
@@ -254,7 +254,7 @@
 	$("#discount").on("click",".btn", function() {
 		var people=$(this).parent().find(".people").val();
 		var child=$(this).parent().find(".child").val();
-		discountsum.val(people + "," + child);
+		discountsum.val("성인 " + people + " 청소년 " + child);
 		$(".aircount1").hide();
 	});
 	$("#discount").on(

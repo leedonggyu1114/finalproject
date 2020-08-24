@@ -99,7 +99,7 @@
 		<div id="menu"><jsp:include page="../../menu.jsp" /></div>
 		<div id="container">
 			<div id="user-information-area">
-				<div style="text-align:center;"><img src="/resources/img/user/user_information_title.png" width=400/></div>
+				<div style="text-align:center;"><img src="/resources/img/user/info_title.png" width=350/></div>
 				<c:if test="${u_id!=null}">
 					<form action="updateUser" name="frm" method="post" enctype="multipart/form-data">
 						<table id="info" style="border-collapse:collapse;">

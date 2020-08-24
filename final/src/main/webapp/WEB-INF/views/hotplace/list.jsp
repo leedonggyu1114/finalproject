@@ -111,7 +111,7 @@
       <div id="menu"><jsp:include page="../menu.jsp"/></div>
       <div id="container">
       <div style="position:relative;">
-         <div style="height:199px; text-align:center; padding-top:30px;"><img src="/resources/img/hotplace/hotplace_title2.png" width=800/></div>
+         <div style="height:199px; text-align:center;"><img src="/resources/img/hotplace/hotplace2.png" width=1200/></div>
          <div id="hotplace_tag">
                <button tag="">#ALL</button>
                <button tag="01">#힐링</button>

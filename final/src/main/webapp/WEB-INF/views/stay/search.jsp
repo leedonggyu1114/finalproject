@@ -140,8 +140,9 @@ table {
 }
 
 #pagination {
-	margin-top:20px;
-	margin-bottom:20px;	
+	margin-top:60px;
+	margin-bottom:60px;	
+	text-align:center;
 }
 
 #pagination a {
@@ -160,6 +161,8 @@ table {
 <body>
 	<jsp:include page="../sidebar.jsp"/>
 	<jsp:include page="../floatmenu.jsp"/>
+	<button type="button" name="button" class="ac-sub-go-top"
+      style="cursor: pointer;">위로</button>
 	<div id="page">
 		<div id="header"><jsp:include page="../header.jsp" /></div>
 		<div id="menu"><jsp:include page="../menu.jsp" /></div>
@@ -211,14 +214,14 @@ table {
 				</div>
 			</div>
 			<!-- 1end -------------------------------------------------------------------------------->
-			국내숙소<span id="total">( ${pm.totalCount} 건 )</span>
+			<div style="text-align:right;"><span id="total">( ${pm.totalCount} 건 )</span></div>
 			<table id="companylist">
 				<c:forEach items="${list}" var="vo">
 					<tr class="row" >
 						<td class="c_id" style="display:none;">${vo.c_id}</td>
 						<td rowspan=2 width=300 height=230 style="border-bottom:0.5px solid #e9e9e9;"><img src="/company/hoteldisplay?fileName=${vo.c_image}" id="image" width=280 height=203 style="margin-left:10px;"></td>
 						<td style="padding-left:10px;width:900px; height:90px;">
-							<span style="font-size:30px; font-weight:bold;">${vo.c_name }</span><br>
+							<span style="font-size:25px; font-weight:bold; font-family:'맑은 고딕'; color:#373737;">${vo.c_name }</span><br>
 							<span style="font-size:13px; color:gray; ">${vo.c_address }</span>
 						</td>
 					</tr>
@@ -247,14 +250,29 @@ table {
 				</c:if>
 			</div>
 		</div>
+		<div id="footer"><jsp:include page="../footer.jsp" /></div>
 	</div>
-	<div id="footer"><jsp:include page="../footer.jsp" /></div>
 </body>
 <script>
 	var id = "${u_id}";
 	var people = 1;
 	var child = 0;
+	
+	$(window).scroll(function() {
+		var quickHeight = $(document).scrollTop(); //스크롤 높이가 500 이상이면 나타나기
+		if (500 <= quickHeight) {
+			$('.ac-sub-go-top').css('display', 'block');
+		} else {
+			$('.ac-sub-go-top').css('display', 'none');
+		}
+	});
 
+	$('.ac-sub-go-top').click(function() {//위로가기 버튼을 클릭했을때
+		$('html, body').animate({
+			scrollTop : '0'
+		}, 800);
+	});
+	
 	$(".aircount1").hide();
 	//인원선택
 	$(".a_emptyseat").on("click", function() {

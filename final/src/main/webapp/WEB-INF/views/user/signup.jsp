@@ -390,11 +390,6 @@ $(":checkbox").css("display","none");
 		}
 	});
 
-	
-
-	$(document).on("keyup", "#id", function() {
-		$(this).val($(this).val().replace(/[0-9]|[^\!-z]/gi, ""));
-	});
 
 	$(document).on("keyup", "#telFirst ,#telSecond ,#year ,#MM ,#dd",
 			function() {

@@ -204,7 +204,7 @@ input[id="login-chk2"]:checked + label em {
 		<div id="menu"><jsp:include page="../menu.jsp" /></div>
 		<div id="container">
 			<div id="login-area">
-				<img src="/resources/img/user/login_title.png" width=170 style="display:inline-black; position:relative; left:50%; transform:translate(-50%,0); margin-bottom:20px;"/>
+				<img src="/resources/img/user/login_title2.png" style="display:inline-black; position:relative; left:50%; transform:translate(-50%,0); margin-bottom:20px;"/>
 				<ul class="login-tab">
 					<li class="tab-link current" data-tab="Regular" id="tab-regular">
 						<b>일반</b>
@@ -296,7 +296,7 @@ input[id="login-chk2"]:checked + label em {
 				<div id="div_other_login">
 					<!-- <img src="/kakao_login_large_narrow.png" width="50"> -->
 					<img src="/resources/img/user/kakao_icon.png" width=30 id="kakaoimg"/>
-					<a id="kakao" href="https://kauth.kakao.com/oauth/authorize?client_id=44c4398b724d06191dbaf99c087795b1&redirect_uri=http://192.168.0.151/oauth&response_type=code">
+					<a id="kakao" href="https://kauth.kakao.com/oauth/authorize?client_id=44c4398b724d06191dbaf99c087795b1&redirect_uri=http://192.168.0.194:8088/oauth&response_type=code">
 					카카오 로그인</a>
 				</div>
 			</div>

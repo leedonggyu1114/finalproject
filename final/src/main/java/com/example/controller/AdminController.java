@@ -259,48 +259,30 @@ public class AdminController {
 	@RequestMapping(value="read", produces="application/text; charset=utf8")
 	@ResponseBody
 	public String read(String u_id,String u_k_id,String date,HttpSession session) {
-		String u_id1 = (String)session.getAttribute("u_id");
-		if(u_id.equals("admin")) {
-			String content= mapper.readcontent(u_id, u_k_id, date);
-			return content;
-		}else {
-			return "";
-		}
+		String content= mapper.readcontent(u_id, u_k_id, date);
+		return content;
 	}
 	@RequestMapping("lockStatus")
 	public String lockStatus(String u_id,String u_k_id,HttpSession session) {
 		String u_id1 = (String)session.getAttribute("u_id");
-		if(u_id.equals("admin")) {
-			mapper.updatestatus(u_id, u_k_id,"1");
-			return "/admin/blacklist";
-		}else {
-			return "redirect:/";
-		}
+		mapper.updatestatus(u_id, u_k_id,"1");
 		
+		return "/admin/blacklist";
 	}
 	
 	@RequestMapping("unlockStatus")
 	public String unlockStatus(String u_id,String u_k_id,HttpSession session) {
-		String u_id1 = (String)session.getAttribute("u_id");
-		if(u_id.equals("admin")) {
+
 			mapper.updatestatus(u_id, u_k_id,"0");
 			mapper.blackdelete(u_id, u_k_id);
 			return "/admin/blacklist";
-		}else {
-			return "redirect:/";
-		}
 		
 	}
 	
 	@RequestMapping("unlock")
 	public String unlock(String u_id,String u_k_id,HttpSession session) {
-		String u_id1 = (String)session.getAttribute("u_id");
-		if(u_id.equals("admin")) {
 			mapper.blackdelete(u_id, u_k_id);
 			return "/admin/blacklist";
-		}else {
-			return "redirect:/";
-		}
 	}
 	// 신고내역
 	@RequestMapping("userreport")

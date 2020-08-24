@@ -14,10 +14,10 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/indexstyle.css"/>
 <style>
 #page {
-   height:2550px;
+   height:2050px;
 }
 ul,li{list-style:none;}
-.slide{height:700px; overflow:hidden; z-index:-3; position:relative; bottom:2320px;}
+.slide{height:700px; overflow:hidden; z-index:-3; position:relative; bottom:1820px;}
 .slide ul{position:relative;height:100%;}
 .slide li{position:absolute;left:0;right:0;top:0;bottom:0;opacity:0;animation:fade 12s infinite;}
 .slide li:nth-child(1){background:#B8D6F2;animation-delay:0s}
@@ -328,11 +328,10 @@ ul,li{list-style:none;}
             <div id="first_area">
                <div class="image_first"><img src="/resources/img/area3_sample.jpg" width=500 height=500 /></div>
                <div
-                  style="font-size: 30px; font-weight: bold; padding-left: 10px;">Hotel
-                  name</div>
-               <div style="padding-left: 10px; color: gray;">제주</div>
+                  style="font-size: 30px; font-weight: bold; padding-left: 10px;">이비스앰배서더해운대</div>
+               <div style="padding-left: 10px; color: gray;">부산</div>
                <div
-                  style="font-size: 25px; font-weight: bold; margin-top: 25px; text-align: right; padding-right: 10px;">49,900
+                  style="font-size: 25px; font-weight: bold; margin-top: 25px; text-align: right; padding-right: 10px;">34,234 
                   원~</div>
             </div>
 
@@ -340,35 +339,29 @@ ul,li{list-style:none;}
                <img src="/resources/img/area3_title2.png" />
             </div>
             <div id="second_area">
-               <div class="image"><img src="/resources/img/area3_sample2.jpg" width=150 height=150 /></div>
+               <div class="image"><img src="/resources/img/4.jpg" width=150 height=150 /></div>
                <div
-                  style="position: absolute; left: 160px; top: 10px; font-size: 23px; font-weight: bold;">Hotel
-                  name</div>
+                  style="position: absolute; left: 160px; top: 10px; font-size: 23px; font-weight: bold;">HOTEL WOW</div>
                <div
                   style="position: absolute; left: 160px; top: 40px; color: gray;">부산</div>
                <div
-                  style="position: absolute; bottom: 10px; right: 10px; font-weight: bold;">29,900
+                  style="position: absolute; bottom: 10px; right: 10px; font-weight: bold;">35,645 
                   원~</div>
             </div>
 
             <div id="third_area">
-               <div class="image"><img src="/resources/img/area3_sample2.jpg" width=150 height=150 /></div>
+               <div class="image"><img src="/resources/img/24.jpg" width=150 height=150 /></div>
                <div
-                  style="position: absolute; left: 160px; top: 10px; font-size: 23px; font-weight: bold;">Hotel
-                  name</div>
+                  style="position: absolute; left: 160px; top: 10px; font-size: 23px; font-weight: bold;">선양빌리지돔</div>
                <div
-                  style="position: absolute; left: 160px; top: 40px; color: gray;">부산</div>
+                  style="position: absolute; left: 160px; top: 40px; color: gray;">제주</div>
                <div
-                  style="position: absolute; bottom: 10px; right: 10px; font-weight: bold;">29,900
+                  style="position: absolute; bottom: 10px; right: 10px; font-weight: bold;">67,564 
                   원~</div>
             </div>
 
          </div>
          <!-- 숙소 예약,결제많은순 end ------------------------------------------------------>
-         <div id="div_container_area4">
-            <!-- 숙소 예약,결제많은순 -->
-
-         </div>
          <div id="div_container_area5">
             <div style="margin-left: 20px">
                <h2>주목! 요즘HOT한 여행지</h2>
@@ -379,8 +372,6 @@ ul,li{list-style:none;}
       <div id="footer"><jsp:include page="footer.jsp" /></div>
    </div>
    <div id="area3_background"></div>
-   <div style="width: 100%; height:600px; background: #edf2f3; position:absolute;
-      z-index:-10; top:2779px;"></div>
    <div class="slide">
       <ul>
          <li></li>
