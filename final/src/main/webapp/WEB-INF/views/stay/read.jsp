@@ -147,15 +147,17 @@ table {
 				<table id="tbl1"></table>
 				<script id="temp1" type="text/x-handlebars-template">
 				<tr style="background:#efefef;">
-					<td width=600 style="text-align:center; height:40px;">객실명</td>
+					<td width=400 style="text-align:center; height:40px;">객실명</td>
 					<td width=200 style="text-align:center;">최대 인원</td>
 					<td width=400 style="text-align:center;">가격(하루기준)</td>
+					<td width=200 style="text-align:center;">장바구니</td>
 				</tr>
 				{{#each .}}
 				<tr class="row" style="border-bottom:0.5px solid #e9e9e9; cursor:pointer;">
 					<td style="padding-left:15px; height:80px;"><span style="font-size:20px;">{{r_title}}</span> <span style="font-size:13px; color:gray;">(<span class="roomnum">{{r_roomnum}}</span>호)</span></td>
 					<td style="text-align:center;">{{r_persons}}</td>
 					<td style="text-align:right; padding-right:15px;">{{r_price}} 원</td>
+					<td style="text-align:center;"><input type="button" value="담기" class="cart"></td>
 					<td style="visibility:hidden;">{{r_grade}}</td>
 				</tr>
 				{{/each}} 
@@ -331,6 +333,17 @@ $(":checkbox").css("display","none");
 $("#darken-background").hide();
 $("input:checkbox[name='r_o_option1']").prop("checked", false);
 
+	$("#tbl1").on("click", ".row .cart", function() {
+	   if(!confirm("장바구니에 담으시겠습니까?"))return;
+	   var row=$(this).parent().parent();
+	   var c_name=$("#tbl .row").find(".c_name").html();
+	   var r_title=row.find(".r_title").html();
+	   var r_roomnum=row.find(".r_roomnum").html();
+	   var r_price=row.find(".r_price").html();
+	   //alert(c_name);
+	   location.href="/sidebar?r_title="+r_title+"&r_roomnum="+r_roomnum+"&r_price="+r_price+"&c_name="+c_name+"&c_id="+c_id;
+	});
+
 $("input[name=r_o_option1]").on("click",function(){
 	var tag1=$(this).parent().find("#tag1");
 	var tag2=$(this).parent().find("#tag1-1");
@@ -343,6 +356,7 @@ $("input[name=r_o_option1]").on("click",function(){
 		tag2.css("display","none");
 	}
 });
+
 
 
 $("#tbl1").on("click", ".row", function() {

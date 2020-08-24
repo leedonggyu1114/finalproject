@@ -212,12 +212,15 @@ table td {
 <body>
 	<jsp:include page="../floatmenu.jsp"/>
 	<jsp:include page="../sidebar.jsp"/>
+	<button type="button" name="button" class="ac-sub-go-top"
+      style="cursor: pointer;">위로</button>
 	<div id="page">
 		<div id="header"><jsp:include page="../header.jsp" /></div>
 		<div id="menu"><jsp:include page="../menu.jsp" /></div>
 		<div id="container">
 			<div id="roominsert_area">
 			<div style="height:60px; margin-top:20px;"><img src="/resources/img/company/roominsert_title.png"/></div>
+			<div><button id="go_list">객실정보 보기</button></div>
 			<form name="frm" action="insertroom" method="post" enctype="multipart/form-data" accept-charset="UTF-8">
 				<table id="tbl_roominsert">
 					<tr style="height:70px;">
@@ -712,6 +715,21 @@ $("input[name=r_o_option1]").on("click",function(){
 		tag1.css("display","inline-block");
 		tag2.css("display","none");
 	}
+});
+
+$(window).scroll(function() {
+	var quickHeight = $(document).scrollTop(); //스크롤 높이가 500 이상이면 나타나기
+	if (500 <= quickHeight) {
+		$('.ac-sub-go-top').css('display', 'block');
+	} else {
+		$('.ac-sub-go-top').css('display', 'none');
+	}
+});
+
+$('.ac-sub-go-top').click(function() {//위로가기 버튼을 클릭했을때
+	$('html, body').animate({
+		scrollTop : '0'
+	}, 800);
 });
 </script>
 </html>

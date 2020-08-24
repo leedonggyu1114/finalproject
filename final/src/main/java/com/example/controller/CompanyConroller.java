@@ -42,6 +42,18 @@ public class CompanyConroller {
 	@Autowired
 	CompanyService service;
 		
+   @RequestMapping("/sidebar")
+   public String cart(HttpSession session,String r_title,String r_roomnum,String r_price,String c_name,String c_id) {
+      //System.out.println(r_title+r_roomnum+r_price);
+      String u_id=(String) session.getAttribute("u_id");
+      String u_k_id=(String) session.getAttribute("u_k_id");
+      session.setAttribute("r_title", r_title);
+      session.setAttribute("r_roomnum", r_roomnum);
+      session.setAttribute("r_price", r_price);
+      session.setAttribute("c_name", c_name);
+      return "redirect:/stay/read?c_id="+c_id;
+   }
+	
 	@RequestMapping("/company/getroomread")
 	@ResponseBody
 	public HashMap<String, Object> getroomread(String r_i_id, String r_i_roomnum){

@@ -161,6 +161,8 @@ table {
 <body>
 	<jsp:include page="../sidebar.jsp"/>
 	<jsp:include page="../floatmenu.jsp"/>
+	<button type="button" name="button" class="ac-sub-go-top"
+      style="cursor: pointer;">위로</button>
 	<div id="page">
 		<div id="header"><jsp:include page="../header.jsp" /></div>
 		<div id="menu"><jsp:include page="../menu.jsp" /></div>
@@ -255,7 +257,22 @@ table {
 	var id = "${u_id}";
 	var people = 1;
 	var child = 0;
+	
+	$(window).scroll(function() {
+		var quickHeight = $(document).scrollTop(); //스크롤 높이가 500 이상이면 나타나기
+		if (500 <= quickHeight) {
+			$('.ac-sub-go-top').css('display', 'block');
+		} else {
+			$('.ac-sub-go-top').css('display', 'none');
+		}
+	});
 
+	$('.ac-sub-go-top').click(function() {//위로가기 버튼을 클릭했을때
+		$('html, body').animate({
+			scrollTop : '0'
+		}, 800);
+	});
+	
 	$(".aircount1").hide();
 	//인원선택
 	$(".a_emptyseat").on("click", function() {

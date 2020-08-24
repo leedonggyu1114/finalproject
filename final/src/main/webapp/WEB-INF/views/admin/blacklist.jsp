@@ -214,7 +214,7 @@ $("#tbl").on("click",".row .date",function(){
 	var declair=$(this).parent().find(".declairId").html();
 	var declairkakao=$(this).parent().find(".declairKakaoId").html();
 	var fromid=$(this).parent().find(".fromid").html();
-	var date=$(this).parent().find(".date").html();
+	var date=$(this).html();
 	$("#id").html(declair);
 	$("#id1").html(fromid);
 	$("#kakaoid").html(declairkakao);
@@ -222,7 +222,7 @@ $("#tbl").on("click",".row .date",function(){
 	$("#btnClose").on("click", function(){
 		$("#tblInfo").css("display","none");
 	});
-	
+	alert(date);
 	$.ajax({
 		type:"get",
 		url:"/admin/read",
