@@ -17,7 +17,7 @@
       <div id="container">
          <div id="div_container_area1"> <!-- 퀵검색, 테마 -->
             <div id="div_container_quick">
-               <div><p>고객님!!!!,<br><strong>어떤 여행을 꿈꾸시나요?</strong></p></div>
+               <div><p>고객님,<br><strong>어떤 여행을 꿈꾸시나요?</strong></p></div>
                <div class="tapmenu">
                   <ul class="tabs">
                      <li class="tab-link current" data-tab="tab-1">항공</li>
